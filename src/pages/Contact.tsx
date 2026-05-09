@@ -1,0 +1,153 @@
+import { motion } from "motion/react";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import React, { useState } from "react";
+
+export default function Contact() {
+  const [formState, setFormState] = useState({ state: "idle" }); // idle, submitting, success
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState({ state: "submitting" });
+    setTimeout(() => {
+      setFormState({ state: "success" });
+    }, 1500);
+  };
+
+  return (
+    <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 py-12 flex flex-col min-h-[80vh] justify-center">
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        
+        {/* Left: Info */}
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col gap-12"
+        >
+          <div>
+            <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6">
+              LET'S START <br/>A PROJECT
+            </h1>
+            <p className="text-xl text-[#4A4A4A] max-w-md leading-relaxed">
+              Currently accepting new freelance opportunities and open to discussing full-time roles in spatial computing and AI.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <a href="mailto:hello@cognitiveera.com" className="flex items-center gap-4 text-[#373737] hover:text-[#3480F9] transition-colors group">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5 group-hover:scale-105 transition-transform">
+                <Mail className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Email</p>
+                <p className="text-lg font-medium">hello@cognitiveera.com</p>
+              </div>
+            </a>
+            
+            <a href="tel:+15550000000" className="flex items-center gap-4 text-[#373737] hover:text-[#3480F9] transition-colors group">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5 group-hover:scale-105 transition-transform">
+                <Phone className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Phone</p>
+                <p className="text-lg font-medium">+1 (555) 000-0000</p>
+              </div>
+            </a>
+
+            <div className="flex items-center gap-4 text-[#373737]">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5">
+                <MapPin className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Location</p>
+                <p className="text-lg font-medium">San Francisco, CA / Remote</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-6 pt-6 border-t border-black/5">
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3480F9] uppercase tracking-widest transition-colors group">
+              LinkedIn <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3480F9] uppercase tracking-widest transition-colors group">
+              X (Twitter) <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Right: Form */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-white p-8 md:p-12 rounded-[2rem] shadow-[0_8px_32px_-12px_rgba(0,0,0,0.1)] border border-black/5"
+        >
+          {formState.state === "success" ? (
+            <div className="flex flex-col items-center justify-center text-center h-full min-h-[400px] gap-4">
+              <div className="w-16 h-16 bg-[#4DB440]/10 text-[#4DB440] rounded-full flex items-center justify-center mb-2">
+                <Mail className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#373737]">Message Sent</h3>
+              <p className="text-[#4A4A4A]">Thank you for reaching out. I'll get back to you within 24-48 hours.</p>
+              <button 
+                onClick={() => setFormState({ state: "idle" })}
+                className="mt-6 px-6 py-2.5 bg-[#f8f8f8] text-[#4A4A4A] rounded-xl font-medium hover:bg-[#e5e5e5] transition-colors"
+              >
+                Send another
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  required
+                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
+                  placeholder="John Doe"
+                />
+              </div>
+              
+              <div className="flex flex-col gap-2">
+                <label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Email</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  required
+                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
+                  placeholder="john@example.com"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label htmlFor="message" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Message</label>
+                <textarea 
+                  id="message" 
+                  required
+                  rows={5}
+                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all resize-none placeholder:text-[#a0a0a0]"
+                  placeholder="Tell me about your project..."
+                />
+              </div>
+
+              <button 
+                type="submit" 
+                disabled={formState.state === "submitting"}
+                className="w-full px-8 py-4 bg-[#373737] text-white rounded-xl font-bold shadow-lg shadow-[#373737]/10 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none transition-all duration-200 mt-2 flex items-center justify-center gap-2"
+              >
+                {formState.state === "submitting" ? (
+                  <span className="animate-pulse">Sending...</span>
+                ) : (
+                  <>Send Message <ArrowUpRight className="w-4 h-4" /></>
+                )}
+              </button>
+            </form>
+          )}
+        </motion.div>
+
+      </div>
+    </div>
+  );
+}
