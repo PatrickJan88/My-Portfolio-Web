@@ -16,7 +16,6 @@ export default function Layout({ children }: LayoutProps) {
       {/* UI Decorative Lines - Global */}
       <div className="absolute left-0 top-0 w-px h-full bg-black/[0.03] pointer-events-none"></div>
       <div className="absolute right-0 top-0 w-px h-full bg-black/[0.03] pointer-events-none"></div>
-      <div className="absolute left-0 top-[50%] w-full h-px bg-black/[0.03] pointer-events-none hidden md:block"></div>
 
       <Navbar />
       

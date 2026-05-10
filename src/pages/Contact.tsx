@@ -5,28 +5,49 @@ import React, { useState } from "react";
 export default function Contact() {
   const [formState, setFormState] = useState({ state: "idle" }); // idle, submitting, success
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormState({ state: "submitting" });
-    setTimeout(() => {
-      setFormState({ state: "success" });
-    }, 1500);
+    
+    try {
+      const formData = new FormData(e.currentTarget);
+      formData.append("access_key", "6b48a208-1fca-4e42-ab22-3f11e5c3f398");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+      
+      if (data.success) {
+        setFormState({ state: "success" });
+      } else {
+        console.error("Form submission error:", data);
+        setFormState({ state: "idle" });
+        alert("Error: " + data.message);
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setFormState({ state: "idle" });
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 py-12 flex flex-col min-h-[80vh] justify-center">
+    <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 py-12 flex flex-col min-h-screen">
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
         
         {/* Left: Info */}
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col gap-12"
+          className="flex flex-col gap-12 mt-4"
         >
           <div>
-            <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6">
+            <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6">
               LET'S START <br/>A PROJECT
             </h1>
             <p className="text-xl text-[#4A4A4A] max-w-md leading-relaxed">
@@ -35,13 +56,13 @@ export default function Contact() {
           </div>
 
           <div className="flex flex-col gap-6">
-            <a href="mailto:hello@cognitiveera.com" className="flex items-center gap-4 text-[#373737] hover:text-[#3480F9] transition-colors group">
+            <a href="mailto:ranpofei@gmail.com" className="flex items-center gap-4 text-[#373737] hover:text-[#3480F9] transition-colors group">
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5 group-hover:scale-105 transition-transform">
                 <Mail className="w-5 h-5" />
               </div>
               <div>
                 <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Email</p>
-                <p className="text-lg font-medium">hello@cognitiveera.com</p>
+                <p className="text-lg font-medium">ranpofei@gmail.com</p>
               </div>
             </a>
             
@@ -104,6 +125,7 @@ export default function Contact() {
                 <input 
                   type="text" 
                   id="name" 
+                  name="name"
                   required
                   className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
                   placeholder="John Doe"
@@ -115,6 +137,7 @@ export default function Contact() {
                 <input 
                   type="email" 
                   id="email" 
+                  name="email"
                   required
                   className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
                   placeholder="john@example.com"
@@ -125,6 +148,7 @@ export default function Contact() {
                 <label htmlFor="message" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Message</label>
                 <textarea 
                   id="message" 
+                  name="message"
                   required
                   rows={5}
                   className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all resize-none placeholder:text-[#a0a0a0]"

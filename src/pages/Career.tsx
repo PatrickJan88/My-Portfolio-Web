@@ -49,9 +49,9 @@ export default function Career() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="mb-24 mt-12 md:mt-20 max-w-3xl"
+        className="mb-24 mt-4 max-w-3xl"
       >
-        <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-[#373737] uppercase leading-[0.9] mb-8">
+        <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-[#373737] uppercase leading-[0.9] mb-8">
           Designing the<br/>Cognitive Era
         </h1>
         <p className="text-xl md:text-2xl text-[#4A4A4A] leading-relaxed font-medium">

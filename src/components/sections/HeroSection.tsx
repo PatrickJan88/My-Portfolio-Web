@@ -43,11 +43,19 @@ const cards = [
 ];
 
 export function HeroSection() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [deviceType, setDeviceType] = useState<"mobile" | "tablet" | "desktop">("desktop");
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
+    const check = () => {
+      if (window.innerWidth < 640) {
+        setDeviceType("mobile");
+      } else if (window.innerWidth < 1100) {
+        setDeviceType("tablet");
+      } else {
+        setDeviceType("desktop");
+      }
+    };
     check();
     setIsReady(true);
     window.addEventListener("resize", check);
@@ -56,7 +64,7 @@ export function HeroSection() {
 
   if (!isReady) return <div className="w-full min-h-screen bg-neutral-50" />;
 
-  return <HeroSequence isMobile={isMobile} key={isMobile ? "mobile" : "desktop"} />;
+  return <HeroSequence deviceType={deviceType} key={deviceType} />;
 }
 
 function ScrollCard({ card, scrollYProgress, index, target }: any) {
@@ -133,7 +141,7 @@ function ScrollCard({ card, scrollYProgress, index, target }: any) {
   );
 }
 
-function HeroSequence({ isMobile }: { isMobile: boolean }) {
+function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "desktop" }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -162,14 +170,21 @@ function HeroSequence({ isMobile }: { isMobile: boolean }) {
     { x: "165%", y: 150 },
   ];
 
-  const mobileTargets = [
-    { x: "-55%", y: 80 },
-    { x: "55%", y: 80 },
-    { x: "-55%", y: 290 },
-    { x: "55%", y: 290 },
+  const tabletTargets = [
+    { x: "-55%", y: -130 },
+    { x: "55%", y: -130 },
+    { x: "-55%", y: 130 },
+    { x: "55%", y: 130 },
   ];
 
-  const targets = isMobile ? mobileTargets : desktopTargets;
+  const mobileTargets = [
+    { x: "-55%", y: -100 },
+    { x: "55%", y: -100 },
+    { x: "-55%", y: 100 },
+    { x: "55%", y: 100 },
+  ];
+
+  const targets = deviceType === "mobile" ? mobileTargets : deviceType === "tablet" ? tabletTargets : desktopTargets;
 
   return (
     <div ref={containerRef} className="relative w-full h-[250vh]">
@@ -185,24 +200,18 @@ function HeroSequence({ isMobile }: { isMobile: boolean }) {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col items-center gap-1 mb-6 sm:mb-8"
+            className="flex flex-col items-center gap-1 mb-6 sm:mb-8 translate-y-4"
           >
             <p className="text-[9px] md:text-[10px] font-bold tracking-[0.25em] uppercase text-neutral-900">
               Sweden
             </p>
-            <a
-              href="mailto:ranpofei@gmail.com"
-              className="text-[9px] md:text-[10px] font-medium tracking-[0.2em] text-neutral-400 uppercase pointer-events-auto"
-            >
-              ranpofei@gmail.com
-            </a>
           </motion.div>
 
           {/* Main Title */}
           <SplitText
             text="POFEI"
             tag="h1"
-            className="text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] font-black tracking-tighter text-neutral-900 leading-[0.8] uppercase text-center w-full px-4"
+            className="text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] font-bold tracking-tighter text-neutral-900 leading-[0.8] uppercase text-center w-full px-4 pb-4"
             delay={50}
             duration={1}
             ease="power3.out"
@@ -218,7 +227,7 @@ function HeroSequence({ isMobile }: { isMobile: boolean }) {
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             className="w-full text-center px-4 opacity-30 mt-2 md:mt-4"
           >
-            <h2 className="text-[1.5rem] sm:text-3xl md:text-[4.5rem] lg:text-[5.5rem] font-black tracking-tighter text-neutral-300 uppercase leading-[0.8] break-words">
+            <h2 className="text-[1.5rem] sm:text-3xl md:text-[4.5rem] lg:text-[5.5rem] font-semibold tracking-tighter text-neutral-300 uppercase leading-[0.8] break-words">
               UI/UX DESIGNER
             </h2>
           </motion.div>
