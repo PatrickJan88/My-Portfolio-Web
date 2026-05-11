@@ -1,10 +1,10 @@
 import { motion } from "motion/react";
-import photo1 from "../../assets/Photo 1.jpg";
-import photo2 from "../../assets/Photo 2.jpg";
-import photo3 from "../../assets/Photo 3.jpg";
-import photo4 from "../../assets/Photo 4.jpg";
-import photo5 from "../../assets/Photo 5.jpeg";
-import photo6 from "../../assets/Photo 6.jpg";
+import photo1 from "../../assets/Photo 1-1.jpg";
+import photo2 from "../../assets/Photo 2-1.jpg";
+import photo3 from "../../assets/Photo 3-1.jpg";
+import photo4 from "../../assets/Photo 4-1.jpg";
+import photo5 from "../../assets/Photo 5-1.jpeg";
+import photo6 from "../../assets/Photo 6-1.jpg";
 
 const photos = [
   { id: 1, url: photo1, style: { left: "2%", top: "10%" }, rotation: -12, maxW: "w-[180px] md:w-[220px]" },
