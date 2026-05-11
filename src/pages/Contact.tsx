@@ -47,10 +47,10 @@ export default function Contact() {
           className="flex flex-col gap-12 mt-4"
         >
           <div>
-            <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6">
+            <h1 className="text-6xl font-bold tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6">
               LET'S START <br/>A PROJECT
             </h1>
-            <p className="text-xl text-[#4A4A4A] max-w-md leading-relaxed">
+            <p className="text-base text-[#4A4A4A] max-w-md leading-relaxed font-mono">
               Currently accepting new freelance opportunities and open to discussing full-time roles in spatial computing and AI.
             </p>
           </div>

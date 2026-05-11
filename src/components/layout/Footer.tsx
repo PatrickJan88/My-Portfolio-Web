@@ -6,14 +6,14 @@ export default function Footer() {
     <footer className="w-full py-12 px-6 md:px-12 z-20 flex flex-col items-center gap-8 border-t border-black/5 mt-auto">
       <div className="w-full max-w-[1400px] flex flex-col md:flex-row justify-between items-center gap-6">
         
-        <div className="flex flex-col items-center md:items-start gap-2">
+        <div className="flex flex-col items-center md:items-start gap-2 font-mono">
           <Link to="/" className="text-sm font-bold tracking-tight text-[#373737]">JONATHAN DOE</Link>
           <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#a0a0a0]">
             AI Native Product Designer
           </p>
         </div>
 
-        <nav className="flex items-center gap-6 text-[11px] font-medium tracking-widest text-[#a0a0a0] uppercase">
+        <nav className="flex items-center gap-6 text-[11px] font-medium tracking-widest text-[#a0a0a0] uppercase font-mono">
           <Link to="/projects" className="hover:text-[#3480F9] transition-colors">Works</Link>
           <Link to="/career" className="hover:text-[#3480F9] transition-colors">About</Link>
           <Link to="/contact" className="hover:text-[#3480F9] transition-colors">Contact</Link>
@@ -22,7 +22,7 @@ export default function Footer() {
 
       </div>
       
-      <div className="w-full max-w-[1400px] flex justify-between items-center text-[10px] uppercase tracking-[0.15em] font-bold text-[#D2D2D2]">
+      <div className="w-full max-w-[1400px] flex justify-between items-center text-[10px] uppercase tracking-[0.15em] font-bold text-[#D2D2D2] font-mono">
         <span>© {new Date().getFullYear()} All Rights Reserved</span>
         <span className="hidden sm:inline">Crafted with Spatial Aesthetics</span>
       </div>

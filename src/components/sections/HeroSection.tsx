@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { Briefcase, Sparkles, Zap, Compass } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import SplitText from "../ui/SplitText";
+import BorderGlow from "../ui/BorderGlow";
 
 const cards = [
   {
@@ -125,15 +126,24 @@ function ScrollCard({ card, scrollYProgress, index, target }: any) {
 
           {/* Back Face */}
           <div
-            className="absolute inset-0 rounded-2xl md:rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] bg-neutral-900 border border-neutral-800 flex flex-col items-center justify-center p-4 md:p-6 text-center"
+            className="absolute inset-0 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] rounded-2xl md:rounded-[2rem]"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
             }}
           >
-            <p className="text-xs sm:text-sm md:text-base font-medium text-neutral-200 leading-relaxed font-sans">
-              {card.description}
-            </p>
+            <BorderGlow
+              borderRadius={32}
+              animated
+              backgroundColor="#171717"
+              className="w-full h-full flex flex-col items-center justify-center text-center"
+            >
+              <div className="flex flex-col items-center justify-center p-4 md:p-6 text-center h-full w-full">
+                <p className="text-xs sm:text-sm md:text-base font-medium text-neutral-200 leading-relaxed font-sans">
+                  {card.description}
+                </p>
+              </div>
+            </BorderGlow>
           </div>
         </motion.div>
       </motion.div>
@@ -242,7 +252,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
               transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-center gap-10 mt-[-20px] sm:mt-10 pointer-events-auto"
             >
-              <p className="text-sm md:text-lg text-neutral-700 max-w-lg text-center font-medium leading-relaxed px-6 hidden sm:block">
+              <p className="text-base text-neutral-700 max-w-lg text-center font-medium leading-relaxed px-6 hidden sm:block font-mono">
                 Scaling Personalization through Design Strategy, Aesthetics & AI.
               </p>
 

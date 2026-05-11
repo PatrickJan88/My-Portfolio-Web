@@ -2,25 +2,32 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { HeroSection } from "../components/sections/HeroSection";
-import { ProjectCard } from "../components/ui/ProjectCard";
 import { InstantCamera } from "../components/ui/InstantCamera";
+import { ParallaxCarousel } from "../components/ui/ParallaxCarousel";
+import { FeaturedSlider } from "../components/ui/FeaturedSlider";
 
 export default function Home() {
   const featuredWorks = [
     {
-      id: "ears",
-      title: "EARS™ Ecosystem",
-      category: "Enterprise SaaS",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+      id: "agent-zero",
+      title: "Agent Zero",
+      category: "Autonomous Systems",
+      image: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=1000&auto=format&fit=crop",
     },
     {
-      id: "nexus",
-      title: "NexusOS",
-      category: "Spatial Computing",
-      image: "https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?q=80&w=1000&auto=format&fit=crop",
+      id: "spatial-os",
+      title: "Spatial OS",
+      category: "XR Interface",
+      image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000&auto=format&fit=crop",
     },
     {
-      id: "ev365",
+      id: "neural-link",
+      title: "Neural Link UI",
+      category: "Brain-Computer Interface",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop",
+    },
+     {
+      id: "ev-365",
       title: "EV 365",
       category: "Consumer Mobile",
       image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1000&auto=format&fit=crop",
@@ -32,44 +39,9 @@ export default function Home() {
       <HeroSection />
 
       {/* Selected Featured Works Carousel */}
-      <div className="relative w-full z-10 bg-white py-24 px-6 md:px-12 object-contain">
-        <section className="w-full max-w-[1400px] mx-auto flex flex-col justify-center">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-3xl md:text-5xl font-semibold tracking-tighter text-neutral-900 mb-3 uppercase">Featured Works</h2>
-              <p className="text-lg text-neutral-700 max-w-md font-medium">Selected high-fidelity spatial interfaces and autonomous agent systems.</p>
-            </div>
-            <Link to="/projects" className="hidden sm:flex items-center gap-2 text-sm font-bold text-primary-700 uppercase tracking-widest group">
-              View Archive
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredWorks.map((work, index) => (
-              <motion.div
-                key={work.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <ProjectCard 
-                  id={work.id}
-                  title={work.title}
-                  category={work.category}
-                  image={work.image}
-                />
-              </motion.div>
-            ))}
-          </div>
-          
-          <div className="mt-12 sm:hidden flex justify-center">
-            <Link to="/projects" className="flex items-center gap-2 text-sm font-bold text-primary-700 uppercase tracking-widest group">
-              View Archive
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+      <div className="relative w-full z-10 bg-[#141414] py-24 object-contain">
+        <section className="w-full flex flex-col justify-center">
+          <FeaturedSlider works={featuredWorks} />
         </section>
       </div>
 
@@ -84,6 +56,7 @@ export default function Home() {
           
           <InstantCamera />
         </div>
+        <ParallaxCarousel />
       </div>
     </div>
   );

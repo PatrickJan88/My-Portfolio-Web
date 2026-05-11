@@ -69,10 +69,10 @@ export default function Projects() {
         transition={{ duration: 0.6 }}
         className="mb-16 mt-4"
       >
-        <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-neutral-900 uppercase mb-6 leading-none">
+        <h1 className="text-6xl font-bold tracking-tighter text-neutral-900 uppercase mb-6 leading-none">
           Case Studies
         </h1>
-        <p className="text-lg md:text-xl text-neutral-700 max-w-2xl font-medium leading-relaxed">
+        <p className="text-base text-neutral-700 max-w-2xl font-medium leading-relaxed font-mono">
           An archive of selected works spanning robust enterprise platforms, native mobile applications, and academic human-computer interaction research.
         </p>
       </motion.div>
