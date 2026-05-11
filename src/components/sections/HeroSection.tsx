@@ -227,7 +227,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
             ease="power3.out"
             splitType="chars"
             from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
+            to={{ opacity: 1, y: -8 }}
           />
 
           {/* Faded Background Subtitle */}

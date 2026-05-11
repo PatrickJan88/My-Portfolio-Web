@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { HeroSection } from "../components/sections/HeroSection";
 import { InstantCamera } from "../components/ui/InstantCamera";
-import { ParallaxCarousel } from "../components/ui/ParallaxCarousel";
 import { FeaturedSlider } from "../components/ui/FeaturedSlider";
+import { FloatingScrapbook } from "../components/ui/FloatingScrapbook";
 
 export default function Home() {
   const featuredWorks = [
@@ -48,15 +48,17 @@ export default function Home() {
       {/* "Let's FIKA" Section */}
       <div className="relative w-full min-h-screen z-20 bg-[#FBFBFB] flex flex-col items-center justify-center py-24 px-6 md:px-12 overflow-hidden">
         <div className="w-full max-w-[1400px] mx-auto flex flex-col items-center">
-          <div className="mb-12 text-center">
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-neutral-200 mb-4 uppercase">
-              Take a Photo
+          <div className="mb-12 text-center relative z-40">
+            <h2 className="text-5xl font-semibold tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6 drop-shadow-sm font-sans">
+              Captured Moments
             </h2>
           </div>
           
-          <InstantCamera />
+          <div className="relative z-40">
+            <InstantCamera />
+          </div>
         </div>
-        <ParallaxCarousel />
+        <FloatingScrapbook />
       </div>
     </div>
   );
