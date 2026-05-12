@@ -282,8 +282,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
       {/* Headings Row */}
       <div className="max-w-[1400px] w-full mx-auto flex justify-between items-start mb-12 px-6 md:px-12">
         <div>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tighter text-white mb-3 uppercase">Featured Works</h2>
-          <p className="text-base text-neutral-400 max-w-md font-medium font-mono">Selected high-fidelity spatial interfaces and autonomous agent systems.</p>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tighter text-white mb-3 uppercase">Selected Projects</h2>
           
           {/* Numbers Counter */}
           <div className="mt-6 flex items-center gap-1 font-bold text-6xl tracking-tight text-white" style={{ fontFamily: 'Impact, sans-serif' }}>

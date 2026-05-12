@@ -2,8 +2,8 @@ import { ProjectData } from "../../types/project";
 
 export const essexWebCaseStudy: ProjectData = {
   id: "essex-web",
-  title: "Essex Corporate Website",
-  category: "web",
+  title: "EV Charging Platform",
+  category: "Product Design",
   client: "Essex Lake Group",
   image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
   

@@ -5,9 +5,10 @@ import { projectsData } from "../data/projects";
 
 const projectCategories = [
   { id: "all", label: "All Projects" },
-  { id: "enterprise", label: "Enterprise & B2B" },
-  { id: "consumer", label: "Consumer & Mobile" },
-  { id: "academic", label: "Academic & HCI" },
+  { id: "Research & Design", label: "Research & Design" },
+  { id: "Product Design", label: "Product Design" },
+  { id: "Web Design", label: "Web Design" },
+  { id: "Visual Identity", label: "Visual Identity" },
 ];
 
 export default function Projects() {
@@ -75,7 +76,7 @@ export default function Projects() {
             <ProjectCard
               id={project.id}
               title={project.title}
-              category={project.client}
+              category={project.category}
               image={project.image}
             />
           </motion.div>

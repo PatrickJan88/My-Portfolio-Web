@@ -2,8 +2,8 @@ import { ProjectData } from "../../types/project";
 
 export const mobileAppUxCaseStudy: ProjectData = {
   id: "mobile-app-ux",
-  title: "Fintech Mobile App",
-  category: "mobile",
+  title: "Biotopia Digital Experience",
+  category: "Research & Design",
   client: "Confidential",
   image: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=1000&auto=format&fit=crop",
   

@@ -4,8 +4,8 @@ import earsVideo from "../../assets/EARS_video.webm";
 
 export const earsCaseStudy: ProjectData = {
   id: "ears",
-  title: "EARS™ Ecosystem",
-  category: "Enterprise Analytics Platform",
+  title: "Enterprise Finance Ecosystem",
+  category: "Product Design",
   client: "Essex Lake Group",
   image: earsCover,
   

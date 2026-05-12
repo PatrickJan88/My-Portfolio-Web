@@ -2,8 +2,8 @@ import { ProjectData } from "../../types/project";
 
 export const agentZeroCaseStudy: ProjectData = {
   id: "agent-zero",
-  title: "Agent Zero",
-  category: "Autonomous Systems",
+  title: "Corporate Website Redesign",
+  category: "Web Design",
   client: "Agent Zero",
   image: "https://images.unsplash.com/photo-1620825937374-87fc1d6aafc8?q=80&w=1000&auto=format&fit=crop",
   

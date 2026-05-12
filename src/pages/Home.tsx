@@ -8,7 +8,8 @@ import { FloatingScrapbook } from "../components/ui/FloatingScrapbook";
 import { projectsData } from "../data/projects";
 
 export default function Home() {
-  const featuredWorks = projectsData.slice(0, 5);
+  const featuredWorksIds = ["mobile-app-ux", "ai-companion", "urgent-booking", "essex-web"];
+  const featuredWorks = featuredWorksIds.map(id => projectsData.find(p => p.id === id)).filter(Boolean) as typeof projectsData;
 
   return (
     <div className="w-full flex-1 flex flex-col">

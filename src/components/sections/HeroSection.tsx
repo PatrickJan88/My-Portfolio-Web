@@ -203,19 +203,9 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
         {/* HERO CONTENT */}
         <motion.div
           style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
-          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-[12px]"
         >
-          {/* Top Location Info */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col items-center gap-1 mb-6 sm:mb-8 translate-y-4"
-          >
-            <p className="text-[9px] md:text-[10px] font-bold tracking-[0.25em] uppercase text-neutral-900">
-              Sweden
-            </p>
-          </motion.div>
+
 
           {/* Main Title */}
           <SplitText
@@ -235,11 +225,19 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            className="w-full text-center px-4 opacity-30 mt-2 md:mt-4"
+            className="w-full text-center px-4 opacity-30 mt-2 md:mt-4 relative -top-[6px]"
           >
-            <h2 className="text-[1.5rem] sm:text-3xl md:text-[4.5rem] lg:text-[5.5rem] font-semibold tracking-tighter text-neutral-300 uppercase leading-[0.8] break-words">
-              UI/UX DESIGNER
-            </h2>
+            <SplitText
+              text="Product Designer & AI Builder"
+              tag="h2"
+              className="text-2xl sm:text-3xl font-semibold tracking-widest text-neutral-300 uppercase leading-[0.8]"
+              delay={50}
+              duration={1}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+            />
           </motion.div>
 
           <div className="h-[220px] sm:h-[280px] md:h-[350px] w-full" />
@@ -253,17 +251,8 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
               className="flex flex-col items-center gap-10 mt-[-20px] sm:mt-10 pointer-events-auto"
             >
               <p className="text-base text-neutral-700 max-w-lg text-center font-medium leading-relaxed px-6 hidden sm:block font-mono">
-                Scaling Personalization through Design Strategy, Aesthetics & AI.
+                Grounded in Human-Computer Interaction, I explore how AI can extend the design process—enhancing craft, accelerating iteration, and improving outcomes.
               </p>
-
-              <div className="flex flex-col items-center mt-2">
-                <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-neutral-900 border-b-2 border-neutral-900 pb-1 mb-3">
-                  Clients Include
-                </p>
-                <p className="text-[9px] md:text-[10px] font-medium tracking-widest uppercase text-neutral-400 text-center max-w-md px-4 leading-loose">
-                  OpenAI &middot; Vercel &middot; Stripe &middot; Linear &middot; Framer
-                </p>
-              </div>
             </motion.div>
           </motion.div>
         </motion.div>
