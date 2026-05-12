@@ -1,160 +1,286 @@
 import { motion } from "motion/react";
-import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { useParams, Link, Navigate } from "react-router-dom";
+import { ArrowLeft, ArrowUpRight, Figma } from "lucide-react";
+import { projectsData } from "../data/projects";
 
 export default function ProjectDetail() {
   const { id } = useParams();
-  
-  // Dummy data representing the project detail
-  const project = {
-    title: "EARS™ Ecosystem",
-    client: "Essex Lake Group",
-    role: "Lead Product Designer",
-    timeline: "2022 - 2023",
-    description: "An enterprise-grade platform designed to streamline large-scale data analytics and provide actionable insights for B2B stakeholders.",
-    heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop",
-  };
 
-  const sections = [
-    { id: "overview", label: "Executive Overview" },
-    { id: "challenge", label: "The Challenge" },
-    { id: "process", label: "The Process" },
-    { id: "solution", label: "The Solution" },
-    { id: "impact", label: "The Impact" },
-  ];
+  const currentIndex = projectsData.findIndex((p) => p.id === id);
+  const project =
+    currentIndex !== -1 ? projectsData[currentIndex] : projectsData[0];
+
+  if (!project) {
+    return <Navigate to="/projects" />;
+  }
+
+  const nextProjectIndex =
+    (currentIndex !== -1 ? currentIndex + 1 : 1) % projectsData.length;
+  const nextProject = projectsData[nextProjectIndex];
 
   return (
-    <div className="w-full bg-[#f8f8f8] min-h-screen">
-      {/* Dynamic Hero Banner */}
-      <section className="relative w-full h-[60vh] md:h-[70vh] bg-[#373737] overflow-hidden">
-        <motion.img 
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 0.6, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          src={project.heroImage} 
-          alt={project.title}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#f8f8f8] via-transparent to-transparent opacity-90"></div>
-        
-        <div className="absolute bottom-0 left-0 w-full px-6 md:px-12 pb-12 mix-blend-normal">
-          <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <Link to="/projects" className="inline-flex items-center gap-2 text-sm font-semibold text-[#4A4A4A] hover:text-[#373737] mb-6 transition-colors group">
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                Back to projects
-              </Link>
-              <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-[#373737] uppercase leading-[0.9]">
-                {project.title}
-              </h1>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+    <div className="w-full bg-[#f4f4f4] min-h-screen text-neutral-900 font-sans selection:bg-neutral-900 selection:text-white">
+      {/* Full-screen Hero Section */}
+      <section className="relative w-full h-screen min-h-[700px] flex flex-col justify-end bg-neutral-900">
+        {/* Absolute Navigation */}
+        <nav className="absolute top-0 w-full px-6 md:px-12 pt-32 pb-8 flex justify-between items-center z-20 max-w-[1600px] mx-auto left-1/2 -translate-x-1/2">
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-white transition-colors group"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Back to projects
+          </Link>
+        </nav>
+
+        {/* Background layer */}
+        <div className="absolute inset-0 z-0 overflow-hidden bg-black">
+          {project.heroVideo ? (
+            <video
+              src={project.heroVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <img
+              src={project.heroImage}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+          )}
+          {/* 70% Black Overlay */}
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+
+        {/* Text Content layer */}
+        <div className="container mx-auto px-[4vw] relative z-10 pb-16 md:pb-24">
+          {/* Title Area */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <span className="font-sans text-xs md:text-sm uppercase tracking-[0.2em] text-[#999] mb-4 md:mb-8 block">
+              {project.category || project.client}
+            </span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <h1 className="text-5xl md:text-6xl lg:text-[7rem] leading-[0.8] tracking-tight mb-8 md:mb-16 text-[#e6e6e6]">
+              {project.title}
+            </h1>
+          </motion.div>
+
+          {/* Tags */}
+          {project.tags && project.tags.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col gap-4 text-sm font-medium uppercase tracking-widest text-[#a0a0a0] max-w-sm"
+              className="mb-8 md:mb-12"
             >
-              <div className="flex justify-between border-b border-black/10 pb-2">
-                <span>Client</span>
-                <span className="text-[#373737] font-bold text-right">{project.client}</span>
+              {project.tags.map((tag, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 group no-underline"
+                >
+                  <span className="font-sans text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.12em] text-[#3b82f6] border border-[#3b82f6]/40 px-3 py-1.5 bg-[#3b82f6]/10">
+                    {tag.label}
+                  </span>
+                  <span className="font-sans text-xs md:text-sm text-[#3b82f6] group-hover:text-blue-400 transition-colors flex items-center gap-1">
+                    {tag.label === "FIGMA" && (
+                      <Figma className="w-4 h-4 ml-1" />
+                    )}
+                    {tag.value}
+                  </span>
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    className="text-[#3b82f6] group-hover:text-blue-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  >
+                    <path
+                      d="M1 11L11 1M11 1H3M11 1V9"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Metadata Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 pt-8 border-t border-white/20"
+          >
+            {project.metadata?.map((meta, i) => (
+              <div key={i} className="flex flex-col">
+                <h4 className="font-sans text-[0.6rem] md:text-xs uppercase tracking-[0.2em] text-[#999] mb-2">
+                  {meta.label}
+                </h4>
+                <p className="font-sans text-base font-medium text-[#e6e6e6]">
+                  {meta.value}
+                </p>
               </div>
-              <div className="flex justify-between border-b border-black/10 pb-2">
-                <span>Role</span>
-                <span className="text-[#373737] font-bold text-right">{project.role}</span>
-              </div>
-              <div className="flex justify-between border-b border-black/10 pb-2">
-                <span>Timeline</span>
-                <span className="text-[#373737] font-bold text-right">{project.timeline}</span>
-              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <main className="w-full max-w-[1600px] mx-auto px-6 md:px-12 pb-24 pt-16 md:pt-24">
+        {/* Overview Section */}
+        <section className="w-full flex flex-col lg:flex-row gap-12 lg:gap-24 mb-16 md:mb-24 px-2 md:px-8">
+          {/* Left Column */}
+          <div className="w-full lg:w-5/12 flex flex-col">
+            <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
+              Overview
+            </h3>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-neutral-900 leading-[1.1] whitespace-pre-line">
+              {project.heroHeading}
+            </h2>
+          </div>
+
+          {/* Right Column */}
+          <div className="w-full lg:w-7/12 flex flex-col justify-center pt-2 lg:pt-12">
+            <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light">
+              {project.overview}
+            </p>
+            <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-2xl font-light">
+              {project.subOverview}
+            </p>
+          </div>
+        </section>
+
+        {/* Testimonial Section */}
+        <section className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-[#1C1C1C] py-16 md:py-24 mb-16 md:mb-24 flex flex-col items-center justify-center px-6">
+          <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+            <h3 className="text-2xl md:text-4xl lg:text-[40px] text-white font-serif italic font-light leading-[1.4] tracking-wide mb-12">
+              "Most platforms optimize for the platform. We designed one that
+              communicates speed and approachability—the product's promise in
+              visual form."
+            </h3>
+            <p className="text-white/50 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-4">
+              <span className="w-6 h-[1px] bg-white/50"></span>
+              DESIGN PHILOSOPHY
+            </p>
+          </div>
+        </section>
+
+        {/* Media Grids Section For the User to Populate Later */}
+        <section className="w-full flex flex-col gap-8 md:gap-12">
+          {/* Section 1: Full width media */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="w-full aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+          >
+            {/* Visualizer Placeholder */}
+            <p className="absolute text-neutral-400 font-mono text-sm">
+              Media Placeholder 1 (Upload WebM/Image here)
+            </p>
+          </motion.div>
+
+          {/* Additional Text Section */}
+          <section className="w-full flex flex-col lg:flex-row gap-12 lg:gap-24 px-2 md:px-8">
+            {/* Left Column */}
+            <div className="w-full lg:w-5/12 flex flex-col">
+              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
+                Overview
+              </h3>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-neutral-900 leading-[1.1] whitespace-pre-line">
+                {project.heroHeading}
+              </h2>
+            </div>
+
+            {/* Right Column */}
+            <div className="w-full lg:w-7/12 flex flex-col justify-center pt-2 lg:pt-12">
+              <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light">
+                {project.overview}
+              </p>
+              <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-2xl font-light">
+                {project.subOverview}
+              </p>
+            </div>
+          </section>
+
+          {/* Section 2: Two columns media */}
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="w-full aspect-square md:aspect-[4/5] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+            >
+              <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                Media Placeholder 2
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-full aspect-square md:aspect-[4/5] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+            >
+              <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                Media Placeholder 3
+              </p>
             </motion.div>
           </div>
-        </div>
-      </section>
 
-      {/* Main Content with Sticky Sidebar */}
-      <section className="w-full max-w-[1400px] mx-auto px-6 md:px-12 py-16 md:py-24 flex flex-col md:flex-row gap-12 lg:gap-24">
-        
-        {/* Sticky Sidebar */}
-        <aside className="hidden md:block w-48 shrink-0">
-          <div className="sticky top-32 flex flex-col gap-4">
-            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0] mb-2">Content</p>
-            {sections.map((section) => (
-              <a 
-                key={section.id} 
-                href={`#${section.id}`}
-                className="text-sm font-medium text-[#4a4a4a] hover:text-[#3480F9] transition-colors"
-              >
-                {section.label}
-              </a>
-            ))}
-          </div>
-        </aside>
-
-        {/* Content Flow */}
-        <div className="flex-1 max-w-3xl flex flex-col gap-24">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+          {/* Section 3: Full width media */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            id="overview" 
-            className="scroll-mt-32"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
           >
-            <h2 className="text-3xl font-bold tracking-tight text-[#373737] mb-6">Executive Overview</h2>
-            <p className="text-lg text-[#4a4a4a] leading-relaxed">
-              {project.description} We collaborated closely with core stakeholders to transition their legacy systems into a unified, spatial computing-ready interface.
+            <p className="absolute text-neutral-400 font-mono text-sm">
+              Media Placeholder 4
             </p>
           </motion.div>
+        </section>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            id="challenge" 
-            className="scroll-mt-32"
+        {/* Next Project Footer */}
+        <section className="w-full border-t border-neutral-200 mt-24 md:mt-32 pt-16 flex flex-col items-center justify-center">
+          <Link
+            to={`/projects/${nextProject.id}`}
+            onClick={() => window.scrollTo(0, 0)}
+            className="group flex flex-col items-center text-center"
           >
-            <h2 className="text-3xl font-bold tracking-tight text-[#373737] mb-6">The Challenge</h2>
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-black/5">
-              <p className="text-lg text-[#4a4a4a] leading-relaxed mb-4">
-                The primary difficulty resided in managing thousands of concurrent data streams without overwhelming the user. Previously, operators relied on 15 separate dashboards.
-              </p>
-              <ul className="list-disc list-inside text-[#4a4a4a] space-y-2 mt-4 marker:text-[#3480F9]">
-                <li>High cognitive load for end-users</li>
-                <li>Inconsistent design system across web and mobile</li>
-                <li>Lack of contextual AI affordances</li>
-              </ul>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            id="process" 
-            className="scroll-mt-32"
-          >
-            <h2 className="text-3xl font-bold tracking-tight text-[#373737] mb-6">The Process</h2>
-            <p className="text-lg text-[#4a4a4a] leading-relaxed mb-8">
-              We conducted intensive qualitative user research, observing 40+ hours of platform usage. This guided our iterative prototyping phases.
+            <p className="text-sm font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
+              Next Project
             </p>
-            <div className="w-full aspect-[16/9] bg-[#E5E5E5] rounded-2xl flex items-center justify-center text-[#a0a0a0] font-medium tracking-widest uppercase text-sm border border-black/5 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=1200&auto=format&fit=crop" alt="Process" className="w-full h-full object-cover opacity-80" />
+            <h2 className="text-4xl md:text-6xl font-light tracking-tight text-neutral-900 mb-6 group-hover:opacity-70 transition-opacity">
+              {nextProject.title}
+            </h2>
+            <div className="w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-900 group-hover:bg-neutral-900 group-hover:text-white transition-all transform group-hover:scale-110">
+              <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </div>
-          </motion.div>
-
-          {/* Additional sections would follow similarly */}
-          
-          <div className="pt-12 border-t border-black/10 mt-12">
-            <Link to="/projects" className="inline-flex items-center gap-2 text-sm font-bold text-[#3480F9] uppercase tracking-widest hover:text-[#373737] transition-colors">
-              Next Case Study <ArrowUpRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
+          </Link>
+        </section>
+      </main>
     </div>
   );
 }

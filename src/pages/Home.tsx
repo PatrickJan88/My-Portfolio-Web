@@ -5,34 +5,10 @@ import { HeroSection } from "../components/sections/HeroSection";
 import { InstantCamera } from "../components/ui/InstantCamera";
 import { FeaturedSlider } from "../components/ui/FeaturedSlider";
 import { FloatingScrapbook } from "../components/ui/FloatingScrapbook";
+import { projectsData } from "../data/projects";
 
 export default function Home() {
-  const featuredWorks = [
-    {
-      id: "agent-zero",
-      title: "Agent Zero",
-      category: "Autonomous Systems",
-      image: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      id: "spatial-os",
-      title: "Spatial OS",
-      category: "XR Interface",
-      image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      id: "neural-link",
-      title: "Neural Link UI",
-      category: "Brain-Computer Interface",
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop",
-    },
-     {
-      id: "ev-365",
-      title: "EV 365",
-      category: "Consumer Mobile",
-      image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1000&auto=format&fit=crop",
-    }
-  ];
+  const featuredWorks = projectsData.slice(0, 5);
 
   return (
     <div className="w-full flex-1 flex flex-col">
@@ -53,7 +29,7 @@ export default function Home() {
               Captured Moments
             </h2>
           </div>
-          
+
           <div className="relative z-40">
             <InstantCamera />
           </div>
