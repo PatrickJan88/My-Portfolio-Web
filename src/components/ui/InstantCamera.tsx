@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router-dom";
 import { Camera } from "lucide-react";
-import pixelCatsImg from "../../assets/pixel-cats.png";
+import pixelCatsImg from "../../assets/pixel-cats 2.webp";
 
 export function InstantCamera() {
   const [isPrinted, setIsPrinted] = useState(false);

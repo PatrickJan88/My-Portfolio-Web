@@ -1,10 +1,17 @@
 import { motion } from "motion/react";
-import photo1 from "../../assets/Photo 1-1.jpg";
-import photo2 from "../../assets/Photo 2-1.jpg";
-import photo3 from "../../assets/Photo 3-1.jpg";
-import photo4 from "../../assets/Photo 4-1.jpg";
-import photo5 from "../../assets/Photo 5-1.jpeg";
-import photo6 from "../../assets/Photo 6-1.jpg";
+import photo1 from "../../assets/Photo 1.jpg";
+import photo2 from "../../assets/Photo 2.webp";
+import photo3 from "../../assets/Photo 3.webp";
+import photo4 from "../../assets/Photo 4.webp";
+import photo5 from "../../assets/Photo 5.webp";
+import photo6 from "../../assets/Photo 6.webp";
+
+import sticker1 from "../../assets/Sticker 1.webp";
+import sticker2 from "../../assets/Sticker 2.webp";
+import sticker3 from "../../assets/Sticker 3.webp";
+import sticker4 from "../../assets/Sticker 4.webp";
+import sticker5 from "../../assets/Sticker 5.webp";
+import sticker6 from "../../assets/Sticker 6.webp";
 
 const photos = [
   { id: 1, url: photo1, style: { left: "2%", top: "10%" }, rotation: -12, maxW: "w-[180px] md:w-[220px]" },
@@ -16,42 +23,17 @@ const photos = [
 ];
 
 const stickers = [
-  { id: 1, text: "Pets", color: "#7AA474", style: { left: "62%", top: "45%" }, rotation: -8 },
-  { id: 2, text: "Coffee++", color: "#71A5C1", style: { left: "25%", top: "35%" }, rotation: -15 },
-  { id: 3, text: "Curious", color: "#DA7C7C", style: { right: "8%", top: "35%" }, rotation: 25 },
-  { id: 4, text: "Moments", color: "#FFAB00", style: { left: "45%", top: "20%" }, rotation: 10 },
+  { id: 1, url: sticker1, style: { left: "62%", top: "45%" }, rotation: -8, maxW: "w-[64px] h-[64px]" },
+  { id: 2, url: sticker2, style: { left: "25%", top: "35%" }, rotation: -15, maxW: "w-[64px] h-[64px]" },
+  { id: 3, url: sticker3, style: { right: "8%", top: "35%" }, rotation: 25, maxW: "w-[64px] h-[64px]" },
+  { id: 4, url: sticker4, style: { left: "45%", top: "20%" }, rotation: 10, maxW: "w-[64px] h-[64px]" },
+  { id: 5, url: sticker5, style: { left: "12%", top: "60%" }, rotation: -12, maxW: "w-[64px] h-[64px]" },
+  { id: 6, url: sticker6, style: { right: "15%", top: "65%" }, rotation: 18, maxW: "w-[64px] h-[64px]" },
 ];
 
 export function FloatingScrapbook() {
   return (
     <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
-      {/* SVG Definitions for the sticker effects */}
-      {stickers.map((sticker) => (
-        <svg key={`def-${sticker.id}`} width="0" height="0" className="absolute pointer-events-none">
-          <defs>
-            <filter id={`sticker-effect-${sticker.id}`} x="-20%" y="-20%" width="140%" height="140%">
-              {/* Colored Background */}
-              <feGaussianBlur in="SourceAlpha" stdDeviation="5.5" result="blur1" />
-              <feComponentTransfer in="blur1" result="bgAlpha">
-                <feFuncA type="linear" slope="20" intercept="-0.5" />
-              </feComponentTransfer>
-              <feFlood floodColor={sticker.color} result="bgColor" />
-              <feComposite in="bgColor" in2="bgAlpha" operator="in" result="bgOut" />
-
-              {/* Drop shadow */}
-              <feDropShadow in="bgOut" dx="0" dy="6" stdDeviation="4" floodOpacity="0.25" result="shadow" />
-
-              {/* Merge them all */}
-              <feMerge>
-                <feMergeNode in="shadow" />
-                <feMergeNode in="bgOut" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-        </svg>
-      ))}
-
       {photos.map((photo, i) => (
         <motion.div
           key={`photo-${photo.id}`}
@@ -72,17 +54,13 @@ export function FloatingScrapbook() {
           key={`sticker-${sticker.id}`}
           drag
           dragMomentum={false}
-          className="absolute cursor-grab active:cursor-grabbing pointer-events-auto"
+          className={`absolute cursor-grab active:cursor-grabbing pointer-events-auto ${sticker.maxW}`}
           style={{ ...sticker.style }}
           initial={{ rotate: sticker.rotation }}
           whileHover={{ scale: 1.1, zIndex: 40 }}
           whileDrag={{ scale: 1.2, zIndex: 50, rotate: 0 }}
         >
-          <div className="p-6 pointer-events-none" style={{ filter: `url(#sticker-effect-${sticker.id})` }}>
-            <span className="inline-block text-2xl lg:text-3xl font-medium font-serif tracking-tight whitespace-nowrap text-white select-none">
-              {sticker.text}
-            </span>
-          </div>
+          <img src={sticker.url} alt={`Sticker ${sticker.id}`} className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-md" />
         </motion.div>
       ))}
     </div>
