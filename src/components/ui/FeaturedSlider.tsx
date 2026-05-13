@@ -303,16 +303,16 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
       </div>
 
       {/* Main Slider Area */}
-      <div className="osmo-slider-container w-full h-[60vh] min-h-[400px] relative text-white overflow-hidden cursor-grab active:cursor-grabbing">
-        <div className="w-full h-full flex items-center justify-start">
-          <div data-slider="list" ref={listRef} className="flex relative items-stretch h-full py-12">
+      <div className="osmo-slider-container w-full relative text-white overflow-hidden cursor-grab active:cursor-grabbing">
+        <div className="w-full flex items-center justify-start">
+          <div data-slider="list" ref={listRef} className="flex relative items-stretch py-12">
             {works.map((work, index) => (
               <div 
                 key={work.id} 
                 data-slider="slide" 
-                className="slider-slide flex-none w-[80vw] md:w-[45vw] lg:w-[35vw] shrink-0 h-full px-4 relative opacity-40 transition-opacity duration-400 [&.active]:opacity-100 cursor-pointer"
+                className="slider-slide flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] shrink-0 px-4 relative opacity-40 transition-opacity duration-400 [&.active]:opacity-100 cursor-pointer"
               >
-                <div className="w-full h-full rounded-2xl relative overflow-hidden group">
+                <div className="w-full aspect-[4/3] rounded-2xl relative overflow-hidden group">
                   <Link to={`/projects/${work.id}`} className="w-full h-full block">
                     <img 
                       src={work.image} 

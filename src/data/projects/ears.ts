@@ -1,17 +1,15 @@
 import { ProjectData } from "../../types/project";
-import earsCover from "../../assets/ears-cover-page.svg";
-import earsVideo from "../../assets/EARS_video.webm";
 
 export const earsCaseStudy: ProjectData = {
   id: "ears",
   title: "Enterprise Finance Ecosystem",
   category: "Product Design",
   client: "Essex Lake Group",
-  image: earsCover,
+  image: "/projects/ears/ears-cover-page.svg",
   
   heroHeading: "Healthcare,\nRedesigned",
-  heroImage: earsCover,
-  heroVideo: earsVideo,
+  heroImage: "/projects/ears/ears-cover-page.svg",
+  heroVideo: "/projects/ears/EARS_video.webm",
   
   overview:
     "Legent Health needed a brand that communicates care, expertise, and modernity. We built a comprehensive identity from logo to digital presence — ensuring every patient touchpoint reflects the quality of care they provide.",

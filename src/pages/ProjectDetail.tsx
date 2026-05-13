@@ -191,7 +191,7 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
           >
             {/* Visualizer Placeholder */}
             <p className="absolute text-neutral-400 font-mono text-sm">
@@ -199,8 +199,73 @@ export default function ProjectDetail() {
             </p>
           </motion.div>
 
+          {/* Section 2: Text Left, Media Right */}
+          <div className="w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+            <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
+              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
+                Approach
+              </h3>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8">
+                Digital Platform
+              </h2>
+              <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light">
+                The hackathon platform was designed for seamless registration, team formation, and project submission. We created a digital experience that turned participation into a journey — from sign-up to demo day.
+              </p>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+            >
+              <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                Media Placeholder 2
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Section 3: Media Left, Text Right */}
+          <div className="w-full flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-24">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+            >
+              <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                Media Placeholder 3
+              </p>
+            </motion.div>
+            <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
+              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
+                Design System
+              </h3>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8">
+                Visual Identity
+              </h2>
+              <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light">
+                We established a cohesive visual system built on bold typography and strategic use of color. This system ensures consistency across marketing materials, digital platforms, and physical venue signage.
+              </p>
+            </div>
+          </div>
+
+          {/* Section 3: Full width media */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+          >
+            <p className="absolute text-neutral-400 font-mono text-sm">
+              Media Placeholder 4
+            </p>
+          </motion.div>
+
           {/* Additional Text Section */}
-          <section className="w-full flex flex-col lg:flex-row gap-12 lg:gap-24 px-2 md:px-8">
+          <section className="w-full flex flex-col lg:flex-row gap-12 lg:gap-24 px-2 md:px-8 pt-8 md:pt-12">
             {/* Left Column */}
             <div className="w-full lg:w-5/12 flex flex-col">
               <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
@@ -221,45 +286,6 @@ export default function ProjectDetail() {
               </p>
             </div>
           </section>
-
-          {/* Section 2: Two columns media */}
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className="w-full aspect-square md:aspect-[4/5] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
-            >
-              <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
-                Media Placeholder 2
-              </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-full aspect-square md:aspect-[4/5] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
-            >
-              <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
-                Media Placeholder 3
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Section 3: Full width media */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
-          >
-            <p className="absolute text-neutral-400 font-mono text-sm">
-              Media Placeholder 4
-            </p>
-          </motion.div>
         </section>
 
         {/* Next Project Footer */}
