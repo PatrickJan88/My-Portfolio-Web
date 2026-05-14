@@ -15,7 +15,7 @@ export const corporateWebsiteRedesignCaseStudy: ProjectData = {
   tags: [],
   metadata: [
     { label: "DURATION", value: "3 months" },
-    { label: "YEAR", value: "2024 - 2025" },
+    { label: "YEAR", value: "2025" },
     { label: "ROLE", value: "UX/UI Designer II" },
     { label: "INDUSTRY", value: "B2B Fintech" },
   ],
