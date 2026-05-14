@@ -8,7 +8,6 @@ import { ScrollToTop } from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
-import Career from "./pages/Career";
 import Contact from "./pages/Contact";
 import Layout from "./components/layout/Layout";
 
@@ -21,7 +20,6 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:id" element={<ProjectDetail />} />
-          <Route path="/career" element={<Career />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Layout>

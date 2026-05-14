@@ -87,9 +87,12 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="flex items-center gap-6 pt-6 border-t border-black/5">
+          <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-black/5">
             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3480F9] uppercase tracking-widest transition-colors group">
               LinkedIn <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+            <a href="/resume.pdf" target="_blank" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3480F9] uppercase tracking-widest transition-colors group">
+              Download Full Resume <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
             <a href="https://twitter.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3480F9] uppercase tracking-widest transition-colors group">
               X (Twitter) <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
