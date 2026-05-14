@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router-dom";
 import { Camera } from "lucide-react";
-import pixelCatsImg from "../../assets/pixel-cats 2.webp";
+
+import photo1 from "../../assets/Photo 1.jpg";
+import photo2 from "../../assets/Photo 2.webp";
+import photo3 from "../../assets/Photo 3.webp";
+import photo4 from "../../assets/Photo 4.webp";
+import photo5 from "../../assets/Photo 5.webp";
+import photo6 from "../../assets/Photo 6.webp";
+
+const photos = [photo1, photo2, photo3, photo4, photo5, photo6];
 
 export function InstantCamera() {
   const [isPrinted, setIsPrinted] = useState(false);
   const [isFlashing, setIsFlashing] = useState(false);
+  const [currentPhoto, setCurrentPhoto] = useState(photos[0]);
+
+  useEffect(() => {
+    // Pick a random photo on mount
+    setCurrentPhoto(photos[Math.floor(Math.random() * photos.length)]);
+  }, []);
 
   const handleShutterClick = () => {
     if (isPrinted) return; // Don't print twice
@@ -103,8 +117,8 @@ export function InstantCamera() {
                 <div className="w-[180px] h-[220px] bg-white p-3 pb-8 shadow-xl rounded-sm border border-neutral-200 flex flex-col group-hover:scale-[1.02] transition-transform duration-300">
                   <div className="w-full flex-1 bg-neutral-100 flex items-center justify-center mb-4 relative overflow-hidden border border-neutral-200">
                     <img 
-                      src={pixelCatsImg} 
-                      alt="Fika cats" 
+                      src={currentPhoto} 
+                      alt="Captured Memory" 
                       className="w-full h-full object-cover" 
                       referrerPolicy="no-referrer"
                     />
