@@ -16,6 +16,7 @@ export const essexWebCaseStudy: ProjectData = {
   tags: [],
   metadata: [
     { label: "DURATION", value: "6 months" },
+    { label: "YEAR", value: "2024 - 2025" },
     { label: "ROLE", value: "Designer" },
     { label: "INDUSTRY", value: "Corporate" },
   ]

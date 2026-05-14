@@ -16,6 +16,7 @@ export const agentZeroCaseStudy: ProjectData = {
   tags: [],
   metadata: [
     { label: "DURATION", value: "3 months" },
+    { label: "YEAR", value: "2024 - 2025" },
     { label: "ROLE", value: "Lead Designer" },
     { label: "INDUSTRY", value: "AI" },
   ],

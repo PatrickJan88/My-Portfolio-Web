@@ -73,7 +73,7 @@ export default function ProjectDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-[7rem] leading-[0.8] tracking-tight mb-8 md:mb-16 text-[#e6e6e6]">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight mb-8 md:mb-16 text-[#e6e6e6]">
               {project.title}
             </h1>
           </motion.div>
@@ -152,7 +152,7 @@ export default function ProjectDetail() {
             <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
               Overview
             </h3>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-neutral-900 leading-[1.1] whitespace-pre-line">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] whitespace-pre-line">
               {project.heroHeading}
             </h2>
           </div>
@@ -162,9 +162,11 @@ export default function ProjectDetail() {
             <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light">
               {project.overview}
             </p>
-            <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-2xl font-light">
-              {project.subOverview}
-            </p>
+            {project.subOverview && (
+              <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-2xl font-light">
+                {project.subOverview}
+              </p>
+            )}
           </div>
         </section>
 
@@ -172,13 +174,11 @@ export default function ProjectDetail() {
         <section className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-[#1C1C1C] py-16 md:py-24 mb-16 md:mb-24 flex flex-col items-center justify-center px-6">
           <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
             <h3 className="text-2xl md:text-4xl lg:text-[40px] text-white font-serif italic font-light leading-[1.4] tracking-wide mb-12">
-              "Most platforms optimize for the platform. We designed one that
-              communicates speed and approachability—the product's promise in
-              visual form."
+              "{project.testimonial?.quote || "Most platforms optimize for the platform. We designed one that communicates speed and approachability—the product's promise in visual form."}"
             </h3>
             <p className="text-white/50 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-4">
               <span className="w-6 h-[1px] bg-white/50"></span>
-              DESIGN PHILOSOPHY
+              {project.testimonial?.label || "DESIGN PHILOSOPHY"}
             </p>
           </div>
         </section>
@@ -271,7 +271,7 @@ export default function ProjectDetail() {
               <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
                 Overview
               </h3>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-neutral-900 leading-[1.1] whitespace-pre-line">
+              <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] whitespace-pre-line">
                 {project.heroHeading}
               </h2>
             </div>
@@ -281,9 +281,11 @@ export default function ProjectDetail() {
               <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light">
                 {project.overview}
               </p>
-              <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-2xl font-light">
-                {project.subOverview}
-              </p>
+              {project.subOverview && (
+                <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-2xl font-light">
+                  {project.subOverview}
+                </p>
+              )}
             </div>
           </section>
         </section>

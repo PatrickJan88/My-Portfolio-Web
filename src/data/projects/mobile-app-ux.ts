@@ -16,6 +16,7 @@ export const mobileAppUxCaseStudy: ProjectData = {
   tags: [],
   metadata: [
     { label: "DURATION", value: "5 months" },
+    { label: "YEAR", value: "2024 - 2025" },
     { label: "ROLE", value: "Product Designer" },
     { label: "INDUSTRY", value: "Fintech" },
   ]

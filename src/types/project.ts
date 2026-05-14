@@ -58,6 +58,11 @@ export interface ProjectData {
   overview: string;
   subOverview: string;
   
+  testimonial?: {
+    quote: string;
+    label: string;
+  };
+  
   tags: ProjectTag[];
   metadata: ProjectMetadata[];
   

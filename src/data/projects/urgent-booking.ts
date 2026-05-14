@@ -16,6 +16,7 @@ export const urgentBookingCaseStudy: ProjectData = {
   tags: [],
   metadata: [
     { label: "DURATION", value: "2 months" },
+    { label: "YEAR", value: "2024 - 2025" },
     { label: "ROLE", value: "UX Researcher & Designer" },
     { label: "INDUSTRY", value: "Travel & Hospitality" },
   ],
