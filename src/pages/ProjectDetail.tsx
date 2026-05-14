@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Figma } from "lucide-react";
 import { projectsData } from "../data/projects";
+import AutoCarousel from "../components/AutoCarousel";
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -193,23 +194,41 @@ export default function ProjectDetail() {
             transition={{ duration: 0.8 }}
             className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
           >
-            {/* Visualizer Placeholder */}
-            <p className="absolute text-neutral-400 font-mono text-sm">
-              Media Placeholder 1 (Upload WebM/Image here)
-            </p>
+            {project.media1 ? (
+              project.media1.endsWith(".webm") || project.media1.endsWith(".mp4") ? (
+                <video
+                  src={project.media1}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img
+                  src={project.media1}
+                  alt="Media 1"
+                  className="w-full h-full object-cover"
+                />
+              )
+            ) : (
+              <p className="absolute text-neutral-400 font-mono text-sm">
+                Media Placeholder 1 (Upload WebM/Image here)
+              </p>
+            )}
           </motion.div>
 
           {/* Section 2: Text Left, Media Right */}
           <div className="w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
             <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
               <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
-                Approach
+                {project.section1?.label || "Approach"}
               </h3>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8">
-                Digital Platform
+              <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
+                {project.section1?.heading || "Digital Platform"}
               </h2>
               <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light">
-                The hackathon platform was designed for seamless registration, team formation, and project submission. We created a digital experience that turned participation into a journey — from sign-up to demo day.
+                {project.section1?.content || "The hackathon platform was designed for seamless registration, team formation, and project submission. We created a digital experience that turned participation into a journey — from sign-up to demo day."}
               </p>
             </div>
             <motion.div
@@ -219,9 +238,17 @@ export default function ProjectDetail() {
               transition={{ duration: 0.8 }}
               className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
             >
-              <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
-                Media Placeholder 2
-              </p>
+              {project.media2 ? (
+                project.media2.endsWith(".webm") || project.media2.endsWith(".mp4") ? (
+                  <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                ) : (
+                  <img src={project.media2} alt="Media 2" className="w-full h-full object-cover" />
+                )
+              ) : (
+                <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                  Media Placeholder 2
+                </p>
+              )}
             </motion.div>
           </div>
 
@@ -234,19 +261,27 @@ export default function ProjectDetail() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
             >
-              <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
-                Media Placeholder 3
-              </p>
+              {project.media3 ? (
+                project.media3.endsWith(".webm") || project.media3.endsWith(".mp4") ? (
+                  <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                ) : (
+                  <img src={project.media3} alt="Media 3" className="w-full h-full object-cover" />
+                )
+              ) : (
+                <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                  Media Placeholder 3
+                </p>
+              )}
             </motion.div>
             <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
               <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
-                Design System
+                {project.section2?.label || "Design System"}
               </h3>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8">
-                Visual Identity
+              <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
+                {project.section2?.heading || "Visual Identity"}
               </h2>
               <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light">
-                We established a cohesive visual system built on bold typography and strategic use of color. This system ensures consistency across marketing materials, digital platforms, and physical venue signage.
+                {project.section2?.content || "We established a cohesive visual system built on bold typography and strategic use of color. This system ensures consistency across marketing materials, digital platforms, and physical venue signage."}
               </p>
             </div>
           </div>
@@ -257,11 +292,21 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+            className="w-full aspect-auto md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
           >
-            <p className="absolute text-neutral-400 font-mono text-sm">
-              Media Placeholder 4
-            </p>
+            {project.media4 ? (
+              Array.isArray(project.media4) ? (
+                <AutoCarousel images={project.media4} />
+              ) : project.media4.endsWith(".webm") || project.media4.endsWith(".mp4") ? (
+                <video src={project.media4} autoPlay loop muted playsInline className="w-full h-auto md:h-full object-cover" />
+              ) : (
+                <img src={project.media4} alt="Media 4" className="w-full h-auto md:h-full object-cover" />
+              )
+            ) : (
+              <p className="absolute text-neutral-400 font-mono text-sm">
+                Media Placeholder 4
+              </p>
+            )}
           </motion.div>
 
           {/* Additional Text Section */}
@@ -269,19 +314,19 @@ export default function ProjectDetail() {
             {/* Left Column */}
             <div className="w-full lg:w-5/12 flex flex-col">
               <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
-                Overview
+                {project.section3?.label || "Overview"}
               </h3>
               <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] whitespace-pre-line">
-                {project.heroHeading}
+                {project.section3?.heading || project.heroHeading}
               </h2>
             </div>
-
+            
             {/* Right Column */}
             <div className="w-full lg:w-7/12 flex flex-col justify-center pt-2 lg:pt-12">
               <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light">
-                {project.overview}
+                {project.section3?.content || project.overview}
               </p>
-              {project.subOverview && (
+              {project.subOverview && !project.section3 && (
                 <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-2xl font-light">
                   {project.subOverview}
                 </p>

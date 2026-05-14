@@ -239,7 +239,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
           syncIndex = () => tl.closestIndex(true);
         
         draggable = Draggable.create(proxy, {
-          trigger: items[0].parentNode,
+          trigger: items[0].parentNode as Element,
           type: "x",
           onPressInit() {
             let x = this.x;

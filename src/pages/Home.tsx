@@ -8,7 +8,7 @@ import { FloatingScrapbook } from "../components/ui/FloatingScrapbook";
 import { projectsData } from "../data/projects";
 
 export default function Home() {
-  const featuredWorksIds = ["mobile-app-ux", "ai-companion", "urgent-booking", "essex-web"];
+  const featuredWorksIds = ["biotopia-digital-experience", "ai-companion", "urgent-booking", "corporate-website-redesign"];
   const featuredWorks = featuredWorksIds.map(id => projectsData.find(p => p.id === id)).filter(Boolean) as typeof projectsData;
 
   return (

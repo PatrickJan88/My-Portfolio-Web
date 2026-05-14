@@ -1,8 +1,8 @@
 import { earsCaseStudy } from "./projects/ears";
-import { agentZeroCaseStudy } from "./projects/agent-zero";
-import { essexWebCaseStudy } from "./projects/essex-web";
-import { legentHealthCaseStudy } from "./projects/legent-health";
-import { mobileAppUxCaseStudy } from "./projects/mobile-app-ux";
+import { evChargingPlatformCaseStudy } from "./projects/ev-charging-platform";
+import { corporateWebsiteRedesignCaseStudy } from "./projects/corporate-website-redesign";
+import { healthAppDesignCaseStudy } from "./projects/health-app-design";
+import { biotopiaDigitalExperienceCaseStudy } from "./projects/biotopia-digital-experience";
 import { aiCompanionCaseStudy } from "./projects/ai-companion";
 import { urgentBookingCaseStudy } from "./projects/urgent-booking";
 
@@ -10,11 +10,11 @@ import { ProjectData } from "../types/project";
 export type { ProjectData };
 
 export const projectsData: ProjectData[] = [
-  mobileAppUxCaseStudy,
+  biotopiaDigitalExperienceCaseStudy,
   aiCompanionCaseStudy,
   urgentBookingCaseStudy,
   earsCaseStudy,
-  agentZeroCaseStudy,
-  essexWebCaseStudy,
-  legentHealthCaseStudy
+  evChargingPlatformCaseStudy,
+  corporateWebsiteRedesignCaseStudy,
+  healthAppDesignCaseStudy
 ];

@@ -19,6 +19,29 @@ export const earsCaseStudy: ProjectData = {
     quote: "Our data is powerful, but it lacks velocity. When I’m moving between meetings or traveling, I can't wait for a dense analyst report to load on a laptop. I need the bottom line and the next best action, instantly.",
     label: "Executive Client",
   },
+  
+  section1: {
+    label: "Approach",
+    heading: "Research & Constrained Agency",
+    content: "Through client interviews with the design team, we found that our highly mobile executives overwhelmingly (80%+) preferred Apple devices. We combined this hardware reality with Constrained Agency—positioning AI as an analytical engine that surfaces insights, while the executive remains the ultimate decision-maker.",
+  },
+
+  section2: {
+    label: "Solution",
+    heading: "Ecosystem Tiering",
+    content: "Centered on Instant Connectivity, Continuous Governance, and Domain-Specific Action Insights, the ecosystem features iPhone and Apple Watch apps for on-the-go executive execution, paired with a desktop Management Hub for middle management.",
+  },
+
+  section3: {
+    label: "Result",
+    heading: "Empowered Decision Making",
+    content: "Delivered a scalable, secure ecosystem that seamlessly connects middle management operations with high-speed executive execution. The products empowered leaders to confidently act on complex analyst insights. This modular architecture was further validated through a successful bespoke deployment for a top-tier US retail bank, paving the way for future industry-specific expansions.",
+  },
+
+  media1: "/projects/ears/ears-mp-1.webm",
+  media2: "/projects/ears/ears-mp-2.webp",
+  media3: "/projects/ears/ears-mp-3.webp",
+  media4: ["/projects/ears/ears-mp-4.1.webp", "/projects/ears/ears-mp-5.1.webp"],
     
   tags: [],
   metadata: [
@@ -58,7 +81,7 @@ export const earsCaseStudy: ProjectData = {
   ],
   
   nextProject: {
-    id: "agent-zero",
-    title: "Agent Zero"
+    id: "ev-charging-platform",
+    title: "EV Charging Platform"
   }
 };

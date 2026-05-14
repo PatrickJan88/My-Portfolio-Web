@@ -56,13 +56,36 @@ export interface ProjectData {
   
   // Overview section
   overview: string;
-  subOverview: string;
+  subOverview?: string;
   
   testimonial?: {
     quote: string;
     label: string;
   };
-  
+
+  section1?: {
+    label: string;
+    heading: string;
+    content: string;
+  };
+
+  section2?: {
+    label: string;
+    heading: string;
+    content: string;
+  };
+
+  section3?: {
+    label: string;
+    heading: string;
+    content: string;
+  };
+
+  media1?: string;
+  media2?: string;
+  media3?: string;
+  media4?: string | string[];
+
   tags: ProjectTag[];
   metadata: ProjectMetadata[];
   
