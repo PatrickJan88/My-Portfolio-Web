@@ -20,23 +20,9 @@ export const corporateWebsiteRedesignCaseStudy: ProjectData = {
     { label: "INDUSTRY", value: "B2B Fintech" },
   ],
 
-  content: [
-    {
-      type: "media-full",
-      mediaType: "video",
-      media1: "/projects/corporate-website-redesign/web-mp-1.webm"
-    },
-    {
-      type: "media-full",
-      mediaType: "image",
-      media1: "/projects/corporate-website-redesign/web-mp-2.webp"
-    },
-    {
-      type: "media-full",
-      mediaType: "image",
-      media1: "/projects/corporate-website-redesign/web-mp-3.webp"
-    }
-  ],
+  media1: "/projects/corporate-website-redesign/web-mp-1.1.webm",
+  media2: "/projects/corporate-website-redesign/web-mp-2.webp",
+  media3: "/projects/corporate-website-redesign/web-mp-3.webp",
   
   nextProject: {
     id: "health-app-design",
