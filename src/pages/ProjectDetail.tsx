@@ -151,10 +151,10 @@ export default function ProjectDetail() {
           {/* Left Column */}
           <div className="w-full lg:w-5/12 flex flex-col">
             <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
-              Overview
+              {project.overviewLabel || "Overview"}
             </h3>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] whitespace-pre-line">
-              {project.heroHeading}
+              {project.overviewHeading || project.heroHeading}
             </h2>
           </div>
 
@@ -314,7 +314,7 @@ export default function ProjectDetail() {
             {/* Left Column */}
             <div className="w-full lg:w-5/12 flex flex-col">
               <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
-                {project.section3?.label || "Overview"}
+                {project.section3?.label || "Result"}
               </h3>
               <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] whitespace-pre-line">
                 {project.section3?.heading || project.heroHeading}

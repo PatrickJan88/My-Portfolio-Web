@@ -55,6 +55,8 @@ export interface ProjectData {
   heroVideo?: string;
   
   // Overview section
+  overviewLabel?: string;
+  overviewHeading?: string;
   overview: string;
   subOverview?: string;
   
