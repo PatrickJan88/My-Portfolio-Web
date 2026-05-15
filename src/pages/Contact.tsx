@@ -4,6 +4,13 @@ import React, { useState } from "react";
 
 export default function Contact() {
   const [formState, setFormState] = useState({ state: "idle" }); // idle, submitting, success
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const handleCopy = (text: string, type: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(type);
+    setTimeout(() => setCopied(null), 2000);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,33 +55,39 @@ export default function Contact() {
         >
           <div>
             <h1 className="text-6xl font-bold tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6">
-              LET'S START <br/>A PROJECT
+              LET'S CHAT
             </h1>
             <p className="text-base text-[#4A4A4A] max-w-md leading-relaxed font-mono">
-              Currently accepting new freelance opportunities and open to discussing full-time roles in spatial computing and AI.
+              Always open to new partnerships and exploring exciting opportunities.
             </p>
           </div>
 
           <div className="flex flex-col gap-6">
-            <a href="mailto:ranpofei@gmail.com" className="flex items-center gap-4 text-[#373737] hover:text-[#3480F9] transition-colors group">
+            <button 
+              onClick={() => handleCopy("ranpofei@gmail.com", "email")}
+              className="flex items-center gap-4 text-[#373737] hover:text-[#3480F9] transition-colors group cursor-pointer text-left focus:outline-none"
+            >
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5 group-hover:scale-105 transition-transform">
                 <Mail className="w-5 h-5" />
               </div>
               <div>
                 <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Email</p>
-                <p className="text-lg font-medium">ranpofei@gmail.com</p>
+                <p className="text-lg font-medium">{copied === "email" ? "Copied!" : "ranpofei@gmail.com"}</p>
               </div>
-            </a>
+            </button>
             
-            <a href="tel:+15550000000" className="flex items-center gap-4 text-[#373737] hover:text-[#3480F9] transition-colors group">
+            <button 
+              onClick={() => handleCopy("+46764502813", "phone")}
+              className="flex items-center gap-4 text-[#373737] hover:text-[#3480F9] transition-colors group cursor-pointer text-left focus:outline-none"
+            >
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5 group-hover:scale-105 transition-transform">
                 <Phone className="w-5 h-5" />
               </div>
               <div>
                 <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Phone</p>
-                <p className="text-lg font-medium">+1 (555) 000-0000</p>
+                <p className="text-lg font-medium">{copied === "phone" ? "Copied!" : "+46 764502813"}</p>
               </div>
-            </a>
+            </button>
 
             <div className="flex items-center gap-4 text-[#373737]">
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5">
@@ -82,7 +95,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Location</p>
-                <p className="text-lg font-medium">San Francisco, CA / Remote</p>
+                <p className="text-lg font-medium">Uppsala, Sweden</p>
               </div>
             </div>
           </div>
@@ -93,9 +106,6 @@ export default function Contact() {
             </a>
             <a href="/resume.pdf" target="_blank" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3480F9] uppercase tracking-widest transition-colors group">
               Download Full Resume <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3480F9] uppercase tracking-widest transition-colors group">
-              X (Twitter) <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
           </div>
         </motion.div>
@@ -124,26 +134,26 @@ export default function Contact() {
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Name</label>
+                <label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Name <span className="text-red-500">*</span></label>
                 <input 
                   type="text" 
                   id="name" 
                   name="name"
                   required
                   className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
-                  placeholder="John Doe"
+                  placeholder="What should I call you?"
                 />
               </div>
               
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Email</label>
+                <label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Email <span className="text-red-500">*</span></label>
                 <input 
                   type="email" 
                   id="email" 
                   name="email"
                   required
                   className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
-                  placeholder="john@example.com"
+                  placeholder="your@email.com"
                 />
               </div>
 
@@ -155,7 +165,7 @@ export default function Contact() {
                   required
                   rows={5}
                   className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all resize-none placeholder:text-[#a0a0a0]"
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me about your project, or just say hello..."
                 />
               </div>
 
@@ -167,7 +177,7 @@ export default function Contact() {
                 {formState.state === "submitting" ? (
                   <span className="animate-pulse">Sending...</span>
                 ) : (
-                  <>Send Message <ArrowUpRight className="w-4 h-4" /></>
+                  <>Send</>
                 )}
               </button>
             </form>

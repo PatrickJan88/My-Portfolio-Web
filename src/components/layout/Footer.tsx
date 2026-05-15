@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-start gap-2 font-mono">
           <Link to="/" className="text-sm font-bold tracking-tight text-[#373737]">POFEI</Link>
           <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#a0a0a0]">
-            AI Native Product Designer
+            Product Designer
           </p>
         </div>
 
