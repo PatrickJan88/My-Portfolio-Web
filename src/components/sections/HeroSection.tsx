@@ -247,10 +247,6 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
   const taglineVisibility = useTransform(scrollYProgress, (pos) => pos > 0.6 ? "hidden" : "visible");
   const taglineY = useTransform(scrollYProgress, [0.1, 0.3], [0, 20]);
 
-  // Fade in Skills Text
-  const skillsOpacity = useTransform(scrollYProgress, [0.5, 0.8], [0, 1]);
-  const skillsY = useTransform(scrollYProgress, [0.5, 0.8], [50, 0]);
-
   const desktopTargets = [
     { x: "-165%", y: 150 },
     { x: "-55%", y: 150 },
@@ -338,18 +334,6 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
               </p>
             </motion.div>
           </motion.div>
-        </motion.div>
-
-        {/* SKILLS CONTENT */}
-        <motion.div
-          style={{ opacity: skillsOpacity, y: skillsY }}
-          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10"
-        >
-          <div className="absolute top-[15%] md:top-[20%] w-full flex flex-col items-center px-6">
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tighter text-neutral-900 uppercase text-center">
-              Core Expertise
-            </h2>
-          </div>
         </motion.div>
 
         {/* CARDS */}
