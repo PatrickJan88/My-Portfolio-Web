@@ -289,7 +289,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
           className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-[12px] z-10"
         >
           {/* Main Title */}
-          <div className="relative w-full pointer-events-auto">
+          <div className="relative w-full pointer-events-none">
             <SplitText
               text="POFEI"
               tag="h1"
@@ -308,7 +308,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            className="w-full text-center px-4 opacity-30 mt-2 md:mt-4 relative -top-[6px] z-10 pointer-events-auto"
+            className="w-full text-center px-4 opacity-30 mt-2 md:mt-4 relative -top-[6px] z-10 pointer-events-none"
           >
             <SplitText
               text="Product Designer & AI Builder"
@@ -331,7 +331,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-center gap-10 mt-[-20px] sm:mt-10 pointer-events-auto"
+              className="flex flex-col items-center gap-10 mt-[-20px] sm:mt-10 pointer-events-none"
             >
               <p className="text-base text-neutral-700 max-w-lg text-center font-medium leading-relaxed px-6 hidden sm:block font-mono">
                 Grounded in Human-Computer Interaction, I explore how AI can extend the design process—enhancing craft, accelerating iteration, and improving outcomes.
