@@ -14,21 +14,21 @@ import sticker5 from "../../assets/Sticker 5.webp";
 import sticker6 from "../../assets/Sticker 6.webp";
 
 const photos = [
-  { id: 1, url: photo1, style: { left: "2%", top: "10%" }, rotation: -12, maxW: "w-[180px] md:w-[220px]" },
-  { id: 2, url: photo2, style: { left: "8%", top: "50%" }, rotation: 8, maxW: "w-[240px] md:w-[280px]" },
-  { id: 3, url: photo3, style: { left: "15%", top: "75%" }, rotation: -5, maxW: "w-[160px] md:w-[200px]" },
-  { id: 4, url: photo4, style: { right: "2%", top: "10%" }, rotation: 15, maxW: "w-[220px] md:w-[260px]" },
-  { id: 5, url: photo5, style: { right: "10%", top: "55%" }, rotation: -8, maxW: "w-[260px] md:w-[300px]" },
-  { id: 6, url: photo6, style: { right: "4%", top: "80%" }, rotation: 10, maxW: "w-[200px] md:w-[240px]" },
+  { id: 1, url: photo1, style: { left: "5%", top: "5%" }, rotation: -12, maxW: "w-[140px] md:w-[170px]" },
+  { id: 2, url: photo2, style: { left: "12%", top: "45%" }, rotation: -8, maxW: "w-[160px] md:w-[200px]" },
+  { id: 3, url: photo3, style: { left: "26%", top: "78%" }, rotation: 6, maxW: "w-[130px] md:w-[160px]" },
+  { id: 4, url: photo4, style: { right: "5%", top: "5%" }, rotation: 12, maxW: "w-[150px] md:w-[180px]" },
+  { id: 5, url: photo5, style: { right: "12%", top: "42%" }, rotation: -10, maxW: "w-[160px] md:w-[190px]" },
+  { id: 6, url: photo6, style: { right: "20%", top: "80%" }, rotation: -5, maxW: "w-[150px] md:w-[180px]" },
 ];
 
 const stickers = [
-  { id: 1, url: sticker1, style: { left: "62%", top: "45%" }, rotation: -8, maxW: "w-[64px] h-[64px]" },
-  { id: 2, url: sticker2, style: { left: "25%", top: "35%" }, rotation: -15, maxW: "w-[64px] h-[64px]" },
-  { id: 3, url: sticker3, style: { right: "8%", top: "35%" }, rotation: 25, maxW: "w-[64px] h-[64px]" },
-  { id: 4, url: sticker4, style: { left: "45%", top: "20%" }, rotation: 10, maxW: "w-[64px] h-[64px]" },
-  { id: 5, url: sticker5, style: { left: "12%", top: "60%" }, rotation: -12, maxW: "w-[64px] h-[64px]" },
-  { id: 6, url: sticker6, style: { right: "15%", top: "65%" }, rotation: 18, maxW: "w-[64px] h-[64px]" },
+  { id: 1, url: sticker1, style: { left: "32%", top: "25%" }, rotation: -8, maxW: "w-[40px] h-[40px] md:w-[50px] md:h-[50px]" },
+  { id: 2, url: sticker2, style: { left: "15%", top: "62%" }, rotation: 12, maxW: "w-[48px] h-[48px] md:w-[56px] md:h-[56px]" },
+  { id: 3, url: sticker3, style: { left: "38%", top: "85%" }, rotation: -15, maxW: "w-[40px] h-[40px] md:w-[50px] md:h-[50px]" },
+  { id: 4, url: sticker4, style: { right: "10%", top: "35%" }, rotation: 15, maxW: "w-[48px] h-[48px] md:w-[56px] md:h-[56px]" },
+  { id: 5, url: sticker5, style: { right: "25%", top: "65%" }, rotation: -12, maxW: "w-[48px] h-[48px] md:w-[56px] md:h-[56px]" },
+  { id: 6, url: sticker6, style: { top: "10%", left: "45%" }, rotation: 5, maxW: "w-[32px] h-[32px] md:w-[40px] md:h-[40px]" },
 ];
 
 export function FloatingScrapbook() {

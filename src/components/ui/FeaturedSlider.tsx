@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { ArrowRight, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import SplitText from './SplitText';
 
 gsap.registerPlugin(Draggable);
 
@@ -282,28 +283,38 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
       {/* Headings Row */}
       <div className="max-w-[1400px] w-full mx-auto flex justify-between items-start mb-12 px-6 md:px-12">
         <div>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tighter text-white mb-3 uppercase">Selected Projects</h2>
+          <SplitText
+            text="Selected Cases"
+            tag="h2"
+            className="text-6xl font-bold tracking-tighter text-neutral-900 uppercase leading-none mb-6 inline-block"
+            delay={50}
+            duration={1}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+          />
           
           {/* Numbers Counter */}
-          <div className="mt-6 flex items-center gap-1 font-bold text-6xl tracking-tight text-white" style={{ fontFamily: 'Impact, sans-serif' }}>
+          <div className="mt-6 flex items-center gap-1 font-bold text-6xl tracking-tight text-neutral-900" style={{ fontFamily: 'Impact, sans-serif' }}>
             <div className="h-[1em] overflow-hidden">
               <div ref={stepsParentRef} className="flex flex-col">
                 <h2 data-slide-count="step" ref={stepRef} className="m-0 leading-none h-[1em]" style={{ display: 'none' }}>01</h2>
               </div>
             </div>
-            <div className="w-[2px] h-[0.75em] bg-white rotate-12 mx-2"></div>
+            <div className="w-[2px] h-[0.75em] bg-neutral-900 rotate-12 mx-2"></div>
             <div className="h-[1em] overflow-hidden">
               <h2 data-slide-count="total" ref={totalRef} className="m-0 leading-none h-[1em]">04</h2>
             </div>
           </div>
         </div>
-        <Link to="/projects" className="hidden sm:inline-flex items-center justify-center px-6 py-2.5 rounded-full text-sm font-bold bg-white text-neutral-900 uppercase tracking-widest transition-transform hover:scale-105">
+        <Link to="/projects" className="hidden sm:inline-flex items-center justify-center px-6 py-2.5 rounded-full text-sm font-bold bg-neutral-900 text-white uppercase tracking-widest transition-transform hover:scale-105">
           View All
         </Link>
       </div>
 
       {/* Main Slider Area */}
-      <div className="osmo-slider-container w-full relative text-white overflow-hidden cursor-grab active:cursor-grabbing">
+      <div className="osmo-slider-container w-full relative text-neutral-900 overflow-hidden cursor-grab active:cursor-grabbing">
         <div className="w-full flex items-center justify-start">
           <div data-slider="list" ref={listRef} className="flex relative items-stretch py-12">
             {works.map((work, index) => (
@@ -339,7 +350,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
         <button 
           data-slider="button-prev" 
           ref={prevBtnRef}
-          className="osmo-btn flex items-center justify-center w-12 h-12 rounded-full bg-transparent border border-white/30 text-white relative hover:scale-95 hover:border-white transition-all duration-300 group"
+          className="osmo-btn flex items-center justify-center w-12 h-12 rounded-full bg-transparent border border-neutral-900/30 text-neutral-900 relative hover:scale-95 hover:border-neutral-900 transition-all duration-300 group"
           aria-label="previous slide"
         >
           <ArrowLeft className="w-5 h-5" />
@@ -347,7 +358,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
         <button 
           data-slider="button-next" 
           ref={nextBtnRef}
-          className="osmo-btn flex items-center justify-center w-12 h-12 rounded-full bg-transparent border border-white/30 text-white relative hover:scale-95 hover:border-white transition-all duration-300 group"
+          className="osmo-btn flex items-center justify-center w-12 h-12 rounded-full bg-transparent border border-neutral-900/30 text-neutral-900 relative hover:scale-95 hover:border-neutral-900 transition-all duration-300 group"
           aria-label="next slide"
         >
           <ArrowRight className="w-5 h-5" />
@@ -355,7 +366,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
       </div>
 
       <div className="mt-12 sm:hidden flex justify-center px-6 w-full">
-        <Link to="/projects" className="inline-flex items-center justify-center w-full px-6 py-2.5 rounded-full text-sm font-bold bg-white text-neutral-900 uppercase tracking-widest transition-transform hover:scale-105">
+        <Link to="/projects" className="inline-flex items-center justify-center w-full px-6 py-2.5 rounded-full text-sm font-bold bg-neutral-900 text-white uppercase tracking-widest transition-transform hover:scale-105">
           View All
         </Link>
       </div>

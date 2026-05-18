@@ -12,10 +12,10 @@
   --color-neutral-900: #373737;
 
   /* Primary Blue */
-  --color-primary-400: #5DDCF0;
-  --color-primary-500: #58CBFA;
-  --color-primary-600: #3E9AF1;
-  --color-primary-700: #3480F9;
+  --color-primary-400: #889DFF;
+  --color-primary-500: #6D86FF;
+  --color-primary-600: #5570FF;
+  --color-primary-700: #3E57FF;
 
   /* Accents */
   --color-accent-yellow: #FCAE0B;
@@ -41,7 +41,7 @@
 
 @layer base {
   body {
-    @apply bg-neutral-50 text-neutral-900 font-sans antialiased selection:bg-primary-700 selection:text-white;
+    @apply bg-neutral-50 text-neutral-900 font-sans antialiased selection:bg-primary-700 selection:text-white overflow-x-hidden;
   }
 }
 @import "tw-animate-css";
@@ -91,6 +91,32 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+
+    --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1 var(--delay, 0ms);
+
+    @keyframes cell-ripple {
+      0% {
+        opacity: 0.4;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        opacity: 0.4;
+      }
+    }
+}
+
+@layer utilities {
+  .mask-radial-from-20\% {
+    mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
+  }
+  .mask-radial-at-top {
+    mask-image: radial-gradient(ellipse at top, black 20%, transparent 80%);
+  }
+  .mask-linear-fade-bottom {
+    mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  }
 }
 
 :root {

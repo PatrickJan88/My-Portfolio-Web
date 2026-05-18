@@ -104,9 +104,11 @@ const SplitText: React.FC<SplitTextProps> = ({
           assignTargets(self);
           return gsap.fromTo(
             targets,
-            { ...from },
+            { ...from, rotationZ: 0.001, z: 0.01 },
             {
               ...to,
+              rotationZ: 0,
+              z: 0,
               duration,
               ease,
               stagger: delay / 1000,
@@ -121,8 +123,8 @@ const SplitText: React.FC<SplitTextProps> = ({
                 animationCompletedRef.current = true;
                 onCompleteRef.current?.();
               },
-              willChange: 'transform, opacity',
-              force3D: true
+              force3D: true,
+              autoRound: false
             }
           );
         }
@@ -161,7 +163,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       wordWrap: 'break-word',
       willChange: 'transform, opacity'
     };
-    const classes = `split-parent overflow-hidden inline-block whitespace-normal ${className}`;
+    const classes = `split-parent overflow-visible inline-block whitespace-normal ${className}`;
     const Tag = (tag || 'p') as any;
 
     return (

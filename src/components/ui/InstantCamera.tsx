@@ -3,14 +3,9 @@ import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router-dom";
 import { Camera } from "lucide-react";
 
-import photo1 from "../../assets/Photo 1.jpg";
-import photo2 from "../../assets/Photo 2.webp";
-import photo3 from "../../assets/Photo 3.webp";
-import photo4 from "../../assets/Photo 4.webp";
-import photo5 from "../../assets/Photo 5.webp";
-import photo6 from "../../assets/Photo 6.webp";
+import pixelCatsImage from "../../assets/pixel-cats 2.webp";
 
-const photos = [photo1, photo2, photo3, photo4, photo5, photo6];
+const photos = [pixelCatsImage];
 
 export function InstantCamera() {
   const [isPrinted, setIsPrinted] = useState(false);
@@ -36,7 +31,7 @@ export function InstantCamera() {
   };
 
   return (
-    <div className="relative w-full max-w-[320px] mx-auto flex flex-col items-center justify-center pt-20 pb-48">
+    <div className="relative w-full max-w-[320px] mx-auto flex flex-col items-center justify-center py-2 pb-0">
       {/* Flash Overlay */}
       <AnimatePresence>
         {isFlashing && (

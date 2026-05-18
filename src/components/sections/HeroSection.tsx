@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import SplitText from "../ui/SplitText";
 import BorderGlow from "../ui/BorderGlow";
+import { BackgroundRippleEffect } from "../ui/background-ripple-effect";
 
 function StrategyIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -275,34 +276,39 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
 
   return (
     <div ref={containerRef} className="relative w-full h-[250vh]">
-      <div className="sticky top-0 w-full h-screen overflow-hidden bg-neutral-50 flex items-center justify-center">
+      <div className="sticky top-0 w-full h-screen bg-neutral-50 flex items-center justify-center [clip-path:inset(-96px_0_0_0)]">
         
+        {/* HERO BACKGROUND */}
+        <div className="absolute top-[-96px] left-0 w-full h-[calc(100vh+96px)] z-0 flex pointer-events-auto">
+          <BackgroundRippleEffect rows={60} cols={100} />
+        </div>
+
         {/* HERO CONTENT */}
         <motion.div
           style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
-          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-[12px]"
+          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-[12px] z-10"
         >
-
-
           {/* Main Title */}
-          <SplitText
-            text="POFEI"
-            tag="h1"
-            className="text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] font-bold tracking-tighter text-neutral-900 leading-[0.8] uppercase text-center w-full px-4 pb-4"
-            delay={50}
-            duration={1}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: -8 }}
-          />
+          <div className="relative w-full pointer-events-auto">
+            <SplitText
+              text="POFEI"
+              tag="h1"
+              className="text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] font-bold tracking-tighter text-neutral-900 leading-[0.8] uppercase text-center w-full px-4 pb-4"
+              delay={50}
+              duration={1}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: -8 }}
+            />
+          </div>
 
           {/* Faded Background Subtitle */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            className="w-full text-center px-4 opacity-30 mt-2 md:mt-4 relative -top-[6px]"
+            className="w-full text-center px-4 opacity-30 mt-2 md:mt-4 relative -top-[6px] z-10 pointer-events-auto"
           >
             <SplitText
               text="Product Designer & AI Builder"
@@ -337,7 +343,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
         {/* SKILLS CONTENT */}
         <motion.div
           style={{ opacity: skillsOpacity, y: skillsY }}
-          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10"
         >
           <div className="absolute top-[15%] md:top-[20%] w-full flex flex-col items-center px-6">
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tighter text-neutral-900 uppercase text-center">
@@ -347,7 +353,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
         </motion.div>
 
         {/* CARDS */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
           {cards.map((card, idx) => (
             <ScrollCard
               key={card.id}

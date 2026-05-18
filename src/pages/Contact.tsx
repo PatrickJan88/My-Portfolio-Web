@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import React, { useState } from "react";
+import SplitText from "../components/ui/SplitText";
 
 export default function Contact() {
   const [formState, setFormState] = useState({ state: "idle" }); // idle, submitting, success
@@ -54,9 +55,17 @@ export default function Contact() {
           className="flex flex-col gap-12 mt-4"
         >
           <div>
-            <h1 className="text-6xl font-bold tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6">
-              LET'S CHAT
-            </h1>
+            <SplitText
+              text="LET'S CHAT"
+              tag="h1"
+              className="text-6xl font-bold tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6 inline-block"
+              delay={50}
+              duration={1}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+            />
             <p className="text-base text-[#4A4A4A] max-w-md leading-relaxed font-mono">
               Always open to new partnerships and exploring exciting opportunities.
             </p>
@@ -65,7 +74,7 @@ export default function Contact() {
           <div className="flex flex-col gap-6">
             <button 
               onClick={() => handleCopy("ranpofei@gmail.com", "email")}
-              className="flex items-center gap-4 text-[#373737] hover:text-[#3480F9] transition-colors group cursor-pointer text-left focus:outline-none"
+              className="flex items-center gap-4 text-[#373737] hover:text-[#3E57FF] transition-colors group cursor-pointer text-left focus:outline-none"
             >
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5 group-hover:scale-105 transition-transform">
                 <Mail className="w-5 h-5" />
@@ -78,7 +87,7 @@ export default function Contact() {
             
             <button 
               onClick={() => handleCopy("+46764502813", "phone")}
-              className="flex items-center gap-4 text-[#373737] hover:text-[#3480F9] transition-colors group cursor-pointer text-left focus:outline-none"
+              className="flex items-center gap-4 text-[#373737] hover:text-[#3E57FF] transition-colors group cursor-pointer text-left focus:outline-none"
             >
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5 group-hover:scale-105 transition-transform">
                 <Phone className="w-5 h-5" />
@@ -101,10 +110,10 @@ export default function Contact() {
           </div>
 
           <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-black/5">
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3480F9] uppercase tracking-widest transition-colors group">
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3E57FF] uppercase tracking-widest transition-colors group">
               LinkedIn <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
-            <a href="/resume.pdf" target="_blank" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3480F9] uppercase tracking-widest transition-colors group">
+            <a href="/resume.pdf" target="_blank" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3E57FF] uppercase tracking-widest transition-colors group">
               Download Full Resume <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
           </div>
@@ -140,7 +149,7 @@ export default function Contact() {
                   id="name" 
                   name="name"
                   required
-                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
+                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3E57FF] focus:ring-4 focus:ring-[#3E57FF]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
                   placeholder="What should I call you?"
                 />
               </div>
@@ -152,7 +161,7 @@ export default function Contact() {
                   id="email" 
                   name="email"
                   required
-                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
+                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3E57FF] focus:ring-4 focus:ring-[#3E57FF]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
                   placeholder="your@email.com"
                 />
               </div>
@@ -164,7 +173,7 @@ export default function Contact() {
                   name="message"
                   required
                   rows={5}
-                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3480F9] focus:ring-4 focus:ring-[#3480F9]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all resize-none placeholder:text-[#a0a0a0]"
+                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3E57FF] focus:ring-4 focus:ring-[#3E57FF]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all resize-none placeholder:text-[#a0a0a0]"
                   placeholder="Tell me about your project, or just say hello..."
                 />
               </div>

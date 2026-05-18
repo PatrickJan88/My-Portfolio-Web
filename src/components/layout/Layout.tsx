@@ -13,12 +13,15 @@ export default function Layout({ children }: LayoutProps) {
   const isProjectDetail =
     location.pathname.startsWith("/projects/") &&
     location.pathname !== "/projects";
+  const noTopPadding = isProjectDetail;
 
   return (
-    <div className="min-h-screen w-full bg-neutral-50 text-neutral-900 flex flex-col relative overflow-clip">
+    <div className="min-h-screen w-full bg-neutral-50 text-neutral-900 flex flex-col relative">
       {/* Spatial Background Elements - Global */}
-      <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-primary-400 opacity-[0.05] rounded-full blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] bg-primary-700 opacity-[0.03] rounded-full blur-[80px] pointer-events-none"></div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-primary-400 opacity-[0.05] rounded-full blur-[100px]" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] bg-primary-700 opacity-[0.03] rounded-full blur-[80px]" />
+      </div>
 
       {/* UI Decorative Lines - Global */}
       <div className="absolute left-0 top-0 w-px h-full bg-black/[0.03] pointer-events-none"></div>
@@ -28,8 +31,8 @@ export default function Layout({ children }: LayoutProps) {
 
       <main
         className={cn(
-          "flex-1 flex flex-col relative w-full z-10 pb-0 mb-auto",
-          isProjectDetail ? "pt-0" : "pt-24",
+          "grow flex flex-col relative w-full z-10 pb-0",
+          noTopPadding ? "pt-0" : "pt-24",
         )}
       >
         {children}

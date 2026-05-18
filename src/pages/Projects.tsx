@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { ProjectCard } from "../components/ui/ProjectCard";
 import { projectsData } from "../data/projects";
+import SplitText from "../components/ui/SplitText";
 
 const projectCategories = [
   { id: "all", label: "All Projects" },
@@ -27,9 +28,17 @@ export default function Projects() {
         transition={{ duration: 0.6 }}
         className="mb-16 mt-4"
       >
-        <h1 className="text-6xl font-bold tracking-tighter text-neutral-900 uppercase mb-6 leading-none">
-          Case Studies
-        </h1>
+        <SplitText
+          text="Selected Cases"
+          tag="h1"
+          className="text-6xl font-bold tracking-tighter text-neutral-900 uppercase mb-6 leading-none inline-block"
+          delay={50}
+          duration={1}
+          ease="power3.out"
+          splitType="chars"
+          from={{ opacity: 0, y: 40 }}
+          to={{ opacity: 1, y: 0 }}
+        />
         <p className="text-base text-neutral-700 max-w-2xl font-medium leading-relaxed font-mono">
           An archive of selected works spanning robust enterprise platforms,
           native mobile applications, and academic human-computer interaction
