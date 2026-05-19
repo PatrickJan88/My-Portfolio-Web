@@ -219,7 +219,7 @@ export default function ProjectDetail() {
           </motion.div>
 
           {/* Section 2: Text Left, Media Right */}
-          <div className="w-full flex flex-col lg:flex-row items-start gap-12 lg:gap-24">
+          <div className="w-full flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
             <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
               <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
                 {project.section1?.label || "Approach"}
@@ -253,7 +253,7 @@ export default function ProjectDetail() {
           </div>
 
           {/* Section 3: Media Left, Text Right */}
-          <div className="w-full flex flex-col-reverse lg:flex-row items-start gap-12 lg:gap-24">
+          <div className="w-full flex flex-col-reverse lg:flex-row items-start gap-12 lg:gap-16">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -5,10 +5,10 @@ export const urgentBookingCaseStudy: ProjectData = {
   title: "Urgency-Responsive Travel Scaffolding",
   category: "Research & Design",
   client: "Confidential",
-  image: "https://images.unsplash.com/photo-1549416878-b9ca95e1bbbb?q=80&w=1000&auto=format&fit=crop",
+  image: "/projects/urgent-booking/ur-cover-page.webp",
   
   heroHeading: "Urgency-Responsive\nTravel Scaffolding",
-  heroImage: "https://images.unsplash.com/photo-1549416878-b9ca95e1bbbb?q=80&w=1600&auto=format&fit=crop",
+  heroImage: "/projects/urgent-booking/ur-cover-hero-page.webp",
   
   overviewHeading: "Urgency-Responsive UX & Cognitive Relief",
   overview: "This Research through Design (RtD) project explores the tension between algorithmic efficiency and user trust in high-urgency scenarios. By developing \"Urgency-Responsive Scaffolding,\" the research demonstrates how voluntary interface constraints can provide cognitive relief while maintaining user confidence.",
@@ -44,10 +44,8 @@ export const urgentBookingCaseStudy: ProjectData = {
     content: "Validated using Höök & Löwgren's \"Strong Concept\" framework, the constrained agency model successfully bridged the gap between efficiency and user trust. Testing proved that limiting options provided crucial cognitive relief and psychological safety, contrasting sharply with the user rejection of \"black box\" full automation. Ultimately, this urgency-responsive scaffolding serves as a substantive, generative model for balancing algorithmic power with human agency across a wide spectrum of high-stakes interface designs."
   },
 
-  content: [
-    {
-      type: "media-full",
-      mediaType: "image",
-    }
-  ]
+  media1: "/projects/urgent-booking/ur-mp-1.webp",
+  media2: "/projects/urgent-booking/ur-mp-2.webm",
+  media3: "/projects/urgent-booking/ur-mp-3.webm",
+  media4: "/projects/urgent-booking/ur-mp-4.webp",
 };
