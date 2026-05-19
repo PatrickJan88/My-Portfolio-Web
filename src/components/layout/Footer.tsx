@@ -23,7 +23,7 @@ export default function Footer() {
       
       <div className="w-full max-w-[1400px] flex justify-between items-center text-[10px] uppercase tracking-[0.15em] font-bold text-[#D2D2D2] font-mono">
         <span>© {new Date().getFullYear()} All Rights Reserved</span>
-        <span className="hidden sm:inline">💻 Building + 💡 Thinking + 🎧 Chilling</span>
+        <span className="hidden sm:inline">💡 Imagining &nbsp;&nbsp; 💻 Building &nbsp;&nbsp; 🚀 Beyond</span>
       </div>
     </footer>
   );

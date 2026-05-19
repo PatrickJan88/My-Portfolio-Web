@@ -35,7 +35,7 @@ export const earsCaseStudy: ProjectData = {
   section3: {
     label: "Result",
     heading: "Empowered Decision Making",
-    content: "Delivered a scalable, secure ecosystem that seamlessly connects middle management operations with high-speed executive execution. The products empowered leaders to confidently act on complex analyst insights. This modular architecture was further validated through a successful bespoke deployment for a top-tier US retail bank, paving the way for future industry-specific expansions.",
+    content: 'Delivered a scalable, secure ecosystem that seamlessly connects middle management operations with high-speed executive execution. The products empowered leaders to confidently act on complex analyst insights. A prime example of this architecture is the built-in Retail Branch Workforce Planning solution for a Top-3 US Bank. Collaborating directly with analyst and software development teams, I delivered this dynamic workforce module to resolve a lack of granular staff planning. By integrating a novel "Teller Stress Index," the solution reduced task completion time by 40% and boosted banker sales calls by 40%. Furthermore, it increased overall service levels by 500 bps and brought the percentage of customers waiting over 5 minutes down to just 33%.',
   },
 
   media1: "/projects/ears/ears-mp-1.webm",

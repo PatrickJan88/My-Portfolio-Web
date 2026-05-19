@@ -5,10 +5,10 @@ export const evChargingPlatformCaseStudy: ProjectData = {
   title: "EV Charging Platform",
   category: "Product Design",
   client: "Agent Zero",
-  image: "/projects/ev-charging-platform/ev-cover-page.webp",
+  image: "/projects/ev-charging-platform/cover-page-1.png",
   
   heroHeading: "EV Charging\nPlatform",
-  heroImage: "/projects/ev-charging-platform/ev-cover-hero-page.webp",
+  heroImage: "/projects/ev-charging-platform/cover-hero-page-1.png",
   
   overviewHeading: "Global Scalability\nand Deep Localization",
   overview: "A multi-market UX strategy, designing a suite of smart EV charging applications, EV 365, E boost, and Hydra, for a single enterprise client. Spanning the EU (Poland) and Southeast Asian (Vietnam) markets, the project required balancing a unified technical infrastructure with deep local adaptations in mapping, billing, and device management.",

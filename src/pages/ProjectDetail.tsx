@@ -219,7 +219,7 @@ export default function ProjectDetail() {
           </motion.div>
 
           {/* Section 2: Text Left, Media Right */}
-          <div className="w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+          <div className="w-full flex flex-col lg:flex-row items-start gap-12 lg:gap-24">
             <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
               <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
                 {project.section1?.label || "Approach"}
@@ -227,7 +227,7 @@ export default function ProjectDetail() {
               <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
                 {project.section1?.heading || "Digital Platform"}
               </h2>
-              <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light">
+              <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light whitespace-pre-line">
                 {project.section1?.content || "The hackathon platform was designed for seamless registration, team formation, and project submission. We created a digital experience that turned participation into a journey — from sign-up to demo day."}
               </p>
             </div>
@@ -253,7 +253,7 @@ export default function ProjectDetail() {
           </div>
 
           {/* Section 3: Media Left, Text Right */}
-          <div className="w-full flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-24">
+          <div className="w-full flex flex-col-reverse lg:flex-row items-start gap-12 lg:gap-24">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -280,7 +280,7 @@ export default function ProjectDetail() {
               <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
                 {project.section2?.heading || "Visual Identity"}
               </h2>
-              <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light">
+              <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light whitespace-pre-line">
                 {project.section2?.content || "We established a cohesive visual system built on bold typography and strategic use of color. This system ensures consistency across marketing materials, digital platforms, and physical venue signage."}
               </p>
             </div>
