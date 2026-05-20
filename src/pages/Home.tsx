@@ -24,14 +24,14 @@ export default function Home() {
       <TripleDiamondSection />
 
       {/* Selected Featured Works Carousel */}
-      <div className="relative w-full z-10 bg-transparent py-24 object-contain">
+      <div className="relative w-full z-10 bg-transparent py-12 md:py-24 object-contain">
         <section className="w-full flex flex-col justify-center">
           <FeaturedSlider works={featuredWorks} />
         </section>
       </div>
 
       {/* "Let's FIKA" Section */}
-      <div className="relative w-full z-20 bg-[#FBFBFB] flex flex-col items-center justify-start pt-16 pb-[420px] px-6 md:px-12 overflow-hidden border-y border-black/5 min-h-[700px]">
+      <div className="relative w-full z-20 bg-[#FBFBFB] flex flex-col items-center justify-start pt-12 md:pt-16 pb-[300px] md:pb-[420px] px-6 md:px-12 overflow-hidden border-y border-black/5 min-h-[500px] md:min-h-[700px]">
         <CursorProvider>
           <Cursor className="text-[#363E62] size-8" />
           <CursorFollow>Let&#39;s Fika</CursorFollow>

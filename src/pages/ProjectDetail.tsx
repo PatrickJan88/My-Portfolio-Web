@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "motion/react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Figma } from "lucide-react";
@@ -11,6 +12,10 @@ export default function ProjectDetail() {
   const project =
     currentIndex !== -1 ? projectsData[currentIndex] : projectsData[0];
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
   if (!project) {
     return <Navigate to="/projects" />;
   }
@@ -22,7 +27,7 @@ export default function ProjectDetail() {
   return (
     <div className="w-full bg-[#f4f4f4] min-h-screen text-neutral-900 font-sans selection:bg-neutral-900 selection:text-white">
       {/* Full-screen Hero Section */}
-      <section className="relative w-full h-screen min-h-[700px] flex flex-col justify-end bg-neutral-900">
+      <section className="relative w-full min-h-[70vh] lg:min-h-[80vh] flex flex-col justify-end bg-neutral-900 overflow-hidden">
         {/* Absolute Navigation */}
         <nav className="absolute top-0 w-full px-6 md:px-12 pt-32 pb-8 flex justify-between items-center z-20 max-w-[1600px] mx-auto left-1/2 -translate-x-1/2">
           <Link
@@ -43,13 +48,13 @@ export default function ProjectDetail() {
               loop
               muted
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           ) : (
             <img
               src={project.heroImage}
               alt={project.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           )}
           {/* 70% Black Overlay */}
@@ -57,7 +62,7 @@ export default function ProjectDetail() {
         </div>
 
         {/* Text Content layer */}
-        <div className="container mx-auto px-[4vw] relative z-10 pb-16 md:pb-24">
+        <div className="container mx-auto px-[4vw] relative z-10 pt-48 pb-16 md:pb-24">
           {/* Title Area */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -202,13 +207,13 @@ export default function ProjectDetail() {
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               ) : (
                 <img
                   src={project.media1}
                   alt="Media 1"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               )
             ) : (
@@ -240,9 +245,9 @@ export default function ProjectDetail() {
             >
               {project.media2 ? (
                 project.media2.endsWith(".webm") || project.media2.endsWith(".mp4") ? (
-                  <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                  <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-contain" />
                 ) : (
-                  <img src={project.media2} alt="Media 2" className="w-full h-full object-cover" />
+                  <img src={project.media2} alt="Media 2" className="w-full h-full object-contain" />
                 )
               ) : (
                 <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
@@ -263,9 +268,9 @@ export default function ProjectDetail() {
             >
               {project.media3 ? (
                 project.media3.endsWith(".webm") || project.media3.endsWith(".mp4") ? (
-                  <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                  <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-contain" />
                 ) : (
-                  <img src={project.media3} alt="Media 3" className="w-full h-full object-cover" />
+                  <img src={project.media3} alt="Media 3" className="w-full h-full object-contain" />
                 )
               ) : (
                 <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
@@ -292,15 +297,15 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-auto md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
           >
             {project.media4 ? (
               Array.isArray(project.media4) ? (
                 <AutoCarousel images={project.media4} />
               ) : project.media4.endsWith(".webm") || project.media4.endsWith(".mp4") ? (
-                <video src={project.media4} autoPlay loop muted playsInline className="w-full h-auto md:h-full object-cover" />
+                <video src={project.media4} autoPlay loop muted playsInline className="w-full h-auto md:h-full object-contain" />
               ) : (
-                <img src={project.media4} alt="Media 4" className="w-full h-auto md:h-full object-cover" />
+                <img src={project.media4} alt="Media 4" className="w-full h-auto md:h-full object-contain" />
               )
             ) : (
               <p className="absolute text-neutral-400 font-mono text-sm">

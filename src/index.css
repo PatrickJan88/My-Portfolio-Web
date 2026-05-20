@@ -41,7 +41,8 @@
 
 @layer base {
   body {
-    @apply bg-neutral-50 text-neutral-900 font-sans antialiased selection:bg-primary-700 selection:text-white overflow-x-hidden;
+    @apply bg-neutral-50 text-neutral-900 font-sans antialiased selection:bg-primary-700 selection:text-white;
+    overflow-x: clip; 
   }
 }
 @import "tw-animate-css";

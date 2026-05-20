@@ -48,7 +48,7 @@ export default function AutoCarousel({ images, interval = 6000 }: AutoCarouselPr
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute inset-0 w-full h-full object-cover sm:object-contain md:object-cover"
+          className="absolute inset-0 w-full h-full object-contain"
         />
       </AnimatePresence>
 

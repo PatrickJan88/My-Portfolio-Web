@@ -129,7 +129,7 @@ export function HeroSection() {
     const check = () => {
       if (window.innerWidth < 640) {
         setDeviceType("mobile");
-      } else if (window.innerWidth < 1100) {
+      } else if (window.innerWidth < 1024) {
         setDeviceType("tablet");
       } else {
         setDeviceType("desktop");
@@ -146,11 +146,11 @@ export function HeroSection() {
   return <HeroSequence deviceType={deviceType} key={deviceType} />;
 }
 
-function ScrollCard({ card, scrollYProgress, index, target }: any) {
+function ScrollCard({ card, scrollYProgress, index, target, initialPos }: any) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const x = useTransform(scrollYProgress, [0.2, 0.8], [card.x, target.x]);
-  const y = useTransform(scrollYProgress, [0.2, 0.8], [card.y, target.y]);
+  const x = useTransform(scrollYProgress, [0.2, 0.8], [initialPos ? initialPos.x : card.x, target.x]);
+  const y = useTransform(scrollYProgress, [0.2, 0.8], [initialPos ? initialPos.y : card.y, target.y]);
   const rotateZ = useTransform(scrollYProgress, [0.2, 0.8], [card.rotate, 0]);
 
   const Icon = card.icon;
@@ -163,7 +163,7 @@ function ScrollCard({ card, scrollYProgress, index, target }: any) {
         rotateZ,
         zIndex: isHovered ? 50 : index * 10,
       }}
-      className="absolute w-[140px] h-[190px] sm:w-[190px] sm:h-[240px] md:w-[240px] md:h-[310px] origin-bottom perspective-1000"
+      className="absolute w-[140px] h-[190px] sm:w-[170px] sm:h-[220px] md:w-[200px] md:h-[260px] lg:w-[240px] lg:h-[310px] origin-bottom perspective-1000"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -191,7 +191,7 @@ function ScrollCard({ card, scrollYProgress, index, target }: any) {
         >
           {/* Front Face */}
           <div
-            className="absolute inset-0 rounded-2xl md:rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] bg-white/90 backdrop-blur-xl border border-neutral-100 flex flex-col items-center justify-center p-4 md:p-6 text-center"
+            className="absolute inset-0 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] bg-white/90 backdrop-blur-xl border border-neutral-100 flex flex-col items-center justify-center p-4 md:p-6 text-center"
             style={{ backfaceVisibility: "hidden" }}
           >
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-neutral-100 flex items-center justify-center mb-3 md:mb-4 text-neutral-800">
@@ -204,7 +204,7 @@ function ScrollCard({ card, scrollYProgress, index, target }: any) {
 
           {/* Back Face */}
           <div
-            className="absolute inset-0 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] rounded-2xl md:rounded-[2rem]"
+            className="absolute inset-0 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] rounded-[2rem] overflow-hidden"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
@@ -255,23 +255,37 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
   ];
 
   const tabletTargets = [
-    { x: "-55%", y: -130 },
-    { x: "55%", y: -130 },
-    { x: "-55%", y: 130 },
-    { x: "55%", y: 130 },
+    { x: "-55%", y: -155 },
+    { x: "55%", y: -155 },
+    { x: "-55%", y: 155 },
+    { x: "55%", y: 155 },
   ];
 
   const mobileTargets = [
-    { x: "-55%", y: -100 },
-    { x: "55%", y: -100 },
-    { x: "-55%", y: 100 },
-    { x: "55%", y: 100 },
+    { x: "-58%", y: -107 },
+    { x: "58%", y: -107 },
+    { x: "-58%", y: 107 },
+    { x: "58%", y: 107 },
+  ];
+
+  const mobileInitialOffsets = [
+    { x: "-25%", y: 50 },
+    { x: "-10%", y: 20 },
+    { x: "10%", y: 30 },
+    { x: "25%", y: 60 },
+  ];
+
+  const tabletInitialOffsets = [
+    { x: "-30%", y: 10 },
+    { x: "-10%", y: -20 },
+    { x: "10%", y: -10 },
+    { x: "30%", y: 20 },
   ];
 
   const targets = deviceType === "mobile" ? mobileTargets : deviceType === "tablet" ? tabletTargets : desktopTargets;
 
   return (
-    <div ref={containerRef} className="relative w-full h-[250vh]">
+    <div ref={containerRef} className="relative w-full h-[180vh] md:h-[140vh] lg:h-[200vh]">
       <div className="sticky top-0 w-full h-screen bg-neutral-50 flex items-center justify-center [clip-path:inset(-96px_0_0_0)]">
         
         {/* HERO BACKGROUND */}
@@ -282,14 +296,14 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
         {/* HERO CONTENT */}
         <motion.div
           style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
-          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-[12px] z-10"
+          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-[12px] md:-mt-[252px] lg:-mt-[12px] z-10"
         >
           {/* Main Title */}
           <div className="relative w-full pointer-events-none">
             <SplitText
               text="POFEI"
               tag="h1"
-              className="text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] font-bold tracking-tighter text-neutral-900 leading-[0.8] uppercase text-center w-full px-4 pb-4"
+              className="text-7xl sm:text-[5rem] md:text-[6rem] lg:text-[8.5rem] font-bold tracking-tighter text-neutral-900 leading-[0.8] uppercase text-center w-full px-4 pb-4"
               delay={50}
               duration={1}
               ease="power3.out"
@@ -309,7 +323,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
             <SplitText
               text="Product Designer & AI Builder"
               tag="h2"
-              className="text-2xl sm:text-3xl font-semibold tracking-widest text-neutral-300 uppercase leading-[0.8]"
+              className="text-lg sm:text-2xl md:text-3xl font-semibold tracking-widest text-neutral-300 uppercase leading-[0.8]"
               delay={50}
               duration={1}
               ease="power3.out"
@@ -319,7 +333,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
             />
           </motion.div>
 
-          <div className="h-[220px] sm:h-[280px] md:h-[350px] w-full" />
+          <div className="h-[360px] sm:h-[280px] md:h-[320px] lg:h-[350px] w-full" />
 
           {/* Tagline & Actions (separated for faster fade but kept in flow for layout) */}
           <motion.div style={{ opacity: taglineOpacity, visibility: taglineVisibility }} className="pointer-events-none">
@@ -337,7 +351,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
         </motion.div>
 
         {/* CARDS */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 md:-mt-[190px] lg:mt-0">
           {cards.map((card, idx) => (
             <ScrollCard
               key={card.id}
@@ -345,6 +359,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
               index={idx}
               scrollYProgress={scrollYProgress}
               target={targets[idx]}
+              initialPos={deviceType === "mobile" ? mobileInitialOffsets[idx] : deviceType === "tablet" ? tabletInitialOffsets[idx] : null}
             />
           ))}
         </div>

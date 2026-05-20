@@ -21,9 +21,9 @@ export default function Footer() {
 
       </div>
       
-      <div className="w-full max-w-[1400px] flex justify-between items-center text-[10px] uppercase tracking-[0.15em] font-bold text-[#D2D2D2] font-mono">
-        <span>© {new Date().getFullYear()} All Rights Reserved</span>
-        <span className="hidden sm:inline">💡 Imagining &nbsp;&nbsp; 💻 Building &nbsp;&nbsp; 🚀 Beyond</span>
+      <div className="w-full max-w-[1400px] flex justify-center sm:justify-between items-center text-[10px] uppercase tracking-[0.15em] font-bold text-[#D2D2D2] font-mono">
+        <span className="text-center sm:text-left">© {new Date().getFullYear()} All Rights Reserved</span>
+        <span className="hidden sm:inline text-right">💡 Imagining &nbsp;&nbsp; 💻 Building &nbsp;&nbsp; 🚀 Beyond</span>
       </div>
     </footer>
   );

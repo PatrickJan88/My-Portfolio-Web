@@ -53,6 +53,11 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
 
     const allSteps = stepsParent.querySelectorAll('[data-slide-count="step"]');
     
+    if (slides.length > 0) {
+      slides[0].classList.add("active");
+      activeElement = slides[0];
+    }
+
     const loop = horizontalLoop(slides, {
       paused: true, 
       draggable: true, 
@@ -61,10 +66,8 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
         if (activeElement) {
           activeElement.classList.remove("active");
         }
-        // Osmo offset design
-        const nextSibling = (element.nextElementSibling as HTMLElement) || slides[0]; 
-        nextSibling.classList.add("active");
-        activeElement = nextSibling;
+        element.classList.add("active");
+        activeElement = element;
         
         gsap.to(allSteps, { y: `${-100 * index}%`, ease: "power3", duration: 0.45 });
       }
@@ -281,12 +284,12 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
     <div className="w-full flex flex-col items-center" ref={containerRef}>
       
       {/* Headings Row */}
-      <div className="max-w-[1400px] w-full mx-auto flex justify-between items-start mb-12 px-6 md:px-12">
+      <div className="max-w-[1400px] w-full mx-auto flex justify-between items-start mb-6 md:mb-12 px-6 md:px-12">
         <div>
           <SplitText
             text="Selected Cases"
             tag="h2"
-            className="text-6xl font-bold tracking-tighter text-neutral-900 uppercase leading-none mb-6 inline-block"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-neutral-900 uppercase leading-none mb-6 inline-block"
             delay={50}
             duration={1}
             ease="power3.out"
@@ -296,7 +299,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
           />
           
           {/* Numbers Counter */}
-          <div className="mt-6 flex items-center gap-1 font-bold text-6xl tracking-tight text-neutral-900" style={{ fontFamily: 'Impact, sans-serif' }}>
+          <div className="mt-6 flex items-center gap-1 font-bold text-5xl md:text-6xl tracking-tight text-neutral-900" style={{ fontFamily: 'Impact, sans-serif' }}>
             <div className="h-[1em] overflow-hidden">
               <div ref={stepsParentRef} className="flex flex-col">
                 <h2 data-slide-count="step" ref={stepRef} className="m-0 leading-none h-[1em]" style={{ display: 'none' }}>01</h2>
@@ -316,7 +319,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
       {/* Main Slider Area */}
       <div className="osmo-slider-container w-full relative text-neutral-900 overflow-hidden cursor-grab active:cursor-grabbing">
         <div className="w-full flex items-center justify-start">
-          <div data-slider="list" ref={listRef} className="flex relative items-stretch py-12">
+          <div data-slider="list" ref={listRef} className="flex relative items-stretch py-6 md:py-12">
             {works.map((work, index) => (
               <div 
                 key={work.id} 
@@ -330,7 +333,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
                       alt={work.title} 
                       className="w-full h-full object-cover select-none pointer-events-none"
                     />
-                    <div className="absolute top-6 left-3 z-[2] bg-white text-neutral-900 rounded-md flex items-center py-1.5 px-3.5 gap-2 transform -translate-x-[25%] opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 group-[.active]:opacity-100 group-[.active]:translate-x-0">
+                    <div className="absolute top-6 left-3 z-[2] bg-white text-neutral-900 rounded-md hidden md:flex items-center py-1.5 px-3.5 gap-2 transform -translate-x-[25%] opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 group-[.active]:opacity-100 group-[.active]:translate-x-0">
                       <div className="w-2 h-2 rounded-full bg-neutral-900 shrink-0"></div>
                       <p className="m-0 text-xs font-semibold uppercase tracking-wider">{work.title}</p>
                     </div>

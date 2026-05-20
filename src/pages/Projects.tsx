@@ -31,7 +31,7 @@ export default function Projects() {
         <SplitText
           text="Selected Cases"
           tag="h1"
-          className="text-6xl font-bold tracking-tighter text-neutral-900 uppercase mb-6 leading-none inline-block"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-neutral-900 uppercase mb-6 leading-none inline-block"
           delay={50}
           duration={1}
           ease="power3.out"

@@ -18,14 +18,14 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen w-full bg-neutral-50 text-neutral-900 flex flex-col relative">
       {/* Spatial Background Elements - Global */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-primary-400 opacity-[0.05] rounded-full blur-[100px]" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] bg-primary-700 opacity-[0.03] rounded-full blur-[80px]" />
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-primary-400 opacity-[0.05] rounded-full blur-[100px] will-change-transform" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] bg-primary-700 opacity-[0.03] rounded-full blur-[80px] will-change-transform" />
       </div>
 
       {/* UI Decorative Lines - Global */}
-      <div className="absolute left-0 top-0 w-px h-full bg-black/[0.03] pointer-events-none"></div>
-      <div className="absolute right-0 top-0 w-px h-full bg-black/[0.03] pointer-events-none"></div>
+      <div className="fixed left-0 top-0 w-px h-full bg-black/[0.03] pointer-events-none z-0"></div>
+      <div className="fixed right-0 top-0 w-px h-full bg-black/[0.03] pointer-events-none z-0"></div>
 
       <Navbar />
 

@@ -58,7 +58,7 @@ export default function Contact() {
             <SplitText
               text="LET'S CHAT"
               tag="h1"
-              className="text-6xl font-bold tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6 inline-block"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6 inline-block"
               delay={50}
               duration={1}
               ease="power3.out"
@@ -143,7 +143,7 @@ export default function Contact() {
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Name <span className="text-red-500">*</span></label>
+                <label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Name <span className="text-red-500 text-[14px]">*</span></label>
                 <input 
                   type="text" 
                   id="name" 
@@ -155,7 +155,7 @@ export default function Contact() {
               </div>
               
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Email <span className="text-red-500">*</span></label>
+                <label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Email <span className="text-red-500 text-[14px]">*</span></label>
                 <input 
                   type="email" 
                   id="email" 

@@ -14,21 +14,21 @@ import sticker5 from "../../assets/Sticker 5.webp";
 import sticker6 from "../../assets/Sticker 6.webp";
 
 const photos = [
-  { id: 1, url: photo1, style: { left: "5%", top: "5%" }, rotation: -12, maxW: "w-[140px] md:w-[170px]" },
-  { id: 2, url: photo2, style: { left: "12%", top: "45%" }, rotation: -8, maxW: "w-[160px] md:w-[200px]" },
-  { id: 3, url: photo3, style: { left: "26%", top: "78%" }, rotation: 6, maxW: "w-[130px] md:w-[160px]" },
-  { id: 4, url: photo4, style: { right: "5%", top: "5%" }, rotation: 12, maxW: "w-[150px] md:w-[180px]" },
-  { id: 5, url: photo5, style: { right: "12%", top: "42%" }, rotation: -10, maxW: "w-[160px] md:w-[190px]" },
-  { id: 6, url: photo6, style: { right: "20%", top: "80%" }, rotation: -5, maxW: "w-[150px] md:w-[180px]" },
+  { id: 1, url: photo1, classes: "-left-16 md:left-[5%] top-[5%]", rotation: -12, maxW: "w-[140px] md:w-[170px]" },
+  { id: 2, url: photo2, classes: "-left-20 md:left-[12%] top-[45%]", rotation: -8, maxW: "w-[160px] md:w-[200px]" },
+  { id: 3, url: photo3, classes: "-left-4 md:left-[26%] top-[78%]", rotation: 6, maxW: "w-[130px] md:w-[160px]" },
+  { id: 4, url: photo4, classes: "-right-12 md:right-[5%] top-[5%]", rotation: 12, maxW: "w-[150px] md:w-[180px]" },
+  { id: 5, url: photo5, classes: "-right-24 md:right-[12%] top-[42%]", rotation: -10, maxW: "w-[160px] md:w-[190px]" },
+  { id: 6, url: photo6, classes: "-right-8 md:right-[20%] top-[80%]", rotation: -5, maxW: "w-[150px] md:w-[180px]" },
 ];
 
 const stickers = [
-  { id: 1, url: sticker1, style: { left: "32%", top: "25%" }, rotation: -8, maxW: "w-[40px] h-[40px] md:w-[50px] md:h-[50px]" },
-  { id: 2, url: sticker2, style: { left: "15%", top: "62%" }, rotation: 12, maxW: "w-[48px] h-[48px] md:w-[56px] md:h-[56px]" },
-  { id: 3, url: sticker3, style: { left: "38%", top: "85%" }, rotation: -15, maxW: "w-[40px] h-[40px] md:w-[50px] md:h-[50px]" },
-  { id: 4, url: sticker4, style: { right: "10%", top: "35%" }, rotation: 15, maxW: "w-[48px] h-[48px] md:w-[56px] md:h-[56px]" },
-  { id: 5, url: sticker5, style: { right: "25%", top: "65%" }, rotation: -12, maxW: "w-[48px] h-[48px] md:w-[56px] md:h-[56px]" },
-  { id: 6, url: sticker6, style: { top: "10%", left: "45%" }, rotation: 5, maxW: "w-[32px] h-[32px] md:w-[40px] md:h-[40px]" },
+  { id: 1, url: sticker1, classes: "left-[32%] top-[25%]", rotation: -8, maxW: "w-[40px] h-[40px] md:w-[50px] md:h-[50px]" },
+  { id: 2, url: sticker2, classes: "left-[15%] top-[62%]", rotation: 12, maxW: "w-[48px] h-[48px] md:w-[56px] md:h-[56px]" },
+  { id: 3, url: sticker3, classes: "left-[38%] top-[85%]", rotation: -15, maxW: "w-[40px] h-[40px] md:w-[50px] md:h-[50px]" },
+  { id: 4, url: sticker4, classes: "right-[10%] top-[35%]", rotation: 15, maxW: "w-[48px] h-[48px] md:w-[56px] md:h-[56px]" },
+  { id: 5, url: sticker5, classes: "right-[25%] top-[65%]", rotation: -12, maxW: "w-[48px] h-[48px] md:w-[56px] md:h-[56px]" },
+  { id: 6, url: sticker6, classes: "left-[45%] top-[10%]", rotation: 5, maxW: "w-[32px] h-[32px] md:w-[40px] md:h-[40px]" },
 ];
 
 export function FloatingScrapbook() {
@@ -39,8 +39,7 @@ export function FloatingScrapbook() {
           key={`photo-${photo.id}`}
           drag
           dragMomentum={false}
-          className={`absolute h-fit bg-white p-3 pb-10 shadow-[0_10px_30px_rgba(0,0,0,0.15)] cursor-grab active:cursor-grabbing pointer-events-auto flex flex-col justify-center items-center ${photo.maxW}`}
-          style={{ ...photo.style }}
+          className={`absolute h-fit bg-white p-3 pb-10 shadow-[0_10px_30px_rgba(0,0,0,0.15)] cursor-grab active:cursor-grabbing pointer-events-auto flex flex-col justify-center items-center ${photo.maxW} ${photo.classes}`}
           initial={{ rotate: photo.rotation }}
           whileHover={{ scale: 1.05, zIndex: 40 }}
           whileDrag={{ scale: 1.1, zIndex: 50, rotate: 0 }}
@@ -54,8 +53,7 @@ export function FloatingScrapbook() {
           key={`sticker-${sticker.id}`}
           drag
           dragMomentum={false}
-          className={`absolute cursor-grab active:cursor-grabbing pointer-events-auto ${sticker.maxW}`}
-          style={{ ...sticker.style }}
+          className={`absolute cursor-grab active:cursor-grabbing pointer-events-auto ${sticker.maxW} ${sticker.classes}`}
           initial={{ rotate: sticker.rotation }}
           whileHover={{ scale: 1.1, zIndex: 40 }}
           whileDrag={{ scale: 1.2, zIndex: 50, rotate: 0 }}

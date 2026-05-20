@@ -6,16 +6,16 @@ import { CardSpotlight } from "../ui/card-spotlight";
 function Diamond({ number, title, list }: { number: string; title: string, list: string[] }) {
   return (
     <div className="flex flex-col items-center flex-1 relative z-10">
-      <div className="relative flex items-center justify-center size-[320px] max-w-full">
+      <div className="relative flex items-center justify-center size-[260px] md:size-[220px] lg:size-[320px] max-w-full">
         <div className="absolute m-auto inset-0 flex items-center justify-center">
           <CardSpotlight
             borderOnly
             color="#3E57FF"
-            className="rotate-45 relative rounded-[32px] size-[240px] flex-none p-0 !border-[rgba(255,255,255,0.25)] bg-transparent shadow-[inset_-2px_4px_23.6px_0px_rgba(0,0,0,0.1),-4px_4px_15.9px_0px_rgba(0,0,0,0.05)] border-solid backdrop-blur-[8px]"
+            className="rotate-45 relative rounded-[24px] lg:rounded-[32px] size-[180px] md:size-[150px] lg:size-[240px] flex-none p-0 !border-[rgba(255,255,255,0.25)] bg-transparent shadow-[inset_-2px_4px_23.6px_0px_rgba(0,0,0,0.1),-4px_4px_15.9px_0px_rgba(0,0,0,0.05)] border-solid backdrop-blur-[8px]"
           >
             <div
               aria-hidden="true"
-              className="absolute backdrop-blur-[8px] inset-0 rounded-[32px]"
+              className="absolute backdrop-blur-[8px] inset-0 rounded-[inherit]"
               style={{
                 backgroundImage:
                   "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 5.5243%, rgba(255, 255, 255, 0.2) 114.79%), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%)",
@@ -24,12 +24,12 @@ function Diamond({ number, title, list }: { number: string; title: string, list:
             <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-2px_4px_23.6px_0px_rgba(0,0,0,0.1)] pointer-events-none" />
           </CardSpotlight>
         </div>
-        <div className="relative z-10 flex flex-col items-center justify-center text-center pointer-events-none">
-          <div className="text-2xl font-bold mb-2">{number}</div>
-          <div className="text-xl font-bold">{title}</div>
+        <div className="relative z-10 flex flex-col items-center justify-center text-center pointer-events-none p-4 w-full">
+          <div className="text-xl lg:text-2xl font-bold mb-1 lg:mb-2">{number}</div>
+          <div className="text-base lg:text-xl font-bold">{title}</div>
         </div>
       </div>
-      <ul className="mt-8 space-y-4 text-sm text-[#DDE1E6] max-w-[280px]">
+      <ul className="mt-2 md:mt-4 lg:mt-8 space-y-3 lg:space-y-4 text-sm md:text-xs lg:text-base text-[#DDE1E6] w-full max-w-[280px] md:max-w-[200px] lg:max-w-[280px] px-4 md:px-0 mx-auto">
         {list.map((item, i) => (
           <li key={i} className="flex items-start gap-3 text-left">
             <div className="mt-1.5 size-1.5 rounded-full bg-white flex-shrink-0" />
@@ -45,7 +45,7 @@ function PivotCycle() {
   return (
     <HoverCard.Root openDelay={100} closeDelay={100}>
       <HoverCard.Trigger asChild>
-        <button className="relative size-[182px] flex items-center justify-center group outline-none cursor-pointer">
+        <button className="relative size-[182px] md:size-[140px] lg:size-[182px] flex items-center justify-center group outline-none cursor-pointer">
           <motion.div 
             className="absolute inset-0 pointer-events-none"
             animate={{ rotate: 360 }}
@@ -80,8 +80,8 @@ function PivotCycle() {
               </g>
             </svg>
           </motion.div>
-          <div className="relative z-10 size-[100px] rounded-full flex items-center justify-center border border-white/20 bg-white/5 backdrop-blur-sm shadow-[inset_0px_2px_10px_rgba(255,255,255,0.1)] group-hover:bg-white/10 transition-colors">
-            <span className="text-[12px] font-medium leading-snug text-center text-white">The Strategic<br/>Pivot Cycle</span>
+          <div className="relative z-10 size-[100px] md:size-[80px] lg:size-[100px] rounded-full flex items-center justify-center border border-white/20 bg-white/5 backdrop-blur-sm shadow-[inset_0px_2px_10px_rgba(255,255,255,0.1)] group-hover:bg-white/10 transition-colors">
+            <span className="text-[12px] md:text-[10px] lg:text-[12px] font-medium leading-[1.1] text-center text-white">The Strategic<br/>Pivot Cycle</span>
           </div>
         </button>
       </HoverCard.Trigger>
@@ -99,9 +99,9 @@ function PivotCycle() {
 
 export function TripleDiamondSection() {
   return (
-    <section className="relative w-full bg-[#1C1C1C] text-white py-24 overflow-hidden flex flex-col items-center">
+    <section className="relative w-full bg-[#1C1C1C] text-white py-12 md:py-24 overflow-hidden flex flex-col items-center">
       {/* Background Grid */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
         <svg viewBox="0 0 1921 1078" fill="none" preserveAspectRatio="none" className="w-full h-full opacity-60">
           <defs>
             <radialGradient id="paint0_radial_1_68" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(592 539) rotate(90) scale(539 539)">
@@ -139,7 +139,8 @@ export function TripleDiamondSection() {
         <SplitText
           text="My AI-Enhanced Triple Diamond"
           tag="h2"
-          className="text-6xl font-bold tracking-tighter text-white uppercase leading-none drop-shadow-sm mb-6 inline-block"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white uppercase leading-none drop-shadow-sm mb-6 inline-block text-left"
+          textAlign="left"
           delay={50}
           duration={1}
           ease="power3.out"
@@ -151,31 +152,18 @@ export function TripleDiamondSection() {
           Accelerating divergence with AI. Driving convergence with Human judgment.
         </p>
 
-        <div className="relative mt-24 flex flex-col md:flex-row justify-between items-start gap-16 md:gap-8">
+        <div className="relative mt-12 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           {/* Connecting dashed arrows */}
-          {/* Arrow 1 -> 2 */}
-          <div className="hidden md:flex absolute top-[160px] -translate-y-1/2 left-[30%] w-[8%] lg:w-[13%] lg:left-[26%] items-center justify-center">
-            <svg viewBox="0 0 188.75 21.9733" fill="none" className="w-full h-auto opacity-60">
-              <path
-                d="M0 10.7901H188M179.048 21.4921L188 10.7901L179.048 0.492057"
-                stroke="white"
-                strokeDasharray="4 4"
-                strokeLinejoin="round"
-                strokeWidth="2"
-              />
-            </svg>
-          </div>
-          {/* Arrow 2 -> 3 */}
-          <div className="hidden md:flex absolute top-[160px] -translate-y-1/2 right-[30%] w-[8%] lg:w-[13%] lg:right-[26%] items-center justify-center">
-            <svg viewBox="0 0 188.75 21.9733" fill="none" className="w-full h-auto opacity-60">
-              <path
-                d="M0 10.7901H188M179.048 21.4921L188 10.7901L179.048 0.492057"
-                stroke="white"
-                strokeDasharray="4 4"
-                strokeLinejoin="round"
-                strokeWidth="2"
-              />
-            </svg>
+          <div className="hidden md:block absolute top-[110px] lg:top-[160px] left-[16.666%] right-[16.666%] -translate-y-1/2 z-0 pointer-events-none">
+            {/* Arrow 1 -> 2 */}
+            <div className="absolute left-[calc(0%+120px)] lg:left-[calc(0%+170px)] right-[calc(50%+120px)] lg:right-[calc(50%+170px)] top-0 h-px border-t-[2px] border-dashed border-white/60">
+              <div className="absolute right-0 top-[-6px] border-t-[2px] border-r-[2px] border-white/60 w-3 h-3 rotate-45 mr-0.5" />
+            </div>
+            
+            {/* Arrow 2 -> 3 */}
+            <div className="absolute left-[calc(50%+120px)] lg:left-[calc(50%+170px)] right-[calc(0%+120px)] lg:right-[calc(0%+170px)] top-0 h-px border-t-[2px] border-dashed border-white/60">
+              <div className="absolute right-0 top-[-6px] border-t-[2px] border-r-[2px] border-white/60 w-3 h-3 rotate-45 mr-0.5" />
+            </div>
           </div>
 
           {/* Point 1 */}
@@ -190,7 +178,7 @@ export function TripleDiamondSection() {
           />
 
           {/* The Cycle */}
-          <div className="md:absolute left-[33%] md:-translate-x-1/2 top-[160px] md:-translate-y-1/2 mx-auto z-20 flex justify-center w-full md:w-auto mt-8 md:mt-0">
+          <div className="md:absolute left-[33.333%] md:-translate-x-1/2 md:top-[110px] lg:top-[160px] md:-translate-y-1/2 mx-auto z-20 flex justify-center w-full md:w-auto -my-4 md:my-0">
             <PivotCycle />
           </div>
 
