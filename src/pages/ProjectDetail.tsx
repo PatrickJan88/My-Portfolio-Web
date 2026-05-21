@@ -27,7 +27,7 @@ export default function ProjectDetail() {
   return (
     <div className="w-full bg-[#f4f4f4] min-h-screen text-neutral-900 font-sans selection:bg-neutral-900 selection:text-white">
       {/* Full-screen Hero Section */}
-      <section className="relative w-full min-h-[70vh] lg:min-h-[80vh] flex flex-col justify-end bg-neutral-900 overflow-hidden">
+      <section className="relative w-full min-h-[60vh] md:min-h-[60vh] md:max-h-[85vh] md:aspect-[16/9] flex flex-col justify-end bg-neutral-900 overflow-hidden">
         {/* Absolute Navigation */}
         <nav className="absolute top-0 w-full px-6 md:px-12 pt-32 pb-8 flex justify-between items-center z-20 max-w-[1600px] mx-auto left-1/2 -translate-x-1/2">
           <Link
@@ -48,13 +48,13 @@ export default function ProjectDetail() {
               loop
               muted
               playsInline
-              className="w-full h-full object-contain"
+              className="w-full h-full object-cover"
             />
           ) : (
             <img
               src={project.heroImage}
               alt={project.title}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-cover"
             />
           )}
           {/* 70% Black Overlay */}
@@ -62,14 +62,14 @@ export default function ProjectDetail() {
         </div>
 
         {/* Text Content layer */}
-        <div className="container mx-auto px-[4vw] relative z-10 pt-48 pb-16 md:pb-24">
+        <div className="container mx-auto px-[4vw] relative z-10 pt-[132px] pb-[64px] md:pb-[96px]">
           {/* Title Area */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="font-sans text-xs md:text-sm uppercase tracking-[0.2em] text-[#999] mb-4 md:mb-8 block">
+            <span className="font-sans text-xs md:text-sm uppercase tracking-[0.2em] text-[#999] mb-4 md:mb-6 block">
               {project.category || project.client}
             </span>
           </motion.div>
@@ -79,7 +79,7 @@ export default function ProjectDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight mb-8 md:mb-16 text-[#e6e6e6]">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight mb-8 text-[#e6e6e6] max-w-4xl">
               {project.title}
             </h1>
           </motion.div>
@@ -90,7 +90,7 @@ export default function ProjectDetail() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mb-8 md:mb-12"
+              className="mb-6 md:mb-8"
             >
               {project.tags.map((tag, i) => (
                 <a
@@ -134,7 +134,7 @@ export default function ProjectDetail() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 pt-8 border-t border-white/20"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 gap-y-6 md:gap-8 pt-6 border-t border-white/20"
           >
             {project.metadata?.map((meta, i) => (
               <div key={i} className="flex flex-col">
