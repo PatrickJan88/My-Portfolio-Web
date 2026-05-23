@@ -141,9 +141,34 @@ export default function ProjectDetail() {
                 <h4 className="font-sans text-[0.6rem] md:text-xs uppercase tracking-[0.2em] text-[#999] mb-2">
                   {meta.label}
                 </h4>
-                <p className="font-sans text-base font-medium text-[#e6e6e6]">
-                  {meta.value}
-                </p>
+                <div className="font-sans text-base font-medium text-[#e6e6e6]">
+                  {meta.links ? (
+                    <div className="flex flex-wrap gap-2 -ml-1">
+                      {meta.links.map((linkItem, idx) => (
+                        <a 
+                          key={idx}
+                          href={linkItem.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="inline-flex items-center justify-center px-4 py-1.5 text-sm rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-colors"
+                        >
+                          {linkItem.label}
+                        </a>
+                      ))}
+                    </div>
+                  ) : meta.link ? (
+                    <a 
+                      href={meta.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="inline-flex items-center justify-center px-4 py-1.5 -ml-1 text-sm rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-colors"
+                    >
+                      {meta.value}
+                    </a>
+                  ) : (
+                    meta.value
+                  )}
+                </div>
               </div>
             ))}
           </motion.div>
@@ -152,7 +177,7 @@ export default function ProjectDetail() {
 
       <main className="w-full max-w-[1600px] mx-auto px-6 md:px-12 pb-24 pt-16 md:pt-24">
         {/* Overview Section */}
-        <section className="w-full flex flex-col lg:flex-row gap-12 lg:gap-24 mb-16 md:mb-24 px-2 md:px-8">
+        <section className={`w-full flex flex-col lg:flex-row gap-12 lg:gap-24 px-2 md:px-8 ${project.id === 'svenska-lek' ? 'mb-12 md:mb-16' : 'mb-16 md:mb-24'}`}>
           {/* Left Column */}
           <div className="w-full lg:w-5/12 flex flex-col">
             <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
@@ -177,6 +202,7 @@ export default function ProjectDetail() {
         </section>
 
         {/* Testimonial Section */}
+        {project.id !== 'icon-archive' && (
         <section className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-[#1C1C1C] py-16 md:py-24 mb-16 md:mb-24 flex flex-col items-center justify-center px-6">
           <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
             <h3 className="text-2xl md:text-4xl lg:text-[40px] text-white font-serif italic font-light leading-[1.4] tracking-wide mb-12">
@@ -188,10 +214,12 @@ export default function ProjectDetail() {
             </p>
           </div>
         </section>
+        )}
 
         {/* Media Grids Section For the User to Populate Later */}
-        <section className="w-full flex flex-col gap-8 md:gap-12">
+        <section className={`w-full flex flex-col ${project.id === 'svenska-lek' ? 'gap-6 md:gap-8' : project.id === 'icon-archive' ? 'gap-4 md:gap-6' : 'gap-8 md:gap-12'}`}>
           {/* Section 1: Full width media */}
+          {(!project.media1 && project.id === 'svenska-lek') ? null : (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -222,76 +250,123 @@ export default function ProjectDetail() {
               </p>
             )}
           </motion.div>
+          )}
 
           {/* Section 2: Text Left, Media Right */}
-          <div className="w-full flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
-            <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
-              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
-                {project.section1?.label || "Approach"}
-              </h3>
-              <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
-                {project.section1?.heading || "Digital Platform"}
-              </h2>
-              <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light whitespace-pre-line">
-                {project.section1?.content || "The hackathon platform was designed for seamless registration, team formation, and project submission. We created a digital experience that turned participation into a journey — from sign-up to demo day."}
-              </p>
-            </div>
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
-            >
-              {project.media2 ? (
-                project.media2.endsWith(".webm") || project.media2.endsWith(".mp4") ? (
-                  <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+          {project.id === 'icon-archive' ? (
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+              >
+                {project.media2 ? (
+                  project.media2.endsWith(".webm") || project.media2.endsWith(".mp4") ? (
+                    <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+                  ) : (
+                    <img src={project.media2} alt="Media 2" className="w-full h-full object-contain" />
+                  )
                 ) : (
-                  <img src={project.media2} alt="Media 2" className="w-full h-full object-contain" />
-                )
-              ) : (
-                <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
-                  Media Placeholder 2
-                </p>
-              )}
-            </motion.div>
-          </div>
+                  <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                    Media Placeholder 2
+                  </p>
+                )}
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+              >
+                {project.media3 ? (
+                  project.media3.endsWith(".webm") || project.media3.endsWith(".mp4") ? (
+                    <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+                  ) : (
+                    <img src={project.media3} alt="Media 3" className="w-full h-full object-contain" />
+                  )
+                ) : (
+                  <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                    Media Placeholder 3
+                  </p>
+                )}
+              </motion.div>
+            </div>
+          ) : (
+            <>
+              <div className={`w-full flex flex-col lg:flex-row items-start ${project.id === 'svenska-lek' ? 'gap-6 lg:gap-10' : 'gap-12 lg:gap-16'}`}>
+                <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
+                  <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
+                    {project.section1?.label || "Approach"}
+                  </h3>
+                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
+                    {project.section1?.heading || "Digital Platform"}
+                  </h2>
+                  <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light whitespace-pre-line">
+                    {project.section1?.content || "The hackathon platform was designed for seamless registration, team formation, and project submission. We created a digital experience that turned participation into a journey — from sign-up to demo day."}
+                  </p>
+                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8 }}
+                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+                >
+                  {project.media2 ? (
+                    project.media2.endsWith(".webm") || project.media2.endsWith(".mp4") ? (
+                      <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+                    ) : (
+                      <img src={project.media2} alt="Media 2" className="w-full h-full object-contain" />
+                    )
+                  ) : (
+                    <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                      Media Placeholder 2
+                    </p>
+                  )}
+                </motion.div>
+              </div>
 
-          {/* Section 3: Media Left, Text Right */}
-          <div className="w-full flex flex-col-reverse lg:flex-row items-start gap-12 lg:gap-16">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
-            >
-              {project.media3 ? (
-                project.media3.endsWith(".webm") || project.media3.endsWith(".mp4") ? (
-                  <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-contain" />
-                ) : (
-                  <img src={project.media3} alt="Media 3" className="w-full h-full object-contain" />
-                )
-              ) : (
-                <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
-                  Media Placeholder 3
-                </p>
-              )}
-            </motion.div>
-            <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
-              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
-                {project.section2?.label || "Design System"}
-              </h3>
-              <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
-                {project.section2?.heading || "Visual Identity"}
-              </h2>
-              <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light whitespace-pre-line">
-                {project.section2?.content || "We established a cohesive visual system built on bold typography and strategic use of color. This system ensures consistency across marketing materials, digital platforms, and physical venue signage."}
-              </p>
-            </div>
-          </div>
+              {/* Section 3: Media Left, Text Right */}
+              <div className={`w-full flex flex-col-reverse lg:flex-row items-start ${project.id === 'svenska-lek' ? 'gap-6 lg:gap-10' : 'gap-12 lg:gap-16'}`}>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+                >
+                  {project.media3 ? (
+                    project.media3.endsWith(".webm") || project.media3.endsWith(".mp4") ? (
+                      <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+                    ) : (
+                      <img src={project.media3} alt="Media 3" className="w-full h-full object-contain" />
+                    )
+                  ) : (
+                    <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                      Media Placeholder 3
+                    </p>
+                  )}
+                </motion.div>
+                <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
+                  <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
+                    {project.section2?.label || "Design System"}
+                  </h3>
+                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
+                    {project.section2?.heading || "Visual Identity"}
+                  </h2>
+                  <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light whitespace-pre-line">
+                    {project.section2?.content || "We established a cohesive visual system built on bold typography and strategic use of color. This system ensures consistency across marketing materials, digital platforms, and physical venue signage."}
+                  </p>
+                </div>
+              </div>
+            </>
+          )}
 
           {/* Section 3: Full width media */}
+          {(!project.media4 && project.id === 'svenska-lek') ? null : (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -313,9 +388,39 @@ export default function ProjectDetail() {
               </p>
             )}
           </motion.div>
+          )}
+
+          {/* 4 Containers (16:9) for Icon Archive */}
+          {project.id === 'icon-archive' && (
+            <div className="w-full flex flex-col gap-4 md:gap-6 pt-0 md:pt-2">
+              {[project.media5, project.media6, project.media7, project.media8].map((media, index) => (
+                <motion.div
+                  key={`icon-archive-media-${index}`}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  className="w-full aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+                >
+                  {media ? (
+                    media.endsWith(".webm") || media.endsWith(".mp4") ? (
+                      <video src={media} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+                    ) : (
+                      <img src={media} alt={`Media ${index + 5}`} className="w-full h-full object-contain" />
+                    )
+                  ) : (
+                    <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                      Media Placeholder {index + 5}
+                    </p>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          )}
 
           {/* Additional Text Section */}
-          <section className="w-full flex flex-col lg:flex-row gap-12 lg:gap-24 px-2 md:px-8 pt-8 md:pt-12">
+          {project.id !== 'icon-archive' && (
+          <section className={`w-full flex flex-col lg:flex-row gap-12 lg:gap-24 px-2 md:px-8 ${project.id === 'svenska-lek' ? 'pt-4 md:pt-6' : 'pt-8 md:pt-12'}`}>
             {/* Left Column */}
             <div className="w-full lg:w-5/12 flex flex-col">
               <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
@@ -338,6 +443,7 @@ export default function ProjectDetail() {
               )}
             </div>
           </section>
+          )}
         </section>
 
         {/* Next Project Footer */}

@@ -6,6 +6,8 @@ export interface ProjectTag {
 export interface ProjectMetadata {
   label: string;
   value: string;
+  link?: string;
+  links?: { label: string; url: string; }[];
 }
 
 export interface ProjectSectionText {
@@ -87,6 +89,10 @@ export interface ProjectData {
   media2?: string;
   media3?: string;
   media4?: string | string[];
+  media5?: string;
+  media6?: string;
+  media7?: string;
+  media8?: string;
 
   tags: ProjectTag[];
   metadata: ProjectMetadata[];

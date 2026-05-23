@@ -5,6 +5,8 @@ import { healthAppDesignCaseStudy } from "./projects/health-app-design";
 import { biotopiaDigitalExperienceCaseStudy } from "./projects/biotopia-digital-experience";
 import { aiCompanionCaseStudy } from "./projects/ai-companion";
 import { urgentBookingCaseStudy } from "./projects/urgent-booking";
+import { svenskaLekCaseStudy } from "./projects/svenska-lek";
+import { iconArchiveCaseStudy } from "./projects/icon-archive";
 
 import { ProjectData } from "../types/project";
 export type { ProjectData };
@@ -16,5 +18,7 @@ export const projectsData: ProjectData[] = [
   earsCaseStudy,
   evChargingPlatformCaseStudy,
   corporateWebsiteRedesignCaseStudy,
-  healthAppDesignCaseStudy
+  healthAppDesignCaseStudy,
+  svenskaLekCaseStudy,
+  iconArchiveCaseStudy
 ];
