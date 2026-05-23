@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "motion/react";
 import * as HoverCard from "@radix-ui/react-hover-card";
 import SplitText from "../ui/SplitText";
@@ -42,16 +43,35 @@ function Diamond({ number, title, list }: { number: string; title: string, list:
 }
 
 function PivotCycle() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <HoverCard.Root openDelay={100} closeDelay={100}>
+    <HoverCard.Root open={isOpen} onOpenChange={setIsOpen} openDelay={100} closeDelay={100}>
       <HoverCard.Trigger asChild>
-        <button className="relative size-[182px] md:size-[140px] lg:size-[182px] flex items-center justify-center group outline-none cursor-pointer">
+        <button 
+          onClick={(e) => {
+            if (window.innerWidth <= 768) {
+              setIsOpen(!isOpen);
+            }
+          }}
+          onMouseEnter={() => {
+            if (window.innerWidth > 768) {
+              setIsOpen(true);
+            }
+          }}
+          onMouseLeave={() => {
+            if (window.innerWidth > 768) {
+              setIsOpen(false);
+            }
+          }}
+          className="relative size-[182px] md:size-[140px] lg:size-[182px] flex items-center justify-center group outline-none cursor-pointer"
+        >
           <motion.div 
             className="absolute inset-0 pointer-events-none"
             animate={{ rotate: 360 }}
             transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
           >
-            <svg viewBox="0 0 182 182" fill="none" className="w-full h-full opacity-60 group-hover:opacity-100 transition-opacity duration-300 overflow-visible">
+            <svg viewBox="0 0 182 182" fill="none" className="w-full h-full opacity-60 group-hover:opacity-100 group-data-[state=open]:opacity-100 transition-opacity duration-300 overflow-visible">
               <circle
                 cx="91"
                 cy="91"
@@ -80,7 +100,7 @@ function PivotCycle() {
               </g>
             </svg>
           </motion.div>
-          <div className="relative z-10 size-[100px] md:size-[80px] lg:size-[100px] rounded-full flex items-center justify-center border border-white/20 bg-white/5 backdrop-blur-sm shadow-[inset_0px_2px_10px_rgba(255,255,255,0.1)] group-hover:bg-white/10 transition-colors">
+          <div className="relative z-10 size-[100px] md:size-[80px] lg:size-[100px] rounded-full flex items-center justify-center border border-white/20 bg-white/5 backdrop-blur-sm shadow-[inset_0px_2px_10px_rgba(255,255,255,0.1)] group-hover:bg-white/10 group-data-[state=open]:bg-white/10 transition-colors">
             <span className="text-[12px] md:text-[10px] lg:text-[12px] font-medium leading-[1.1] text-center text-white">The Strategic<br/>Pivot Cycle</span>
           </div>
         </button>
