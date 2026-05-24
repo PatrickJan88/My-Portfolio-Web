@@ -5,6 +5,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { ScrollToTop } from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
@@ -25,6 +26,7 @@ export default function App() {
         </Routes>
       </Layout>
       <Analytics />
+      <SpeedInsights />
     </Router>
   );
 }
