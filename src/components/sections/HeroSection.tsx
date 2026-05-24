@@ -146,7 +146,7 @@ export function HeroSection() {
   return <HeroSequence deviceType={deviceType} key={deviceType} />;
 }
 
-function ScrollCard({ card, scrollYProgress, index, target, initialPos }: any) {
+function ScrollCard({ card, scrollYProgress, index, target, initialPos, deviceType }: any) {
   const [isHovered, setIsHovered] = useState(false);
 
   const x = useTransform(scrollYProgress, [0.2, 0.8], [initialPos ? initialPos.x : card.x, target.x]);
@@ -164,8 +164,9 @@ function ScrollCard({ card, scrollYProgress, index, target, initialPos }: any) {
         zIndex: isHovered ? 50 : index * 10,
       }}
       className="absolute w-[140px] h-[190px] sm:w-[170px] sm:h-[220px] md:w-[200px] md:h-[260px] lg:w-[240px] lg:h-[310px] origin-bottom perspective-1000"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={deviceType === "desktop" ? () => setIsHovered(true) : undefined}
+      onMouseLeave={deviceType === "desktop" ? () => setIsHovered(false) : undefined}
+      onClick={deviceType !== "desktop" ? () => setIsHovered(!isHovered) : undefined}
     >
       <motion.div
         initial={{ opacity: 0, y: 60 }}
@@ -290,7 +291,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
         
         {/* HERO BACKGROUND */}
         <div className="absolute top-[-96px] left-0 w-full h-[calc(100vh+96px)] z-0 flex pointer-events-auto">
-          <BackgroundRippleEffect rows={60} cols={100} />
+          <BackgroundRippleEffect rows={60} cols={100} interactive={deviceType === "desktop"} />
         </div>
 
         {/* HERO CONTENT */}
@@ -360,6 +361,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
               scrollYProgress={scrollYProgress}
               target={targets[idx]}
               initialPos={deviceType === "mobile" ? mobileInitialOffsets[idx] : deviceType === "tablet" ? tabletInitialOffsets[idx] : null}
+              deviceType={deviceType}
             />
           ))}
         </div>

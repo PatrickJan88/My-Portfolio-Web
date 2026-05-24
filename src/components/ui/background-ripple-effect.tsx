@@ -6,10 +6,12 @@ export const BackgroundRippleEffect = ({
   rows = 8,
   cols = 27,
   cellSize = 56,
+  interactive = true,
 }: {
   rows?: number;
   cols?: number;
   cellSize?: number;
+  interactive?: boolean;
 }) => {
   const [clickedCell, setClickedCell] = useState<{
     row: number;
@@ -42,7 +44,7 @@ export const BackgroundRippleEffect = ({
             setClickedCell({ row, col });
             setRippleKey((k) => k + 1);
           }}
-          interactive
+          interactive={interactive}
         />
       </div>
     </div>
