@@ -4,7 +4,7 @@ import * as HoverCard from "@radix-ui/react-hover-card";
 import SplitText from "../ui/SplitText";
 import { CardSpotlight } from "../ui/card-spotlight";
 
-function Diamond({ number, title, list }: { number: string; title: string, list: string[] }) {
+function Diamond({ number, title, subtitle, blocks }: { number: string; title: string, subtitle: string, blocks: { badge: "Diverge" | "Converge", title: string, desc: string }[] }) {
   return (
     <div className="flex flex-col items-center flex-1 relative z-10">
       <div className="relative flex items-center justify-center size-[260px] md:size-[220px] lg:size-[320px] max-w-full">
@@ -27,14 +27,20 @@ function Diamond({ number, title, list }: { number: string; title: string, list:
         </div>
         <div className="relative z-10 flex flex-col items-center justify-center text-center pointer-events-none p-4 w-full">
           <div className="text-xl lg:text-2xl font-bold mb-1 lg:mb-2">{number}</div>
-          <div className="text-base lg:text-xl font-bold">{title}</div>
+          <div className="text-base lg:text-xl font-bold whitespace-pre-line leading-tight">{title}</div>
+          <div className="text-xs lg:text-sm mt-1 lg:mt-2 text-[#DDE1E6]/70 whitespace-pre-line leading-snug">{subtitle}</div>
         </div>
       </div>
-      <ul className="mt-2 md:mt-4 lg:mt-8 space-y-3 lg:space-y-4 text-sm md:text-xs lg:text-base text-[#DDE1E6] w-full max-w-[280px] md:max-w-[200px] lg:max-w-[280px] px-4 md:px-0 mx-auto">
-        {list.map((item, i) => (
-          <li key={i} className="flex items-start gap-3 text-left">
-            <div className="mt-1.5 size-1.5 rounded-full bg-white flex-shrink-0" />
-            <span className="leading-snug">{item}</span>
+      <ul className="mt-6 md:mt-10 flex flex-col md:grid md:grid-rows-[150px_1fr] lg:grid-rows-[130px_1fr] gap-8 md:gap-6 lg:gap-10 text-sm lg:text-base text-[#DDE1E6] w-full max-w-[300px] md:max-w-[220px] lg:max-w-[280px] px-4 md:px-0 mx-auto">
+        {blocks.map((block, i) => (
+          <li key={i} className="flex flex-col items-start gap-2 text-left">
+            <div className="flex items-center gap-2 mb-1">
+              <span className={`text-[9px] lg:text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full shrink-0 ${block.badge === 'Diverge' ? 'bg-[#8b84d8]/20 text-[#a59fe8]' : 'bg-[#2db482]/14 text-[#4db896]'}`}>
+                {block.badge}
+              </span>
+              <span className="font-semibold text-white/90 text-xs lg:text-sm">{block.title}</span>
+            </div>
+            <p className="leading-snug text-white/70 text-xs lg:text-sm">{block.desc}</p>
           </li>
         ))}
       </ul>
@@ -101,7 +107,7 @@ function PivotCycle() {
             </svg>
           </motion.div>
           <div className="relative z-10 size-[100px] md:size-[80px] lg:size-[100px] rounded-full flex items-center justify-center border border-white/20 bg-white/5 backdrop-blur-sm shadow-[inset_0px_2px_10px_rgba(255,255,255,0.1)] group-hover:bg-white/10 group-data-[state=open]:bg-white/10 transition-colors">
-            <span className="text-[12px] md:text-[10px] lg:text-[12px] font-medium leading-[1.1] text-center text-white">The Strategic<br/>Pivot Cycle</span>
+            <span className="text-[12px] md:text-[10px] lg:text-[12px] font-medium leading-[1.1] text-center text-white">Strategic Pivot<br/>Loop</span>
           </div>
         </button>
       </HoverCard.Trigger>
@@ -110,7 +116,9 @@ function PivotCycle() {
           className="z-50 w-72 p-6 rounded-xl bg-[#1E1E1E] border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.5)] backdrop-blur-md text-white text-[14px] leading-relaxed animate-in fade-in zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=closed]:zoom-out-95"
           sideOffset={12}
         >
-          If validation reveals gaps, loop back to Phase 1 to redefine the problem. Never scale a flawed assumption.
+          <div className="text-white/70 text-sm">
+            A critical gate used to validate the direction, not just the output. It ensures the team is solving the right problem. If a flaw is uncovered, the loop instantly routes the team back to re-scoping.
+          </div>
         </HoverCard.Content>
       </HoverCard.Portal>
     </HoverCard.Root>
@@ -188,12 +196,12 @@ export function TripleDiamondSection() {
 
           {/* Point 1 */}
           <Diamond 
-            number="1"
-            title="Define & Explore"
-            list={[
-              "Define business goals, constraints, and metrics.",
-              "Synthesize research to map complex edge cases.",
-              "Ensure human control over product strategy."
+            number="01"
+            title={"Discover\n& Align"}
+            subtitle="Setting the guardrails first"
+            blocks={[
+              { badge: "Diverge", title: "Discover & Explore", desc: "Immerse in user realities to surface friction patterns across contexts and uncover real product opportunities before any constraints are set." },
+              { badge: "Converge", title: "Constrain & Align", desc: "Establish strict human constraints (user flows, scope boundaries, and tech parameters) before AI touches anything. These guardrails prevent confident generation in the wrong direction." }
             ]}
           />
 
@@ -203,22 +211,22 @@ export function TripleDiamondSection() {
           </div>
 
           <Diamond 
-            number="2"
-            title="Generate & Validate"
-            list={[
-              "Use AI to quickly build interactive designs for team discussion.",
-              "Iterate rapidly to catch product gaps before development.",
-              "Establish a validated, high-confidence UX architecture."
+            number="02"
+            title={"Prototype\n& Validate"}
+            subtitle="Collapsing the concept gap"
+            blocks={[
+              { badge: "Diverge", title: "Compress & Prototype", desc: "Use AI to collapse the distance between a raw design concept and a testable, interactive artifact. Cross-functional teams critique something real, not static wireframes." },
+              { badge: "Converge", title: "Evaluate & Iterate", desc: "Human-led testing and cross-functional workshops catch systemic flaws. Parallel testing and generation cycles drive high-quality, fast revision loops until the UX architecture holds." }
             ]}
           />
 
           <Diamond 
-            number="3"
-            title="Systemize & Build"
-            list={[
-              "Filter AI noise to build unified design systems.",
-              "Scale components and accelerate developer handoff.",
-              "Deliver robust, enterprise-grade ecosystems."
+            number="03"
+            title={"Systemize\n& Deliver"}
+            subtitle="Protecting system coherence"
+            blocks={[
+              { badge: "Diverge", title: "Systemize & Unify", desc: "Evaluate the product as a unified experience. Ensure the design system and UX remain robust in real-world engineering, not just in completion." },
+              { badge: "Converge", title: "Verify & Close the Loop", desc: "Confirm the live product matches the validated human model. Feed post-launch insights back into Phase 01 for a faster, sharper, and better-informed next cycle." }
             ]}
           />
         </div>
