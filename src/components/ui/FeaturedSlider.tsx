@@ -319,12 +319,12 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
       {/* Main Slider Area */}
       <div className="osmo-slider-container w-full relative text-neutral-900 overflow-hidden cursor-grab active:cursor-grabbing">
         <div className="w-full flex items-center justify-start">
-          <div data-slider="list" ref={listRef} className="flex relative items-stretch py-6 md:py-12">
+          <div data-slider="list" ref={listRef} className="flex relative items-stretch py-6 md:py-12 group/list">
             {works.map((work, index) => (
               <div 
                 key={work.id} 
                 data-slider="slide" 
-                className="slider-slide flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] shrink-0 px-4 relative opacity-40 transition-opacity duration-400 [&.active]:opacity-100 cursor-pointer"
+                className="slider-slide flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] shrink-0 px-4 relative opacity-40 transition-opacity duration-400 [&.active]:opacity-100 md:hover:!opacity-100 md:group-hover/list:[&.active]:opacity-40 group/slide cursor-pointer"
               >
                 <div className="w-full aspect-[4/3] rounded-2xl relative overflow-hidden group">
                   <Link to={`/projects/${work.id}`} className="w-full h-full block">
@@ -333,12 +333,12 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
                       alt={work.title} 
                       className="w-full h-full object-cover select-none pointer-events-none"
                     />
-                    <div className="absolute top-6 left-3 z-[2] bg-white text-neutral-900 rounded-md hidden md:flex items-center py-1.5 px-3.5 gap-2 transform -translate-x-[25%] opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 group-[.active]:opacity-100 group-[.active]:translate-x-0">
+                    <div className="absolute top-6 left-3 z-[2] bg-white text-neutral-900 rounded-md hidden md:flex items-center py-1.5 px-3.5 gap-2 transform -translate-x-[25%] opacity-0 transition-all duration-500 md:group-hover/slide:opacity-100 md:group-hover/slide:translate-x-0 group-[.active]/slide:opacity-100 group-[.active]/slide:translate-x-0 md:group-hover/list:group-[.active]/slide:opacity-0 md:group-hover/list:group-hover/slide:!opacity-100 md:group-hover/list:group-hover/slide:!translate-x-0">
                       <div className="w-2 h-2 rounded-full bg-neutral-900 shrink-0"></div>
                       <p className="m-0 text-xs font-semibold uppercase tracking-wider">{work.title}</p>
                     </div>
-                    <div className="absolute bottom-6 right-6 z-[2] w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 transform translate-y-[25%] opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:bg-white/20 group-hover:scale-110 group-[.active]:opacity-100 group-[.active]:translate-y-0">
-                      <ArrowUpRight className="w-5 h-5 ml-[-1px] mt-[1px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <div className="absolute bottom-6 right-6 z-[2] w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 transform translate-y-[25%] opacity-0 transition-all duration-500 md:group-hover/slide:opacity-100 md:group-hover/slide:bg-white/20 md:group-hover/slide:scale-110 group-[.active]/slide:opacity-100 group-[.active]/slide:translate-y-0 md:group-hover/list:group-[.active]/slide:opacity-0 md:group-hover/list:group-hover/slide:!opacity-100 md:group-hover/list:group-hover/slide:!translate-y-0">
+                      <ArrowUpRight className="w-5 h-5 ml-[-1px] mt-[1px] transition-transform duration-300 md:group-hover/slide:translate-x-0.5 md:group-hover/slide:-translate-y-0.5" />
                     </div>
                   </Link>
                 </div>
