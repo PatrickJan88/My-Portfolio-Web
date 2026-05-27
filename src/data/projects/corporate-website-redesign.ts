@@ -31,8 +31,8 @@ export const corporateWebsiteRedesignCaseStudy: ProjectData = {
   
   section3: {
     label: "Result",
-    heading: "Brand\nElevation",
-    content: "The final redesign successfully aligned the company’s digital presence with its advanced capabilities. By drastically improving user experience and information accessibility, I enabled the company to better engage its audience and firmly reinforced its position as an innovative leader in the financial sector."
+    heading: "Brand\nElevation & Measurable Impact",
+    content: "The redesign effectively aligned the company’s digital presence with its advanced financial capabilities. By focusing on information accessibility and user experience, the new interface not only improved aesthetics but also performance. Post-launch analytics showed a 30% increase in active user engagement and a 60% boost in retention rates. The introduction of an interactive online demo allowed potential clients to explore the platform, leading to a 45% rise in demo page exposure and stronger inbound leads. Ultimately, the project transformed a complex system into an intuitive tool, solidifying the company’s position as a modern leader in the financial sector."
   },
   
   tags: [],
