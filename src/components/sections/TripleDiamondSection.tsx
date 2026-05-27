@@ -25,17 +25,17 @@ function Diamond({ number, title, subtitle, blocks }: { number: string; title: s
             <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-2px_4px_23.6px_0px_rgba(0,0,0,0.1)] pointer-events-none" />
           </CardSpotlight>
         </div>
-        <div className="relative z-10 flex flex-col items-center justify-center text-center pointer-events-none p-4 w-full">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center pointer-events-none p-4 md:px-8 lg:px-4 w-full">
           <div className="text-xl lg:text-2xl font-bold mb-1 lg:mb-2">{number}</div>
           <div className="text-base lg:text-xl font-bold whitespace-pre-line leading-tight">{title}</div>
-          <div className="text-xs lg:text-sm mt-1 lg:mt-2 text-[#DDE1E6]/70 whitespace-pre-line leading-snug">{subtitle}</div>
+          <div className="text-xs md:text-[10px] lg:text-sm mt-1 lg:mt-2 text-[#DDE1E6]/70 whitespace-pre-line leading-snug md:leading-tight lg:leading-snug md:px-2 lg:px-0 mx-auto">{subtitle}</div>
         </div>
       </div>
       <ul className="mt-6 md:mt-10 flex flex-col md:grid md:grid-rows-[150px_1fr] lg:grid-rows-[130px_1fr] gap-8 md:gap-6 lg:gap-10 text-sm lg:text-base text-[#DDE1E6] w-full max-w-[300px] md:max-w-[220px] lg:max-w-[280px] px-4 md:px-0 mx-auto">
         {blocks.map((block, i) => (
           <li key={i} className="flex flex-col items-start gap-2 text-left">
             <div className="flex items-center gap-2 mb-1">
-              <span className={`text-[9px] lg:text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full shrink-0 ${block.badge === 'Diverge' ? 'bg-[#8b84d8]/20 text-[#a59fe8]' : 'bg-[#2db482]/14 text-[#4db896]'}`}>
+              <span className={`text-[9px] lg:text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full shrink-0 ${block.badge === 'Diverge' ? 'bg-[#6D86FF]/20 text-[#889DFF]' : 'bg-[#2db482]/14 text-[#4db896]'}`}>
                 {block.badge}
               </span>
               <span className="font-semibold text-white/90 text-xs lg:text-sm">{block.title}</span>
@@ -206,7 +206,7 @@ export function TripleDiamondSection() {
           />
 
           {/* The Cycle */}
-          <div className="md:absolute left-[33.333%] md:-translate-x-1/2 md:top-[110px] lg:top-[160px] md:-translate-y-1/2 mx-auto z-20 flex justify-center w-full md:w-auto -my-4 md:my-0">
+          <div className="md:absolute left-[33.333%] md:-translate-x-[calc(50%+2px)] md:top-[110px] lg:top-[160px] md:-translate-y-1/2 mx-auto z-20 flex justify-center w-full md:w-auto -my-4 md:my-0">
             <PivotCycle />
           </div>
 

@@ -56,18 +56,18 @@ export default function AutoCarousel({ images, interval = 6000 }: AutoCarouselPr
         <>
           <button
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10 focus:outline-none focus:ring-2 focus:ring-white/50"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 md:p-2 rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-10 focus:outline-none focus:ring-2 focus:ring-white/50"
             aria-label="Previous image"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={28} className="md:w-6 md:h-6" />
           </button>
           
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10 focus:outline-none focus:ring-2 focus:ring-white/50"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 md:p-2 rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity z-10 focus:outline-none focus:ring-2 focus:ring-white/50"
             aria-label="Next image"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={28} className="md:w-6 md:h-6" />
           </button>
 
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">

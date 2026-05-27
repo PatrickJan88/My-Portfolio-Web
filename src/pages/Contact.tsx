@@ -113,7 +113,7 @@ export default function Contact() {
             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3E57FF] uppercase tracking-widest transition-colors group">
               LinkedIn <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
-            <a href="/Pofei_Ran_CV.pdf?v=2" download="Pofei_Ran_CV.pdf" target="_blank" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3E57FF] uppercase tracking-widest transition-colors group">
+            <a href="/Pofei_Ran_CV.pdf" download="Pofei_Ran_CV.pdf" target="_blank" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3E57FF] uppercase tracking-widest transition-colors group">
               Download Full Resume <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
           </div>
