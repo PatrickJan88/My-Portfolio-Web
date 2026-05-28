@@ -1,37 +1,82 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
 import * as HoverCard from "@radix-ui/react-hover-card";
 import SplitText from "../ui/SplitText";
 import { CardSpotlight } from "../ui/card-spotlight";
 
-function Diamond({ number, title, subtitle, blocks }: { number: string; title: string, subtitle: string, blocks: { badge: "Diverge" | "Converge", title: string, desc: string }[] }) {
+function Diamond({ number, title, blocks, videoSrc, videoScale = "scale-[1.6]" }: { number: string; title: string, blocks: { badge: "Diverge" | "Converge", title: string, desc: string }[], videoSrc?: string, videoScale?: string }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (isHovered && videoRef.current) {
+      videoRef.current.play().catch(e => console.log("Video play error:", e));
+    } else if (!isHovered && videoRef.current) {
+      videoRef.current.pause();
+      // Optional: videoRef.current.currentTime = 0; // reset to start
+    }
+  }, [isHovered]);
+
   return (
-    <div className="flex flex-col items-center flex-1 relative z-10">
+    <div 
+      className="flex flex-col items-center flex-1 relative z-10 group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="relative flex items-center justify-center size-[260px] md:size-[220px] lg:size-[320px] max-w-full">
         <div className="absolute m-auto inset-0 flex items-center justify-center">
           <CardSpotlight
             borderOnly
-            color="#3E57FF"
-            className="rotate-45 relative rounded-[24px] lg:rounded-[32px] size-[180px] md:size-[150px] lg:size-[240px] flex-none p-0 !border-[rgba(255,255,255,0.25)] bg-transparent shadow-[inset_-2px_4px_23.6px_0px_rgba(0,0,0,0.1),-4px_4px_15.9px_0px_rgba(0,0,0,0.05)] border-solid backdrop-blur-[8px]"
+            color="rgba(255, 255, 255, 0.2)"
+            className="rotate-45 relative overflow-hidden rounded-[24px] lg:rounded-[32px] size-[180px] md:size-[150px] lg:size-[240px] flex-none p-0 !border-[rgba(255,255,255,0.25)] bg-transparent shadow-[inset_-2px_4px_23.6px_0px_rgba(0,0,0,0.1),-4px_4px_15.9px_0px_rgba(0,0,0,0.05)] border-[1px] border-solid [transform:translateZ(0)]"
           >
+            {/* Base Backdrop Blur Layer */}
+            <div className="absolute inset-0 z-[-1] rounded-[inherit] backdrop-blur-[8px] pointer-events-none [transform:translateZ(0)]" />
+
+            {/* Video Container */}
+            {videoSrc && (
+              <div className={`absolute inset-0 z-0 bg-transparent rounded-[inherit] transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+                {/* 
+                  Since the container is rotated 45deg, the video needs to be rotated -45deg 
+                  so it appears upright.
+                */}
+                <div className="absolute inset-[-50%] w-[200%] h-[200%] flex items-center justify-center -rotate-45">
+                  <video 
+                    ref={videoRef}
+                    src={videoSrc} 
+                    muted 
+                    loop 
+                    playsInline
+                    className={`w-[70%] h-[70%] object-cover ${videoScale}`}
+                  />
+                </div>
+                {/* Dark Overlay for Video */}
+                <div className="absolute inset-0 bg-black/80 rounded-[inherit] pointer-events-none" />
+              </div>
+            )}
+            
+            {/* Overlay Layer Background */}
             <div
               aria-hidden="true"
-              className="absolute backdrop-blur-[8px] inset-0 rounded-[inherit]"
+              className={`absolute inset-0 z-10 rounded-[inherit] transition-opacity duration-500 pointer-events-none ${
+                isHovered && videoSrc ? 'opacity-0' : 'opacity-100'
+              }`}
               style={{
                 backgroundImage:
                   "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 5.5243%, rgba(255, 255, 255, 0.2) 114.79%), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%)",
               }}
             />
-            <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-2px_4px_23.6px_0px_rgba(0,0,0,0.1)] pointer-events-none" />
+            <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-2px_4px_23.6px_0px_rgba(0,0,0,0.1)] pointer-events-none z-10" />
           </CardSpotlight>
         </div>
-        <div className="relative z-10 flex flex-col items-center justify-center text-center pointer-events-none p-4 md:px-8 lg:px-4 w-full">
-          <div className="text-xl lg:text-2xl font-bold mb-1 lg:mb-2">{number}</div>
-          <div className="text-base lg:text-xl font-bold whitespace-pre-line leading-tight">{title}</div>
-          <div className="text-xs md:text-[10px] lg:text-sm mt-1 lg:mt-2 text-[#DDE1E6]/70 whitespace-pre-line leading-snug md:leading-tight lg:leading-snug md:px-2 lg:px-0 mx-auto">{subtitle}</div>
+        <div className="relative z-20 flex flex-col items-center justify-center text-center pointer-events-none p-4 md:px-8 lg:px-4 w-full h-full gap-2 lg:gap-3">
+          {/* Number and Title inside the shape */}
+          <div className="text-3xl lg:text-5xl font-bold text-white drop-shadow-lg leading-none">{number}</div>
+          <div className="text-sm lg:text-lg font-bold whitespace-nowrap leading-tight text-white/90 drop-shadow-md">{title}</div>
         </div>
       </div>
-      <ul className="mt-6 md:mt-10 flex flex-col md:grid md:grid-rows-[150px_1fr] lg:grid-rows-[130px_1fr] gap-8 md:gap-6 lg:gap-10 text-sm lg:text-base text-[#DDE1E6] w-full max-w-[300px] md:max-w-[220px] lg:max-w-[280px] px-4 md:px-0 mx-auto">
+
+      <ul className="mt-4 md:mt-6 flex flex-col md:grid md:grid-rows-[150px_1fr] lg:grid-rows-[130px_1fr] gap-8 md:gap-6 lg:gap-10 text-sm lg:text-base text-[#DDE1E6] w-full max-w-[300px] md:max-w-[220px] lg:max-w-[280px] px-4 md:px-0 mx-auto">
         {blocks.map((block, i) => (
           <li key={i} className="flex flex-col items-start gap-2 text-left">
             <div className="flex items-center gap-2 mb-1">
@@ -183,22 +228,19 @@ export function TripleDiamondSection() {
         <div className="relative mt-12 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           {/* Connecting dashed arrows */}
           <div className="hidden md:block absolute top-[110px] lg:top-[160px] left-[16.666%] right-[16.666%] -translate-y-1/2 z-0 pointer-events-none">
-            {/* Arrow 1 -> 2 */}
-            <div className="absolute left-[calc(0%+120px)] lg:left-[calc(0%+170px)] right-[calc(50%+120px)] lg:right-[calc(50%+170px)] top-0 h-px border-t-[2px] border-dashed border-white/60">
-              <div className="absolute right-0 top-[-6px] border-t-[2px] border-r-[2px] border-white/60 w-3 h-3 rotate-45 mr-0.5" />
-            </div>
-            
             {/* Arrow 2 -> 3 */}
-            <div className="absolute left-[calc(50%+120px)] lg:left-[calc(50%+170px)] right-[calc(0%+120px)] lg:right-[calc(0%+170px)] top-0 h-px border-t-[2px] border-dashed border-white/60">
-              <div className="absolute right-0 top-[-6px] border-t-[2px] border-r-[2px] border-white/60 w-3 h-3 rotate-45 mr-0.5" />
+            <div className="absolute left-[calc(50%+120px)] lg:left-[calc(50%+170px)] right-[calc(0%+120px)] lg:right-[calc(0%+170px)] top-0">
+              <div className="absolute left-0 right-0 top-0 border-t-[2px] border-dashed border-white/60" />
+              <div className="absolute right-0 top-[-5px] border-t-[2px] border-r-[2px] border-white/60 w-3 h-3 rotate-45 translate-x-[50%]" />
             </div>
           </div>
 
           {/* Point 1 */}
           <Diamond 
             number="01"
-            title={"Discover\n& Align"}
-            subtitle="Setting the guardrails first"
+            title="Discover & Align"
+            videoSrc="/videos/diamond-video-1.webm"
+            videoScale="scale-[3.0]"
             blocks={[
               { badge: "Diverge", title: "Discover & Explore", desc: "Immerse in user realities to surface friction patterns across contexts and uncover real product opportunities before any constraints are set." },
               { badge: "Converge", title: "Constrain & Align", desc: "Establish strict human constraints (user flows, scope boundaries, and tech parameters) before AI touches anything. These guardrails prevent confident generation in the wrong direction." }
@@ -212,8 +254,9 @@ export function TripleDiamondSection() {
 
           <Diamond 
             number="02"
-            title={"Prototype\n& Validate"}
-            subtitle="Collapsing the concept gap"
+            title="Prototype & Validate"
+            videoSrc="/videos/diamond-video-2.webm"
+            videoScale="scale-[2.0]"
             blocks={[
               { badge: "Diverge", title: "Compress & Prototype", desc: "Use AI to collapse the distance between a raw design concept and a testable, interactive artifact. Cross-functional teams critique something real, not static wireframes." },
               { badge: "Converge", title: "Evaluate & Iterate", desc: "Human-led testing and cross-functional workshops catch systemic flaws. Parallel testing and generation cycles drive high-quality, fast revision loops until the UX architecture holds." }
@@ -222,8 +265,8 @@ export function TripleDiamondSection() {
 
           <Diamond 
             number="03"
-            title={"Systemize\n& Deliver"}
-            subtitle="Protecting system coherence"
+            title="Systemize & Deliver"
+            videoSrc="/videos/diamond-video-3.webm"
             blocks={[
               { badge: "Diverge", title: "Systemize & Unify", desc: "Evaluate the product as a unified experience. Ensure the design system and UX remain robust in real-world engineering, not just in completion." },
               { badge: "Converge", title: "Verify & Close the Loop", desc: "Confirm the live product matches the validated human model. Feed post-launch insights back into Phase 01 for a faster, sharper, and better-informed next cycle." }
