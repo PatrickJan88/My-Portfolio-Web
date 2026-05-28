@@ -1,12 +1,15 @@
-import { useEffect } from "react";
-import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight, Figma } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Figma, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { projectsData } from "../data/projects";
 import AutoCarousel from "../components/AutoCarousel";
 
 export default function ProjectDetail() {
   const { id } = useParams();
+  const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
+  const [isMediaVideo, setIsMediaVideo] = useState<boolean>(false);
+  const [selectedGallery, setSelectedGallery] = useState<string[] | null>(null);
 
   const currentIndex = projectsData.findIndex((p) => p.id === id);
   const project =
@@ -24,12 +27,127 @@ export default function ProjectDetail() {
     (currentIndex !== -1 ? currentIndex + 1 : 1) % projectsData.length;
   const nextProject = projectsData[nextProjectIndex];
 
+  const handleMediaClick = (mediaSrc: string, isVideo: boolean, gallery?: string[]) => {
+    // Only open modal on mobile screens
+    if (window.innerWidth < 768) {
+      setSelectedMedia(mediaSrc);
+      setIsMediaVideo(isVideo);
+      setSelectedGallery(gallery || null);
+      document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+    }
+  };
+
+  const closeMediaModal = () => {
+    setSelectedMedia(null);
+    setSelectedGallery(null);
+    document.body.style.overflow = "auto";
+  };
+
+  const navigateGallery = (direction: 'prev' | 'next') => {
+    if (!selectedGallery || !selectedMedia) return;
+    const currentIndex = selectedGallery.indexOf(selectedMedia);
+    if (currentIndex === -1) return;
+    
+    let nextIndex;
+    if (direction === 'prev') {
+      nextIndex = (currentIndex - 1 + selectedGallery.length) % selectedGallery.length;
+    } else {
+      nextIndex = (currentIndex + 1) % selectedGallery.length;
+    }
+    
+    setSelectedMedia(selectedGallery[nextIndex]);
+    setIsMediaVideo(selectedGallery[nextIndex].endsWith('.webm') || selectedGallery[nextIndex].endsWith('.mp4'));
+  };
+
   return (
     <div className="w-full bg-[#f4f4f4] min-h-screen text-neutral-900 font-sans selection:bg-neutral-900 selection:text-white">
+      {/* Mobile Media Modal */}
+      <AnimatePresence>
+        {selectedMedia && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/95 px-4 pb-16 md:hidden"
+          >
+            <div className="w-full flex justify-end mb-8 relative z-[110]">
+              <button
+                onClick={closeMediaModal}
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-transparent border border-white/30 text-white relative hover:scale-95 hover:border-white transition-all duration-300"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <motion.div
+              key={selectedMedia}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="relative flex items-center justify-center w-full"
+            >
+              {isMediaVideo ? (
+                <video
+                  src={selectedMedia}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full max-h-[75vh] object-contain rounded-xl"
+                />
+              ) : (
+                <img
+                  src={selectedMedia}
+                  alt="Expanded Media"
+                  className="w-full max-h-[75vh] object-contain rounded-xl"
+                />
+              )}
+            </motion.div>
+
+            {selectedGallery && selectedGallery.length > 1 && (
+              <div className="flex justify-between items-center w-full max-w-sm mt-6 z-[110]">
+                <button
+                  onClick={(e) => { e.stopPropagation(); navigateGallery('prev'); }}
+                  className="bg-white/10 text-white p-3 rounded-full focus:outline-none active:bg-white/20 transition-colors"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                
+                <div className="flex space-x-2">
+                  {selectedGallery.map((src, index) => (
+                    <button
+                      key={index}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedMedia(src);
+                        setIsMediaVideo(src.endsWith('.webm') || src.endsWith('.mp4'));
+                      }}
+                      className={`w-2 h-2 rounded-full transition-colors focus:outline-none ${
+                        src === selectedMedia ? "bg-white" : "bg-white/50"
+                      }`}
+                      aria-label={`Go to image ${index + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={(e) => { e.stopPropagation(); navigateGallery('next'); }}
+                  className="bg-white/10 text-white p-3 rounded-full focus:outline-none active:bg-white/20 transition-colors"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Full-screen Hero Section */}
       <section className="relative w-full min-h-[60vh] md:min-h-[60vh] md:max-h-[85vh] md:aspect-[16/9] flex flex-col justify-end bg-neutral-900 overflow-hidden">
         {/* Absolute Navigation */}
-        <nav className="absolute top-0 w-full px-6 md:px-12 pt-32 pb-8 flex justify-between items-center z-20 max-w-[1600px] mx-auto left-1/2 -translate-x-1/2">
+        <nav className="absolute top-0 w-full px-6 md:px-12 pt-[118px] md:pt-32 pb-8 flex justify-between items-center z-20 max-w-[1600px] mx-auto left-1/2 -translate-x-1/2">
           <Link
             to="/projects"
             className="inline-flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-white transition-colors group"
@@ -59,27 +177,19 @@ export default function ProjectDetail() {
           )}
           {/* 70% Black Overlay */}
           <div className="absolute inset-0 bg-black/70" />
+          {/* Mobile Top Gradient Overlay for Back Button Readability */}
+          <div className="absolute top-0 left-0 w-full h-[250px] bg-gradient-to-b from-black/80 from-[100px] to-transparent md:hidden pointer-events-none" />
         </div>
 
         {/* Text Content layer */}
-        <div className="container mx-auto px-[4vw] relative z-10 pt-[132px] pb-[64px] md:pb-[96px]">
+        <div className="container mx-auto px-[4vw] relative z-10 pt-[164px] md:pt-[132px] pb-[64px] md:pb-[96px]">
           {/* Title Area */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <span className="font-sans text-xs md:text-sm uppercase tracking-[0.2em] text-[#999] mb-4 md:mb-6 block">
-              {project.category || project.client}
-            </span>
-          </motion.div>
-
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight mb-8 text-[#e6e6e6] max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight mb-4 md:mb-8 text-[#e6e6e6] max-w-4xl">
               {project.title}
             </h1>
           </motion.div>
@@ -90,7 +200,7 @@ export default function ProjectDetail() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mb-6 md:mb-8"
+              className="mb-2 md:mb-8"
             >
               {project.tags.map((tag, i) => (
                 <a
@@ -225,7 +335,8 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+            onClick={() => project.media1 && handleMediaClick(project.media1, project.media1.endsWith(".webm") || project.media1.endsWith(".mp4"))}
           >
             {project.media1 ? (
               project.media1.endsWith(".webm") || project.media1.endsWith(".mp4") ? (
@@ -235,13 +346,13 @@ export default function ProjectDetail() {
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto"
                 />
               ) : (
                 <img
                   src={project.media1}
                   alt="Media 1"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto"
                 />
               )
             ) : (
@@ -260,13 +371,14 @@ export default function ProjectDetail() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8 }}
-                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                onClick={() => project.media2 && handleMediaClick(project.media2, project.media2.endsWith(".webm") || project.media2.endsWith(".mp4"))}
               >
                 {project.media2 ? (
                   project.media2.endsWith(".webm") || project.media2.endsWith(".mp4") ? (
-                    <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+                    <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                   ) : (
-                    <img src={project.media2} alt="Media 2" className="w-full h-full object-contain" />
+                    <img src={project.media2} alt="Media 2" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                   )
                 ) : (
                   <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
@@ -279,13 +391,14 @@ export default function ProjectDetail() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                onClick={() => project.media3 && handleMediaClick(project.media3, project.media3.endsWith(".webm") || project.media3.endsWith(".mp4"))}
               >
                 {project.media3 ? (
                   project.media3.endsWith(".webm") || project.media3.endsWith(".mp4") ? (
-                    <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+                    <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                   ) : (
-                    <img src={project.media3} alt="Media 3" className="w-full h-full object-contain" />
+                    <img src={project.media3} alt="Media 3" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                   )
                 ) : (
                   <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
@@ -313,13 +426,14 @@ export default function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8 }}
-                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                  onClick={() => project.media2 && handleMediaClick(project.media2, project.media2.endsWith(".webm") || project.media2.endsWith(".mp4"))}
                 >
                   {project.media2 ? (
                     project.media2.endsWith(".webm") || project.media2.endsWith(".mp4") ? (
-                      <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+                      <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                     ) : (
-                      <img src={project.media2} alt="Media 2" className="w-full h-full object-contain" />
+                      <img src={project.media2} alt="Media 2" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                     )
                   ) : (
                     <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
@@ -336,13 +450,14 @@ export default function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                  onClick={() => project.media3 && handleMediaClick(project.media3, project.media3.endsWith(".webm") || project.media3.endsWith(".mp4"))}
                 >
                   {project.media3 ? (
                     project.media3.endsWith(".webm") || project.media3.endsWith(".mp4") ? (
-                      <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+                      <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                     ) : (
-                      <img src={project.media3} alt="Media 3" className="w-full h-full object-contain" />
+                      <img src={project.media3} alt="Media 3" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                     )
                   ) : (
                     <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
@@ -372,15 +487,16 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+            onClick={() => project.media4 && !Array.isArray(project.media4) && handleMediaClick(project.media4, project.media4.endsWith(".webm") || project.media4.endsWith(".mp4"))}
           >
             {project.media4 ? (
               Array.isArray(project.media4) ? (
-                <AutoCarousel images={project.media4} />
+                <AutoCarousel images={project.media4} onImageClick={(src) => handleMediaClick(src, false, project.media4 as string[])} />
               ) : project.media4.endsWith(".webm") || project.media4.endsWith(".mp4") ? (
-                <video src={project.media4} autoPlay loop muted playsInline className="w-full h-auto md:h-full object-contain" />
+                <video src={project.media4} autoPlay loop muted playsInline className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
               ) : (
-                <img src={project.media4} alt="Media 4" className="w-full h-auto md:h-full object-contain" />
+                <img src={project.media4} alt="Media 4" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
               )
             ) : (
               <p className="absolute text-neutral-400 font-mono text-sm">
@@ -400,13 +516,14 @@ export default function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
-                  className="w-full aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative"
+                  className="w-full aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                  onClick={() => media && handleMediaClick(media, media.endsWith(".webm") || media.endsWith(".mp4"))}
                 >
                   {media ? (
                     media.endsWith(".webm") || media.endsWith(".mp4") ? (
-                      <video src={media} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+                      <video src={media} autoPlay loop muted playsInline className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                     ) : (
-                      <img src={media} alt={`Media ${index + 5}`} className="w-full h-full object-contain" />
+                      <img src={media} alt={`Media ${index + 5}`} className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                     )
                   ) : (
                     <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">

@@ -5,9 +5,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 interface AutoCarouselProps {
   images: string[];
   interval?: number;
+  onImageClick?: (src: string) => void;
 }
 
-export default function AutoCarousel({ images, interval = 6000 }: AutoCarouselProps) {
+export default function AutoCarousel({ images, interval = 6000, onImageClick }: AutoCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -48,7 +49,8 @@ export default function AutoCarousel({ images, interval = 6000 }: AutoCarouselPr
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute inset-0 w-full h-full object-contain"
+          className={`absolute inset-0 w-full h-full object-cover md:object-contain ${onImageClick ? 'cursor-pointer md:cursor-auto' : ''}`}
+          onClick={() => onImageClick?.(images[currentIndex])}
         />
       </AnimatePresence>
 

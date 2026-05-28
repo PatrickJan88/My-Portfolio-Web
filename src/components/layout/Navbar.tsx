@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -8,6 +8,7 @@ import avatarCatPath from "../../assets/avatar-cat.png";
 
 export default function Navbar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -104,10 +105,14 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col gap-2">
                 {links.map((link) => (
-                  <Link
+                  <button
                     key={link.href}
-                    to={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setTimeout(() => {
+                        navigate(link.href);
+                      }, 100);
+                    }}
                     className={cn(
                       "px-6 py-4 rounded-2xl text-lg font-bold transition-colors uppercase tracking-widest text-center",
                       location.pathname === link.href
@@ -116,7 +121,7 @@ export default function Navbar() {
                     )}
                   >
                     {link.label}
-                  </Link>
+                  </button>
                 ))}
               </div>
             </motion.div>
