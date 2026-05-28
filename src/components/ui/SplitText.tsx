@@ -66,6 +66,15 @@ const SplitText: React.FC<SplitTextProps> = ({
 
   useGSAP(
     () => {
+      // Mobile bypass: completely disable GSAP text splitting and animation on mobile screens
+      if (typeof window !== 'undefined' && window.innerWidth < 768) {
+        if (!animationCompletedRef.current) {
+          animationCompletedRef.current = true;
+          onCompleteRef.current?.();
+        }
+        return;
+      }
+
       if (!ref.current || !text || !fontsLoaded) return;
       if (animationCompletedRef.current) return;
       const el = ref.current as HTMLElement & {

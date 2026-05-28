@@ -35,8 +35,8 @@ export default function Navbar() {
         className={cn(
           "pointer-events-auto flex items-center gap-4 md:gap-8 px-4 md:px-6 rounded-full transition-all duration-300",
           isScrolled
-            ? "glass-panel-light shadow-[0_4px_24px_-8px_rgba(0,0,0,0.1)] py-2.5 bg-white/80"
-            : "glass-panel-light bg-white/40 py-3",
+            ? "shadow-[0_4px_24px_-8px_rgba(0,0,0,0.1)] py-2.5 bg-white/95 border border-black/5"
+            : "bg-white/70 py-3 border border-black/5",
         )}
       >
         <Link to="/" className="flex items-center justify-center min-w-[40px]">

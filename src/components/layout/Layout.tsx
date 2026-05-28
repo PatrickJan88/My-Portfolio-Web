@@ -19,8 +19,14 @@ export default function Layout({ children }: LayoutProps) {
     <div className="min-h-screen w-full bg-neutral-50 text-neutral-900 flex flex-col relative">
       {/* Spatial Background Elements - Global */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-primary-400 opacity-[0.05] rounded-full blur-[100px] will-change-transform" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] bg-primary-700 opacity-[0.03] rounded-full blur-[80px] will-change-transform" />
+        <div 
+          className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] opacity-[0.05] rounded-full will-change-transform"
+          style={{ background: 'radial-gradient(circle, #889DFF 0%, transparent 70%)' }}
+        />
+        <div 
+          className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] opacity-[0.03] rounded-full will-change-transform"
+          style={{ background: 'radial-gradient(circle, #3E57FF 0%, transparent 70%)' }}
+        />
       </div>
 
       {/* UI Decorative Lines - Global */}

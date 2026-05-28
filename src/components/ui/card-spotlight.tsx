@@ -88,7 +88,7 @@ export const CardSpotlight = ({
         {borderOnly ? (
           <div className="absolute inset-0 rounded-[inherit] border-[1px] border-transparent [mask-composite:exclude] [-webkit-mask-composite:xor] [mask:linear-gradient(white_0_0)_padding-box,linear-gradient(white_0_0)] [-webkit-mask:linear-gradient(white_0_0)_padding-box,linear-gradient(white_0_0)]">
              <div className="absolute inset-[-100%]" style={{ backgroundColor: color }} />
-              {isHovering && (
+              {isHovering && typeof window !== 'undefined' && window.innerWidth > 768 && (
                 <CanvasRevealEffect
                   animationSpeed={5}
                   containerClassName="bg-transparent absolute inset-0 pointer-events-none"
@@ -102,7 +102,7 @@ export const CardSpotlight = ({
               )}
           </div>
         ) : (
-          isHovering && (
+          isHovering && typeof window !== 'undefined' && window.innerWidth > 768 && (
             <CanvasRevealEffect
               animationSpeed={5}
               containerClassName="bg-transparent absolute inset-0 pointer-events-none"
