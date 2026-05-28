@@ -192,7 +192,7 @@ function ScrollCard({ card, scrollYProgress, index, target, initialPos, deviceTy
         >
           {/* Front Face */}
           <div
-            className="absolute inset-0 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] bg-white/90 backdrop-blur-xl border border-neutral-100 flex flex-col items-center justify-start pt-[56px] sm:pt-16 md:pt-20 lg:pt-24 p-4 md:p-6 text-center"
+            className="absolute inset-0 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] bg-[#F8F8F8] border border-neutral-100 flex flex-col items-center justify-start pt-[56px] sm:pt-16 md:pt-20 lg:pt-24 p-4 md:p-6 text-center"
             style={{ backfaceVisibility: "hidden" }}
           >
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-neutral-100 flex items-center justify-center mb-3 md:mb-4 text-neutral-800 shrink-0">

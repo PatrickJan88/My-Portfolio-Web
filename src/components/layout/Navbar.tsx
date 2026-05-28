@@ -83,7 +83,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-neutral-50/90 backdrop-blur-md z-[60] pointer-events-auto"
+              className="fixed inset-0 bg-neutral-50/95 z-[60] pointer-events-auto"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: -20 }}
@@ -105,14 +105,10 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col gap-2">
                 {links.map((link) => (
-                  <button
+                  <Link
                     key={link.href}
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      setTimeout(() => {
-                        navigate(link.href);
-                      }, 350);
-                    }}
+                    to={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
                     className={cn(
                       "px-6 py-4 rounded-2xl text-lg font-bold transition-colors uppercase tracking-widest text-center",
                       location.pathname === link.href
@@ -121,7 +117,7 @@ export default function Navbar() {
                     )}
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 ))}
               </div>
             </motion.div>
