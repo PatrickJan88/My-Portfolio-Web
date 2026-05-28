@@ -20,11 +20,11 @@ export default function Layout({ children }: LayoutProps) {
       {/* Spatial Background Elements - Global */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div 
-          className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] opacity-[0.05] rounded-full will-change-transform"
+          className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] opacity-[0.05] rounded-full"
           style={{ background: 'radial-gradient(circle, #889DFF 0%, transparent 70%)' }}
         />
         <div 
-          className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] opacity-[0.03] rounded-full will-change-transform"
+          className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] opacity-[0.03] rounded-full"
           style={{ background: 'radial-gradient(circle, #3E57FF 0%, transparent 70%)' }}
         />
       </div>

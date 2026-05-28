@@ -344,7 +344,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
                             <div className="w-2 h-2 rounded-full bg-neutral-900 shrink-0"></div>
                             <p className="m-0 text-xs font-semibold uppercase tracking-wider">{work.title}</p>
                           </div>
-                          <div className="absolute bottom-6 right-6 z-[2] w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 transform translate-y-[25%] opacity-0 transition-all duration-500 md:group-hover/slide:opacity-100 md:group-hover/slide:bg-white/20 md:group-hover/slide:scale-110 group-[.active]/slide:opacity-100 group-[.active]/slide:translate-y-0 md:group-hover/list:group-[.active]/slide:opacity-0 md:group-hover/list:group-hover/slide:!opacity-100 md:group-hover/list:group-hover/slide:!translate-y-0">
+                          <div className="absolute bottom-6 right-6 z-[2] w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white border border-white/20 transform translate-y-[25%] opacity-0 transition-all duration-500 md:group-hover/slide:opacity-100 md:group-hover/slide:bg-white/30 md:group-hover/slide:scale-110 group-[.active]/slide:opacity-100 group-[.active]/slide:translate-y-0 md:group-hover/list:group-[.active]/slide:opacity-0 md:group-hover/list:group-hover/slide:!opacity-100 md:group-hover/list:group-hover/slide:!translate-y-0">
                             <ArrowUpRight className="w-5 h-5 ml-[-1px] mt-[1px] transition-transform duration-300 md:group-hover/slide:translate-x-0.5 md:group-hover/slide:-translate-y-0.5" />
                           </div>
                         </Link>

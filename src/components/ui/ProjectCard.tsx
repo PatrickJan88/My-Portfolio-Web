@@ -29,7 +29,7 @@ export function ProjectCard({ id, title, category, image, className }: ProjectCa
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 pointer-events-none" />
         
         {/* Floating Action Button */}
-        <div className="absolute bottom-6 right-6 z-[2] w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 transform translate-y-[25%] opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:bg-white/20 group-hover:scale-110 group-hover:translate-y-0">
+        <div className="absolute bottom-6 right-6 z-[2] w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white border border-white/20 transform translate-y-[25%] opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:bg-white/30 group-hover:scale-110 group-hover:translate-y-0">
           <ArrowUpRight className="w-5 h-5 ml-[-1px] mt-[1px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
       </motion.div>

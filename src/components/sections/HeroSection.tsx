@@ -290,8 +290,10 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
       <div className="sticky top-0 w-full h-screen bg-neutral-50 flex items-center justify-center [clip-path:inset(-96px_0_0_0)]">
         
         {/* HERO BACKGROUND */}
-        <div className="absolute top-[-96px] left-0 w-full h-[calc(100vh+96px)] z-0 flex pointer-events-auto">
-          <BackgroundRippleEffect rows={60} cols={100} interactive={deviceType === "desktop"} />
+        <div className="absolute top-[-96px] left-0 w-full h-[calc(100vh+96px)] z-0 flex pointer-events-auto overflow-hidden">
+          {deviceType !== "mobile" && (
+            <BackgroundRippleEffect rows={deviceType === "tablet" ? 40 : 60} cols={deviceType === "tablet" ? 60 : 100} interactive={deviceType === "desktop"} />
+          )}
         </div>
 
         {/* HERO CONTENT */}

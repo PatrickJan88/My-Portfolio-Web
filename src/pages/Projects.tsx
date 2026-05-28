@@ -60,7 +60,7 @@ export default function Projects() {
             className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
               activeCategory === category.id
                 ? "bg-neutral-900 text-white shadow-lg shadow-neutral-900/10 scale-105"
-                : "bg-white/50 backdrop-blur-sm border border-black/5 text-neutral-700 hover:bg-white hover:text-neutral-900 shadow-sm"
+                : "bg-white/90 border border-black/5 text-neutral-700 hover:bg-white hover:text-neutral-900 shadow-sm"
             }`}
           >
             {category.label}

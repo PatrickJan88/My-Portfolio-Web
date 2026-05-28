@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Figma, X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -62,88 +63,91 @@ export default function ProjectDetail() {
   return (
     <div className="w-full bg-[#f4f4f4] min-h-screen text-neutral-900 font-sans selection:bg-neutral-900 selection:text-white">
       {/* Mobile Media Modal */}
-      <AnimatePresence>
-        {selectedMedia && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/95 px-4 pb-16 md:hidden"
-          >
-            <div className="w-full flex justify-end mb-8 relative z-[110]">
-              <button
-                onClick={closeMediaModal}
-                className="flex items-center justify-center w-12 h-12 rounded-full bg-transparent border border-white/30 text-white relative hover:scale-95 hover:border-white transition-all duration-300"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            
+      {createPortal(
+        <AnimatePresence>
+          {selectedMedia && (
             <motion.div
-              key={selectedMedia}
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="relative flex items-center justify-center w-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/95 px-4 pb-16 md:hidden pointer-events-auto"
             >
-              {isMediaVideo ? (
-                <video
-                  src={selectedMedia}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full max-h-[75vh] object-contain rounded-xl"
-                />
-              ) : (
-                <img
-                  src={selectedMedia}
-                  alt="Expanded Media"
-                  className="w-full max-h-[75vh] object-contain rounded-xl"
-                />
-              )}
-            </motion.div>
-
-            {selectedGallery && selectedGallery.length > 1 && (
-              <div className="flex justify-between items-center w-full max-w-sm mt-6 z-[110]">
+              <div className="w-full flex justify-end mb-8 relative z-[110]">
                 <button
-                  onClick={(e) => { e.stopPropagation(); navigateGallery('prev'); }}
-                  className="bg-white/10 text-white p-3 rounded-full focus:outline-none active:bg-white/20 transition-colors"
-                  aria-label="Previous image"
+                  onClick={closeMediaModal}
+                  className="flex items-center justify-center w-12 h-12 rounded-full bg-transparent border border-white/30 text-white relative hover:scale-95 hover:border-white transition-all duration-300"
                 >
-                  <ChevronLeft size={24} />
-                </button>
-                
-                <div className="flex space-x-2">
-                  {selectedGallery.map((src, index) => (
-                    <button
-                      key={index}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedMedia(src);
-                        setIsMediaVideo(src.endsWith('.webm') || src.endsWith('.mp4'));
-                      }}
-                      className={`w-2 h-2 rounded-full transition-colors focus:outline-none ${
-                        src === selectedMedia ? "bg-white" : "bg-white/50"
-                      }`}
-                      aria-label={`Go to image ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  onClick={(e) => { e.stopPropagation(); navigateGallery('next'); }}
-                  className="bg-white/10 text-white p-3 rounded-full focus:outline-none active:bg-white/20 transition-colors"
-                  aria-label="Next image"
-                >
-                  <ChevronRight size={24} />
+                  <X className="w-5 h-5" />
                 </button>
               </div>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+              
+              <motion.div
+                key={selectedMedia}
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="relative flex items-center justify-center w-full"
+              >
+                {isMediaVideo ? (
+                  <video
+                    src={selectedMedia}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full max-h-[75vh] object-contain rounded-xl"
+                  />
+                ) : (
+                  <img
+                    src={selectedMedia}
+                    alt="Expanded Media"
+                    className="w-full max-h-[75vh] object-contain rounded-xl"
+                  />
+                )}
+              </motion.div>
+
+              {selectedGallery && selectedGallery.length > 1 && (
+                <div className="flex justify-between items-center w-full max-w-sm mt-6 z-[110]">
+                  <button
+                    onClick={(e) => { e.stopPropagation(); navigateGallery('prev'); }}
+                    className="bg-white/10 text-white p-3 rounded-full focus:outline-none active:bg-white/20 transition-colors"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft size={24} />
+                  </button>
+                  
+                  <div className="flex space-x-2">
+                    {selectedGallery.map((src, index) => (
+                      <button
+                        key={index}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedMedia(src);
+                          setIsMediaVideo(src.endsWith('.webm') || src.endsWith('.mp4'));
+                        }}
+                        className={`w-2 h-2 rounded-full transition-colors focus:outline-none ${
+                          src === selectedMedia ? "bg-white" : "bg-white/50"
+                        }`}
+                        aria-label={`Go to image ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={(e) => { e.stopPropagation(); navigateGallery('next'); }}
+                    className="bg-white/10 text-white p-3 rounded-full focus:outline-none active:bg-white/20 transition-colors"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight size={24} />
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
       {/* Full-screen Hero Section */}
       <section className="relative w-full min-h-[60vh] md:min-h-[60vh] md:max-h-[85vh] md:aspect-[16/9] flex flex-col justify-end bg-neutral-900 overflow-hidden">
         {/* Absolute Navigation */}

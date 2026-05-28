@@ -31,7 +31,7 @@ function Diamond({ number, title, blocks, videoSrc, videoScale = "scale-[1.6]" }
             className="rotate-45 relative overflow-hidden rounded-[24px] lg:rounded-[32px] size-[180px] md:size-[150px] lg:size-[240px] flex-none p-0 !border-[rgba(255,255,255,0.25)] bg-transparent shadow-[inset_-2px_4px_23.6px_0px_rgba(0,0,0,0.1),-4px_4px_15.9px_0px_rgba(0,0,0,0.05)] border-[1px] border-solid [transform:translateZ(0)]"
           >
             {/* Base Backdrop Blur Layer */}
-            <div className="absolute inset-0 z-[-1] rounded-[inherit] backdrop-blur-[8px] pointer-events-none [transform:translateZ(0)]" />
+            <div className="absolute inset-0 z-[-1] rounded-[inherit] bg-neutral-900 pointer-events-none [transform:translateZ(0)]" />
 
             {/* Video Container */}
             {videoSrc && (
@@ -151,14 +151,14 @@ function PivotCycle() {
               </g>
             </svg>
           </motion.div>
-          <div className="relative z-10 size-[100px] md:size-[80px] lg:size-[100px] rounded-full flex items-center justify-center border border-white/20 bg-white/5 backdrop-blur-sm shadow-[inset_0px_2px_10px_rgba(255,255,255,0.1)] group-hover:bg-white/10 group-data-[state=open]:bg-white/10 transition-colors">
+          <div className="relative z-10 size-[100px] md:size-[80px] lg:size-[100px] rounded-full flex items-center justify-center border border-white/20 bg-neutral-800 shadow-[inset_0px_2px_10px_rgba(255,255,255,0.1)] group-hover:bg-white/10 group-data-[state=open]:bg-white/10 transition-colors">
             <span className="text-[12px] md:text-[10px] lg:text-[12px] font-medium leading-[1.1] text-center text-white">Strategic Pivot<br/>Loop</span>
           </div>
         </button>
       </HoverCard.Trigger>
       <HoverCard.Portal>
         <HoverCard.Content 
-          className="z-50 w-72 p-6 rounded-xl bg-[#1E1E1E] border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.5)] backdrop-blur-md text-white text-[14px] leading-relaxed animate-in fade-in zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=closed]:zoom-out-95"
+          className="z-50 w-72 p-6 rounded-xl bg-[#1E1E1E] border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.5)] text-white text-[14px] leading-relaxed animate-in fade-in zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=closed]:zoom-out-95"
           sideOffset={12}
         >
           <div className="text-white/70 text-sm">
