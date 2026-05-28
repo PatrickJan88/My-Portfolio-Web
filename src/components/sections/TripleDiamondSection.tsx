@@ -83,9 +83,9 @@ function Diamond({ number, title, blocks, videoSrc, videoScale = "scale-[1.6]" }
               <span className={`text-[9px] lg:text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full shrink-0 ${block.badge === 'Diverge' ? 'bg-[#6D86FF]/20 text-[#889DFF]' : 'bg-[#2db482]/14 text-[#4db896]'}`}>
                 {block.badge}
               </span>
-              <span className="font-semibold text-white/90 text-xs lg:text-sm">{block.title}</span>
+              <span className="font-semibold text-white/90 text-base md:text-xs lg:text-sm">{block.title}</span>
             </div>
-            <p className="leading-snug text-white/70 text-xs lg:text-sm">{block.desc}</p>
+            <p className="leading-snug text-white/70 text-base md:text-xs lg:text-sm">{block.desc}</p>
           </li>
         ))}
       </ul>
