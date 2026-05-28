@@ -48,13 +48,20 @@ const SplitText: React.FC<SplitTextProps> = ({
   }, [onLetterAnimationComplete]);
 
   useEffect(() => {
-    if (document.fonts.status === 'loaded') {
+    let timeout: any;
+    if (document.fonts && document.fonts.status === 'loaded') {
       setFontsLoaded(true);
-    } else {
+    } else if (document.fonts) {
       document.fonts.ready.then(() => {
         setFontsLoaded(true);
       });
+      timeout = setTimeout(() => {
+        setFontsLoaded(true);
+      }, 100);
+    } else {
+      setFontsLoaded(true);
     }
+    return () => clearTimeout(timeout);
   }, []);
 
   useGSAP(

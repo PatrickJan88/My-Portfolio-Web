@@ -111,7 +111,7 @@ export default function Navbar() {
                       setMobileMenuOpen(false);
                       setTimeout(() => {
                         navigate(link.href);
-                      }, 100);
+                      }, 350);
                     }}
                     className={cn(
                       "px-6 py-4 rounded-2xl text-lg font-bold transition-colors uppercase tracking-widest text-center",

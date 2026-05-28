@@ -297,7 +297,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
         {/* HERO CONTENT */}
         <motion.div
           style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
-          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-[12px] md:-mt-[252px] lg:-mt-[12px] z-10"
+          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-[92px] md:-mt-[252px] lg:-mt-[12px] z-10"
         >
           {/* Main Title */}
           <div className="relative w-full pointer-events-none">
@@ -352,7 +352,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
         </motion.div>
 
         {/* CARDS */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 md:-mt-[190px] lg:mt-0">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 -mt-[80px] md:-mt-[190px] lg:mt-0">
           {cards.map((card, idx) => (
             <ScrollCard
               key={card.id}
