@@ -3,7 +3,7 @@ import { ProjectData } from "../../types/project";
 export const svenskaLekCaseStudy: ProjectData = {
   id: "svenska-lek",
   title: "Svenska Lek",
-  category: "APP Design",
+  category: "Product Design",
   client: "Svenska Lek",
   image: "/projects/svenska-lek/sl-cover-page.webp",
   
@@ -28,7 +28,7 @@ export const svenskaLekCaseStudy: ProjectData = {
   section2: {
     label: "Execution",
     heading: "The Multi-Agent Workflow",
-    content: "• I used Bolt.new alongside Google Gemini to rapidly turn my UX concepts into initial structural scaffolding, enforcing UI execution via my predefined Tailwind stack.\n\n• Then I fluidly transitioned into an AI-IDE environment (Cursor). Utilizing my established blueprint, I directed Cursor to generate the foundational test cases. Having the AI establish this automated testing pipeline allowed me to debug and iterate incredibly fast alongside the development process before deploying the final build to GitHub and Netlify.",
+    content: "• I applied a multi-agent AI workflow to develop Svenska Lek from concept to deployment. Starting with sketches and MVP ideas, I refined the direction, learning experience, feature priorities, and technical feasibility through discussions with Google Gemini.\n\n• After establishing the initial product specification, I developed a collaborative AI review system using Gemini, Claude, and ChatGPT. By comparing outputs and synthesizing the best ideas, I created a structured product blueprint while retaining control over the final direction.\n\n• I imported the finalized product documentation into Relume AI to quickly generate the sitemap, style guide, and design system structure, converting textual architecture into visual architecture for better alignment and communication during development with Bolt.new.\n\n• I used Bolt.new and Cursor to speed up front-end implementation, debugging, and QA, while managing version control with GitHub. This streamlined workflow enabled rapid prototyping, safe iteration, and efficient deployment to Netlify, helping me maintain a scalable, AI-driven development process.",
   },
 
   section3: {
