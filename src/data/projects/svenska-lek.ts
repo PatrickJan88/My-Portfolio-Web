@@ -7,11 +7,11 @@ export const svenskaLekCaseStudy: ProjectData = {
   client: "Svenska Lek",
   image: "/projects/svenska-lek/sl-cover-page.webp",
   
-  heroHeading: "A Personal AI Exploration",
+  heroHeading: "An AI-Native Product Experiment",
   heroImage: "/projects/svenska-lek/sl-cover-hero-page.webp",
   
   overview:
-    "Svenska Lek is an interactive web application for Swedish language learners. More importantly, it is a personal product exploration designed to test and validate my AI workflow and the concept of Vibecoding. The practice of building and shipping software entirely through natural language and AI agents.",
+    "Svenska Lek is an interactive learning platform designed to help international learners build practical Swedish language skills through daily practice, listening exercises, vocabulary reinforcement, and AI-assisted learning experiences.\n\nBeyond the product itself, Svenska Lek served as an experiment to validate a broader question: Can a single product designer leverage a multi-agent AI workflow to rapidly research, architect, build, and ship a high-quality digital product? The project became a test of how product thinking, UX strategy, and AI collaboration could be combined to accelerate end-to-end product development.",
   subOverview: "",
 
   testimonial: {
@@ -21,20 +21,20 @@ export const svenskaLekCaseStudy: ProjectData = {
   
   section1: {
     label: "Approach",
-    heading: "Blueprinting for AI Quality",
-    content: "Through this project, I learned a critical lesson about vibecoding: AI only generates high-quality code if the product thinking is rigorous. Before writing a single AI prompt, I explicitly defined the tech stack, requiring Tailwind CSS and specialized UI libraries for the frontend, Netlify for the backend/hosting, and Google APIs (Translation and Text-to-Speech) to power core features like a simulated daily Swedish podcast. By mapping out the user flows and defining the strict testing strategy first, this blueprint provided the AI with clear, undeniable guardrails.",
+    heading: "Product Blueprint Before AI Execution",
+    content: "One of the most important lessons from this project was that successful AI-assisted development begins with strong product thinking. Before any implementation, I defined the product vision, user journeys, feature priorities, technical architecture, and success criteria.\n\nI established clear guardrails for both design and development, including the frontend framework, backend infrastructure, third-party integrations, and testing strategy. By creating a detailed product blueprint first, AI tools could operate within a structured system rather than generating isolated solutions, resulting in faster iteration and more consistent outcomes.",
   },
 
   section2: {
     label: "Execution",
-    heading: "The Multi-Agent Workflow",
-    content: "• I applied a multi-agent AI workflow to develop Svenska Lek from concept to deployment. Starting with sketches and MVP ideas, I refined the direction, learning experience, feature priorities, and technical feasibility through discussions with Google Gemini.\n\n• After establishing the initial product specification, I developed a collaborative AI review system using Gemini, Claude, and ChatGPT. By comparing outputs and synthesizing the best ideas, I created a structured product blueprint while retaining control over the final direction.\n\n• I imported the finalized product documentation into Relume AI to quickly generate the sitemap, style guide, and design system structure, converting textual architecture into visual architecture for better alignment and communication during development with Bolt.new.\n\n• I used Bolt.new and Cursor to speed up front-end implementation, debugging, and QA, while managing version control with GitHub. This streamlined workflow enabled rapid prototyping, safe iteration, and efficient deployment to Netlify, helping me maintain a scalable, AI-driven development process.",
+    heading: "Multi-Agent Product Development Workflow",
+    content: "I orchestrated a human-led, multi-agent AI workflow that combined strategic planning, design system generation, development, and quality assurance. Product requirements were refined through iterative discussions with multiple AI models, allowing ideas to be challenged, compared, and strengthened before implementation.\n\nOnce the product specification was finalized, I translated the documentation into visual architecture, including sitemaps, design foundations, and component structures. This created a shared blueprint that accelerated development and reduced ambiguity during implementation.\n\nDevelopment was completed through an AI-assisted workflow spanning rapid prototyping, debugging, testing, and deployment. Throughout the process, version control and human review ensured quality, maintainability, and alignment with the original product vision.",
   },
 
   section3: {
     label: "Result",
-    heading: "Validating Product Thinking",
-    content: "This project effectively validated my AI workflow and received positive feedback from individuals in similar situations, such as international students studying in Sweden. It proved that vibe coding is not simply chatting with an AI; it requires strong product thinking. I brought together UX blueprinting and quick AI execution to create a useful product for language learners.",
+    heading: "Validating AI-Assisted Product Creation",
+    content: "Svenska Lek successfully demonstrated that AI can significantly accelerate product development when guided by clear strategy, structured workflows, and strong UX foundations. The platform received positive feedback from international learners studying Swedish and validated several assumptions around AI-assisted learning experiences.\n\nMore importantly, the project proved that effective AI-driven product creation is not simply about generating code. The quality of the outcome depended on product thinking, system design, and human decision-making. By combining UX methodology with AI execution, I was able to transform an idea into a functioning product while establishing a repeatable framework for future AI-native product development.",
   },
 
   media2: "/projects/svenska-lek/sl-mp-2.webp",
