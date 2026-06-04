@@ -86,7 +86,7 @@ const cards = [
   {
     id: 1,
     title: "Strategy",
-    description: "Aligning business goals with clean, scalable design for global markets.",
+    description: "Aligning business goals with scalable digital products.",
     icon: StrategyIcon,
     rotate: -12,
     x: "-45%",
@@ -95,7 +95,7 @@ const cards = [
   {
     id: 2,
     title: "Systems",
-    description: "Turning complex enterprise data into simple, unified digital experiences.",
+    description: "Transforming complexity into unified user experiences.",
     icon: SystemIcon,
     rotate: -4,
     x: "-15%",
@@ -104,7 +104,7 @@ const cards = [
   {
     id: 3,
     title: "Research",
-    description: "Driving every design decision through applied HCI methodologies and research-through-design.",
+    description: "Designing through evidence, experimentation, and HCI methods.",
     icon: ResearchIcon,
     rotate: 6,
     x: "15%",
@@ -113,7 +113,7 @@ const cards = [
   {
     id: 4,
     title: "AI Integration",
-    description: "Integrating AI to rapidly validate designs, accelerating workflows while keeping human oversight.",
+    description: "Accelerating product delivery through human-guided AI workflows.",
     icon: AIIcon,
     rotate: 14,
     x: "45%",

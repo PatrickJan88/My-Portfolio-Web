@@ -10,8 +10,8 @@ export const aiCompanionCaseStudy: ProjectData = {
   heroHeading: "Dual-Persona AI",
   heroImage: "/projects/ai-companion/ai-companion-cover-hero-page.webp",
   
-  overviewHeading: "From App to Social Robot",
-  overview: "Designed to support international students in Sweden, this project began as a dual-purpose mobile app offering both administrative guidance and emotional support. To deeply evaluate these interactions in a physical space, the project evolved into an advanced Human-Robot Interaction (HRI) study using the Furhat robotics platform to test user trust and engagement across both scenarios.",
+  overviewHeading: "Supporting International Student Adaptation",
+  overview: "International students face two simultaneous challenges when arriving in a new country: navigating unfamiliar administrative systems and adapting to social and emotional change. Existing support services often address these needs separately, creating fragmented experiences during an already stressful transition.\n\nThis project explored how a dual-purpose AI companion could support both contexts through a single interaction framework. Beginning as a mobile application concept and evolving into a Human-Robot Interaction (HRI) study using the Furhat platform, the project investigated how embodied AI can reduce cognitive load, build trust, and support student well-being during the adaptation process.",
   
   tags: [],
   metadata: [
@@ -33,20 +33,20 @@ export const aiCompanionCaseStudy: ProjectData = {
 
   section1: {
     label: "Approach",
-    heading: "Python, Data, and HRI Prototyping",
-    content: "The project was structured in two distinct phases to ensure a strong design strategy. First, I developed the \"Admin Companion\" and \"Emo Companion\" user flows for a digital mobile application. To gain deeper behavioral insights, our research team extended this digital foundation into the physical world. Using Python scripts and the Furhat platform, we transformed the app's conversational logic into a physical social robot, allowing us to conduct real-time data analysis on how international students interacted with the dual personas."
+    heading: "Conversational Design & HRI Evaluation",
+    content: "The project was developed through an iterative design and research process. First, I developed the \"Admin Companion\" and \"Emo Companion\" user flows for a digital mobile application.  An Administrative Companion focused on practical guidance, and an Emotional Companion focused on well-being and reassurance. To evaluate how embodiment influences user perception, the interaction model was implemented on the Furhat social robot platform using Python-based conversational logic. Through surveys, interviews, and in-person observation, we investigated how users responded to different conversational roles, measuring cognitive load, trust, comfort, and perceived dependency."
   },
 
   section2: {
     label: "Design Concept",
-    heading: "Segmented Interaction Architecture",
-    content: "To ensure the AI could handle distinct user needs without causing confusion, we built a carefully segmented interaction model that worked across both the app and the robot:\n\n• Admin Companion Flow: Focused on efficiency and direct answers. This flow helped users process data for practical tasks like university enrollment or local registrations.\n\n• Emo Companion Flow: Prioritized empathy, active listening, and a calm conversational pace to help students navigate homesickness or academic stress.\n\n• Platform Agnostic: By cleanly separating these logical flows, the core architecture was easily mapped from a 2D mobile screen to a 3D physical robot face."
+    heading: "Context-Aware AI Roles",
+    content: "A key design challenge was preventing conversational context collapse, where the same AI adopts conflicting tones across different situations. To address this, I designed two clearly separated interaction roles.\n\nThe Administrative Companion provided structured, step-by-step guidance for tasks such as university onboarding and public-service registration. The Emotional Companion used active listening, reassurance, and light conversational support to address feelings of uncertainty, stress, and isolation.\n\nBy maintaining distinct behavioral boundaries, the system created more predictable interactions and helped users understand what type of support to expect in different contexts."
   },
 
   section3: {
     label: "Result",
-    heading: "Evaluating Dual-Purpose Trust",
-    content: "The research successfully proved that a dual-purpose architecture can address both practical and emotional needs effectively. The study revealed key insights into how international students build trust with AI companions, showing that clearly separating the \"administrative\" and \"emotional\" workflows improves overall user acceptance. Ultimately, this project demonstrates a scalable strategy for evolving digital AI assistants into physical, conversational agents."
+    heading: "Key Insights for Embodied AI Support",
+    content: "The study revealed that verbal guidance delivered through an embodied conversational agent can significantly reduce the mental effort associated with complex administrative tasks, particularly for users who prefer auditory learning. Participants consistently favored spoken, step-by-step guidance over navigating dense information independently.\n\nThe research also highlighted important design considerations for future AI companions. Emotional support interactions required strong privacy safeguards, while unnatural conversational behaviors, such as repetitive responses, reduced trust and created discomfort. Most importantly, participants indicated that AI companions should not replace human relationships. Instead, they should act as a safe environment for practicing social interactions, building confidence, and supporting integration into real-world communities.\n\nThese findings contribute practical design recommendations for future AI-powered support systems spanning mobile, conversational, and robotic interfaces."
   },
 
   content: [
