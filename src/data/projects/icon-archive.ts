@@ -39,11 +39,11 @@ export const iconArchiveCaseStudy: ProjectData = {
   media1: "/projects/icon-archive/icon-mp-1.webp",
   media2: "/projects/icon-archive/icon-mp-2.webp",
   media3: "/projects/icon-archive/icon-mp-3.webp",
-  media4: "/projects/icon-archive/icon-mp-4.webp",
+  media4: "/projects/icon-archive/icon-mp-4.1.webp",
   media5: "/projects/icon-archive/icon-mp-5.webp",
   media6: "/projects/icon-archive/icon-mp-6.webp",
   media7: "/projects/icon-archive/icon-mp-7.webm",
-  media8: "/projects/icon-archive/icon-mp-8.webp",
+  media8: "/projects/icon-archive/icon-mp-8.1.webp",
     
   tags: [],
   metadata: [

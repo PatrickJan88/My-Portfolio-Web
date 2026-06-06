@@ -520,7 +520,7 @@ export default function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
-                  className="w-full aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                  className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
                   onClick={() => media && handleMediaClick(media, media.endsWith(".webm") || media.endsWith(".mp4"))}
                 >
                   {media ? (
