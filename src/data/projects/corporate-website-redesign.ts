@@ -10,29 +10,30 @@ export const corporateWebsiteRedesignCaseStudy: ProjectData = {
   heroHeading: "Web\nRedesign",
   heroImage: "/projects/corporate-website-redesign/web-cover-hero-page.webp",
   
-  overview: "A strategic redesign of a corporate website to align the digital presence with the innovative capabilities of the company's newly upgraded AI ecosystem. By adopting a \"high-tech\" aesthetic and a simplified, single-screen slide layout, the new site drastically improves user experience, making essential information immediately accessible while reinforcing the company's position as a leader in financial technology.",
+  overviewHeading: "Repositioning a Legacy Brand for an AI Era",
+  overview: "During my time at a previous company, I led the redesign of a corporate website supporting an AI-powered financial intelligence ecosystem. While the platform had evolved significantly, the digital presence no longer reflected the sophistication of its products, services, or strategic direction.\n\nThe existing website contained fragmented navigation, dense information architecture, and unclear pathways for prospective clients, partners, and job candidates. This project focused on transforming the website into a strategic communication platform that clearly articulated business value, strengthened brand perception, and improved conversion opportunities across multiple audiences.",
   
   testimonial: {
-    quote: "Our website's complexity is hiding our core value. Visitors are struggling to navigate the site, understand our product advantages, or easily access essential channels like recruitment and company information. We need to radically simplify the user journey.",
+    quote: "Our technology evolved faster than our digital presence. We needed a website that clearly communicated who we are, what we solve, and why it matters.",
     label: "Problem Statement"
   },
   
   section1: {
     label: "Approach",
-    heading: "Strategic Foundation",
-    content: "To resolve the dense information architecture, I began with foundational wireframing and a fresh moodboard to establish a clear, intelligent visual language. Executing this redesign on a tight, fixed schedule required strict resource management, ensuring I modernized the digital experience while rigorously maintaining established brand guidelines and integrating continuous stakeholder feedback."
+    heading: "Aligning Brand, Business, and User Needs",
+    content: "The redesign began with a comprehensive review of the existing website, identifying friction points across navigation, content hierarchy, and user comprehension. Through stakeholder discussions and competitive analysis, I mapped the primary audiences, including prospective clients, partners, and job candidates, to understand their goals and information needs.\n\nTo support these business objectives, I restructured the information architecture around clarity and discoverability. Wireframes, content prioritization exercises, and mood board exploration established a modern visual direction that aligned with the company’s AI-driven positioning while remaining consistent with existing brand guidelines.\n\nWorking within a fixed delivery timeline, I facilitated continuous stakeholder reviews to balance business priorities, technical constraints, and user experience improvements throughout the project lifecycle."
   },
   
   section2: {
-    label: "Design System",
-    heading: "Dynamic User Experience",
-    content: "I established a cohesive visual system using bold typography and strategic color for digital consistency. To reduce cognitive load and reflect the platform's AI capabilities, I designed a high-tech, single-screen layout with on-scroll animations. The transformed homepage acts as a high-impact product showcase with clear navigation, helping visitors instantly grasp core values and access essential channels."
+    label: "Design Strategy",
+    heading: "Simplifying Complexity Through Focused Storytelling",
+    content: "Rather than presenting information across multiple disconnected pages, I designed a streamlined single-scroll experience that guides visitors through a clear narrative from company vision and capabilities to product offerings and conversion opportunities.\n\nA refined design system was introduced to create consistency across typography, color, spacing, and interaction patterns. Motion and visual hierarchy were used strategically to reduce cognitive load, surface key information faster, and reinforce the company’s technology-forward identity.\n\nThe homepage evolved into a product-focused showcase, allowing visitors to quickly understand the value of the Executive Action and Response Solutions ecosystem while providing direct access to recruitment, company information, and product demonstrations."
   },
   
   section3: {
     label: "Result",
-    heading: "Measurable\nImpact",
-    content: "The redesign effectively aligned the company’s digital presence with its advanced financial capabilities. By focusing on information accessibility and user experience, the new interface not only improved aesthetics but also performance. Post-launch analytics showed a 30% increase in active user engagement and a 60% boost in retention rates. The introduction of an interactive online demo allowed potential clients to explore the platform, leading to a 45% rise in demo page exposure and stronger inbound leads. Ultimately, the project transformed a complex system into an intuitive tool, solidifying the company’s position as a modern leader in the financial sector."
+    heading: "Strengthening Visibility, Engagement, and Conversion",
+    content: "The redesign successfully aligned the company’s digital presence with its AI-driven business strategy and modernized how products, services, and expertise were communicated online.\n\nBy simplifying navigation, restructuring content, and creating clearer conversion pathways, the new experience improved both usability and business performance:\n• 30% increase in active user engagement\n• 60% improvement in visitor retention\n• 45% increase in product demo exposure\n\nBeyond visual modernization, the redesign established a scalable digital foundation that improved product storytelling, strengthened employer branding, and supported business development efforts through stronger lead generation and customer engagement."
   },
   
   tags: [],

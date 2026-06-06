@@ -304,7 +304,7 @@ export default function ProjectDetail() {
 
           {/* Right Column */}
           <div className="w-full lg:w-7/12 flex flex-col justify-center pt-2 lg:pt-12">
-            <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light">
+            <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light whitespace-pre-line">
               {project.overview}
             </p>
             {project.subOverview && (
@@ -554,7 +554,7 @@ export default function ProjectDetail() {
             
             {/* Right Column */}
             <div className="w-full lg:w-7/12 flex flex-col justify-center pt-2 lg:pt-12">
-              <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light">
+              <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light whitespace-pre-line">
                 {project.section3?.content || project.overview}
               </p>
               {project.subOverview && !project.section3 && (
