@@ -49,8 +49,8 @@ export const svenskaLekCaseStudy: ProjectData = {
       label: "LINKS", 
       value: "", 
       links: [
-        { label: "Live Demo", url: "https://papaya-cat-9382bf.netlify.app" },
-        { label: "GitHub Repository", url: "https://github.com/PatrickJan88/svenskalek-v2.0.1.git" }
+        { label: "Live Demo", url: "https://svenskalek.vercel.app/" },
+        { label: "GitHub Repository", url: "https://github.com/PatrickJan88/svenskalek-v3.0.git" }
       ]
     },
   ],
