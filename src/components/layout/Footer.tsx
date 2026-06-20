@@ -17,6 +17,7 @@ export default function Footer() {
           <Link to="/" className="hover:text-[#3E57FF] transition-colors">Home</Link>
           <Link to="/projects" className="hover:text-[#3E57FF] transition-colors">Projects</Link>
           <Link to="/contact" className="hover:text-[#3E57FF] transition-colors">Contact</Link>
+          <a href="https://github.com/PatrickJan88/My-Portfolio-Web.git" target="_blank" rel="noreferrer" className="hover:text-[#3E57FF] transition-colors">GitHub</a>
         </nav>
 
       </div>
