@@ -6,20 +6,28 @@ The purpose of this document is to preserve design consistency, architectural in
 
 ---
 
-## 0. Portfolio Identity
+## 0. Portfolio Identity & Personal Brand Narrative
 
 ### Owner
 Pofei Ran
 
-### Role Positioning
-Product Designer and AI Builder.
-
-A multidisciplinary designer bridging:
-* Product Design
-* UI/UX Design
-* Human-Computer Interaction (HCI)
+### Personal Brand Narrative
+The portfolio represents a designer who combines:
+* Product Thinking
+* User Experience Design
+* Human-Computer Interaction Research
 * Artificial Intelligence
-* Front-End Development
+* Technical Implementation
+
+The goal is not to appear as a visual designer only.
+The goal is to demonstrate the ability to:
+* Identify problems
+* Conduct research
+* Design solutions
+* Validate outcomes
+* Build and prototype ideas
+
+Every project should reinforce this narrative.
 
 ### Portfolio Goals
 * Showcase professional UX/UI work.
@@ -97,7 +105,7 @@ AI agents must never violate higher-priority rules to satisfy lower-priority req
 Features should be isolated.
 
 Example:
-```
+```text
 src/
 ├── components/
 ├── features/
@@ -273,7 +281,24 @@ Performance should remain a first-class concern during all development.
 
 ---
 
-## 8. AI Agent Operating Rules
+## 8. Design Decision Framework
+
+When multiple solutions exist:
+
+Priority order:
+1. User Understanding
+2. Accessibility
+3. Performance
+4. Maintainability
+5. Visual Enhancement
+
+If a feature improves aesthetics but harms usability, usability wins.
+If a feature improves aesthetics but harms performance, performance wins.
+If a feature improves aesthetics but increases complexity, simplicity wins.
+
+---
+
+## 9. AI Agent Operating Rules
 
 Before implementing any change:
 1. Read AGENTS.md first.
@@ -291,20 +316,28 @@ AI agents should optimize for long-term sustainability rather than short-term co
 
 ---
 
-## 9. Scalability Guidelines
+## 10. Scalability & Future AI Integration
 
 The portfolio is expected to grow.
 
-Potential future capabilities include:
-* Blog platform
-* CMS integration
-* AI assistant
-* Research archive
-* Case study generator
-* Multilingual support
-* Analytics dashboard
-* Interactive prototypes
-* AI-powered portfolio experiences
+### AI Integration Principles
+AI features should enhance user value.
+Avoid AI for novelty alone.
+
+Future AI implementations may include:
+* Portfolio assistant
+* Research explorer
+* Project recommendation engine
+* Case study summarizer
+* Interactive demos
+
+Requirements:
+* Explainability first
+* User control first
+* Privacy first
+* Accessibility first
+
+AI should support storytelling rather than distract from it.
 
 ### Expansion Rules
 New features must:
@@ -317,7 +350,7 @@ No feature should require rewriting the entire system.
 
 ---
 
-## 10. Validation Checklist
+## 11. Validation Checklist
 
 Before committing any change:
 
@@ -354,7 +387,7 @@ Before committing any change:
 
 ---
 
-## 11. Long-Term Vision
+## 12. Long-Term Vision
 
 This portfolio is more than a collection of projects.
 
