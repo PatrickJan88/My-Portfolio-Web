@@ -38,6 +38,15 @@ Every project should reinforce this narrative.
 * Document professional growth and learning.
 * Establish a credible personal brand within design and AI.
 
+### Portfolio Success Metrics
+The portfolio should enable:
+- Recruiters to understand expertise within 30 seconds.
+- Hiring managers to evaluate case studies efficiently.
+- Visitors to navigate without confusion.
+- Project stories to be understood without explanation.
+
+Success is measured by clarity and credibility, not by visual complexity.
+
 ### Target Audience
 * Hiring managers
 * Product teams
@@ -168,6 +177,22 @@ Typography should prioritize readability before visual style.
 * Modular grid alignment
 * Clear content grouping
 
+### Design Tokens
+**Spacing:**
+* Use 4px base scale
+
+**Border Radius:**
+* Large rounded corners preferred
+
+**Container Width:**
+* Consistent max-width system
+
+**Motion:**
+* Centralized motion tokens
+
+**Typography:**
+* Centralized typography tokens
+
 ---
 
 ## 4. Motion System
@@ -236,6 +261,28 @@ Not just final visuals.
 Show evidence.
 Avoid unsupported claims.
 Research findings should support design decisions whenever possible.
+
+### Content Authenticity
+Never fabricate:
+- Project outcomes
+- User research findings
+- Metrics
+- Business results
+- Team structures
+
+Unknown information should be clearly labeled.
+Authenticity is more important than perceived impact.
+
+### Research Presentation Standards
+Research case studies should include:
+- Research objective
+- Methodology
+- Participants
+- Key findings
+- Design implications
+- Reflections
+
+Research content should prioritize rigor and transparency.
 
 ---
 
