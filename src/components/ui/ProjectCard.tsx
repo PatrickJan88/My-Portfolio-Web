@@ -36,7 +36,7 @@ export function ProjectCard({ id, title, category, image, className }: ProjectCa
       
       <div className="px-1">
         <h3 className="font-bold text-xl text-neutral-900 group-hover:text-primary-700 transition-colors">{title}</h3>
-        <p className="text-sm font-semibold text-neutral-700 uppercase tracking-widest mt-1 opacity-70">{category}</p>
+        <p className="text-sm font-semibold text-neutral-700 tracking-widest mt-1 opacity-70">{category}</p>
       </div>
     </Link>
   );

@@ -8,7 +8,7 @@ export default function Footer() {
         
         <div className="flex flex-col items-center md:items-start gap-2 font-mono">
           <Link to="/" className="text-sm font-bold tracking-tight text-[#373737]">POFEI</Link>
-          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#a0a0a0]">
+          <p className="text-[10px] tracking-[0.2em] font-bold text-[#a0a0a0]">
             Product Designer
           </p>
         </div>
@@ -22,7 +22,7 @@ export default function Footer() {
 
       </div>
       
-      <div className="w-full max-w-[1400px] flex justify-center sm:justify-between items-center text-[10px] tracking-[0.15em] font-bold text-[#D2D2D2] font-mono">
+      <div className="w-full max-w-[1400px] flex justify-center sm:justify-between items-center text-[10px] tracking-[0.15em] font-bold text-[#333333] font-mono">
         <span className="text-center sm:text-left">© {new Date().getFullYear()} All Rights Reserved</span>
         <span className="hidden sm:inline text-right text-[#333333]">💡 Imagining &nbsp;&nbsp; 💻 Building &nbsp;&nbsp; 🚀 Beyond</span>
       </div>
