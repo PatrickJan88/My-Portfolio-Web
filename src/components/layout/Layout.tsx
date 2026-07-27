@@ -21,11 +21,11 @@ export default function Layout({ children }: LayoutProps) {
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div 
           className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] opacity-[0.05] rounded-full"
-          style={{ background: 'radial-gradient(circle, #889DFF 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, #A0A0A0 0%, transparent 70%)' }}
         />
         <div 
           className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] opacity-[0.03] rounded-full"
-          style={{ background: 'radial-gradient(circle, #3E57FF 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, #333333 0%, transparent 70%)' }}
         />
       </div>
 

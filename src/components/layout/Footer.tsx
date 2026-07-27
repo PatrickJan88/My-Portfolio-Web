@@ -13,18 +13,18 @@ export default function Footer() {
           </p>
         </div>
 
-        <nav className="flex items-center gap-6 text-[11px] font-medium tracking-widest text-[#a0a0a0] uppercase font-mono">
-          <Link to="/" className="hover:text-[#3E57FF] transition-colors">Home</Link>
-          <Link to="/projects" className="hover:text-[#3E57FF] transition-colors">Projects</Link>
-          <Link to="/contact" className="hover:text-[#3E57FF] transition-colors">Contact</Link>
-          <a href="https://github.com/PatrickJan88/My-Portfolio-Web.git" target="_blank" rel="noreferrer" className="hover:text-[#3E57FF] transition-colors">GitHub</a>
+        <nav className="flex items-center gap-6 text-[11px] font-medium tracking-widest text-[#171717] font-mono">
+          <Link to="/" className="hover:text-[#707070] transition-colors">Home</Link>
+          <Link to="/projects" className="hover:text-[#707070] transition-colors">Projects</Link>
+          <Link to="/contact" className="hover:text-[#707070] transition-colors">Contact</Link>
+          <a href="https://github.com/PatrickJan88/My-Portfolio-Web.git" target="_blank" rel="noreferrer" className="hover:text-[#707070] transition-colors">GitHub</a>
         </nav>
 
       </div>
       
-      <div className="w-full max-w-[1400px] flex justify-center sm:justify-between items-center text-[10px] uppercase tracking-[0.15em] font-bold text-[#D2D2D2] font-mono">
+      <div className="w-full max-w-[1400px] flex justify-center sm:justify-between items-center text-[10px] tracking-[0.15em] font-bold text-[#D2D2D2] font-mono">
         <span className="text-center sm:text-left">© {new Date().getFullYear()} All Rights Reserved</span>
-        <span className="hidden sm:inline text-right">💡 Imagining &nbsp;&nbsp; 💻 Building &nbsp;&nbsp; 🚀 Beyond</span>
+        <span className="hidden sm:inline text-right text-[#333333]">💡 Imagining &nbsp;&nbsp; 💻 Building &nbsp;&nbsp; 🚀 Beyond</span>
       </div>
     </footer>
   );

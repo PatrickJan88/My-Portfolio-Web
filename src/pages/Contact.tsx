@@ -74,26 +74,26 @@ export default function Contact() {
           <div className="flex flex-col gap-6">
             <button 
               onClick={() => handleCopy("ranpofei@gmail.com", "email")}
-              className="flex items-center gap-4 text-[#373737] hover:text-[#3E57FF] transition-colors group cursor-pointer text-left focus:outline-none"
+              className="flex items-center gap-4 text-[#373737] hover:text-[#333333] transition-colors group cursor-pointer text-left focus:outline-none"
             >
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5 group-hover:scale-105 transition-transform">
                 <Mail className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Email</p>
+                <p className="text-[13px] font-bold tracking-[0.2em] text-[#a0a0a0]">Email</p>
                 <p className="text-lg font-medium">{copied === "email" ? "Copied!" : "ranpofei@gmail.com"}</p>
               </div>
             </button>
             
             <button 
               onClick={() => handleCopy("+46764502813", "phone")}
-              className="flex items-center gap-4 text-[#373737] hover:text-[#3E57FF] transition-colors group cursor-pointer text-left focus:outline-none"
+              className="flex items-center gap-4 text-[#373737] hover:text-[#333333] transition-colors group cursor-pointer text-left focus:outline-none"
             >
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5 group-hover:scale-105 transition-transform">
                 <Phone className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Phone</p>
+                <p className="text-[13px] font-bold tracking-[0.2em] text-[#a0a0a0]">Phone</p>
                 <p className="text-lg font-medium">{copied === "phone" ? "Copied!" : "+46 764502813"}</p>
               </div>
             </button>
@@ -103,21 +103,21 @@ export default function Contact() {
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Location</p>
+                <p className="text-[13px] font-bold tracking-[0.2em] text-[#a0a0a0]">Location</p>
                 <p className="text-lg font-medium">Uppsala, Sweden</p>
               </div>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-black/5">
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3E57FF] uppercase tracking-widest transition-colors group">
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#333333] tracking-widest transition-colors group">
               LinkedIn <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
-            <a href="/docs/Pofei_Ran_CV.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3E57FF] uppercase tracking-widest transition-colors group">
+            <a href="/docs/Pofei_Ran_CV.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#333333] tracking-widest transition-colors group">
               Download Resume <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
-            <a href="https://github.com/PatrickJan88/My-Portfolio-Web.git" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#3E57FF] uppercase tracking-widest transition-colors group">
-              GITHUB <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+            <a href="https://github.com/PatrickJan88/My-Portfolio-Web.git" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#333333] tracking-widest transition-colors group">
+              GitHub <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
           </div>
         </motion.div>
@@ -146,37 +146,37 @@ export default function Contact() {
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Name <span className="text-red-500 text-[14px]">*</span></label>
+                <label htmlFor="name" className="text-[13px] font-bold tracking-[0.2em] text-[#333333]">Name <span className="text-red-500 text-[14px]">*</span></label>
                 <input 
                   type="text" 
                   id="name" 
                   name="name"
                   required
-                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3E57FF] focus:ring-4 focus:ring-[#3E57FF]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
+                  className="w-full bg-[#f8f8f8] border border-transparent hover:border-[#333333]/30 focus:bg-white focus:border-[#333333] focus:ring-4 focus:ring-[#333333]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
                   placeholder="What should I call you?"
                 />
               </div>
               
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Email <span className="text-red-500 text-[14px]">*</span></label>
+                <label htmlFor="email" className="text-[13px] font-bold tracking-[0.2em] text-[#333333]">Email <span className="text-red-500 text-[14px]">*</span></label>
                 <input 
                   type="email" 
                   id="email" 
                   name="email"
                   required
-                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3E57FF] focus:ring-4 focus:ring-[#3E57FF]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
+                  className="w-full bg-[#f8f8f8] border border-transparent hover:border-[#333333]/30 focus:bg-white focus:border-[#333333] focus:ring-4 focus:ring-[#333333]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
                   placeholder="your@email.com"
                 />
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a0a0a0]">Message</label>
+                <label htmlFor="message" className="text-[13px] font-bold tracking-[0.2em] text-[#333333]">Message (Optional)</label>
                 <textarea 
                   id="message" 
                   name="message"
                   required
                   rows={5}
-                  className="w-full bg-[#f8f8f8] border border-transparent focus:bg-white focus:border-[#3E57FF] focus:ring-4 focus:ring-[#3E57FF]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all resize-none placeholder:text-[#a0a0a0]"
+                  className="w-full bg-[#f8f8f8] border border-transparent hover:border-[#333333]/30 focus:bg-white focus:border-[#333333] focus:ring-4 focus:ring-[#333333]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all resize-none placeholder:text-[#a0a0a0]"
                   placeholder="Tell me about your project, or just say hello..."
                 />
               </div>
@@ -184,7 +184,7 @@ export default function Contact() {
               <button 
                 type="submit" 
                 disabled={formState.state === "submitting"}
-                className="w-full px-8 py-4 bg-[#373737] text-white rounded-xl font-bold shadow-lg shadow-[#373737]/10 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none transition-all duration-200 mt-2 flex items-center justify-center gap-2"
+                className="w-full px-8 py-4 bg-[#171717] text-white rounded-xl font-bold shadow-lg shadow-[#171717]/10 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none transition-all duration-200 mt-2 flex items-center justify-center gap-2"
               >
                 {formState.state === "submitting" ? (
                   <span className="animate-pulse">Sending...</span>

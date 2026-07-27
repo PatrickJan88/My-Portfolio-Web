@@ -11,11 +11,11 @@
   --color-neutral-700: #4A4A4A;
   --color-neutral-900: #373737;
 
-  /* Primary Blue */
-  --color-primary-400: #889DFF;
-  --color-primary-500: #6D86FF;
-  --color-primary-600: #5570FF;
-  --color-primary-700: #3E57FF;
+  /* Primary Dark */
+  --color-primary-400: #A0A0A0;
+  --color-primary-500: #707070;
+  --color-primary-600: #4A4A4A;
+  --color-primary-700: #333333;
 
   /* Accents */
   --color-accent-yellow: #FCAE0B;

@@ -75,11 +75,11 @@ export function InstantCamera() {
 
           {/* Rainbow Stripe (Classic Polaroid vibe) */}
           <div className="absolute top-1/2 -translate-y-1/2 right-4 w-4 h-32 flex flex-col rounded overflow-hidden opacity-80">
-            <div className="flex-1 bg-red-500" />
-            <div className="flex-1 bg-orange-400" />
-            <div className="flex-1 bg-yellow-400" />
-            <div className="flex-1 bg-green-500" />
-            <div className="flex-1 bg-blue-500" />
+            <div className="flex-1 bg-neutral-700" />
+            <div className="flex-1 bg-neutral-600" />
+            <div className="flex-1 bg-neutral-500" />
+            <div className="flex-1 bg-neutral-400" />
+            <div className="flex-1 bg-neutral-300" />
           </div>
 
           {/* Lens */}

@@ -214,10 +214,10 @@ export default function ProjectDetail() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 group no-underline"
                 >
-                  <span className="font-sans text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.12em] text-[#3b82f6] border border-[#3b82f6]/40 px-3 py-1.5 bg-[#3b82f6]/10">
+                  <span className="font-sans text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.12em] text-[#333333] border border-[#333333]/40 px-3 py-1.5 bg-[#333333]/10">
                     {tag.label}
                   </span>
-                  <span className="font-sans text-xs md:text-sm text-[#3b82f6] group-hover:text-blue-400 transition-colors flex items-center gap-1">
+                  <span className="font-sans text-xs md:text-sm text-[#333333] group-hover:text-black transition-colors flex items-center gap-1">
                     {tag.label === "FIGMA" && (
                       <Figma className="w-4 h-4 ml-1" />
                     )}
@@ -228,7 +228,7 @@ export default function ProjectDetail() {
                     height="10"
                     viewBox="0 0 12 12"
                     fill="none"
-                    className="text-[#3b82f6] group-hover:text-blue-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="text-[#333333] group-hover:text-black transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                   >
                     <path
                       d="M1 11L11 1M11 1H3M11 1V9"
