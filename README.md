@@ -1,4 +1,4 @@
-# Pofei Ran – Portfolio OS & Website
+# Pofei Ran – Portfolio Website
 
 Welcome to the personal portfolio repository of **Pofei Ran** — a Product Designer and AI Builder bridging Product Design, UI/UX Design, Human-Computer Interaction (HCI) Research, Artificial Intelligence, and Front-End Development.
 
