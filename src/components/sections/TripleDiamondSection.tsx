@@ -1,10 +1,47 @@
 import { useState, useRef, useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import * as HoverCard from "@radix-ui/react-hover-card";
+import { Plus, Minus } from "lucide-react";
 import SplitText from "../ui/SplitText";
 import { CardSpotlight } from "../ui/card-spotlight";
 
-function Diamond({ number, title, blocks, videoSrc, videoScale = "scale-[1.6]" }: { number: string; title: string, blocks: { badge: "Diverge" | "Converge", title: string, desc: string }[], videoSrc?: string, videoScale?: string }) {
+function AccordionBlock({ block }: { block: { badge: string, title: string, desc: string } }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <li className="flex flex-col items-start text-left w-full border-b border-white/10 pb-4 last:border-b-0 last:pb-0">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex w-full items-start justify-between text-left focus:outline-none group gap-2"
+      >
+        <div className="flex items-center gap-2 mt-0.5">
+          <span className={`text-[9px] lg:text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-full shrink-0 ${['Diverge', 'Explore', 'Experiment', 'Scale'].includes(block.badge) ? 'bg-[#6D86FF]/20 text-[#889DFF]' : 'bg-[#2db482]/14 text-[#4db896]'}`}>
+            {block.badge}
+          </span>
+          <span className="font-semibold text-white/90 text-sm md:text-[11px] lg:text-[13px] whitespace-nowrap tracking-tight group-hover:text-white transition-colors">{block.title}</span>
+        </div>
+        <div className="text-white/50 shrink-0 flex items-center justify-center size-4 rounded-full border border-white/30 group-hover:text-white group-hover:border-white/50 transition-colors mt-0.5">
+          {isOpen ? <Minus size={10} strokeWidth={2.5} /> : <Plus size={10} strokeWidth={2.5} />}
+        </div>
+      </button>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0, marginTop: 0 }}
+            animate={{ height: "auto", opacity: 1, marginTop: 12 }}
+            exit={{ height: 0, opacity: 0, marginTop: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden w-full"
+          >
+            <p className="leading-snug text-white/70 text-base md:text-xs lg:text-sm">{block.desc}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </li>
+  );
+}
+
+function Diamond({ number, title, blocks, videoSrc, videoScale = "scale-[1.6]" }: { number: string; title: string, blocks: { badge: string, title: string, desc: string }[], videoSrc?: string, videoScale?: string }) {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -13,7 +50,6 @@ function Diamond({ number, title, blocks, videoSrc, videoScale = "scale-[1.6]" }
       videoRef.current.play().catch(e => console.log("Video play error:", e));
     } else if (!isHovered && videoRef.current) {
       videoRef.current.pause();
-      // Optional: videoRef.current.currentTime = 0; // reset to start
     }
   }, [isHovered]);
 
@@ -76,17 +112,9 @@ function Diamond({ number, title, blocks, videoSrc, videoScale = "scale-[1.6]" }
         </div>
       </div>
 
-      <ul className="mt-4 md:mt-6 flex flex-col md:grid md:grid-rows-[150px_1fr] lg:grid-rows-[130px_1fr] gap-8 md:gap-6 lg:gap-10 text-sm lg:text-base text-[#DDE1E6] w-full max-w-[300px] md:max-w-[220px] lg:max-w-[280px] px-4 md:px-0 mx-auto">
+      <ul className="mt-4 md:mt-6 flex flex-col gap-4 lg:gap-6 text-sm lg:text-base text-[#DDE1E6] w-full max-w-[300px] md:max-w-[220px] lg:max-w-[280px] px-4 md:px-0 mx-auto">
         {blocks.map((block, i) => (
-          <li key={i} className="flex flex-col items-start gap-2 text-left">
-            <div className="flex items-center gap-2 mb-1">
-              <span className={`text-[9px] lg:text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full shrink-0 ${block.badge === 'Diverge' ? 'bg-[#6D86FF]/20 text-[#889DFF]' : 'bg-[#2db482]/14 text-[#4db896]'}`}>
-                {block.badge}
-              </span>
-              <span className="font-semibold text-white/90 text-base md:text-xs lg:text-sm">{block.title}</span>
-            </div>
-            <p className="leading-snug text-white/70 text-base md:text-xs lg:text-sm">{block.desc}</p>
-          </li>
+          <AccordionBlock key={i} block={block} />
         ))}
       </ul>
     </div>
@@ -152,7 +180,7 @@ function PivotCycle() {
             </svg>
           </motion.div>
           <div className="relative z-10 size-[100px] md:size-[80px] lg:size-[100px] rounded-full flex items-center justify-center border border-white/20 bg-neutral-800 shadow-[inset_0px_2px_10px_rgba(255,255,255,0.1)] group-hover:bg-white/10 group-data-[state=open]:bg-white/10 transition-colors">
-            <span className="text-[12px] md:text-[10px] lg:text-[12px] font-medium leading-[1.1] text-center text-white">Strategic Pivot<br/>Loop</span>
+            <span className="text-[12px] md:text-[10px] lg:text-[12px] font-medium leading-[1.1] text-center text-white">Strategic<br/>Iteration<br/>Loop</span>
           </div>
         </button>
       </HoverCard.Trigger>
@@ -172,7 +200,7 @@ function PivotCycle() {
 
 export function TripleDiamondSection() {
   return (
-    <section className="relative w-full bg-[#1C1C1C] text-white py-12 md:py-24 overflow-hidden flex flex-col items-center">
+    <section className="relative w-full bg-[#1C1C1C] text-white py-6 md:py-16 overflow-hidden flex flex-col items-center">
       {/* Background Grid */}
       <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
         <svg viewBox="0 0 1921 1078" fill="none" preserveAspectRatio="none" className="w-full h-full opacity-60">
@@ -210,9 +238,9 @@ export function TripleDiamondSection() {
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 text-left mb-12">
         <SplitText
-          text="My AI-Enhanced Triple Diamond"
+          text="My Human-led AI Triple Diamond"
           tag="h2"
-          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white uppercase leading-none drop-shadow-sm mb-6 inline-block text-left"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white leading-none drop-shadow-sm mb-6 inline-block text-left"
           textAlign="left"
           delay={50}
           duration={1}
@@ -222,7 +250,7 @@ export function TripleDiamondSection() {
           to={{ opacity: 1, y: 0 }}
         />
         <p className="text-base text-white/70 max-w-4xl font-medium leading-relaxed font-mono">
-          Accelerating divergence with AI. Driving convergence with Human judgment.
+          Accelerating exploration with AI. Driving decisions through human judgment.
         </p>
 
         <div className="relative mt-12 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
@@ -242,8 +270,8 @@ export function TripleDiamondSection() {
             videoSrc="/videos/diamond-video-1.webm"
             videoScale="scale-[3.0]"
             blocks={[
-              { badge: "Diverge", title: "Discover & Explore", desc: "Immerse in user realities to surface friction patterns across contexts and uncover real product opportunities before any constraints are set." },
-              { badge: "Converge", title: "Constrain & Align", desc: "Establish strict human constraints (user flows, scope boundaries, and tech parameters) before AI touches anything. These guardrails prevent confident generation in the wrong direction." }
+              { badge: "Explore", title: "Understand People & Problems", desc: "Observe users, understand the business, and uncover real problems before exploring solutions. This phase focuses on discovering opportunities through research rather than assumptions." },
+              { badge: "Align", title: "Constrain & Align", desc: "Align user needs, business goals, technical feasibility, and project constraints before introducing AI into the design process. Clear guardrails lead to more reliable outcomes." }
             ]}
           />
 
@@ -258,8 +286,8 @@ export function TripleDiamondSection() {
             videoSrc="/videos/diamond-video-2.webm"
             videoScale="scale-[2.0]"
             blocks={[
-              { badge: "Diverge", title: "Compress & Prototype", desc: "Use AI to collapse the distance between a raw design concept and a testable, interactive artifact. Cross-functional teams critique something real, not static wireframes." },
-              { badge: "Converge", title: "Evaluate & Iterate", desc: "Human-led testing and cross-functional workshops catch systemic flaws. Parallel testing and generation cycles drive high-quality, fast revision loops until the UX architecture holds." }
+              { badge: "Experiment", title: "Prototype & Explore", desc: "Use AI to rapidly transform ideas into interactive prototypes, enabling teams to evaluate concepts through real experiences instead of static wireframes." },
+              { badge: "Validate", title: "Evaluate & Iterate", desc: "Validate prototypes through usability testing, stakeholder feedback, and cross-functional reviews. Human judgment guides every iteration before moving forward." }
             ]}
           />
 
@@ -268,8 +296,8 @@ export function TripleDiamondSection() {
             title="Systemize & Deliver"
             videoSrc="/videos/diamond-video-3.webm"
             blocks={[
-              { badge: "Diverge", title: "Systemize & Unify", desc: "Evaluate the product as a unified experience. Ensure the design system and UX remain robust in real-world engineering, not just in completion." },
-              { badge: "Converge", title: "Verify & Close the Loop", desc: "Confirm the live product matches the validated human model. Feed post-launch insights back into Phase 01 for a faster, sharper, and better-informed next cycle." }
+              { badge: "Scale", title: "Scale & Systemize", desc: "Transform validated solutions into scalable design systems, reusable components, and implementation-ready experiences across products and teams." },
+              { badge: "Learn", title: "Verify & Close the Loop", desc: "Measure product outcomes after launch and feed insights back into the next discovery cycle, enabling continuous improvement through human-led learning." }
             ]}
           />
         </div>

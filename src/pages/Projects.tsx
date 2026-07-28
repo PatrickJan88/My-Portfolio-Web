@@ -21,7 +21,7 @@ export default function Projects() {
       : projectsData.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 py-12 flex flex-col min-h-[80vh]">
+    <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 py-6 md:py-12 flex flex-col min-h-[80vh]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

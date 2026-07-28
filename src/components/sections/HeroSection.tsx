@@ -349,7 +349,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
               className="flex flex-col items-center gap-10 mt-[-20px] sm:mt-10 pointer-events-none"
             >
               <p className="text-base text-neutral-700 max-w-lg text-center font-medium leading-relaxed px-6 hidden sm:block font-mono">
-                Grounded in Human-Computer Interaction, I explore how AI can extend the design process—enhancing craft, accelerating iteration, and improving outcomes.
+                Grounded in Human-Computer Interaction, I design products where AI accelerates exploration and human judgment shapes meaningful experiences.
               </p>
             </motion.div>
           </motion.div>

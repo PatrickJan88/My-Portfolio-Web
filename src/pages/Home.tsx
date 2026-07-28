@@ -24,7 +24,7 @@ export default function Home() {
       <TripleDiamondSection />
 
       {/* Selected Featured Works Carousel */}
-      <div className="relative w-full z-10 bg-transparent py-12 md:py-24 object-contain">
+      <div className="relative w-full z-10 bg-transparent py-6 md:py-16 object-contain">
         <section className="w-full flex flex-col justify-center">
           <FeaturedSlider works={featuredWorks} />
         </section>
