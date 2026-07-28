@@ -303,40 +303,42 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
           style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
           className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-[92px] md:-mt-[252px] lg:-mt-[12px] z-10"
         >
-          {/* Main Title */}
-          <div className="relative w-full pointer-events-none">
-            <SplitText
-              text="POFEI"
-              tag="h1"
-              className="text-7xl sm:text-[5rem] md:text-[6rem] lg:text-[8.5rem] font-bold tracking-tighter text-neutral-900 leading-[0.8] uppercase text-center w-full px-4 pb-4"
-              delay={50}
-              duration={1}
-              ease="power3.out"
-              splitType="chars"
-              from={{ opacity: 0, y: 40 }}
-              to={{ opacity: 1, y: -8 }}
-            />
-          </div>
+          <div className="w-full flex flex-col items-center justify-center -mt-[12px]">
+            {/* Main Title */}
+            <div className="relative w-full pointer-events-none">
+              <SplitText
+                text="POFEI"
+                tag="h1"
+                className="text-7xl sm:text-[5rem] md:text-[6rem] lg:text-[8.5rem] font-bold tracking-tighter text-neutral-900 leading-[0.8] uppercase text-center w-full px-4 pb-4"
+                delay={50}
+                duration={1}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: -8 }}
+              />
+            </div>
 
-          {/* Faded Background Subtitle */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            className="w-full text-center px-4 opacity-30 mt-2 md:mt-4 relative -top-[6px] z-10 pointer-events-none"
-          >
-            <SplitText
-              text="Product Designer & AI Builder"
-              tag="h2"
-              className="text-lg sm:text-2xl md:text-3xl font-semibold tracking-widest text-neutral-300 uppercase leading-[0.8]"
-              delay={50}
-              duration={1}
-              ease="power3.out"
-              splitType="chars"
-              from={{ opacity: 0, y: 40 }}
-              to={{ opacity: 1, y: 0 }}
-            />
-          </motion.div>
+            {/* Faded Background Subtitle */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+              className="w-full text-center px-4 opacity-30 mt-2 md:mt-4 relative -top-[6px] z-10 pointer-events-none"
+            >
+              <SplitText
+                text="Product Designer & AI Builder"
+                tag="h2"
+                className="text-lg sm:text-2xl md:text-3xl font-semibold tracking-widest text-neutral-300 uppercase leading-[0.8]"
+                delay={50}
+                duration={1}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+              />
+            </motion.div>
+          </div>
 
           <div className="h-[360px] sm:h-[280px] md:h-[320px] lg:h-[350px] w-full" />
 
