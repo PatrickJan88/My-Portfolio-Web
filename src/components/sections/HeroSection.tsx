@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import SplitText from "../ui/SplitText";
+import LetterSwapForward from "../ui/text/letter-swap-forward-anim";
 import BorderGlow from "../ui/BorderGlow";
 import { BackgroundRippleEffect } from "../ui/background-ripple-effect";
 
@@ -305,17 +306,10 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
         >
           <div className="w-full flex flex-col items-center justify-center -mt-[36px]">
             {/* Main Title */}
-            <div className="relative w-full pointer-events-none">
-              <SplitText
-                text="POFEI"
-                tag="h1"
+            <div className="relative w-full pointer-events-auto">
+              <LetterSwapForward
+                label="POFEI"
                 className="text-7xl sm:text-[5rem] md:text-[6rem] lg:text-[8.5rem] font-bold tracking-tighter text-neutral-900 leading-[0.8] uppercase text-center w-full px-4 pb-4"
-                delay={50}
-                duration={1}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: -8 }}
               />
             </div>
 

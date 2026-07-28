@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ThinkingOrb } from "thinking-orbs";
 import { useState, useEffect } from "react";
+import LetterSwapForward from "../ui/text/letter-swap-forward-anim";
 
 const orbStates = ["working", "searching", "solving", "listening", "composing", "shaping"] as const;
 
@@ -23,13 +24,15 @@ export default function Footer() {
       <div className="w-full max-w-[1400px] flex flex-col md:flex-row justify-between items-center gap-6">
         
         <div className="flex items-center gap-4">
-          <div className="flex items-center justify-center w-[36px] h-[36px]">
-            <div className="scale-[0.5625] origin-center flex items-center justify-center">
+          <Link to="/" className="flex items-center justify-center w-[36px] h-[36px] hover:opacity-80 transition-opacity cursor-pointer">
+            <div className="scale-[0.5625] origin-center flex items-center justify-center pointer-events-none">
               <ThinkingOrb state={orbState} size={64} theme="light" />
             </div>
-          </div>
+          </Link>
           <div className="flex flex-col items-center md:items-start gap-1 font-mono">
-            <Link to="/" className="text-sm font-bold tracking-tight text-[#373737]">POFEI</Link>
+            <Link to="/" className="text-sm font-bold tracking-tight text-[#373737]">
+              <LetterSwapForward label="POFEI" />
+            </Link>
             <p className="text-[10px] tracking-[0.2em] font-bold text-[#a0a0a0]">
               Product Designer
             </p>
