@@ -18,7 +18,7 @@ function AccordionBlock({ block }: { block: { badge: string, title: string, desc
           <span className={`text-[9px] lg:text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-full shrink-0 ${['Diverge', 'Explore', 'Experiment', 'Scale'].includes(block.badge) ? 'bg-[#6D86FF]/20 text-[#889DFF]' : 'bg-[#2db482]/14 text-[#4db896]'}`}>
             {block.badge}
           </span>
-          <span className="font-semibold text-white/90 text-sm md:text-[11px] lg:text-[13px] whitespace-nowrap tracking-tight group-hover:text-white transition-colors">{block.title}</span>
+          <span className="font-semibold text-[oklch(92%_0.004_286.32)] text-sm md:text-[11px] lg:text-[13px] whitespace-nowrap tracking-tight group-hover:text-white transition-colors">{block.title}</span>
         </div>
         <div className="text-white/50 shrink-0 flex items-center justify-center size-4 rounded-full border border-white/30 group-hover:text-white group-hover:border-white/50 transition-colors mt-0.5">
           {isOpen ? <Minus size={10} strokeWidth={2.5} /> : <Plus size={10} strokeWidth={2.5} />}
@@ -67,7 +67,7 @@ function Diamond({ number, title, blocks, videoSrc, videoScale = "scale-[1.6]" }
             className="rotate-45 relative overflow-hidden rounded-[24px] lg:rounded-[32px] size-[180px] md:size-[150px] lg:size-[240px] flex-none p-0 !border-[rgba(255,255,255,0.25)] bg-transparent shadow-[inset_-2px_4px_23.6px_0px_rgba(0,0,0,0.1),-4px_4px_15.9px_0px_rgba(0,0,0,0.05)] border-[1px] border-solid [transform:translateZ(0)]"
           >
             {/* Base Backdrop Blur Layer */}
-            <div className="absolute inset-0 z-[-1] rounded-[inherit] bg-neutral-900 pointer-events-none [transform:translateZ(0)]" />
+            <div className={`absolute inset-0 z-[-1] rounded-[inherit] pointer-events-none [transform:translateZ(0)] transition-colors duration-500 ${isHovered ? 'bg-neutral-900' : 'bg-[oklch(87.1%_0.006_286.286)]'}`} />
 
             {/* Video Container */}
             {videoSrc && (
@@ -107,8 +107,8 @@ function Diamond({ number, title, blocks, videoSrc, videoScale = "scale-[1.6]" }
         </div>
         <div className="relative z-20 flex flex-col items-center justify-center text-center pointer-events-none p-4 md:px-8 lg:px-4 w-full h-full gap-2 lg:gap-3">
           {/* Number and Title inside the shape */}
-          <div className="text-3xl lg:text-5xl font-bold text-white drop-shadow-lg leading-none">{number}</div>
-          <div className="text-sm lg:text-lg font-bold whitespace-nowrap leading-tight text-white/90 drop-shadow-md">{title}</div>
+          <div className={`text-3xl lg:text-5xl font-bold leading-none transition-colors duration-500 ${isHovered ? 'text-white' : 'text-[oklch(27.4%_0.006_286.033)]'}`}>{number}</div>
+          <div className={`text-sm lg:text-lg font-bold whitespace-nowrap leading-tight transition-colors duration-500 ${isHovered ? 'text-white/90' : 'text-[oklch(27.4%_0.006_286.033)]'}`}>{title}</div>
         </div>
       </div>
 
@@ -240,7 +240,7 @@ export function TripleDiamondSection() {
         <SplitText
           text="My Human-led AI Triple Diamond"
           tag="h2"
-          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white leading-none drop-shadow-sm mb-6 inline-block text-left"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-[oklch(92%_0.004_286.32)] leading-none drop-shadow-sm mb-6 inline-block text-left"
           textAlign="left"
           delay={50}
           duration={1}
