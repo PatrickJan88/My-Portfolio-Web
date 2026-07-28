@@ -43,7 +43,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 py-12 flex flex-col min-h-screen">
+    <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 pt-12 pb-[28px] flex flex-col">
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
         
