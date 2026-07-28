@@ -1,16 +1,39 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
+import { ThinkingOrb } from "thinking-orbs";
+import { useState, useEffect } from "react";
+
+const orbStates = ["working", "searching", "solving", "listening", "composing", "shaping"] as const;
 
 export default function Footer() {
+  const [orbState, setOrbState] = useState<typeof orbStates[number]>("working");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOrbState(prev => {
+        const nextIndex = (orbStates.indexOf(prev) + 1) % orbStates.length;
+        return orbStates[nextIndex];
+      });
+    }, 2400);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <footer className="w-full py-12 px-6 md:px-12 z-20 flex flex-col items-center gap-8 border-t border-black/5 bg-transparent shrink-0">
       <div className="w-full max-w-[1400px] flex flex-col md:flex-row justify-between items-center gap-6">
         
-        <div className="flex flex-col items-center md:items-start gap-2 font-mono">
-          <Link to="/" className="text-sm font-bold tracking-tight text-[#373737]">POFEI</Link>
-          <p className="text-[10px] tracking-[0.2em] font-bold text-[#a0a0a0]">
-            Product Designer
-          </p>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center w-[36px] h-[36px]">
+            <div className="scale-[0.5625] origin-center flex items-center justify-center">
+              <ThinkingOrb state={orbState} size={64} theme="light" />
+            </div>
+          </div>
+          <div className="flex flex-col items-center md:items-start gap-1 font-mono">
+            <Link to="/" className="text-sm font-bold tracking-tight text-[#373737]">POFEI</Link>
+            <p className="text-[10px] tracking-[0.2em] font-bold text-[#a0a0a0]">
+              Product Designer
+            </p>
+          </div>
         </div>
 
         <nav className="flex items-center gap-6 text-[11px] font-medium tracking-widest text-[#171717] font-mono">
