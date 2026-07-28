@@ -303,7 +303,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
           style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
           className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none -mt-[92px] md:-mt-[252px] lg:-mt-[12px] z-10"
         >
-          <div className="w-full flex flex-col items-center justify-center -mt-[12px]">
+          <div className="w-full flex flex-col items-center justify-center -mt-[36px]">
             {/* Main Title */}
             <div className="relative w-full pointer-events-none">
               <SplitText
