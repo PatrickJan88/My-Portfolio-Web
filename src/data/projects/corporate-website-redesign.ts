@@ -5,7 +5,7 @@ export const corporateWebsiteRedesignCaseStudy: ProjectData = {
   title: "Corporate Website Redesign",
   category: "Web Design",
   client: "Essex Lake Group",
-  image: "/projects/corporate-website-redesign/web-cover-page.webp",
+  image: "/projects/corporate-website-redesign/web-cover-page 1.webp",
   
   heroHeading: "Web\nRedesign",
   heroImage: "/projects/corporate-website-redesign/web-cover-hero-page.webp",
@@ -47,7 +47,7 @@ export const corporateWebsiteRedesignCaseStudy: ProjectData = {
   media1: "/projects/corporate-website-redesign/web-mp-1.1.webm",
   media2: "/projects/corporate-website-redesign/web-mp-2.webp",
   media3: "/projects/corporate-website-redesign/web-mp-3.webp",
-  media4: "/projects/corporate-website-redesign/web-mp-4.1.webp",
+  media4: "/projects/corporate-website-redesign/web-mp-4.2.webp",
   
   nextProject: {
     id: "health-app-design",
