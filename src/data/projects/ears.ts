@@ -81,7 +81,7 @@ export const earsCaseStudy: ProjectData = {
   ],
   
   nextProject: {
-    id: "ev-charging-platform",
-    title: "EV Charging Platform"
+    id: "corporate-website-redesign",
+    title: "Corporate Website Redesign"
   }
 };

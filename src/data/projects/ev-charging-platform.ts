@@ -56,7 +56,7 @@ export const evChargingPlatformCaseStudy: ProjectData = {
   media4: "/projects/ev-charging-platform/ev-mp-4.webp",
   
   nextProject: {
-    id: "biotopia-digital-experience",
-    title: "Biotopia Digital Experience"
+    id: "health-app-design",
+    title: "Health App Design"
   }
 };

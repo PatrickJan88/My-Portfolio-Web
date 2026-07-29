@@ -50,7 +50,7 @@ export const corporateWebsiteRedesignCaseStudy: ProjectData = {
   media4: "/projects/corporate-website-redesign/web-mp-4.2.webp",
   
   nextProject: {
-    id: "health-app-design",
-    title: "Health App Design"
+    id: "ev-charging-platform",
+    title: "EV Charging Platform"
   }
 };

@@ -16,8 +16,8 @@ export const projectsData: ProjectData[] = [
   aiCompanionCaseStudy,
   urgentBookingCaseStudy,
   earsCaseStudy,
-  evChargingPlatformCaseStudy,
   corporateWebsiteRedesignCaseStudy,
+  evChargingPlatformCaseStudy,
   healthAppDesignCaseStudy,
   svenskaLekCaseStudy,
   iconArchiveCaseStudy
