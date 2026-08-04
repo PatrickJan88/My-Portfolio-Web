@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { ThinkingOrb } from "thinking-orbs";
 import { useState, useEffect } from "react";
 import LetterSwapForward from "../ui/text/letter-swap-forward-anim";
+import BorderGradientButton from "../ui/BorderGradientButton";
+import seekrLogoPath from "../../assets/seekr logo.webp";
 
 const orbStates = ["working", "searching", "solving", "listening", "composing", "shaping"] as const;
 
@@ -21,10 +23,10 @@ export default function Footer() {
 
   return (
     <footer className="w-full py-12 px-6 md:px-12 z-20 flex flex-col items-center gap-8 border-t border-black/5 bg-transparent shrink-0">
-      <div className="w-full max-w-[1400px] flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="w-full max-w-[1400px] flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-6">
         
-        <div className="flex items-center gap-4">
-          <Link to="/" className="flex items-center justify-center w-[36px] h-[36px] hover:opacity-80 transition-opacity cursor-pointer">
+        <div className="flex items-start gap-4">
+          <Link to="/" className="flex items-center justify-center w-[36px] h-[36px] hover:opacity-80 transition-opacity cursor-pointer mt-0.5">
             <div className="scale-[0.5625] origin-center flex items-center justify-center pointer-events-none">
               <ThinkingOrb state={orbState} size={64} theme="light" />
             </div>
@@ -36,21 +38,30 @@ export default function Footer() {
             <p className="text-[10px] tracking-[0.2em] font-bold text-[#a0a0a0]">
               Product Designer
             </p>
+            <span className="hidden sm:inline text-center sm:text-left text-[10px] tracking-[0.15em] font-bold text-[#333333] mt-2 -ml-[2px]">
+              💡 Imagining &nbsp;&nbsp; 💻 Building &nbsp;&nbsp; 🚀 Beyond
+            </span>
+            <span className="text-center sm:text-left text-[10px] tracking-[0.15em] font-bold text-[#333333] mt-9">
+              © {new Date().getFullYear()} All Rights Reserved
+            </span>
           </div>
         </div>
 
-        <nav className="flex items-center gap-6 text-[11px] font-medium tracking-widest text-[#171717] font-mono">
-          <Link to="/" className="hover:text-[#707070] transition-colors">Home</Link>
-          <Link to="/projects" className="hover:text-[#707070] transition-colors">Projects</Link>
-          <Link to="/contact" className="hover:text-[#707070] transition-colors">Contact</Link>
-          <a href="https://github.com/PatrickJan88/My-Portfolio-Web.git" target="_blank" rel="noreferrer" className="hover:text-[#707070] transition-colors">GitHub</a>
-        </nav>
-
-      </div>
-      
-      <div className="w-full max-w-[1400px] flex justify-center sm:justify-between items-center text-[10px] tracking-[0.15em] font-bold text-[#333333] font-mono">
-        <span className="text-center sm:text-left">© {new Date().getFullYear()} All Rights Reserved</span>
-        <span className="hidden sm:inline text-right text-[#333333]">💡 Imagining &nbsp;&nbsp; 💻 Building &nbsp;&nbsp; 🚀 Beyond</span>
+        <div className="flex flex-col items-center md:items-end gap-6">
+          <nav className="flex flex-wrap justify-center items-center gap-6 text-[11px] font-medium tracking-widest text-[#171717] font-mono -translate-x-1">
+            <Link to="/" className="hover:text-[#707070] transition-colors">Home</Link>
+            <Link to="/projects" className="hover:text-[#707070] transition-colors">Projects</Link>
+            <Link to="/contact" className="hover:text-[#707070] transition-colors">Contact</Link>
+            <a href="https://github.com/PatrickJan88/My-Portfolio-Web.git" target="_blank" rel="noreferrer" className="hover:text-[#707070] transition-colors">GitHub</a>
+          </nav>
+          
+          <a href="https://seekr-37311.web.app/" target="_blank" rel="noreferrer" className="mt-1 translate-x-1">
+            <BorderGradientButton className="cursor-pointer">
+              Try my AI coding project
+              <img src={seekrLogoPath} alt="Seekr Logo" className="h-4 object-contain" />
+            </BorderGradientButton>
+          </a>
+        </div>
       </div>
     </footer>
   );
