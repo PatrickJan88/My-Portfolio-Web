@@ -39,7 +39,7 @@ export default function Footer() {
             <p className="text-[12px] tracking-[0.2em] font-bold text-[#a0a0a0] -mt-1">
               Product Designer
             </p>
-            <span className="inline text-left text-[10px] tracking-[0.15em] font-bold text-[#333333] mt-2 -ml-[2px]">
+            <span className="inline text-left text-[10px] tracking-[0.15em] font-bold text-[#333333] mt-[10px] -ml-[2px]">
               💡 Imagining &nbsp;&nbsp; 💻 Building &nbsp;&nbsp; 🚀 Beyond
             </span>
           </div>
@@ -63,7 +63,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col items-center md:items-end gap-6 w-full md:w-auto">
-          <nav className="flex flex-wrap justify-center items-center gap-6 text-[13px] font-medium tracking-widest text-[#171717] font-sans -translate-x-1">
+          <nav className="flex flex-wrap justify-center items-center gap-6 text-[13px] font-semibold tracking-widest text-[#171717] font-sans -translate-x-1">
             <Link to="/" className="hover:text-[#707070] transition-colors">Home</Link>
             <Link to="/projects" className="hover:text-[#707070] transition-colors">Projects</Link>
             <Link to="/contact" className="hover:text-[#707070] transition-colors">Contact</Link>
@@ -79,8 +79,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="w-full border-t border-black/5 h-[32px] px-6 md:px-12 flex items-center justify-center">
-        <div className="w-full max-w-[1400px] flex justify-center md:justify-start">
+      <div className="w-full border-t border-black/5 h-[32px] flex items-center justify-center">
+        <div className="w-full max-w-[1400px] px-6 md:px-12 flex justify-center md:justify-start">
           <span className="text-center md:text-left text-[12px] tracking-[0.15em] font-semibold font-sans text-[#333333] pl-0 md:pl-[52px]">
             © {new Date().getFullYear()} All Rights Reserved
           </span>

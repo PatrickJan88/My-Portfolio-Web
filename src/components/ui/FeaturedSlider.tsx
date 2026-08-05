@@ -290,7 +290,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
           <SplitText
             text="Selected Cases"
             tag="h2"
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-neutral-900 uppercase leading-none mb-6 inline-block"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-neutral-900 uppercase leading-none mb-6 inline-block"
             delay={50}
             duration={1}
             ease="power3.out"

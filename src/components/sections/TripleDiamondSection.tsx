@@ -12,15 +12,15 @@ function AccordionBlock({ block }: { block: { badge: string, title: string, desc
     <li className="flex flex-col items-start text-left w-full pb-4 last:pb-0">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-start justify-between text-left focus:outline-none group gap-2"
+        className="flex w-full items-start justify-between text-left focus:outline-none group gap-2 py-2 -my-2 relative z-10 cursor-pointer"
       >
-        <div className="flex items-center gap-2 mt-0.5">
+        <div className="flex items-center gap-2 mt-0.5 pointer-events-none">
           <span className={`text-[9px] lg:text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-full shrink-0 ${['Diverge', 'Explore', 'Experiment', 'Scale'].includes(block.badge) ? 'bg-[#6D86FF]/20 text-[#889DFF]' : 'bg-[#2db482]/14 text-[#4db896]'}`}>
             {block.badge}
           </span>
           <span className="font-semibold text-[oklch(87.1%_0.006_286.286)] text-sm md:text-[11px] lg:text-[13px] whitespace-nowrap tracking-tight group-hover:text-[oklch(98.5%_0_none)] transition-colors">{block.title}</span>
         </div>
-        <div className="text-white/50 shrink-0 flex items-center justify-center size-4 rounded-full border border-white/30 group-hover:text-white group-hover:border-white/50 transition-colors mt-0.5">
+        <div className="text-white/50 shrink-0 flex items-center justify-center size-4 rounded-full border border-white/30 group-hover:text-white group-hover:border-white/50 transition-colors mt-0.5 pointer-events-none">
           {isOpen ? <Minus size={10} strokeWidth={2.5} /> : <Plus size={10} strokeWidth={2.5} />}
         </div>
       </button>
@@ -31,9 +31,9 @@ function AccordionBlock({ block }: { block: { badge: string, title: string, desc
             animate={{ height: "auto", opacity: 1, marginTop: 12 }}
             exit={{ height: 0, opacity: 0, marginTop: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden w-full"
+            className="overflow-hidden w-full relative z-0"
           >
-            <p className="leading-snug text-white/70 text-base md:text-xs lg:text-sm">{block.desc}</p>
+            <p className="leading-snug text-white/70 hover:text-white transition-colors duration-300 text-base md:text-xs lg:text-sm">{block.desc}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -240,7 +240,7 @@ export function TripleDiamondSection() {
         <SplitText
           text="My Human-led AI Triple Diamond"
           tag="h2"
-          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-[oklch(92%_0.004_286.32)] leading-none drop-shadow-sm mb-6 inline-block text-left"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-[oklch(92%_0.004_286.32)] leading-none drop-shadow-sm mb-6 inline-block text-left"
           textAlign="left"
           delay={50}
           duration={1}
