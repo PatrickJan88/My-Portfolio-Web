@@ -32,7 +32,7 @@ const BorderGradientButton = ({
       {...props}
     >
       <div className="z-0 absolute inset-[1.5px] bg-white group-hover:bg-white/90 backdrop-blur-3xl rounded-full transition-all saturate-200" />
-      <span className="z-10 text-neutral-900 pointer-events-none relative flex items-center gap-2 px-4 py-2 text-[11px] font-bold tracking-widest uppercase font-mono">
+      <span className="z-10 text-neutral-900 pointer-events-none relative flex items-center gap-2 px-4 py-2 text-[11px] font-bold tracking-widest font-mono">
         {children ?? "Gradient Border"}
       </span>
     </button>
