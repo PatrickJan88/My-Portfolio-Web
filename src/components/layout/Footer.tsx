@@ -70,7 +70,7 @@ export default function Footer() {
             <a href="https://github.com/PatrickJan88/My-Portfolio-Web.git" target="_blank" rel="noreferrer" className="hover:text-[#707070] transition-colors">GitHub</a>
           </nav>
           
-          <a href="https://seekr-37311.web.app/" target="_blank" rel="noreferrer" className="mt-1 translate-x-1">
+          <a href="https://seekr-37311.firebaseapp.com/" target="_blank" rel="noreferrer" className="mt-1 translate-x-1">
             <BorderGradientButton className="cursor-pointer">
               Try my AI coding project
               <img src={seekrLogoPath} alt="Seekr Logo" className="h-4 object-contain" />
