@@ -200,7 +200,7 @@ function PivotCycle() {
 
 export function TripleDiamondSection() {
   return (
-    <section className="relative w-full bg-[#1C1C1C] text-white py-6 md:py-16 overflow-hidden flex flex-col items-center">
+    <section className="relative w-full bg-[#1C1C1C] text-white py-6 md:py-16 px-4 sm:px-6 md:px-12 overflow-hidden flex flex-col items-center">
       {/* Background Grid */}
       <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
         <svg viewBox="0 0 1921 1078" fill="none" preserveAspectRatio="none" className="w-full h-full opacity-60">
@@ -236,7 +236,7 @@ export function TripleDiamondSection() {
         </svg>
       </div>
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 text-left mb-12">
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto text-left mb-12">
         <SplitText
           text="My Human-led AI Triple Diamond"
           tag="h2"
@@ -249,7 +249,7 @@ export function TripleDiamondSection() {
           from={{ opacity: 0, y: 40 }}
           to={{ opacity: 1, y: 0 }}
         />
-        <p className="text-base text-white/70 max-w-4xl font-medium leading-relaxed font-mono">
+        <p className="text-base sm:text-lg md:text-xl text-white/70 whitespace-nowrap leading-relaxed font-mono">
           Accelerating exploration with AI. Driving decisions through human judgment.
         </p>
 

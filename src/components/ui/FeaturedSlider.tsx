@@ -285,9 +285,10 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
     <div className="w-full flex flex-col items-center" ref={containerRef}>
       
       {/* Headings Row */}
-      <div className="max-w-[1400px] w-full mx-auto flex justify-between items-end mb-6 md:mb-12 px-6 md:px-12">
-        <div>
-          <SplitText
+      <div className="w-full px-4 sm:px-6 md:px-12">
+        <div className="max-w-[1440px] w-full mx-auto flex justify-between items-end mb-6 md:mb-12">
+          <div>
+            <SplitText
             text="Selected cases"
             tag="h2"
             className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-neutral-900 leading-none mb-6 inline-block"
@@ -315,6 +316,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
         <Link to="/projects" className="hidden sm:inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm md:text-base font-bold bg-neutral-900 text-white tracking-wider transition-transform hover:scale-105">
           View All
         </Link>
+        </div>
       </div>
 
       {/* Main Slider Area */}
