@@ -11,7 +11,6 @@ import sticker2 from "../../assets/Sticker 2.webp";
 import sticker3 from "../../assets/Sticker 3.webp";
 import sticker4 from "../../assets/Sticker 4.webp";
 import sticker5 from "../../assets/Sticker 5.webp";
-import sticker6 from "../../assets/Sticker 6.webp";
 
 const photos = [
   { id: 1, url: photo1, classes: "-left-16 md:left-[5%] top-[5%]", rotation: -12, maxW: "w-[140px] md:w-[170px]" },
@@ -28,7 +27,6 @@ const stickers = [
   { id: 3, url: sticker3, classes: "left-[38%] top-[85%]", rotation: -15, maxW: "w-[40px] h-[40px] md:w-[50px] md:h-[50px]" },
   { id: 4, url: sticker4, classes: "right-[10%] top-[35%]", rotation: 15, maxW: "w-[48px] h-[48px] md:w-[56px] md:h-[56px]" },
   { id: 5, url: sticker5, classes: "right-[25%] top-[65%]", rotation: -12, maxW: "w-[48px] h-[48px] md:w-[56px] md:h-[56px]" },
-  { id: 6, url: sticker6, classes: "left-[45%] top-[10%]", rotation: 5, maxW: "w-[32px] h-[32px] md:w-[40px] md:h-[40px]" },
 ];
 
 export function FloatingScrapbook() {

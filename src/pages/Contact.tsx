@@ -56,9 +56,9 @@ export default function Contact() {
         >
           <div>
             <SplitText
-              text="LET'S CHAT"
+              text="Let's chat"
               tag="h1"
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-[#373737] uppercase leading-[0.9] mb-6 inline-block"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-[#373737] leading-[0.9] mb-6 inline-block"
               delay={50}
               duration={1}
               ease="power3.out"
@@ -110,7 +110,7 @@ export default function Contact() {
           </div>
 
           <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-black/5">
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#333333] tracking-widest transition-colors group">
+            <a href="https://www.linkedin.com/in/pofei-r-79586395" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#333333] tracking-widest transition-colors group">
               LinkedIn <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
             <a href="/docs/Pofei_Ran_CV.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#333333] tracking-widest transition-colors group">

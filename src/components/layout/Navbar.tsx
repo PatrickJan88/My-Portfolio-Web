@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
@@ -10,7 +10,9 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
 
   const links = [
     { href: "/", label: "Home" },
@@ -20,23 +22,44 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
+
+      if (mobileMenuOpen) {
+        setIsVisible(true);
+        return;
+      }
+
+      if (currentScrollY <= 20) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current && currentScrollY - lastScrollY.current > 5) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY.current && lastScrollY.current - currentScrollY > 5) {
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [mobileMenuOpen]);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-6 pointer-events-none flex justify-center mt-2">
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        animate={{
+          opacity: isVisible ? 1 : 0,
+          y: isVisible ? 0 : -16,
+          pointerEvents: isVisible ? "auto" : "none",
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         className={cn(
-          "pointer-events-auto flex items-center gap-4 md:gap-8 px-4 md:px-6 rounded-full transition-all duration-300",
+          "flex items-center gap-4 md:gap-8 px-4 md:px-6 rounded-full transition-colors duration-300 backdrop-blur-xl",
           isScrolled
             ? "shadow-[0_4px_24px_-8px_rgba(0,0,0,0.1)] py-2.5 bg-white/95 border border-black/5"
-            : "bg-white/70 py-3 border border-black/5",
+            : "bg-white/70 py-3 border border-black/5"
         )}
       >
         <Link to="/" className="flex items-center justify-center min-w-[40px]">

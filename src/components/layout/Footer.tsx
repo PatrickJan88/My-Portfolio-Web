@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { ThinkingOrb } from "thinking-orbs";
 import { useState, useEffect } from "react";
 import LetterSwapForward from "../ui/text/letter-swap-forward-anim";
-import BorderGradientButton from "../ui/BorderGradientButton";
-import seekrLogoPath from "../../assets/seekr logo.webp";
 
 const orbStates = ["working", "searching", "solving", "listening", "composing", "shaping"] as const;
 
@@ -69,13 +67,6 @@ export default function Footer() {
             <Link to="/contact" className="hover:text-[#707070] transition-colors">Contact</Link>
             <a href="https://github.com/PatrickJan88/My-Portfolio-Web.git" target="_blank" rel="noreferrer" className="hover:text-[#707070] transition-colors">GitHub</a>
           </nav>
-          
-          <a href="https://seekr-37311.firebaseapp.com/" target="_blank" rel="noreferrer" className="mt-1 translate-x-1">
-            <BorderGradientButton className="cursor-pointer">
-              Try my AI coding project
-              <img src={seekrLogoPath} alt="Seekr Logo" className="h-4 object-contain" />
-            </BorderGradientButton>
-          </a>
         </div>
       </div>
 

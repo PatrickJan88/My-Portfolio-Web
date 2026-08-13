@@ -29,9 +29,9 @@ export default function Projects() {
         className="mb-16 mt-4"
       >
         <SplitText
-          text="Selected Cases"
+          text="Selected cases"
           tag="h1"
-          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-neutral-900 uppercase mb-6 leading-none inline-block"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-neutral-900 mb-6 leading-none inline-block"
           delay={50}
           duration={1}
           ease="power3.out"

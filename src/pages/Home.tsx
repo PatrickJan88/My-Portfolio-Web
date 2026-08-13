@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { HeroSection } from "../components/sections/HeroSection";
 import { TripleDiamondSection } from "../components/sections/TripleDiamondSection";
+import { SeekrSection } from "../components/sections/SeekrSection";
 import { InstantCamera } from "../components/ui/InstantCamera";
 import { FeaturedSlider } from "../components/ui/FeaturedSlider";
 import { FloatingScrapbook } from "../components/ui/FloatingScrapbook";
@@ -29,6 +30,9 @@ export default function Home() {
           <FeaturedSlider works={featuredWorks} />
         </section>
       </div>
+
+      {/* Seekr Portfolio Section */}
+      <SeekrSection />
 
       {/* "Let's FIKA" Section */}
       <div className="relative w-full z-20 bg-[#FBFBFB] flex flex-col items-center justify-start pt-12 md:pt-16 pb-[300px] md:pb-[420px] px-6 md:px-12 overflow-hidden border-y border-black/5 min-h-[500px] md:min-h-[700px]">
