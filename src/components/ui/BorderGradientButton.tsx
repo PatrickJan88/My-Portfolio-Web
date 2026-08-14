@@ -36,7 +36,7 @@ const BorderGradientButton = ({
       <div className="z-0 absolute inset-[1.5px] bg-white group-hover:bg-white/90 backdrop-blur-3xl rounded-full transition-all saturate-200" />
       <span
         className={cn(
-          "z-10 text-neutral-900 pointer-events-none relative flex items-center gap-2 px-6 py-3.5 text-sm md:text-base font-bold tracking-wider font-mono",
+          "z-10 text-neutral-900 pointer-events-none relative flex items-center gap-2 px-6 py-3.5 text-sm md:text-base font-bold tracking-wider",
           contentClassName,
         )}
       >

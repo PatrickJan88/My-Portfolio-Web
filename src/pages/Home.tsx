@@ -28,10 +28,8 @@ export default function Home() {
 
       <MetricsSection />
 
-      <TripleDiamondSection />
-
       {/* Selected Featured Works Carousel */}
-      <div className="relative w-full z-10 bg-transparent py-6 md:py-16 object-contain">
+      <div className="relative w-full z-10 bg-[#1C1C1C] py-6 md:py-16 object-contain">
         <section className="w-full flex flex-col justify-center">
           <FeaturedSlider works={featuredWorks} />
         </section>
@@ -39,6 +37,8 @@ export default function Home() {
 
       {/* Seekr Portfolio Section */}
       <SeekrSection />
+
+      <TripleDiamondSection />
 
       {/* "Let's FIKA" Section */}
       <div className="relative w-full z-20 bg-[#FBFBFB] flex flex-col items-center justify-start pt-12 md:pt-16 pb-[300px] md:pb-[420px] px-6 md:px-12 overflow-hidden border-y border-black/5 min-h-[500px] md:min-h-[700px]">

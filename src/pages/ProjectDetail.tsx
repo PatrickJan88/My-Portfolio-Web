@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight, Figma, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, PenTool, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { projectsData } from "../data/projects";
 import AutoCarousel from "../components/AutoCarousel";
 
@@ -219,7 +219,7 @@ export default function ProjectDetail() {
                   </span>
                   <span className="font-sans text-xs md:text-sm text-[#333333] group-hover:text-black transition-colors flex items-center gap-1">
                     {tag.label === "FIGMA" && (
-                      <Figma className="w-4 h-4 ml-1" />
+                      <PenTool className="w-4 h-4 ml-1" />
                     )}
                     {tag.value}
                   </span>
@@ -339,7 +339,7 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
             onClick={() => project.media1 && handleMediaClick(project.media1, project.media1.endsWith(".webm") || project.media1.endsWith(".mp4"))}
           >
             {project.media1 ? (
@@ -375,7 +375,7 @@ export default function ProjectDetail() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8 }}
-                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
                 onClick={() => project.media2 && handleMediaClick(project.media2, project.media2.endsWith(".webm") || project.media2.endsWith(".mp4"))}
               >
                 {project.media2 ? (
@@ -395,7 +395,7 @@ export default function ProjectDetail() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
                 onClick={() => project.media3 && handleMediaClick(project.media3, project.media3.endsWith(".webm") || project.media3.endsWith(".mp4"))}
               >
                 {project.media3 ? (
@@ -430,7 +430,7 @@ export default function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8 }}
-                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
                   onClick={() => project.media2 && handleMediaClick(project.media2, project.media2.endsWith(".webm") || project.media2.endsWith(".mp4"))}
                 >
                   {project.media2 ? (
@@ -454,7 +454,7 @@ export default function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
                   onClick={() => project.media3 && handleMediaClick(project.media3, project.media3.endsWith(".webm") || project.media3.endsWith(".mp4"))}
                 >
                   {project.media3 ? (
@@ -491,7 +491,7 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
             onClick={() => project.media4 && !Array.isArray(project.media4) && handleMediaClick(project.media4, project.media4.endsWith(".webm") || project.media4.endsWith(".mp4"))}
           >
             {project.media4 ? (
@@ -520,7 +520,7 @@ export default function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
-                  className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                  className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
                   onClick={() => media && handleMediaClick(media, media.endsWith(".webm") || media.endsWith(".mp4"))}
                 >
                   {media ? (

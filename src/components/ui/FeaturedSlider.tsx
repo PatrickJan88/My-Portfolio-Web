@@ -291,7 +291,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
             <SplitText
             text="Selected cases"
             tag="h2"
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-neutral-900 leading-none mb-6 inline-block"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-white leading-none mb-6 inline-block"
             delay={50}
             duration={1}
             ease="power3.out"
@@ -301,20 +301,21 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
           />
           
           {/* Numbers Counter */}
-          <div className="mt-6 flex items-center gap-1 font-bold text-5xl md:text-6xl tracking-tight text-neutral-900" style={{ fontFamily: 'Impact, sans-serif' }}>
+          <div className="mt-6 flex items-center gap-1 font-bold text-5xl md:text-6xl tracking-tight text-white" style={{ fontFamily: 'Impact, sans-serif' }}>
             <div className="h-[1em] overflow-hidden">
               <div ref={stepsParentRef} className="flex flex-col">
                 <h2 data-slide-count="step" ref={stepRef} className="m-0 leading-none h-[1em]" style={{ display: 'none' }}>01</h2>
               </div>
             </div>
-            <div className="w-[2px] h-[0.75em] bg-neutral-900 rotate-12 mx-2"></div>
+            <div className="w-[2px] h-[0.75em] bg-white rotate-12 mx-2"></div>
             <div className="h-[1em] overflow-hidden">
               <h2 data-slide-count="total" ref={totalRef} className="m-0 leading-none h-[1em]">04</h2>
             </div>
           </div>
         </div>
-        <Link to="/projects" className="hidden sm:inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm md:text-base font-bold bg-neutral-900 text-white tracking-wider transition-transform hover:scale-105">
-          View All
+        <Link to="/projects" className="hidden sm:inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm md:text-base font-bold bg-white text-neutral-900 tracking-wider transition-transform hover:scale-105 group">
+          <span>View All</span>
+          <ArrowUpRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
         </div>
       </div>
@@ -322,20 +323,20 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
       {/* Main Slider Area */}
       <div className="relative w-full">
         <CursorProvider>
-          <Cursor className="hidden md:flex items-center justify-center size-[72px] rounded-full bg-[#1c1c1c] text-white text-[15px] font-medium tracking-normal z-[9999]">
+          <Cursor className="hidden md:flex items-center justify-center size-[72px] rounded-full bg-white text-neutral-900 text-[15px] font-medium tracking-normal z-[9999]">
             Drag
           </Cursor>
           <CursorContainer>
-            <div className="osmo-slider-container w-full relative text-neutral-900 overflow-hidden cursor-grab active:cursor-grabbing">
+            <div className="osmo-slider-container w-full relative text-white overflow-hidden cursor-grab active:cursor-grabbing">
               <div className="w-full flex items-center justify-start">
                 <div data-slider="list" ref={listRef} className="flex relative items-stretch py-6 md:py-12 group/list">
                   {works.map((work, index) => (
                     <div 
                       key={work.id} 
                       data-slider="slide" 
-                      className="slider-slide flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] shrink-0 px-4 relative opacity-40 transition-opacity duration-400 [&.active]:opacity-100 md:hover:!opacity-100 md:group-hover/list:[&.active]:opacity-40 group/slide cursor-pointer"
+                      className="slider-slide flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] shrink-0 px-4 relative opacity-80 transition-opacity duration-400 [&.active]:opacity-100 md:hover:!opacity-100 md:group-hover/list:[&.active]:opacity-80 group/slide cursor-pointer"
                     >
-                      <div className="w-full aspect-[4/3] rounded-2xl relative overflow-hidden group">
+                      <div className="w-full aspect-[4/3] rounded-[2rem] relative overflow-hidden group">
                         <Link to={`/projects/${work.id}`} className="w-full h-full block">
                           <img 
                             src={work.image} 
@@ -365,7 +366,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
         <button 
           data-slider="button-prev" 
           ref={prevBtnRef}
-          className="osmo-btn flex items-center justify-center w-12 h-12 rounded-full bg-transparent border border-neutral-900/30 text-neutral-900 relative hover:scale-95 hover:border-neutral-900 transition-all duration-300 group"
+          className="osmo-btn flex items-center justify-center w-12 h-12 rounded-full bg-transparent border border-white/30 text-white relative hover:scale-95 hover:border-white transition-all duration-300 group"
           aria-label="previous slide"
         >
           <ArrowLeft className="w-5 h-5" />
@@ -373,7 +374,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
         <button 
           data-slider="button-next" 
           ref={nextBtnRef}
-          className="osmo-btn flex items-center justify-center w-12 h-12 rounded-full bg-transparent border border-neutral-900/30 text-neutral-900 relative hover:scale-95 hover:border-neutral-900 transition-all duration-300 group"
+          className="osmo-btn flex items-center justify-center w-12 h-12 rounded-full bg-transparent border border-white/30 text-white relative hover:scale-95 hover:border-white transition-all duration-300 group"
           aria-label="next slide"
         >
           <ArrowRight className="w-5 h-5" />
@@ -381,8 +382,9 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
       </div>
 
       <div className="mt-12 sm:hidden flex justify-center px-6 w-full">
-        <Link to="/projects" className="inline-flex items-center justify-center w-full px-6 py-3.5 rounded-full text-sm md:text-base font-bold bg-neutral-900 text-white tracking-wider transition-transform hover:scale-105">
-          View All
+        <Link to="/projects" className="inline-flex items-center justify-center w-full px-6 py-3.5 rounded-full text-sm md:text-base font-bold bg-white text-neutral-900 tracking-wider transition-transform hover:scale-105 group">
+          <span>View All</span>
+          <ArrowUpRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
       </div>
     </div>
