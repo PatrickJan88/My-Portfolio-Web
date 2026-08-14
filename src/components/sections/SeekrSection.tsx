@@ -3,7 +3,9 @@ import { ArrowUpRight, Lock, RotateCw } from 'lucide-react';
 import { motion } from 'motion/react';
 import SplitText from '../ui/SplitText';
 import BorderGradientButton from '../ui/BorderGradientButton';
-import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react';
+import { ShaderGradientCanvas, ShaderGradient as ShaderGradientOriginal } from '@shadergradient/react';
+
+const ShaderGradient = ShaderGradientOriginal as any;
 import MagnifiedBento, { BentoHoverContext } from '../ui/magnified-bento';
 import { Globe } from '../ui/globe';
 import { AnimatedCircularProgressBar } from '../ui/animated-circular-progress-bar';
