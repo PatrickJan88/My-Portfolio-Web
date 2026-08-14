@@ -245,9 +245,8 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
   const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
 
   // Fade out for Tagline (stays slightly longer, fades fully on second screen)
-  const taglineOpacity = useTransform(scrollYProgress, [0.3, 0.6], [1, 0]);
-  const taglineVisibility = useTransform(scrollYProgress, (pos) => pos > 0.6 ? "hidden" : "visible");
-  const taglineY = useTransform(scrollYProgress, [0.1, 0.3], [0, 20]);
+
+
 
   const desktopTargets = [
     { x: "-165%", y: 150 },
@@ -336,19 +335,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
 
           <div className="h-[360px] sm:h-[280px] md:h-[320px] lg:h-[350px] w-full" />
 
-          {/* Tagline & Actions (separated for faster fade but kept in flow for layout) */}
-          <motion.div style={{ opacity: taglineOpacity, visibility: taglineVisibility }} className="pointer-events-none">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-center gap-10 mt-[-20px] sm:mt-10 pointer-events-none"
-            >
-              <p className="text-base text-neutral-700 max-w-lg text-center font-medium leading-relaxed px-6 hidden sm:block font-mono">
-                Grounded in Human-Computer Interaction, I design products where AI accelerates exploration and human judgment shapes meaningful experiences.
-              </p>
-            </motion.div>
-          </motion.div>
+
         </motion.div>
 
         {/* CARDS */}

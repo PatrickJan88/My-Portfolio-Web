@@ -2,6 +2,8 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { HeroSection } from "../components/sections/HeroSection";
+import { TextRevealSection } from "../components/sections/TextRevealSection";
+import { MetricsSection } from "../components/sections/MetricsSection";
 import { TripleDiamondSection } from "../components/sections/TripleDiamondSection";
 import { SeekrSection } from "../components/sections/SeekrSection";
 import { InstantCamera } from "../components/ui/InstantCamera";
@@ -21,6 +23,10 @@ export default function Home() {
   return (
     <div className="w-full flex-1 flex flex-col">
       <HeroSection />
+      
+      <TextRevealSection />
+
+      <MetricsSection />
 
       <TripleDiamondSection />
 
