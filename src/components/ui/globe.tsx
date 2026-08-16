@@ -1,3 +1,4 @@
+"use client";
 import createGlobe, { COBEOptions } from "cobe";
 import { useCallback, useEffect, useRef, useContext } from "react";
 import { useSpring } from "@react-spring/web";
@@ -14,7 +15,7 @@ const GLOBE_CONFIG: Omit<COBEOptions, "width" | "height"> = {
   mapSamples: 16000,
   mapBrightness: 1.2,
   baseColor: [1, 1, 1],
-  markerColor: [0.09, 0.09, 0.09],
+  markerColor: [0.082, 0.365, 0.988],
   glowColor: [1, 1, 1],
   markers: [],
 };

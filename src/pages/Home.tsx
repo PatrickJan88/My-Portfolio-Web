@@ -17,7 +17,7 @@ import {
 } from '@/src/components/animate-ui/components/animate/cursor';
 
 export default function Home() {
-  const featuredWorksIds = ["biotopia-digital-experience", "ears", "corporate-website-redesign", "svenska-lek"];
+  const featuredWorksIds = ["biotopia-digital-experience", "ears", "corporate-website-redesign", "health-app-design"];
   const featuredWorks = featuredWorksIds.map(id => projectsData.find(p => p.id === id)).filter(Boolean) as typeof projectsData;
 
   return (

@@ -23,7 +23,7 @@ export function MetricsSection() {
                 <CountingNumber 
                   target={stat.target} 
                   autoStart={isInView} 
-                  transition={{ duration: 2.5, ease: "easeOut", type: "tween" }}
+                  transition={{ duration: 1, ease: "easeOut", type: "tween" }}
                 />
                 <span>{stat.suffix}</span>
               </div>

@@ -86,7 +86,7 @@ export function AnimatedCircularProgressBar({
           }
         />
       </svg>
-      <span className="absolute inset-0 m-auto flex items-center justify-center animate-in fade-in text-neutral-900">
+      <span className="absolute inset-0 m-auto flex items-center justify-center animate-in fade-in text-white drop-shadow-md text-2xl font-semibold">
         {Math.round(currentPercent)}
       </span>
     </div>

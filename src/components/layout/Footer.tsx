@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ThinkingOrb } from "thinking-orbs";
 import { useState, useEffect } from "react";
 import LetterSwapForward from "../ui/text/letter-swap-forward-anim";
+import { LightRays } from "../ui/light-rays";
 
 const orbStates = ["working", "searching", "solving", "listening", "composing", "shaping"] as const;
 
@@ -20,8 +21,9 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="w-full z-20 flex flex-col items-center border-t border-black/5 bg-transparent shrink-0">
-      <div className="w-full max-w-[1400px] pt-12 pb-8 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-6">
+    <footer className="w-full relative z-20 flex flex-col items-center bg-transparent shrink-0 overflow-hidden">
+      <LightRays color="#E8ECF0" />
+      <div className="w-full relative z-10 max-w-[1400px] pt-12 pb-8 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-6">
         
         {/* Desktop / Tablet version */}
         <div className="hidden md:flex items-start gap-4">
@@ -37,9 +39,6 @@ export default function Footer() {
             <p className="text-[12px] tracking-[0.2em] font-bold text-[#a0a0a0] -mt-1">
               Product Designer
             </p>
-            <span className="inline text-left text-[10px] tracking-[0.15em] font-bold text-[#333333] mt-[10px] -ml-[2px]">
-              💡 Imagining &nbsp;&nbsp; 💻 Building &nbsp;&nbsp; 🚀 Beyond
-            </span>
           </div>
         </div>
 
@@ -70,10 +69,13 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="w-full border-t border-black/5 h-[32px] flex items-center justify-center">
-        <div className="w-full max-w-[1400px] px-6 md:px-12 flex justify-center md:justify-start">
+      <div className="w-full relative z-10 border-t border-black/5 min-h-[32px] py-2 md:py-0 flex items-center justify-center">
+        <div className="w-full max-w-[1400px] px-6 md:px-12 flex flex-col md:flex-row justify-center md:justify-between items-center gap-2 md:gap-0">
           <span className="text-center md:text-left text-[12px] tracking-[0.15em] font-semibold font-sans text-[#333333] pl-0 md:pl-[52px]">
             © {new Date().getFullYear()} All Rights Reserved
+          </span>
+          <span className="text-center md:text-right text-[10px] tracking-[0.15em] font-bold text-[#333333]">
+            💡 Imagining &nbsp;&nbsp; 💻 Building &nbsp;&nbsp; 🚀 Beyond
           </span>
         </div>
       </div>

@@ -40,7 +40,7 @@ export default function Projects() {
           to={{ opacity: 1, y: 0 }}
         />
         <p className="text-base text-neutral-700 max-w-2xl font-medium leading-relaxed font-mono">
-          An archive of selected works spanning robust enterprise platforms,
+          An archive of case studies spanning enterprise platforms,
           native mobile applications, and academic human-computer interaction
           research.
         </p>
