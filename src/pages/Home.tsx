@@ -6,9 +6,8 @@ import { TextRevealSection } from "../components/sections/TextRevealSection";
 import { MetricsSection } from "../components/sections/MetricsSection";
 import { TripleDiamondSection } from "../components/sections/TripleDiamondSection";
 import { SeekrSection } from "../components/sections/SeekrSection";
-import { InstantCamera } from "../components/ui/InstantCamera";
+import { CinematicVideoSection } from "../components/sections/CinematicVideoSection";
 import { FeaturedSlider } from "../components/ui/FeaturedSlider";
-import { FloatingScrapbook } from "../components/ui/FloatingScrapbook";
 import { projectsData } from "../data/projects";
 import {
   Cursor,
@@ -40,19 +39,8 @@ export default function Home() {
 
       <TripleDiamondSection />
 
-      {/* "Let's FIKA" Section */}
-      <div className="relative w-full z-20 bg-[#FBFBFB] flex flex-col items-center justify-start pt-12 md:pt-16 pb-[300px] md:pb-[420px] px-6 md:px-12 overflow-hidden border-y border-black/5 min-h-[500px] md:min-h-[700px]">
-        <CursorProvider>
-          <Cursor className="text-black size-8" />
-          <CursorFollow className="bg-black">Let&#39;s Fika</CursorFollow>
-        </CursorProvider>
-        <div className="w-full max-w-[1400px] mx-auto flex flex-col items-center">
-          <div className="relative z-40 transform scale-75 md:scale-100 origin-top">
-            <InstantCamera />
-          </div>
-        </div>
-        <FloatingScrapbook />
-      </div>
+      {/* Cinematic On-Scroll Video Reveal Section */}
+      <CinematicVideoSection />
     </div>
   );
 }
