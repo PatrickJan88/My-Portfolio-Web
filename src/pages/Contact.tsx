@@ -146,7 +146,7 @@ export default function Contact() {
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-[13px] font-bold tracking-[0.2em] text-[#333333]">Name <span className="text-red-500 text-[14px]">*</span></label>
+                <label htmlFor="name" className="text-[13px] font-bold tracking-[0.2em] text-[#333333]">Name <span className="text-black text-[14px]">*</span></label>
                 <input 
                   type="text" 
                   id="name" 
@@ -158,7 +158,7 @@ export default function Contact() {
               </div>
               
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-[13px] font-bold tracking-[0.2em] text-[#333333]">Email <span className="text-red-500 text-[14px]">*</span></label>
+                <label htmlFor="email" className="text-[13px] font-bold tracking-[0.2em] text-[#333333]">Email <span className="text-black text-[14px]">*</span></label>
                 <input 
                   type="email" 
                   id="email" 

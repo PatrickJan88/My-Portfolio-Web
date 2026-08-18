@@ -14,14 +14,18 @@ function AccordionBlock({ block }: { block: { badge: string, title: string, desc
         onClick={() => setIsOpen(!isOpen)}
         className="flex w-full items-start justify-between text-left focus:outline-none group gap-2 py-2 -my-2 relative z-10 cursor-pointer"
       >
-        <div className="flex items-center gap-2 mt-0.5 pointer-events-none">
-          <span className={`text-[9px] lg:text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-full shrink-0 ${['Diverge', 'Explore', 'Experiment', 'Scale'].includes(block.badge) ? 'bg-[#6D86FF]/20 text-[#889DFF]' : 'bg-[#2db482]/14 text-[#4db896]'}`}>
-            {block.badge}
-          </span>
-          <span className="font-semibold text-[oklch(87.1%_0.006_286.286)] text-sm md:text-[11px] lg:text-[13px] whitespace-nowrap tracking-tight group-hover:text-[oklch(98.5%_0_none)] transition-colors">{block.title}</span>
+        <div className="flex items-center mt-0.5 pointer-events-none flex-1 min-w-0 text-left gap-3">
+          <div className="w-[72px] lg:w-[82px] shrink-0 flex justify-start">
+            <span className={`text-[9px] lg:text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-full shrink-0 ${['Diverge', 'Explore', 'Experiment', 'Scale'].includes(block.badge) ? 'bg-[#6D86FF]/20 text-[#889DFF]' : 'bg-[#2db482]/14 text-[#4db896]'}`}>
+              {block.badge}
+            </span>
+          </div>
+          <span className="font-semibold text-[oklch(87.1%_0.006_286.286)] text-sm md:text-[11px] lg:text-[13px] truncate tracking-tight group-hover:text-[oklch(98.5%_0_none)] transition-colors">{block.title}</span>
         </div>
-        <div className="text-white/50 shrink-0 flex items-center justify-center size-4 rounded-full border border-white/30 group-hover:text-white group-hover:border-white/50 transition-colors mt-0.5 pointer-events-none">
-          {isOpen ? <Minus size={10} strokeWidth={2.5} /> : <Plus size={10} strokeWidth={2.5} />}
+        <div className="shrink-0 flex justify-end items-center">
+          <div className="text-white/50 shrink-0 flex items-center justify-center size-4 rounded-full border border-white/30 group-hover:text-white group-hover:border-white/50 transition-colors mt-0.5 pointer-events-none">
+            {isOpen ? <Minus size={10} strokeWidth={2.5} /> : <Plus size={10} strokeWidth={2.5} />}
+          </div>
         </div>
       </button>
       <AnimatePresence initial={false}>
@@ -112,7 +116,7 @@ function Diamond({ number, title, blocks, videoSrc, videoScale = "scale-[1.6]" }
         </div>
       </div>
 
-      <ul className="mt-4 md:mt-6 flex flex-col gap-4 lg:gap-6 text-sm lg:text-base text-[#DDE1E6] w-full max-w-[300px] md:max-w-[220px] lg:max-w-[280px] px-4 md:px-0 mx-auto">
+      <ul className="mt-4 md:mt-6 flex flex-col gap-4 lg:gap-6 text-sm lg:text-base text-[#DDE1E6] w-full max-w-[320px] md:max-w-[240px] lg:max-w-[300px] px-4 md:px-0 mx-auto">
         {blocks.map((block, i) => (
           <AccordionBlock key={i} block={block} />
         ))}

@@ -37,11 +37,11 @@ export default function Footer() {
                 <HugeiconsIcon icon={GithubIcon} size={18} />
               </MorphButton>
             </a>
-            <a href="mailto:ranpofei@gmail.com" target="_blank" rel="noreferrer">
+            <Link to="/contact">
               <MorphButton>
                 <HugeiconsIcon icon={Mail01Icon} size={18} />
               </MorphButton>
-            </a>
+            </Link>
           </div>
         </div>
 

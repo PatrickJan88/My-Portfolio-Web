@@ -285,7 +285,8 @@ export function SeekrSection() {
               />
 
               <p className="text-base sm:text-lg md:text-xl text-neutral-500 max-w-[85ch] font-mono leading-relaxed sm:mb-0 text-left">
-                Track, evaluate, and land your next tech role. I realized a problem that I'm tired of tracking applications across various platforms during my job search, so I collaborated with AI agents to address it.
+                Track, evaluate, and land your next tech role. <br className="hidden sm:block" />
+                <span className="block mt-2 sm:mt-1">I realized a problem that I'm tired of tracking applications across various platforms during my job search, so I collaborated with AI agents to address it.</span>
               </p>
             </div>
 
