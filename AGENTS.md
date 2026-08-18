@@ -155,18 +155,24 @@ The visual language should feel:
 **Preferred backgrounds:**
 * black
 * neutral-900
+* Footer components utilize specific OKLCH contrast blocks: background `oklch(14.5% 0 none)`, borders `oklch(20.5% 0 none)`.
 
 Color should support hierarchy, not dominate attention.
 
 ### Typography
 **Headings:**
 * Space Grotesk
+* Letter-spacing must default to normal (`tracking-normal`), avoid overly tight tracking unless explicitly overriding for a specific display impact.
 
 **Body:**
 * Inter
+* Always use `text-pretty` on editorial, descriptive, and paragraph text to prevent typographic orphans.
 
 **Technical metadata:**
 * Monospace
+
+**Data Strings:**
+* Never hardcode line breaks (`\n`) in JSON or data string titles to control layout. Let CSS (`text-pretty`, max-widths) manage responsiveness.
 
 Typography should prioritize readability before visual style.
 

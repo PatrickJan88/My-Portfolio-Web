@@ -274,7 +274,7 @@ export function SeekrSection() {
               <SplitText
                 text="Seekr"
                 tag="h2"
-                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-neutral-900 leading-none mb-6 inline-block text-left"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-normal text-neutral-900 leading-none mb-6 inline-block text-left"
                 textAlign="left"
                 delay={50}
                 duration={1}
@@ -284,9 +284,9 @@ export function SeekrSection() {
                 to={{ opacity: 1, y: 0 }}
               />
 
-              <p className="text-base sm:text-lg md:text-xl text-neutral-500 max-w-[85ch] font-mono leading-relaxed sm:mb-0 text-left">
+              <p className="text-base sm:text-lg md:text-xl text-neutral-500 max-w-[85ch] font-mono leading-relaxed sm:mb-0 text-left text-pretty">
                 Track, evaluate, and land your next tech role. <br className="hidden sm:block" />
-                <span className="block mt-2 sm:mt-1">I realized a problem that I'm tired of tracking applications across various platforms during my job search, so I collaborated with AI agents to address it.</span>
+                <span className="block mt-2 sm:mt-1 text-pretty">I realized a problem that I'm tired of tracking applications across various platforms during my job search, so I collaborated with AI agents to address it.</span>
               </p>
             </div>
 

@@ -244,7 +244,7 @@ export function TripleDiamondSection() {
         <SplitText
           text="My Human-led AI Triple Diamond"
           tag="h2"
-          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-[oklch(92%_0.004_286.32)] leading-none drop-shadow-sm mb-6 inline-block text-left"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-normal text-[oklch(92%_0.004_286.32)] leading-none drop-shadow-sm mb-6 inline-block text-left"
           textAlign="left"
           delay={50}
           duration={1}

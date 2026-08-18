@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700;800;900&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=switzer@100,200,300,400,500,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Text:wght@200..700&display=swap');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'TraditionalAmpersand';
+  src: local('Inter'), local('Helvetica Neue'), local('Arial');
+  unicode-range: U+0026;
+}
 
 @theme {
   /* Nuetral Colors */
@@ -22,7 +28,7 @@
   --color-accent-green: #4DB440;
 
   /* Typography */
-  --font-sans: "Switzer", "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-sans: "TraditionalAmpersand", "Stack Sans Text", "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 @layer utilities {
@@ -50,8 +56,8 @@
 
 @theme inline {
     --font-heading: var(--font-sans);
-    --font-sans: 'Switzer', 'Inter', sans-serif;
-    --font-mono: 'Chivo Mono Variable', monospace;
+    --font-sans: 'TraditionalAmpersand', 'Stack Sans Text', 'Inter', sans-serif;
+    --font-mono: 'Stack Sans Text', monospace;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -129,6 +135,49 @@
 }
 
 :root {
+    /* Type Scale */
+    --text-caption: 13px;
+    --text-body-sm: 15px;
+    --text-subheading: 19px;
+    --text-heading-sm: 25px;
+    --text-heading: 27px;
+    --text-heading-lg: 33px;
+    --text-display: 44px;
+    --text-display-lg: 63px;
+
+    /* Spacing Scale */
+    --spacing-8: 8px;
+    --spacing-12: 12px;
+    --spacing-16: 16px;
+    --spacing-24: 24px;
+    --spacing-32: 32px;
+    --spacing-36: 36px;
+    --spacing-40: 40px;
+    --spacing-48: 48px;
+    --spacing-56: 56px;
+    --spacing-64: 64px;
+    --spacing-80: 80px;
+    --spacing-216: 216px;
+
+    /* Border Radius */
+    --radius-nav: 9999px;
+    --radius-tags: 9999px;
+    --radius-cards: 48px;
+    --radius-images: 32px;
+    --radius-large: 24px;
+    --radius-medium: 12px;
+    --radius-buttons: 9999px;
+    --radius-smallElements: 6px;
+
+    /* Shadows */
+    --shadow-sm: rgba(0, 0, 0, 0.04) 0px 2px 6px 0px, rgba(0, 0, 0, 0.06) 0px 4px 8px 0px;
+
+    /* Base Layout */
+    --page-max-width: 1200px;
+    --section-gap: 64px;
+    --card-padding: 24px;
+    --element-gap: 16px;
+
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);

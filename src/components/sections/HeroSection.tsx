@@ -229,7 +229,7 @@ function HeroSequence({ deviceType }: { deviceType: "mobile" | "tablet" | "deskt
           <div className="w-full flex flex-col items-center justify-center -mt-[36px]">
             {/* Main Title */}
             <div className="relative w-full pointer-events-auto">
-              <h1 className="text-7xl sm:text-[5rem] md:text-[6rem] lg:text-[8.5rem] font-bold tracking-tighter text-neutral-900 leading-[0.8] uppercase text-center w-full px-4 pb-4">
+              <h1 className="text-7xl sm:text-[5rem] md:text-[6rem] lg:text-[8.5rem] font-bold tracking-normal text-neutral-900 leading-[0.8] uppercase text-center w-full px-4 pb-4">
                 POFEI
               </h1>
             </div>

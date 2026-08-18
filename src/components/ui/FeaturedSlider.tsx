@@ -17,6 +17,9 @@ interface Work {
 }
 
 export function FeaturedSlider({ works }: { works: Work[] }) {
+  // Duplicate works array multiple times to ensure enough slides to fill the screen + wrap smoothly
+  const loopedWorks = [...works, ...works, ...works];
+
   const containerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const totalRef = useRef<HTMLHeadingElement>(null);
@@ -40,18 +43,18 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
     if (!totalElement || !stepElement || !stepsParent) return;
 
     let activeElement: HTMLElement | null = null;
-    const totalSlides = slides.length;
+    const originalLength = works.length;
 
-    totalElement.textContent = totalSlides < 10 ? `0${totalSlides}` : `${totalSlides}`;
+    totalElement.textContent = originalLength < 10 ? `0${originalLength}` : `${originalLength}`;
 
     stepsParent.innerHTML = ''; 
-    slides.forEach((_, index) => {
+    for (let i = 0; i < originalLength; i++) {
       const stepClone = stepElement.cloneNode(true) as HTMLElement;
-      stepClone.textContent = index + 1 < 10 ? `0${index + 1}` : `${index + 1}`;
+      stepClone.textContent = i + 1 < 10 ? `0${i + 1}` : `${i + 1}`;
       stepClone.style.display = 'block';
       stepsParent.appendChild(stepClone);
-    });
-
+    }
+    
     const allSteps = stepsParent.querySelectorAll('[data-slide-count="step"]');
     
     if (slides.length > 0) {
@@ -70,7 +73,8 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
         element.classList.add("active");
         activeElement = element;
         
-        gsap.to(allSteps, { y: `${-100 * index}%`, ease: "power3", duration: 0.45 });
+        const realIndex = index % originalLength;
+        gsap.to(allSteps, { y: `${-100 * realIndex}%`, ease: "power3", duration: 0.45 });
       }
     });
     
@@ -291,7 +295,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
             <SplitText
             text="Selected cases"
             tag="h2"
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-white leading-none mb-6 inline-block"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-normal text-white leading-none mb-6 inline-block"
             delay={50}
             duration={1}
             ease="power3.out"
@@ -330,9 +334,9 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
             <div className="osmo-slider-container w-full relative text-white overflow-hidden cursor-grab active:cursor-grabbing">
               <div className="w-full flex items-center justify-start">
                 <div data-slider="list" ref={listRef} className="flex relative items-stretch py-6 md:py-12 group/list">
-                  {works.map((work, index) => (
+                  {loopedWorks.map((work, index) => (
                     <div 
-                      key={work.id} 
+                      key={`${work.id}-${index}`} 
                       data-slider="slide" 
                       className="slider-slide flex-none w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] shrink-0 px-4 relative opacity-80 transition-opacity duration-400 [&.active]:opacity-100 md:hover:!opacity-100 md:group-hover/list:[&.active]:opacity-80 group/slide cursor-pointer"
                     >

@@ -10,7 +10,7 @@ export default function Footer() {
     <footer 
       className={cn(
         "w-full relative z-20 flex flex-col items-center shrink-0 overflow-hidden transition-colors duration-500",
-        "bg-black shadow-none border-none"
+        "bg-[oklch(14.5%_0_none)] shadow-none border-none"
       )}
     >
       <div className="w-full relative z-10 max-w-[1400px] pt-6 pb-4 md:pt-6 md:pb-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center md:items-start gap-5 md:gap-0">
@@ -55,7 +55,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="w-full relative z-10 border-t border-neutral-900 py-2 flex items-center justify-center">
+      <div className="w-full relative z-10 border-t border-[oklch(20.5%_0_none)] py-2 flex items-center justify-center">
         <div className="w-full max-w-[1400px] px-6 md:px-12 flex flex-col md:flex-row justify-center md:justify-between items-center gap-1 md:gap-0">
           <span className="text-center md:text-left text-[12px] tracking-[0.15em] font-semibold font-sans text-neutral-500">
             © {new Date().getFullYear()} All Rights Reserved

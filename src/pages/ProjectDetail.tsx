@@ -193,7 +193,7 @@ export default function ProjectDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight mb-4 md:mb-8 text-[#e6e6e6] max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-normal mb-4 md:mb-8 text-[#e6e6e6] max-w-4xl">
               {project.title}
             </h1>
           </motion.div>
@@ -291,29 +291,27 @@ export default function ProjectDetail() {
 
       <main className="w-full max-w-[1600px] mx-auto px-6 md:px-12 pb-24 pt-16 md:pt-24">
         {/* Overview Section */}
-        <section className={`w-full flex flex-col lg:flex-row gap-12 lg:gap-24 px-2 md:px-8 ${project.id === 'svenska-lek' ? 'mb-12 md:mb-16' : 'mb-16 md:mb-24'}`}>
-          {/* Left Column */}
-          <div className="w-full lg:w-5/12 flex flex-col">
-            <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
+        <article className={`w-full flex flex-col px-2 md:px-8 ${project.id === 'svenska-lek' ? 'mb-12 md:mb-16' : 'mb-16 md:mb-24'}`}>
+          <div className="w-full flex flex-col mb-8 md:mb-12">
+            <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8 text-pretty">
               {project.overviewLabel || "Overview"}
             </h3>
-            <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] whitespace-pre-line">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-neutral-900 leading-[1.1] whitespace-pre-line text-pretty">
               {project.overviewHeading || project.heroHeading}
             </h2>
           </div>
 
-          {/* Right Column */}
-          <div className="w-full lg:w-7/12 flex flex-col justify-center pt-2 lg:pt-12">
-            <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light whitespace-pre-line">
+          <div className="w-full flex flex-col">
+            <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light whitespace-pre-line text-pretty">
               {project.overview}
             </p>
             {project.subOverview && (
-              <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-2xl font-light">
+              <p className="text-base md:text-lg text-neutral-500 leading-relaxed font-light text-pretty">
                 {project.subOverview}
               </p>
             )}
           </div>
-        </section>
+        </article>
 
         {/* Testimonial Section */}
         {project.id !== 'icon-archive' && (
@@ -413,24 +411,14 @@ export default function ProjectDetail() {
             </div>
           ) : (
             <>
-              <div className={`w-full flex flex-col lg:flex-row items-start ${project.id === 'svenska-lek' ? 'gap-6 lg:gap-10' : 'gap-12 lg:gap-16'}`}>
-                <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
-                  <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
-                    {project.section1?.label || "Approach"}
-                  </h3>
-                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
-                    {project.section1?.heading || "Digital Platform"}
-                  </h2>
-                  <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light whitespace-pre-line">
-                    {project.section1?.content || "The hackathon platform was designed for seamless registration, team formation, and project submission. We created a digital experience that turned participation into a journey — from sign-up to demo day."}
-                  </p>
-                </div>
+              {/* Section 2: Text Wrapping Media Right */}
+              <article className="w-full clear-both">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8 }}
-                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-right lg:ml-12 lg:mt-2"
                   onClick={() => project.media2 && handleMediaClick(project.media2, project.media2.endsWith(".webm") || project.media2.endsWith(".mp4"))}
                 >
                   {project.media2 ? (
@@ -445,16 +433,28 @@ export default function ProjectDetail() {
                     </p>
                   )}
                 </motion.div>
-              </div>
+                
+                <div className="px-2 md:px-8">
+                  <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
+                    {project.section1?.label || "Approach"}
+                  </h3>
+                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
+                    {project.section1?.heading || "Digital Platform"}
+                  </h2>
+                  <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light whitespace-pre-line">
+                    {project.section1?.content || "The hackathon platform was designed for seamless registration, team formation, and project submission. We created a digital experience that turned participation into a journey — from sign-up to demo day."}
+                  </p>
+                </div>
+              </article>
 
-              {/* Section 3: Media Left, Text Right */}
-              <div className={`w-full flex flex-col-reverse lg:flex-row items-start ${project.id === 'svenska-lek' ? 'gap-6 lg:gap-10' : 'gap-12 lg:gap-16'}`}>
+              {/* Section 3: Text Wrapping Media Left */}
+              <article className="w-full clear-both mt-16 lg:mt-24">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-left lg:mr-12 lg:mt-2"
                   onClick={() => project.media3 && handleMediaClick(project.media3, project.media3.endsWith(".webm") || project.media3.endsWith(".mp4"))}
                 >
                   {project.media3 ? (
@@ -469,18 +469,19 @@ export default function ProjectDetail() {
                     </p>
                   )}
                 </motion.div>
-                <div className="w-full lg:w-5/12 flex flex-col px-2 md:px-8">
+                
+                <div className="px-2 md:px-8">
                   <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
                     {project.section2?.label || "Design System"}
                   </h3>
-                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
+                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
                     {project.section2?.heading || "Visual Identity"}
                   </h2>
                   <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light whitespace-pre-line">
                     {project.section2?.content || "We established a cohesive visual system built on bold typography and strategic use of color. This system ensures consistency across marketing materials, digital platforms, and physical venue signage."}
                   </p>
                 </div>
-              </div>
+              </article>
             </>
           )}
 
@@ -541,29 +542,27 @@ export default function ProjectDetail() {
 
           {/* Additional Text Section */}
           {project.id !== 'icon-archive' && (
-          <section className={`w-full flex flex-col lg:flex-row gap-12 lg:gap-24 px-2 md:px-8 ${project.id === 'svenska-lek' ? 'pt-4 md:pt-6' : 'pt-8 md:pt-12'}`}>
-            {/* Left Column */}
-            <div className="w-full lg:w-5/12 flex flex-col">
-              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8">
+          <article className={`w-full flex flex-col px-2 md:px-8 ${project.id === 'svenska-lek' ? 'pt-4 md:pt-6' : 'pt-8 md:pt-12'}`}>
+            <div className="w-full flex flex-col mb-8 md:mb-12">
+              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8 text-pretty">
                 {project.section3?.label || "Result"}
               </h3>
-              <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight text-neutral-900 leading-[1.1] whitespace-pre-line">
+              <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-neutral-900 leading-[1.1] whitespace-pre-line text-pretty">
                 {project.section3?.heading || project.heroHeading}
               </h2>
             </div>
             
-            {/* Right Column */}
-            <div className="w-full lg:w-7/12 flex flex-col justify-center pt-2 lg:pt-12">
-              <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light whitespace-pre-line">
+            <div className="w-full flex flex-col">
+              <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light whitespace-pre-line text-pretty">
                 {project.section3?.content || project.overview}
               </p>
               {project.subOverview && !project.section3 && (
-                <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-2xl font-light">
+                <p className="text-base md:text-lg text-neutral-500 leading-relaxed font-light text-pretty">
                   {project.subOverview}
                 </p>
               )}
             </div>
-          </section>
+          </article>
           )}
         </section>
 
@@ -577,7 +576,7 @@ export default function ProjectDetail() {
             <p className="text-sm font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
               Next Project
             </p>
-            <h2 className="text-4xl md:text-6xl font-light tracking-tight text-neutral-900 mb-6 group-hover:opacity-70 transition-opacity">
+            <h2 className="text-4xl md:text-6xl font-light tracking-normal text-neutral-900 mb-6 group-hover:opacity-70 transition-opacity">
               {nextProject.title}
             </h2>
             <div className="w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-900 group-hover:bg-neutral-900 group-hover:text-white transition-all transform group-hover:scale-110">

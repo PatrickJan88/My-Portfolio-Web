@@ -10,6 +10,7 @@ export const healthAppDesignCaseStudy: ProjectData = {
   heroHeading: "Digital Health\nAPP",
   heroImage: "/projects/health-app-design/cover-hero-page.webp",
   
+  overviewHeading: "Digital Health APP",
   overview: "A comprehensive digital health platform built natively within the WeChat Mini Program ecosystem. The product transforms the traditional medical journey into a modern, frictionless experience by connecting patients with remote consultations, localized pathology education, and a new-retail O2O (Online-to-Offline) pharmacy.",
   
   testimonial: {

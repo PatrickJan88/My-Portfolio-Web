@@ -31,7 +31,7 @@ export default function Projects() {
         <SplitText
           text="Selected cases"
           tag="h1"
-          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-neutral-900 mb-6 leading-none inline-block"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-normal text-neutral-900 mb-6 leading-none inline-block"
           delay={50}
           duration={1}
           ease="power3.out"
@@ -39,7 +39,7 @@ export default function Projects() {
           from={{ opacity: 0, y: 40 }}
           to={{ opacity: 1, y: 0 }}
         />
-        <p className="text-base text-neutral-700 max-w-2xl font-medium leading-relaxed font-mono">
+        <p className="text-base text-neutral-700 max-w-2xl font-medium leading-relaxed font-mono text-pretty">
           An archive of case studies spanning enterprise platforms,
           native mobile applications, and academic human-computer interaction
           research.

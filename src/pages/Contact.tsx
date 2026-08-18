@@ -58,7 +58,7 @@ export default function Contact() {
             <SplitText
               text="Let's chat"
               tag="h1"
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-[#373737] leading-[0.9] mb-6 inline-block"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-normal text-[#373737] leading-[0.9] mb-6 inline-block"
               delay={50}
               duration={1}
               ease="power3.out"
@@ -66,7 +66,7 @@ export default function Contact() {
               from={{ opacity: 0, y: 40 }}
               to={{ opacity: 1, y: 0 }}
             />
-            <p className="text-base text-[#4A4A4A] max-w-md leading-relaxed font-mono">
+            <p className="text-base text-[#4A4A4A] max-w-md leading-relaxed font-mono text-pretty">
               Always open to new partnerships and exploring exciting opportunities.
             </p>
           </div>

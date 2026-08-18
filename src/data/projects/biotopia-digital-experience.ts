@@ -8,6 +8,7 @@ export const biotopiaDigitalExperienceCaseStudy: ProjectData = {
   image: "/projects/biotopia-digital-experience/bio-cover-page.webp",
   
   heroHeading: "Unified Museum\nService",
+  overviewHeading: "Unified Museum Service",
   heroImage: "/projects/biotopia-digital-experience/bio-cover-hero-page.webp",
   
   overview: "The Uppsala Biotopia Museum faced a common challenge: attracting new visitors while creating meaningful engagement beyond a single museum visit. To address this, I designed a unified service ecosystem that connects physical and digital touchpoints into one continuous visitor journey.\n\nThe concept combines targeted offline campaigns, a gamified web experience, a mobile exploration platform, and an internal CMS to create an Online-to-Offline (O2O) engagement loop. Visitors discover the museum through community touchpoints, interact with educational digital experiences, and are motivated to visit the museum to unlock rewards and continue their journey.\n\nBy aligning visitor engagement, learning, and staff operations within a single service blueprint, the solution transforms isolated interactions into a scalable and connected museum experience.",
