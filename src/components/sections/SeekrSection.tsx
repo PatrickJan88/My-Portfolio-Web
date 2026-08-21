@@ -235,7 +235,7 @@ export function SeekrSection() {
                 <div className="flex items-center gap-2 overflow-hidden truncate">
                   <Lock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span className="truncate font-mono text-[11px] text-neutral-300">
-                    https://seekr-37311.firebaseapp.com/demo
+                    https://seekr-v5am.onrender.com/demo
                   </span>
                 </div>
                 <button
@@ -252,7 +252,7 @@ export function SeekrSection() {
             <div className="w-full flex-grow relative bg-[#0A0D14] overflow-hidden">
               <iframe
                 key={iframeKey}
-                src={`https://seekr-37311.firebaseapp.com/?demo=true&v=${iframeKey}`}
+                src={`https://seekr-v5am.onrender.com/?demo=true&v=${iframeKey}`}
                 title="Seekr Interactive Demo"
                 className="w-full h-full border-0 rounded-b-[2rem]"
                 loading="lazy"
@@ -292,7 +292,7 @@ export function SeekrSection() {
 
             <div className="flex shrink-0 w-full sm:w-auto">
               <a
-                href="https://seekr-37311.firebaseapp.com/"
+                href="https://seekr-v5am.onrender.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block cursor-pointer w-full sm:w-auto"
