@@ -12,7 +12,7 @@ export function GlassCard({ children, className, variant = "light", ...props }: 
     <div
       className={cn(
         "rounded-2xl md:rounded-[2rem] p-6 shadow-sm",
-        variant === "dark" ? "glass-panel-dark text-white" : "glass-panel-light text-neutral-900",
+        variant === "dark" ? "glass-panel-dark text-white" : "glass-panel-light text-ink-black",
         className
       )}
       {...props}

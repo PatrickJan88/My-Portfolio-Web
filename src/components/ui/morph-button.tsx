@@ -51,7 +51,7 @@ const MorphButton = React.forwardRef<HTMLButtonElement, MorphButtonProps>(
 
         const tl2 = gsap.timeline({ paused: true });
         tl2.fromTo(".icon-container", 
-          { color: "#000000" }, 
+          { color: "#17191c" }, 
           {
             color: "#ffffff",
             duration: 0.3,
@@ -85,7 +85,7 @@ const MorphButton = React.forwardRef<HTMLButtonElement, MorphButtonProps>(
         ref={buttonRef}
         disabled={disabled}
         className={cn(
-          "relative button cursor-pointer overflow-hidden bg-neutral-100 hover:bg-neutral-100 w-10 h-10 rounded-full flex items-center justify-center",
+          "relative button cursor-pointer overflow-hidden bg-mist-gray hover:bg-mist-gray w-10 h-10 rounded-full flex items-center justify-center",
           className
         )}
         {...props}
@@ -102,14 +102,14 @@ const MorphButton = React.forwardRef<HTMLButtonElement, MorphButtonProps>(
           >
             <path
               className="path"
-              fill="#000000"
+              fill="#17191c"
               strokeWidth="0px"
               vectorEffect="non-scaling-stroke"
               d="M 0 100 V 100 Q 50 100 100 100 V 100 z"
             />
           </svg>
         </div>
-        <div className="z-40 scale-100 icon-container flex items-center justify-center text-black">
+        <div className="z-40 scale-100 icon-container flex items-center justify-center text-ink-black">
           {children}
         </div>
       </button>

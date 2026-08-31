@@ -14,12 +14,12 @@ export function MetricsSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="w-full bg-neutral-50 pb-16 md:pb-24 pt-4 relative z-20">
+    <section ref={ref} className="w-full bg-fog-white pb-16 md:pb-24 pt-4 relative z-20">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center px-4 sm:px-6 md:px-12">
         <div className="grid grid-cols-2 gap-x-12 gap-y-16 lg:gap-x-20 sm:grid-cols-4 w-full max-w-6xl">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center flex flex-col items-center">
-              <div className="text-4xl sm:text-5xl md:text-6xl font-mono font-medium tracking-tight text-neutral-900 mb-3 md:mb-4 flex items-baseline">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-mono font-medium tracking-tight text-ink-black mb-3 md:mb-4 flex items-baseline">
                 <CountingNumber 
                   target={stat.target} 
                   autoStart={isInView} 
@@ -27,7 +27,7 @@ export function MetricsSection() {
                 />
                 <span>{stat.suffix}</span>
               </div>
-              <p className="text-sm md:text-base text-neutral-500 font-medium tracking-wide">
+              <p className="text-sm md:text-base text-slate-gray font-medium tracking-wide">
                 {stat.label}
               </p>
             </div>

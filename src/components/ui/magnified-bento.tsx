@@ -124,7 +124,7 @@ const MagnifiedBento = ({
         <div className="group relative h-full flex flex-col w-full overflow-hidden rounded-[2rem] bg-white p-1.5 sm:p-2 transition-all duration-500 hover:-translate-y-1 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] will-change-transform transform-gpu">
         <div
           className={cn(
-            "relative w-full overflow-hidden rounded-[1.5rem] bg-neutral-50 shrink-0 transform-gpu [transform:translateZ(0)]",
+            "relative w-full overflow-hidden rounded-[1.5rem] bg-fog-white shrink-0 transform-gpu [transform:translateZ(0)]",
             CONFIG.containerHeight
           )}
         >
@@ -134,17 +134,17 @@ const MagnifiedBento = ({
             ) : (
               <div className="w-full h-full overflow-hidden">
                 <BentoMarquee />
-                <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-neutral-50 to-transparent z-20"></div>
-                <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-neutral-50 to-transparent z-20"></div>
+                <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-fog-white to-transparent z-20"></div>
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-fog-white to-transparent z-20"></div>
               </div>
             )}
           </div>
         </div>
         <div className="p-4 sm:p-6 px-4 pb-6 sm:pb-8 flex-grow">
-          <h3 className="text-xl font-medium tracking-tight text-neutral-900">
+          <h3 className="text-xl font-medium tracking-tight text-ink-black">
             {title}
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-neutral-500">
+          <p className="mt-2 text-sm leading-relaxed text-slate-gray">
             {description}
           </p>
         </div>

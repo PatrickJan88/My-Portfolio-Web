@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ArrowUpRight, Lock, RotateCw } from 'lucide-react';
+import { Lock, RotateCw } from 'lucide-react';
+import { GithubIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { motion } from 'motion/react';
 import SplitText from '../ui/SplitText';
 import BorderGradientButton from '../ui/BorderGradientButton';
@@ -59,28 +61,24 @@ function ProgressDemo() {
 }
 
 function OneClickCaptureCover() {
-  const isHovered = useContext(BentoHoverContext);
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (!videoRef.current) return;
-    
-    if (isHovered) {
-      videoRef.current.play().catch(() => {});
-    } else {
-      videoRef.current.pause();
-    }
-  }, [isHovered]);
+    videoRef.current.play().catch(() => {});
+  }, []);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-neutral-100">
+    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-neutral-900">
       {/* Background Video Layer */}
       <video
         ref={videoRef}
         src="/seekr/loop-720x480-cover1.5.webm"
+        autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover z-0 scale-[1.2]"
       />
 
@@ -95,27 +93,23 @@ function OneClickCaptureCover() {
 }
 
 function VisualAnalyticsCover() {
-  const isHovered = useContext(BentoHoverContext);
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (!videoRef.current) return;
-    
-    if (isHovered) {
-      videoRef.current.play().catch(() => {});
-    } else {
-      videoRef.current.pause();
-    }
-  }, [isHovered]);
+    videoRef.current.play().catch(() => {});
+  }, []);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-neutral-100">
+    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-neutral-900">
       <video
         ref={videoRef}
         src="/seekr/loop-720x480-cover2.2.webm"
+        autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className="w-full h-full object-cover absolute inset-[-2px] z-0 scale-[1.2] pointer-events-none"
       />
       <div className="absolute inset-[-2px] bg-black/25 z-[1] pointer-events-none" />
@@ -127,27 +121,23 @@ function VisualAnalyticsCover() {
 }
 
 function SmartCVMatchCover() {
-  const isHovered = useContext(BentoHoverContext);
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (!videoRef.current) return;
-    
-    if (isHovered) {
-      videoRef.current.play().catch(() => {});
-    } else {
-      videoRef.current.pause();
-    }
-  }, [isHovered]);
+    videoRef.current.play().catch(() => {});
+  }, []);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-neutral-100">
+    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-neutral-900">
       <video
         ref={videoRef}
         src="/seekr/loop-720x480-cover3.2.webm"
+        autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className="w-full h-full object-cover absolute inset-0 z-0 scale-[1.2]"
       />
       <div className="absolute inset-0 bg-black/[0.35] z-[1] pointer-events-none" />
@@ -266,45 +256,50 @@ export function SeekrSection() {
 
       {/* 2. Intro & Bento Grid Section - Sticky peel effect */}
       <div className="relative z-10 w-full h-[200svh] mt-[-100svh]">
-        <section className="sticky top-0 w-full h-[100svh] flex flex-col justify-center bg-neutral-50 text-neutral-900 py-8 md:py-16 px-4 sm:px-6 md:px-12 shadow-[0_20px_60px_rgba(0,0,0,0.15)] rounded-none border-b border-neutral-200 overflow-hidden">
-          <div className="max-w-[1440px] mx-auto w-full h-full relative z-10 flex flex-col items-start justify-center">
+        <section className="sticky top-0 w-full h-[100svh] flex flex-col justify-center bg-fog-white text-ink-black py-8 md:py-16 px-4 sm:px-6 md:px-12 shadow-[0_20px_60px_rgba(0,0,0,0.15)] rounded-none border-b border-mist-gray overflow-hidden">
+          <div className="max-w-[1440px] mx-auto w-full h-full relative z-10 flex flex-col items-center justify-center">
           {/* Clean Header Block */}
-          <div className="w-full flex flex-col sm:flex-row sm:justify-between sm:items-end mb-10 md:mb-14 gap-6 sm:gap-8">
-            <div className="flex flex-col items-start text-left flex-1 min-w-0 pr-0 sm:pr-4 lg:pr-8">
-              <SplitText
-                text="Seekr"
-                tag="h2"
-                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-normal text-neutral-900 leading-none mb-6 inline-block text-left"
-                textAlign="left"
-                delay={50}
-                duration={1}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-              />
+          <div className="w-full flex flex-col items-center text-center mb-8 md:mb-12 max-w-4xl mx-auto">
+            <motion.img
+              src="/home/seekr logo 1.webp"
+              alt="Seekr"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+              className="h-9 md:h-12 lg:h-[60px] object-contain mb-6 inline-block"
+            />
 
-              <p className="text-base sm:text-lg md:text-xl text-neutral-500 max-w-[85ch] font-mono leading-relaxed sm:mb-0 text-left text-pretty">
-                Track, evaluate, and land your next tech role. <br className="hidden sm:block" />
-                <span className="block mt-2 sm:mt-1 text-pretty">I realized a problem that I'm tired of tracking applications across various platforms during my job search, so I collaborated with AI agents to address it.</span>
-              </p>
-            </div>
+            <p className="text-base sm:text-lg md:text-xl text-ink-black max-w-[85ch] font-mono leading-relaxed text-center text-pretty">
+              Track, evaluate, and land your next tech or academic role. <br className="hidden sm:block" />
+              <span className="block mt-2 sm:mt-1 text-pretty">I realized a problem that I'm tired of tracking applications across various platforms during my job search, so I collaborated with AI agents to address it.</span>
+            </p>
 
-            <div className="flex shrink-0 w-full sm:w-auto">
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-6 md:mt-8">
               <a
                 href="https://seekr-v5am.onrender.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block cursor-pointer w-full sm:w-auto"
+                className="inline-block cursor-pointer"
                 aria-label="Try Seekr AI coding project"
               >
                 <BorderGradientButton 
-                  className="cursor-pointer w-full sm:w-auto [&>div]:bg-neutral-900 [&>div]:group-hover:bg-neutral-800"
-                  contentClassName="w-full justify-center !text-white leading-none"
+                  className="cursor-pointer [&>div]:bg-ink-black [&>div]:group-hover:bg-neutral-800 h-[50px]"
+                  contentClassName="justify-center !text-white leading-none px-10 sm:px-12 !py-0 h-full w-full text-sm sm:text-base min-w-[140px] sm:min-w-[160px]"
                 >
                   <span>Try now</span>
-                  <ArrowUpRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </BorderGradientButton>
+              </a>
+
+              <a
+                href="https://github.com/PatrickJan88/Seekr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Seekr on GitHub"
+                className="inline-flex items-center justify-center gap-2 px-6 h-[50px] rounded-full bg-white border border-mist-gray text-ink-black font-medium text-sm sm:text-base hover:bg-neutral-100 transition-all shadow-sm cursor-pointer leading-none text-pretty box-border"
+              >
+                <HugeiconsIcon icon={GithubIcon} size={18} />
+                <span>GitHub</span>
               </a>
             </div>
           </div>

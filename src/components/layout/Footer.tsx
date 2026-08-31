@@ -3,7 +3,7 @@ import LetterSwapForward from "../ui/text/letter-swap-forward-anim";
 import { cn } from "@/lib/utils";
 import MorphButton from "../ui/morph-button";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Linkedin02Icon, GithubIcon, Mail01Icon } from "@hugeicons/core-free-icons";
+import { Linkedin02Icon, GithubIcon, Mail01Icon, File01Icon } from "@hugeicons/core-free-icons";
 
 export default function Footer() {
   return (
@@ -21,7 +21,7 @@ export default function Footer() {
             <Link to="/" className="text-[18px] font-bold tracking-tight text-white leading-none">
               <LetterSwapForward label="POFEI" />
             </Link>
-            <p className="text-[12px] tracking-[0.2em] font-bold mt-1.5 text-neutral-400 leading-none">
+            <p className="text-[12px] tracking-[0.2em] font-bold mt-1.5 text-ash-gray leading-none">
               Product Designer
             </p>
           </div>
@@ -32,35 +32,46 @@ export default function Footer() {
                 <HugeiconsIcon icon={Linkedin02Icon} size={18} />
               </MorphButton>
             </a>
-            <a href="https://github.com/PatrickJan88" target="_blank" rel="noreferrer">
+            <a href="https://github.com/PatrickJan88/My-Portfolio-Web" target="_blank" rel="noreferrer">
               <MorphButton>
                 <HugeiconsIcon icon={GithubIcon} size={18} />
               </MorphButton>
             </a>
-            <Link to="/contact">
+            <Link to="/contact" aria-label="Contact">
               <MorphButton>
                 <HugeiconsIcon icon={Mail01Icon} size={18} />
               </MorphButton>
             </Link>
+            <a 
+              href="/docs/Pofei_Ran_CV.pdf" 
+              target="_blank" 
+              rel="noreferrer" 
+              aria-label="Download Resume"
+              title="Download Resume"
+            >
+              <MorphButton>
+                <HugeiconsIcon icon={File01Icon} size={18} />
+              </MorphButton>
+            </a>
           </div>
         </div>
 
         {/* Right side: Navigation */}
         <div className="flex items-center justify-center md:justify-end w-full md:w-auto h-full md:mt-1">
           <nav className="flex items-center gap-6 text-[13px] font-semibold tracking-widest font-sans text-white">
-            <Link to="/" className="hover:text-neutral-400 transition-colors">Home</Link>
-            <Link to="/projects" className="hover:text-neutral-400 transition-colors">Projects</Link>
-            <Link to="/contact" className="hover:text-neutral-400 transition-colors">Contact</Link>
+            <Link to="/" className="hover:text-slate-gray transition-colors">Home</Link>
+            <Link to="/projects" className="hover:text-slate-gray transition-colors">Projects</Link>
+            <Link to="/contact" className="hover:text-slate-gray transition-colors">Contact</Link>
           </nav>
         </div>
       </div>
 
       <div className="w-full relative z-10 border-t border-[oklch(20.5%_0_none)] py-2 flex items-center justify-center">
         <div className="w-full max-w-[1400px] px-6 md:px-12 flex flex-col md:flex-row justify-center md:justify-between items-center gap-1 md:gap-0">
-          <span className="text-center md:text-left text-[12px] tracking-[0.15em] font-semibold font-sans text-neutral-500">
+          <span className="text-center md:text-left text-[12px] tracking-[0.15em] font-semibold font-sans text-slate-gray">
             © {new Date().getFullYear()} All Rights Reserved
           </span>
-          <span className="text-center md:text-right text-[10px] tracking-[0.15em] font-bold text-neutral-500">
+          <span className="text-center md:text-right text-[10px] tracking-[0.15em] font-bold text-slate-gray">
             Imagining &nbsp;·&nbsp; Building &nbsp;·&nbsp; Beyond
           </span>
         </div>

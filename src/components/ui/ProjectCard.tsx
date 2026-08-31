@@ -35,8 +35,8 @@ export function ProjectCard({ id, title, category, image, className }: ProjectCa
       </motion.div>
       
       <div className="px-1">
-        <h3 className="font-bold text-xl text-neutral-900 group-hover:text-primary-700 transition-colors">{title}</h3>
-        <p className="text-sm font-semibold text-neutral-700 tracking-widest mt-1 opacity-70">{category}</p>
+        <h3 className="font-bold text-xl text-ink-black group-hover:text-primary-700 transition-colors">{title}</h3>
+        <p className="text-sm font-semibold text-ash-gray tracking-widest mt-1">{category}</p>
       </div>
     </Link>
   );

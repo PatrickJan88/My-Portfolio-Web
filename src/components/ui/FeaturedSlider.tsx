@@ -317,7 +317,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
             </div>
           </div>
         </div>
-        <Link to="/projects" className="hidden sm:inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm md:text-base font-bold bg-white text-neutral-900 tracking-wider transition-transform hover:scale-105 group">
+        <Link to="/projects" className="hidden sm:inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm md:text-base font-bold bg-white text-ink-black tracking-wider transition-transform hover:scale-105 group">
           <span>View All</span>
           <ArrowUpRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
@@ -327,7 +327,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
       {/* Main Slider Area */}
       <div className="relative w-full">
         <CursorProvider>
-          <Cursor className="hidden md:flex items-center justify-center size-[72px] rounded-full bg-white text-neutral-900 text-[15px] font-medium tracking-normal z-[9999]">
+          <Cursor className="hidden md:flex items-center justify-center size-[72px] rounded-full bg-white text-ink-black text-[15px] font-medium tracking-normal z-[9999]">
             Drag
           </Cursor>
           <CursorContainer>
@@ -347,8 +347,8 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
                             alt={work.title} 
                             className="w-full h-full object-cover select-none pointer-events-none"
                           />
-                          <div className="absolute top-6 left-3 z-[2] bg-white text-neutral-900 rounded-md hidden md:flex items-center py-1.5 px-3.5 gap-2 transform -translate-x-[25%] opacity-0 transition-all duration-500 md:group-hover/slide:opacity-100 md:group-hover/slide:translate-x-0 group-[.active]/slide:opacity-100 group-[.active]/slide:translate-x-0 md:group-hover/list:group-[.active]/slide:opacity-0 md:group-hover/list:group-hover/slide:!opacity-100 md:group-hover/list:group-hover/slide:!translate-x-0">
-                            <div className="w-2 h-2 rounded-full bg-neutral-900 shrink-0"></div>
+                          <div className="absolute top-6 left-3 z-[2] bg-white text-ink-black rounded-md hidden md:flex items-center py-1.5 px-3.5 gap-2 transform -translate-x-[25%] opacity-0 transition-all duration-500 md:group-hover/slide:opacity-100 md:group-hover/slide:translate-x-0 group-[.active]/slide:opacity-100 group-[.active]/slide:translate-x-0 md:group-hover/list:group-[.active]/slide:opacity-0 md:group-hover/list:group-hover/slide:!opacity-100 md:group-hover/list:group-hover/slide:!translate-x-0">
+                            <div className="w-2 h-2 rounded-full bg-ink-black shrink-0"></div>
                             <p className="m-0 text-xs font-semibold uppercase tracking-wider">{work.title}</p>
                           </div>
                           <div className="absolute bottom-6 right-6 z-[2] w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white border border-white/20 transform translate-y-[25%] opacity-0 transition-all duration-500 md:group-hover/slide:opacity-100 md:group-hover/slide:bg-white/30 md:group-hover/slide:scale-110 group-[.active]/slide:opacity-100 group-[.active]/slide:translate-y-0 md:group-hover/list:group-[.active]/slide:opacity-0 md:group-hover/list:group-hover/slide:!opacity-100 md:group-hover/list:group-hover/slide:!translate-y-0">
@@ -386,7 +386,7 @@ export function FeaturedSlider({ works }: { works: Work[] }) {
       </div>
 
       <div className="mt-12 sm:hidden flex justify-center px-6 w-full">
-        <Link to="/projects" className="inline-flex items-center justify-center w-full px-6 py-3.5 rounded-full text-sm md:text-base font-bold bg-white text-neutral-900 tracking-wider transition-transform hover:scale-105 group">
+        <Link to="/projects" className="inline-flex items-center justify-center w-full px-6 py-3.5 rounded-full text-sm md:text-base font-bold bg-white text-ink-black tracking-wider transition-transform hover:scale-105 group">
           <span>View All</span>
           <ArrowUpRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>

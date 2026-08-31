@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { SmoothScrollProvider } from "./components/providers/SmoothScrollProvider";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
@@ -16,17 +17,19 @@ import Layout from "./components/layout/Layout";
 export default function App() {
   return (
     <Router>
-      <ScrollToTop />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:id" element={<ProjectDetail />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </Layout>
-      <Analytics />
-      <SpeedInsights />
+      <SmoothScrollProvider>
+        <ScrollToTop />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Layout>
+        <Analytics />
+        <SpeedInsights />
+      </SmoothScrollProvider>
     </Router>
   );
 }

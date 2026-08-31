@@ -14,7 +14,7 @@ export function SecondaryButton({ children, className, ...props }: SecondaryButt
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
       className={cn(
-        "px-8 py-3.5 glass-panel-light text-neutral-900 rounded-xl font-medium hover:bg-white/80 shadow-sm flex items-center justify-center gap-2",
+        "px-8 py-3.5 bg-mist-gray text-ink-black border border-mist-gray rounded-xl font-medium hover:bg-fog-white shadow-sm flex items-center justify-center gap-2",
         className
       )}
       {...props}

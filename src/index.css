@@ -1,27 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Press+Start+2P&family=Inter:wght@400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Text:wght@200..700&display=swap');
 @import "tailwindcss";
 
 @font-face {
   font-family: 'TraditionalAmpersand';
-  src: local('Inter'), local('Helvetica Neue'), local('Arial');
+  src: local('Inter'), local('Helvetica Neue'), local('Arial'), url('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
   unicode-range: U+0026;
 }
 
 @theme {
-  /* Nuetral Colors */
-  --color-neutral-50: #F8F8F8;
-  --color-neutral-100: #F1EFEF;
-  --color-neutral-200: #E5E5E5;
-  --color-neutral-300: #D2D2D2;
-  --color-neutral-700: #4A4A4A;
-  --color-neutral-900: #373737;
+  /* Core Brand & Grey Palette Tokens */
+  --color-ink-black: #17191c;
+  --color-mist-gray: #f2f2f3;
+  --color-fog-white: #fafafb;
+  --color-slate-gray: #777b86;
+  --color-ash-gray: #979799;
+  --color-smoke-gray: #a3a6af;
+
+  /* Neutral Colors */
+  --color-neutral-50: #fafafb;
+  --color-neutral-100: #f2f2f3;
+  --color-neutral-200: #e4e4e6;
+  --color-neutral-300: #cbccd0;
+  --color-neutral-400: #a3a6af;
+  --color-neutral-500: #979799;
+  --color-neutral-600: #777b86;
+  --color-neutral-700: #4a4d57;
+  --color-neutral-800: #282b30;
+  --color-neutral-900: #17191c;
 
   /* Primary Dark */
-  --color-primary-400: #A0A0A0;
-  --color-primary-500: #707070;
-  --color-primary-600: #4A4A4A;
-  --color-primary-700: #333333;
+  --color-primary-400: #a3a6af;
+  --color-primary-500: #979799;
+  --color-primary-600: #777b86;
+  --color-primary-700: #17191c;
 
   /* Accents */
   --color-accent-yellow: #FCAE0B;
@@ -44,8 +58,16 @@
 }
 
 @layer base {
+  ::selection {
+    background-color: #FF7523;
+    color: #ffffff;
+  }
+  ::-moz-selection {
+    background-color: #FF7523;
+    color: #ffffff;
+  }
   body {
-    @apply bg-neutral-50 text-neutral-900 font-sans antialiased selection:bg-primary-700 selection:text-white;
+    @apply bg-neutral-50 text-neutral-900 font-sans antialiased selection:bg-[#FF7523] selection:text-white;
     overflow-x: clip; 
   }
 }
@@ -135,6 +157,14 @@
 }
 
 :root {
+    /* Color Tokens */
+    --color-ink-black: #17191c;
+    --color-mist-gray: #f2f2f3;
+    --color-fog-white: #fafafb;
+    --color-slate-gray: #777b86;
+    --color-ash-gray: #979799;
+    --color-smoke-gray: #a3a6af;
+
     /* Type Scale */
     --text-caption: 13px;
     --text-body-sm: 15px;
@@ -256,4 +286,25 @@
   html {
     @apply font-sans;
     }
+}
+
+/* Lenis Smooth Scrolling Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }

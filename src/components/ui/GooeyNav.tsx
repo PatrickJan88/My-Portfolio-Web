@@ -80,8 +80,8 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
         particle.style.setProperty('--end-y', `${p.end[1]}px`);
         particle.style.setProperty('--time', `${p.time}ms`);
         particle.style.setProperty('--scale', `${p.scale}`);
-        // We override color to just black for light theme
-        particle.style.setProperty('--color', `#171717`);
+        // We override color to Ink Black
+        particle.style.setProperty('--color', `#17191c`);
         particle.style.setProperty('--rotate', `${p.rotate}deg`);
         point.classList.add('point');
         particle.appendChild(point);
@@ -178,7 +178,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             z-index: 1;
           }
           .effect.text {
-            color: #737373;
+            color: #777b86;
             transition: color 0.3s ease;
             font-size: 0.875rem; 
             font-weight: 500;
@@ -193,7 +193,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             content: "";
             position: absolute;
             inset: 0;
-            background: #171717; 
+            background: #17191c; 
             transform: scale(0);
             opacity: 0;
             z-index: -1;
@@ -288,7 +288,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             position: absolute;
             inset: 0;
             border-radius: 9999px;
-            background: #171717;
+            background: #17191c;
             opacity: 0;
             transform: scale(0);
             transition: all 0.3s ease;
@@ -305,7 +305,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             {items.map((item, index) => (
               <li
                 key={index}
-                className={`rounded-full relative cursor-pointer font-medium text-sm transition-[color] duration-300 ease text-neutral-500 hover:text-neutral-900 ${
+                className={`rounded-full relative cursor-pointer font-medium text-sm transition-[color] duration-300 ease text-slate-gray hover:text-ink-black ${
                   activeIndex === index ? 'active' : ''
                 }`}
               >

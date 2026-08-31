@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Check } from "lucide-react";
 import React, { useState } from "react";
-import SplitText from "../components/ui/SplitText";
+import { DecryptReveal } from "../components/ui/DecryptReveal";
 
 export default function Contact() {
   const [formState, setFormState] = useState({ state: "idle" }); // idle, submitting, success
@@ -43,157 +43,164 @@ export default function Contact() {
   };
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 pt-12 pb-[28px] flex flex-col">
+    <div className="w-full max-w-[1360px] mx-auto px-6 md:px-12 my-auto py-8 md:py-12 flex flex-col justify-center grow">
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch w-full mx-auto">
         
-        {/* Left: Info */}
+        {/* Left: Expanded Decrypt Reveal Matrix Portrait */}
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col gap-12 mt-4"
+          className="flex flex-col justify-stretch items-center lg:items-end h-full w-full"
         >
-          <div>
-            <SplitText
-              text="Let's chat"
-              tag="h1"
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-normal text-[#373737] leading-[0.9] mb-6 inline-block"
-              delay={50}
-              duration={1}
-              ease="power3.out"
-              splitType="chars"
-              from={{ opacity: 0, y: 40 }}
-              to={{ opacity: 1, y: 0 }}
+          <div className="w-full max-w-[600px] h-[500px] sm:h-[560px] lg:h-full relative rounded-3xl overflow-hidden bg-transparent flex flex-col justify-stretch">
+            <DecryptReveal
+              imageSrc="/contact/me.webp"
+              className="w-full h-full bg-transparent"
+              radius={280}
+              cell={12}
+              scrambleSpeed={8}
+              passthrough={0.05}
             />
-            <p className="text-base text-[#4A4A4A] max-w-md leading-relaxed font-mono text-pretty">
-              Always open to new partnerships and exploring exciting opportunities.
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-6">
-            <button 
-              onClick={() => handleCopy("ranpofei@gmail.com", "email")}
-              className="flex items-center gap-4 text-[#373737] hover:text-[#333333] transition-colors group cursor-pointer text-left focus:outline-none"
-            >
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5 group-hover:scale-105 transition-transform">
-                <Mail className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-[13px] font-bold tracking-[0.2em] text-[#a0a0a0]">Email</p>
-                <p className="text-lg font-medium">{copied === "email" ? "Copied!" : "ranpofei@gmail.com"}</p>
-              </div>
-            </button>
-            
-            <button 
-              onClick={() => handleCopy("+46764502813", "phone")}
-              className="flex items-center gap-4 text-[#373737] hover:text-[#333333] transition-colors group cursor-pointer text-left focus:outline-none"
-            >
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5 group-hover:scale-105 transition-transform">
-                <Phone className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-[13px] font-bold tracking-[0.2em] text-[#a0a0a0]">Phone</p>
-                <p className="text-lg font-medium">{copied === "phone" ? "Copied!" : "+46 764502813"}</p>
-              </div>
-            </button>
-
-            <div className="flex items-center gap-4 text-[#373737]">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-black/5">
-                <MapPin className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-[13px] font-bold tracking-[0.2em] text-[#a0a0a0]">Location</p>
-                <p className="text-lg font-medium">Uppsala, Sweden</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-black/5">
-            <a href="https://www.linkedin.com/in/pofei-r-79586395" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#333333] tracking-widest transition-colors group">
-              LinkedIn <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-            <a href="/docs/Pofei_Ran_CV.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#333333] tracking-widest transition-colors group">
-              Download Resume <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-            <a href="https://github.com/PatrickJan88/My-Portfolio-Web.git" target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-bold text-[#4A4A4A] hover:text-[#333333] tracking-widest transition-colors group">
-              GitHub <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </a>
           </div>
         </motion.div>
 
-        {/* Right: Form */}
+        {/* Right: Form Container + Contact Details Underneath */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white p-8 md:p-12 rounded-[2rem] shadow-[0_8px_32px_-12px_rgba(0,0,0,0.1)] border border-black/5"
+          className="flex flex-col justify-between gap-5 h-full max-w-[600px] w-full mx-auto lg:mx-0"
         >
-          {formState.state === "success" ? (
-            <div className="flex flex-col items-center justify-center text-center h-full min-h-[400px] gap-4">
-              <div className="w-16 h-16 bg-[#4DB440]/10 text-[#4DB440] rounded-full flex items-center justify-center mb-2">
-                <Mail className="w-8 h-8" />
+          {/* Form Card */}
+          <div className="bg-white p-8 md:p-10 lg:p-11 rounded-[2rem] shadow-[0_8px_32px_-12px_rgba(0,0,0,0.08)] border border-black/5 flex flex-col justify-between flex-1">
+            {formState.state === "success" ? (
+              <div className="flex flex-col items-center justify-center text-center h-full min-h-[380px] gap-4">
+                <div className="w-16 h-16 bg-[#4DB440]/10 text-[#4DB440] rounded-full flex items-center justify-center mb-2">
+                  <Mail className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-ink-black">Message Sent</h3>
+                <p className="text-slate-gray">Thank you for reaching out. I'll get back to you within 24-48 hours.</p>
+                <button 
+                  onClick={() => setFormState({ state: "idle" })}
+                  className="mt-6 px-6 py-2.5 bg-mist-gray text-ink-black rounded-xl font-medium hover:bg-fog-white transition-colors"
+                >
+                  Send another
+                </button>
               </div>
-              <h3 className="text-2xl font-bold text-[#373737]">Message Sent</h3>
-              <p className="text-[#4A4A4A]">Thank you for reaching out. I'll get back to you within 24-48 hours.</p>
-              <button 
-                onClick={() => setFormState({ state: "idle" })}
-                className="mt-6 px-6 py-2.5 bg-[#f8f8f8] text-[#4A4A4A] rounded-xl font-medium hover:bg-[#e5e5e5] transition-colors"
-              >
-                Send another
-              </button>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-[13px] font-bold tracking-[0.2em] text-[#333333]">Name <span className="text-black text-[14px]">*</span></label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name"
-                  required
-                  className="w-full bg-[#f8f8f8] border border-transparent hover:border-[#333333]/30 focus:bg-white focus:border-[#333333] focus:ring-4 focus:ring-[#333333]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
-                  placeholder="What should I call you?"
-                />
-              </div>
-              
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-[13px] font-bold tracking-[0.2em] text-[#333333]">Email <span className="text-black text-[14px]">*</span></label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email"
-                  required
-                  className="w-full bg-[#f8f8f8] border border-transparent hover:border-[#333333]/30 focus:bg-white focus:border-[#333333] focus:ring-4 focus:ring-[#333333]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all placeholder:text-[#a0a0a0]"
-                  placeholder="your@email.com"
-                />
-              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col flex-1 justify-between gap-5">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="name" className="text-[13px] font-bold tracking-[0.2em] text-ink-black">Name <span className="text-ink-black text-[14px]">*</span></label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required
+                    className="w-full bg-mist-gray border border-transparent hover:border-ink-black/30 focus:bg-white focus:border-ink-black focus:ring-4 focus:ring-ink-black/10 rounded-xl px-4 py-3.5 text-ink-black outline-none transition-all placeholder:text-smoke-gray"
+                    placeholder="What should I call you?"
+                  />
+                </div>
+                
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="email" className="text-[13px] font-bold tracking-[0.2em] text-ink-black">Email <span className="text-ink-black text-[14px]">*</span></label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required
+                    className="w-full bg-mist-gray border border-transparent hover:border-ink-black/30 focus:bg-white focus:border-ink-black focus:ring-4 focus:ring-ink-black/10 rounded-xl px-4 py-3.5 text-ink-black outline-none transition-all placeholder:text-smoke-gray"
+                    placeholder="your@email.com"
+                  />
+                </div>
 
-              <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-[13px] font-bold tracking-[0.2em] text-[#333333]">Message (Optional)</label>
-                <textarea 
-                  id="message" 
-                  name="message"
-                  required
-                  rows={5}
-                  className="w-full bg-[#f8f8f8] border border-transparent hover:border-[#333333]/30 focus:bg-white focus:border-[#333333] focus:ring-4 focus:ring-[#333333]/10 rounded-xl px-4 py-3.5 text-[#373737] outline-none transition-all resize-none placeholder:text-[#a0a0a0]"
-                  placeholder="Tell me about your project, or just say hello..."
-                />
-              </div>
+                <div className="flex flex-col gap-2 flex-1">
+                  <label htmlFor="message" className="text-[13px] font-bold tracking-[0.2em] text-ink-black">Message (Optional)</label>
+                  <textarea 
+                    id="message" 
+                    name="message"
+                    className="w-full flex-1 min-h-[140px] md:min-h-[160px] bg-mist-gray border border-transparent hover:border-ink-black/30 focus:bg-white focus:border-ink-black focus:ring-4 focus:ring-ink-black/10 rounded-xl px-4 py-3.5 text-ink-black outline-none transition-all resize-none placeholder:text-smoke-gray"
+                    placeholder="Tell me about your project, or just say hello..."
+                  />
+                </div>
 
-              <button 
-                type="submit" 
-                disabled={formState.state === "submitting"}
-                className="w-full px-8 py-4 bg-[#171717] text-white rounded-xl font-bold shadow-lg shadow-[#171717]/10 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none transition-all duration-200 mt-2 flex items-center justify-center gap-2"
-              >
-                {formState.state === "submitting" ? (
-                  <span className="animate-pulse">Sending...</span>
+                <button 
+                  type="submit" 
+                  disabled={formState.state === "submitting"}
+                  className="w-full px-7 py-4 bg-ink-black text-white rounded-xl font-bold shadow-lg shadow-ink-black/10 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none transition-all duration-200 flex items-center justify-center gap-2 mt-1"
+                >
+                  {formState.state === "submitting" ? (
+                    <span className="animate-pulse">Sending...</span>
+                  ) : (
+                    <span>Send</span>
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+
+          {/* Contact Details Stack - Equal Margin Blocks Horizontally */}
+          <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+            {/* Email */}
+            <button 
+              onClick={() => handleCopy("ranpofei@gmail.com", "email")}
+              className="flex items-center gap-3 text-ink-black hover:text-ink-black/80 transition-colors group cursor-pointer text-left focus:outline-none p-2.5 rounded-xl hover:bg-black/5 w-full"
+            >
+              <div className="w-10 h-10 bg-mist-gray rounded-full flex items-center justify-center border border-black/5 group-hover:scale-105 transition-transform flex-shrink-0">
+                {copied === "email" ? (
+                  <Check className="w-4 h-4 text-ink-black" />
                 ) : (
-                  <>Send</>
+                  <Mail className="w-4 h-4 text-ink-black" />
                 )}
-              </button>
-            </form>
-          )}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-bold tracking-[0.2em] text-ash-gray uppercase font-mono">Email</p>
+                <p className="text-xs sm:text-sm font-semibold text-ink-black truncate">
+                  {copied === "email" ? (
+                    <span className="text-ink-black font-bold">Copied!</span>
+                  ) : (
+                    "ranpofei@gmail.com"
+                  )}
+                </p>
+              </div>
+            </button>
+            
+            {/* Phone */}
+            <button 
+              onClick={() => handleCopy("+46764502813", "phone")}
+              className="flex items-center gap-3 text-ink-black hover:text-ink-black/80 transition-colors group cursor-pointer text-left focus:outline-none p-2.5 rounded-xl hover:bg-black/5 w-full"
+            >
+              <div className="w-10 h-10 bg-mist-gray rounded-full flex items-center justify-center border border-black/5 group-hover:scale-105 transition-transform flex-shrink-0">
+                {copied === "phone" ? (
+                  <Check className="w-4 h-4 text-ink-black" />
+                ) : (
+                  <Phone className="w-4 h-4 text-ink-black" />
+                )}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-bold tracking-[0.2em] text-ash-gray uppercase font-mono">Phone</p>
+                <p className="text-xs sm:text-sm font-semibold text-ink-black truncate">
+                  {copied === "phone" ? (
+                    <span className="text-ink-black font-bold">Copied!</span>
+                  ) : (
+                    "+46 764502813"
+                  )}
+                </p>
+              </div>
+            </button>
+
+            {/* Location */}
+            <div className="flex items-center gap-3 text-ink-black p-2.5 rounded-xl w-full">
+              <div className="w-10 h-10 bg-mist-gray rounded-full flex items-center justify-center border border-black/5 flex-shrink-0">
+                <MapPin className="w-4 h-4 text-ink-black" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-bold tracking-[0.2em] text-ash-gray uppercase font-mono">Location</p>
+                <p className="text-xs sm:text-sm font-semibold text-ink-black truncate">Uppsala, Sweden</p>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
       </div>

@@ -61,7 +61,7 @@ export default function ProjectDetail() {
   };
 
   return (
-    <div className="w-full bg-[#f4f4f4] min-h-screen text-neutral-900 font-sans selection:bg-neutral-900 selection:text-white">
+    <div className="w-full bg-fog-white min-h-screen text-ink-black font-sans selection:bg-[#FF7523] selection:text-white">
       {/* Mobile Media Modal */}
       {createPortal(
         <AnimatePresence>
@@ -149,7 +149,7 @@ export default function ProjectDetail() {
         document.body
       )}
       {/* Full-screen Hero Section */}
-      <section className="relative w-full min-h-[60vh] md:min-h-[60vh] md:max-h-[85vh] md:aspect-[16/9] flex flex-col justify-end bg-neutral-900 overflow-hidden">
+      <section className="relative w-full min-h-[60vh] md:min-h-[60vh] md:max-h-[85vh] md:aspect-[16/9] flex flex-col justify-end bg-ink-black overflow-hidden">
         {/* Absolute Navigation */}
         <nav className="absolute top-0 w-full px-6 md:px-12 pt-[118px] md:pt-32 pb-8 flex justify-between items-center z-20 max-w-[1600px] mx-auto left-1/2 -translate-x-1/2">
           <Link
@@ -162,7 +162,7 @@ export default function ProjectDetail() {
         </nav>
 
         {/* Background layer */}
-        <div className="absolute inset-0 z-0 overflow-hidden bg-black">
+        <div className="absolute inset-0 z-0 overflow-hidden bg-ink-black">
           {project.heroVideo ? (
             <video
               src={project.heroVideo}
@@ -193,7 +193,7 @@ export default function ProjectDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-normal mb-4 md:mb-8 text-[#e6e6e6] max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-normal mb-4 md:mb-8 text-fog-white max-w-4xl">
               {project.title}
             </h1>
           </motion.div>
@@ -214,10 +214,10 @@ export default function ProjectDetail() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 group no-underline"
                 >
-                  <span className="font-sans text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.12em] text-[#333333] border border-[#333333]/40 px-3 py-1.5 bg-[#333333]/10">
+                  <span className="font-sans text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.12em] text-ink-black border border-ink-black/40 px-3 py-1.5 bg-ink-black/10">
                     {tag.label}
                   </span>
-                  <span className="font-sans text-xs md:text-sm text-[#333333] group-hover:text-black transition-colors flex items-center gap-1">
+                  <span className="font-sans text-xs md:text-sm text-ink-black group-hover:text-black transition-colors flex items-center gap-1">
                     {tag.label === "FIGMA" && (
                       <PenTool className="w-4 h-4 ml-1" />
                     )}
@@ -228,7 +228,7 @@ export default function ProjectDetail() {
                     height="10"
                     viewBox="0 0 12 12"
                     fill="none"
-                    className="text-[#333333] group-hover:text-black transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="text-ink-black group-hover:text-black transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                   >
                     <path
                       d="M1 11L11 1M11 1H3M11 1V9"
@@ -252,10 +252,10 @@ export default function ProjectDetail() {
           >
             {project.metadata?.map((meta, i) => (
               <div key={i} className="flex flex-col">
-                <h4 className="font-sans text-[0.6rem] md:text-xs uppercase tracking-[0.2em] text-[#999] mb-2">
+                <h4 className="font-sans text-[0.6rem] md:text-xs uppercase tracking-[0.2em] text-smoke-gray mb-2">
                   {meta.label}
                 </h4>
-                <div className="font-sans text-base font-medium text-[#e6e6e6]">
+                <div className="font-sans text-base font-medium text-fog-white">
                   {meta.links ? (
                     <div className="flex flex-wrap gap-2 -ml-1">
                       {meta.links.map((linkItem, idx) => (
@@ -293,20 +293,20 @@ export default function ProjectDetail() {
         {/* Overview Section */}
         <article className={`w-full flex flex-col px-2 md:px-8 ${project.id === 'svenska-lek' ? 'mb-12 md:mb-16' : 'mb-16 md:mb-24'}`}>
           <div className="w-full flex flex-col mb-8 md:mb-12">
-            <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8 text-pretty">
+            <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
               {project.overviewLabel || "Overview"}
             </h3>
-            <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-neutral-900 leading-[1.1] whitespace-pre-line text-pretty">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-ink-black leading-[1.1] whitespace-pre-line text-pretty">
               {project.overviewHeading || project.heroHeading}
             </h2>
           </div>
 
           <div className="w-full flex flex-col">
-            <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light whitespace-pre-line text-pretty">
+            <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black mb-8 font-light whitespace-pre-line text-pretty">
               {project.overview}
             </p>
             {project.subOverview && (
-              <p className="text-base md:text-lg text-neutral-500 leading-relaxed font-light text-pretty">
+              <p className="text-base md:text-lg text-slate-gray leading-relaxed font-light text-pretty">
                 {project.subOverview}
               </p>
             )}
@@ -315,7 +315,7 @@ export default function ProjectDetail() {
 
         {/* Testimonial Section */}
         {project.id !== 'icon-archive' && (
-        <section className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-[#1C1C1C] py-16 md:py-24 mb-16 md:mb-24 flex flex-col items-center justify-center px-6">
+        <section className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-ink-black py-16 md:py-24 mb-16 md:mb-24 flex flex-col items-center justify-center px-6">
           <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
             <h3 className="text-2xl md:text-4xl lg:text-[40px] text-white font-serif italic font-light leading-[1.4] tracking-wide mb-12">
               "{project.testimonial?.quote || "Most platforms optimize for the platform. We designed one that communicates speed and approachability—the product's promise in visual form."}"
@@ -337,7 +337,7 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+            className="w-full aspect-[4/3] md:aspect-[16/9] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
             onClick={() => project.media1 && handleMediaClick(project.media1, project.media1.endsWith(".webm") || project.media1.endsWith(".mp4"))}
           >
             {project.media1 ? (
@@ -358,7 +358,7 @@ export default function ProjectDetail() {
                 />
               )
             ) : (
-              <p className="absolute text-neutral-400 font-mono text-sm">
+              <p className="absolute text-smoke-gray font-mono text-sm">
                 Media Placeholder 1 (Upload WebM/Image here)
               </p>
             )}
@@ -373,7 +373,7 @@ export default function ProjectDetail() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8 }}
-                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                className="w-full aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
                 onClick={() => project.media2 && handleMediaClick(project.media2, project.media2.endsWith(".webm") || project.media2.endsWith(".mp4"))}
               >
                 {project.media2 ? (
@@ -383,7 +383,7 @@ export default function ProjectDetail() {
                     <img src={project.media2} alt="Media 2" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                   )
                 ) : (
-                  <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                  <p className="absolute text-smoke-gray font-mono text-sm px-6 text-center">
                     Media Placeholder 2
                   </p>
                 )}
@@ -393,7 +393,7 @@ export default function ProjectDetail() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="w-full aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                className="w-full aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
                 onClick={() => project.media3 && handleMediaClick(project.media3, project.media3.endsWith(".webm") || project.media3.endsWith(".mp4"))}
               >
                 {project.media3 ? (
@@ -403,7 +403,7 @@ export default function ProjectDetail() {
                     <img src={project.media3} alt="Media 3" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                   )
                 ) : (
-                  <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                  <p className="absolute text-smoke-gray font-mono text-sm px-6 text-center">
                     Media Placeholder 3
                   </p>
                 )}
@@ -418,7 +418,7 @@ export default function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8 }}
-                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-right lg:ml-12 lg:mt-2"
+                  className="w-full lg:w-7/12 aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-right lg:ml-12 lg:mt-2"
                   onClick={() => project.media2 && handleMediaClick(project.media2, project.media2.endsWith(".webm") || project.media2.endsWith(".mp4"))}
                 >
                   {project.media2 ? (
@@ -428,20 +428,20 @@ export default function ProjectDetail() {
                       <img src={project.media2} alt="Media 2" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                     )
                   ) : (
-                    <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                    <p className="absolute text-smoke-gray font-mono text-sm px-6 text-center">
                       Media Placeholder 2
                     </p>
                   )}
                 </motion.div>
                 
                 <div className="px-2 md:px-8">
-                  <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
+                  <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-ash-gray mb-6">
                     {project.section1?.label || "Approach"}
                   </h3>
-                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
+                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-ink-black leading-[1.1] mb-8 whitespace-pre-line">
                     {project.section1?.heading || "Digital Platform"}
                   </h2>
-                  <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light whitespace-pre-line">
+                  <p className="text-lg md:text-[22px] text-slate-gray leading-[1.6] font-light whitespace-pre-line">
                     {project.section1?.content || "The hackathon platform was designed for seamless registration, team formation, and project submission. We created a digital experience that turned participation into a journey — from sign-up to demo day."}
                   </p>
                 </div>
@@ -454,7 +454,7 @@ export default function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="w-full lg:w-7/12 aspect-[4/3] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-left lg:mr-12 lg:mt-2"
+                  className="w-full lg:w-7/12 aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-left lg:mr-12 lg:mt-2"
                   onClick={() => project.media3 && handleMediaClick(project.media3, project.media3.endsWith(".webm") || project.media3.endsWith(".mp4"))}
                 >
                   {project.media3 ? (
@@ -464,20 +464,20 @@ export default function ProjectDetail() {
                       <img src={project.media3} alt="Media 3" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                     )
                   ) : (
-                    <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                    <p className="absolute text-smoke-gray font-mono text-sm px-6 text-center">
                       Media Placeholder 3
                     </p>
                   )}
                 </motion.div>
                 
                 <div className="px-2 md:px-8">
-                  <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
+                  <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-ash-gray mb-6">
                     {project.section2?.label || "Design System"}
                   </h3>
-                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-neutral-900 leading-[1.1] mb-8 whitespace-pre-line">
+                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-ink-black leading-[1.1] mb-8 whitespace-pre-line">
                     {project.section2?.heading || "Visual Identity"}
                   </h2>
-                  <p className="text-lg md:text-[22px] text-neutral-600 leading-[1.6] font-light whitespace-pre-line">
+                  <p className="text-lg md:text-[22px] text-slate-gray leading-[1.6] font-light whitespace-pre-line">
                     {project.section2?.content || "We established a cohesive visual system built on bold typography and strategic use of color. This system ensures consistency across marketing materials, digital platforms, and physical venue signage."}
                   </p>
                 </div>
@@ -492,7 +492,7 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+            className="w-full aspect-[4/3] md:aspect-[16/9] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
             onClick={() => project.media4 && !Array.isArray(project.media4) && handleMediaClick(project.media4, project.media4.endsWith(".webm") || project.media4.endsWith(".mp4"))}
           >
             {project.media4 ? (
@@ -504,7 +504,7 @@ export default function ProjectDetail() {
                 <img src={project.media4} alt="Media 4" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
               )
             ) : (
-              <p className="absolute text-neutral-400 font-mono text-sm">
+              <p className="absolute text-smoke-gray font-mono text-sm">
                 Media Placeholder 4
               </p>
             )}
@@ -521,7 +521,7 @@ export default function ProjectDetail() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
-                  className="w-full aspect-[4/3] md:aspect-[16/9] bg-neutral-200 rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+                  className="w-full aspect-[4/3] md:aspect-[16/9] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
                   onClick={() => media && handleMediaClick(media, media.endsWith(".webm") || media.endsWith(".mp4"))}
                 >
                   {media ? (
@@ -531,7 +531,7 @@ export default function ProjectDetail() {
                       <img src={media} alt={`Media ${index + 5}`} className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
                     )
                   ) : (
-                    <p className="absolute text-neutral-400 font-mono text-sm px-6 text-center">
+                    <p className="absolute text-smoke-gray font-mono text-sm px-6 text-center">
                       Media Placeholder {index + 5}
                     </p>
                   )}
@@ -544,20 +544,20 @@ export default function ProjectDetail() {
           {project.id !== 'icon-archive' && (
           <article className={`w-full flex flex-col px-2 md:px-8 ${project.id === 'svenska-lek' ? 'pt-4 md:pt-6' : 'pt-8 md:pt-12'}`}>
             <div className="w-full flex flex-col mb-8 md:mb-12">
-              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8 text-pretty">
+              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
                 {project.section3?.label || "Result"}
               </h3>
-              <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-neutral-900 leading-[1.1] whitespace-pre-line text-pretty">
+              <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-ink-black leading-[1.1] whitespace-pre-line text-pretty">
                 {project.section3?.heading || project.heroHeading}
               </h2>
             </div>
             
             <div className="w-full flex flex-col">
-              <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-neutral-800 mb-8 font-light whitespace-pre-line text-pretty">
+              <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black mb-8 font-light whitespace-pre-line text-pretty">
                 {project.section3?.content || project.overview}
               </p>
               {project.subOverview && !project.section3 && (
-                <p className="text-base md:text-lg text-neutral-500 leading-relaxed font-light text-pretty">
+                <p className="text-base md:text-lg text-slate-gray leading-relaxed font-light text-pretty">
                   {project.subOverview}
                 </p>
               )}
@@ -567,19 +567,19 @@ export default function ProjectDetail() {
         </section>
 
         {/* Next Project Footer */}
-        <section className="w-full border-t border-neutral-200 mt-24 md:mt-32 pt-16 flex flex-col items-center justify-center">
+        <section className="w-full border-t border-mist-gray mt-24 md:mt-32 pt-16 flex flex-col items-center justify-center">
           <Link
             to={`/projects/${nextProject.id}`}
             onClick={() => window.scrollTo(0, 0)}
             className="group flex flex-col items-center text-center"
           >
-            <p className="text-sm font-bold tracking-[0.2em] uppercase text-neutral-400 mb-6">
+            <p className="text-sm font-bold tracking-[0.2em] uppercase text-ash-gray mb-6">
               Next Project
             </p>
-            <h2 className="text-4xl md:text-6xl font-light tracking-normal text-neutral-900 mb-6 group-hover:opacity-70 transition-opacity">
+            <h2 className="text-4xl md:text-6xl font-light tracking-normal text-ink-black mb-6 group-hover:opacity-70 transition-opacity">
               {nextProject.title}
             </h2>
-            <div className="w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-900 group-hover:bg-neutral-900 group-hover:text-white transition-all transform group-hover:scale-110">
+            <div className="w-12 h-12 rounded-full border border-ash-gray/30 flex items-center justify-center text-ink-black group-hover:bg-ink-black group-hover:text-white transition-all transform group-hover:scale-110">
               <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </div>
           </Link>

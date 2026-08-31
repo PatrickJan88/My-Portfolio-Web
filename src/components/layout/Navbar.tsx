@@ -75,7 +75,7 @@ export default function Navbar() {
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-xl font-bold tracking-tight text-neutral-900"
+              className="text-xl font-bold tracking-tight text-ink-black"
             >
               Pofei.
             </motion.span>
@@ -90,7 +90,7 @@ export default function Navbar() {
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setMobileMenuOpen(true)}
-          className="md:hidden p-2 text-neutral-900"
+          className="md:hidden p-2 text-ink-black"
           aria-label="Open menu"
         >
           <Menu className="w-5 h-5 flex-shrink-0" />
@@ -106,22 +106,22 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-neutral-50/95 z-[60] pointer-events-auto"
+              className="fixed inset-0 bg-fog-white/95 z-[60] pointer-events-auto"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed inset-x-4 top-4 bg-white border border-neutral-200 rounded-[2rem] p-6 z-[70] shadow-2xl pointer-events-auto flex flex-col"
+              className="fixed inset-x-4 top-4 bg-white border border-mist-gray rounded-[2rem] p-6 z-[70] shadow-2xl pointer-events-auto flex flex-col"
             >
               <div className="flex justify-between items-center mb-8">
-                <span className="text-xl font-bold tracking-tight text-neutral-900">
+                <span className="text-xl font-bold tracking-tight text-ink-black">
                   Menu
                 </span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 text-neutral-500 hover:text-neutral-900 transition-colors bg-neutral-100 rounded-full"
+                  className="p-2 text-slate-gray hover:text-ink-black transition-colors bg-mist-gray rounded-full"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -135,8 +135,8 @@ export default function Navbar() {
                     className={cn(
                       "px-6 py-4 rounded-2xl text-lg font-bold transition-colors uppercase tracking-widest text-center",
                       location.pathname === link.href
-                        ? "bg-primary-50 text-primary-700"
-                        : "text-neutral-700 hover:bg-neutral-50",
+                        ? "bg-mist-gray text-ink-black"
+                        : "text-ink-black hover:bg-fog-white",
                     )}
                   >
                     {link.label}
