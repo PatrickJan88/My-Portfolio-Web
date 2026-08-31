@@ -21,6 +21,7 @@ export interface TextGlitchProps {
   enableTurbulence?: boolean; // When false, bypasses SVG feDisplacementMap warping to keep small text sharp
   triggerOnMount?: boolean; // Whether to play glitch burst once on mount/entry
   mountDuration?: number; // Duration of the entry burst in seconds (default: 0.65)
+  activeGlitch?: boolean; // Externally controlled glitch state (e.g. while images load)
   className?: string;
   style?: CSSProperties;
   as?: 'h1' | 'h2' | 'h3' | 'p' | 'span' | 'div';
@@ -60,6 +61,7 @@ export function TextGlitch({
   enableTurbulence = true,
   triggerOnMount = false,
   mountDuration = 0.65,
+  activeGlitch,
   className = '',
   style,
   as: Component = 'div',
@@ -104,8 +106,12 @@ export function TextGlitch({
     const tick = (time: number) => {
       if (!isActive) return;
 
+      const isExternallyActive = typeof activeGlitch === 'boolean' ? activeGlitch : false;
       const shouldAnimate =
-        animationMode === 'continuous' || (animationMode === 'hover' && isHovered) || isMountGlitching;
+        animationMode === 'continuous' ||
+        (animationMode === 'hover' && isHovered) ||
+        isMountGlitching ||
+        isExternallyActive;
 
       if (!shouldAnimate) {
         setDispScale(0);
@@ -186,8 +192,8 @@ export function TextGlitch({
           }
           setNoiseBars(newNoiseBars);
 
-          // 5. Scramble text in chaos mode
-          if (glitchStyle === 'chaos' && Math.random() < 0.4) {
+          // 5. Scramble text in chaos mode OR during initial mount/loading glitch
+          if ((glitchStyle === 'chaos' || isMountGlitching || isExternallyActive) && Math.random() < 0.45) {
             const arr = text.split('');
             const replaceIdx = Math.floor(Math.random() * arr.length);
             arr[replaceIdx] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
@@ -215,7 +221,7 @@ export function TextGlitch({
       isActive = false;
       if (animRef.current) cancelAnimationFrame(animRef.current);
     };
-  }, [text, glitchIntensity, glitchSpeed, glitchStyle, enableTurbulence, animationMode, isHovered, isMountGlitching, glitchColor1, glitchColor2, glitchChars]);
+  }, [text, glitchIntensity, glitchSpeed, glitchStyle, enableTurbulence, animationMode, isHovered, isMountGlitching, activeGlitch, glitchColor1, glitchColor2, glitchChars]);
 
   const fontStyle = {
     fontFamily,
@@ -225,7 +231,13 @@ export function TextGlitch({
     lineHeight,
   };
 
-  const isGlitching = (animationMode === 'continuous' || (animationMode === 'hover' && isHovered)) && dispScale > 0;
+  const isExternallyActive = typeof activeGlitch === 'boolean' ? activeGlitch : false;
+  const isGlitching =
+    (animationMode === 'continuous' ||
+      (animationMode === 'hover' && isHovered) ||
+      isMountGlitching ||
+      isExternallyActive) &&
+    (dispScale > 0 || slices.length > 0 || noiseBars.length > 0);
 
   return (
     <Component

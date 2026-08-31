@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { SpectralParticles } from "../ui/SpectralParticles";
 import { GlitterWrap } from "../ui/GlitterWrap";
@@ -11,6 +11,32 @@ interface HeroSectionProps {
 
 export function HeroSection({ onIntroComplete }: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isInitialGlitching, setIsInitialGlitching] = useState(true);
+
+  // Keep the glitch active upon entering while the initial image loads, preventing any awkward waiting
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/home/hero-bg-ascii-2.webp";
+
+    let timer: ReturnType<typeof setTimeout>;
+    const finishGlitch = () => {
+      timer = setTimeout(() => {
+        setIsInitialGlitching(false);
+      }, 1800);
+    };
+
+    if (img.complete && img.naturalWidth > 0) {
+      finishGlitch();
+    } else {
+      img.onload = finishGlitch;
+      img.onerror = finishGlitch;
+      timer = setTimeout(() => {
+        setIsInitialGlitching(false);
+      }, 3000);
+    }
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Scroll Progress across the 350vh track for an ultra-smooth, unhurried progression
   const { scrollYProgress } = useScroll({
@@ -93,14 +119,14 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
             />
           </motion.div>
 
-          {/* STAGE 3 REVEAL BACKGROUND (hero-bg-ascii-3-2.webp.webp) */}
+          {/* STAGE 3 REVEAL BACKGROUND (hero-bg-ascii-3.webp) */}
           <motion.div
             style={{ opacity: bg3Opacity, scale: bg3Scale }}
             className="absolute inset-0 flex items-center justify-center pointer-events-auto z-[1]"
           >
             <FluidImage
-              image="/home/hero-bg-ascii-3-2.webp.webp"
-              lowResImage="/home/hero-bg-ascii-3-2-low.webp"
+              image="/home/hero-bg-ascii-3.webp"
+              lowResImage="/home/hero-bg-ascii-3-low.webp"
               className="w-full h-full"
             />
           </motion.div>
@@ -157,12 +183,11 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
               textColor="#e4e6ea"
               glitchColor1="#ffffff"
               glitchColor2="#ffffff"
-              glitchIntensity={0.65}
-              glitchSpeed={0.65}
+              glitchIntensity={0.72}
+              glitchSpeed={0.75}
               smoothness={0.35}
               animationMode="hover"
-              triggerOnMount={true}
-              mountDuration={0.65}
+              activeGlitch={isInitialGlitching}
               enableTurbulence={true}
               glitchStyle="classic"
               className="drop-shadow-[0_4px_36px_rgba(0,0,0,0.9)] transition-transform duration-300 hover:scale-[1.02]"
@@ -188,11 +213,12 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
                 textColor="#e4e6ea"
                 glitchColor1="#ffffff"
                 glitchColor2="#ffffff"
-                glitchIntensity={0.22}
-                glitchSpeed={0.4}
+                glitchIntensity={0.25}
+                glitchSpeed={0.45}
                 smoothness={0.4}
                 enableTurbulence={false}
                 animationMode="hover"
+                activeGlitch={isInitialGlitching}
                 glitchStyle="classic"
                 className="drop-shadow-[0_2px_16px_rgba(0,0,0,0.9)]"
               />

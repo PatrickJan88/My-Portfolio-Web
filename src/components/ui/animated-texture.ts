@@ -59,6 +59,12 @@ export function createAnimatedTexture(
   };
   highImg.src = src;
 
+  // If high-res is already cached and ready, apply immediately
+  if (highImg.complete && highImg.naturalWidth > 0) {
+    isHighResLoaded = true;
+    setImg(highImg);
+  }
+
   return {
     texture,
     update: () => {
