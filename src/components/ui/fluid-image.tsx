@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import GUI from "lil-gui";
 import { createAnimatedTexture } from "./animated-texture";
@@ -251,6 +251,7 @@ const SIM_RESOLUTION = 160;
 
 export interface FluidImageProps {
   image: string;
+  lowResImage?: string;
   className?: string;
   dpr?: number;
   controls?: boolean;
@@ -258,11 +259,13 @@ export interface FluidImageProps {
 
 export const FluidImage = ({
   image,
+  lowResImage,
   className = "w-full h-full",
   dpr = 2,
   controls = false,
 }: FluidImageProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isTextureReady, setIsTextureReady] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -277,9 +280,12 @@ export const FluidImage = ({
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, dpr));
     renderer.autoClear = false;
     const canvas = renderer.domElement;
+    canvas.style.position = "absolute";
+    canvas.style.inset = "0";
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     canvas.style.display = "block";
+    canvas.style.zIndex = "1";
     container.appendChild(canvas);
 
     const onContextLost = (e: Event) => e.preventDefault();
@@ -411,7 +417,9 @@ export const FluidImage = ({
       uDisplacement: { value: config.displacement },
     });
 
-    const animated = createAnimatedTexture(image);
+    const animated = createAnimatedTexture(image, lowResImage, () => {
+      setIsTextureReady(true);
+    });
     displayMat.uniforms.uImage.value = animated.texture;
 
     const blit = (
@@ -658,15 +666,27 @@ export const FluidImage = ({
       renderer.forceContextLoss();
       renderer.dispose();
     };
-  }, [image, dpr, controls]);
+  }, [image, lowResImage, dpr, controls]);
 
   return (
     <div
       ref={containerRef}
       aria-hidden
-      className={className}
-      style={{ overflow: "hidden" }}
-    />
+      className={`relative overflow-hidden ${className}`}
+    >
+      {/* Instant low-fidelity background silhouette layer rendered before WebGL parses textures */}
+      {lowResImage && (
+        <img
+          src={lowResImage}
+          alt=""
+          loading="eager"
+          decoding="async"
+          className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-700 z-0 ${
+            isTextureReady ? "opacity-0" : "opacity-100"
+          }`}
+        />
+      )}
+    </div>
   );
 };
 

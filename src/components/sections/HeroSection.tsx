@@ -57,13 +57,26 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
         {/* 1. SCROLL-DRIVEN BACKGROUND LAYER */}
         <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
           
+          {/* INSTANT ZERO-LATENCY LOW-FIDELITY SILHOUETTE LAYER (First paint fallback) */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+            <img
+              src="/home/hero-bg-ascii-2-low.webp"
+              alt=""
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
+              className="w-full h-full object-cover opacity-90 transition-opacity duration-1000"
+            />
+          </div>
+
           {/* STAGE 1 BACKGROUND (hero-bg-ascii-2.webp) */}
           <motion.div
             style={{ opacity: bg1Opacity, scale: bg1Scale }}
-            className="absolute inset-0 flex items-center justify-center pointer-events-auto"
+            className="absolute inset-0 flex items-center justify-center pointer-events-auto z-[1]"
           >
             <FluidImage
               image="/home/hero-bg-ascii-2.webp"
+              lowResImage="/home/hero-bg-ascii-2-low.webp"
               className="w-full h-full"
             />
           </motion.div>
@@ -71,10 +84,11 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
           {/* STAGE 2 INTERMEDIATE BACKGROUND (hero-bg-ascii-1.webp) */}
           <motion.div
             style={{ opacity: bg2Opacity, scale: bg2Scale }}
-            className="absolute inset-0 flex items-center justify-center pointer-events-auto"
+            className="absolute inset-0 flex items-center justify-center pointer-events-auto z-[1]"
           >
             <FluidImage
               image="/home/hero-bg-ascii-1.webp"
+              lowResImage="/home/hero-bg-ascii-1-low.webp"
               className="w-full h-full"
             />
           </motion.div>
@@ -82,19 +96,20 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
           {/* STAGE 3 REVEAL BACKGROUND (hero-bg-ascii-3-1.webp.webp) */}
           <motion.div
             style={{ opacity: bg3Opacity, scale: bg3Scale }}
-            className="absolute inset-0 flex items-center justify-center pointer-events-auto"
+            className="absolute inset-0 flex items-center justify-center pointer-events-auto z-[1]"
           >
             <FluidImage
               image="/home/hero-bg-ascii-3-1.webp.webp"
+              lowResImage="/home/hero-bg-ascii-3-1-low.webp"
               className="w-full h-full"
             />
           </motion.div>
 
           {/* Subtle radial vignette for soft blending */}
-          <div className="absolute inset-0 bg-radial from-transparent via-black/20 to-black/80 pointer-events-none z-[1]" />
+          <div className="absolute inset-0 bg-radial from-transparent via-black/20 to-black/80 pointer-events-none z-[2]" />
 
           {/* GLITTER WRAP (Starfield Warp Tunnel) */}
-          <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 z-[3] overflow-hidden pointer-events-none">
             <GlitterWrap
               particleCount={200}
               color1="#F3F7FF"
