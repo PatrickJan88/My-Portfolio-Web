@@ -83,10 +83,10 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
         {/* 1. SCROLL-DRIVEN BACKGROUND LAYER */}
         <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
           
-          {/* INSTANT ZERO-LATENCY LOW-FIDELITY SILHOUETTE LAYER (First paint fallback) */}
+          {/* INSTANT HIGH-QUALITY SILHOUETTE LAYER (First paint fallback) */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
             <img
-              src="/home/hero-bg-ascii-2-low.webp"
+              src="/home/hero-bg-ascii-2.webp"
               alt=""
               fetchPriority="high"
               loading="eager"

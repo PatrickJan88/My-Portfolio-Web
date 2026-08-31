@@ -674,18 +674,16 @@ export const FluidImage = ({
       aria-hidden
       className={`relative overflow-hidden ${className}`}
     >
-      {/* Instant low-fidelity background silhouette layer rendered before WebGL parses textures */}
-      {lowResImage && (
-        <img
-          src={lowResImage}
-          alt=""
-          loading="eager"
-          decoding="async"
-          className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-700 z-0 ${
-            isTextureReady ? "opacity-0" : "opacity-100"
-          }`}
-        />
-      )}
+      {/* Background image layer rendered before WebGL finishes initializing */}
+      <img
+        src={image}
+        alt=""
+        loading="eager"
+        decoding="async"
+        className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-700 z-0 ${
+          isTextureReady ? "opacity-0" : "opacity-100"
+        }`}
+      />
     </div>
   );
 };
