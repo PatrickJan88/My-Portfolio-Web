@@ -93,14 +93,14 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
             />
           </motion.div>
 
-          {/* STAGE 3 REVEAL BACKGROUND (hero-bg-ascii-3-1.webp.webp) */}
+          {/* STAGE 3 REVEAL BACKGROUND (hero-bg-ascii-3.webp) */}
           <motion.div
             style={{ opacity: bg3Opacity, scale: bg3Scale }}
             className="absolute inset-0 flex items-center justify-center pointer-events-auto z-[1]"
           >
             <FluidImage
-              image="/home/hero-bg-ascii-3-1.webp.webp"
-              lowResImage="/home/hero-bg-ascii-3-1-low.webp"
+              image="/home/hero-bg-ascii-3.webp"
+              lowResImage="/home/hero-bg-ascii-3-low.webp"
               className="w-full h-full"
             />
           </motion.div>

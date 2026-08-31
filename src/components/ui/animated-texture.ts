@@ -8,16 +8,14 @@ export interface AnimatedTextureResult {
 
 /**
  * Creates and loads a texture for GPU shader fluid simulation with progressive LOD support.
- * Loads low-res placeholder first (if provided) for instant display, then smoothly upgrades to high-res.
+ * Loads low-res placeholder first (if provided) for instant display, then seamlessly swaps to high-res.
  */
 export function createAnimatedTexture(
   src: string,
   lowResSrc?: string,
   onLoaded?: () => void
 ): AnimatedTextureResult {
-  const loader = new THREE.TextureLoader();
-
-  // Create empty texture with optimal filtering settings
+  // Create texture container with optimal filtering settings
   const texture = new THREE.Texture();
   texture.minFilter = THREE.LinearFilter;
   texture.magFilter = THREE.LinearFilter;
@@ -28,43 +26,38 @@ export function createAnimatedTexture(
   let isHighResLoaded = false;
   let isDisposed = false;
 
-  const configureTexture = (img: HTMLImageElement) => {
+  const setImg = (img: HTMLImageElement) => {
+    if (isDisposed) return;
     texture.image = img;
     texture.needsUpdate = true;
+    onLoaded?.();
   };
 
-  // If lowResSrc is provided, load it first for near-instant rendering
+  // 1. If lowResSrc is provided, load preview immediately for zero delay
   if (lowResSrc) {
-    loader.load(
-      lowResSrc,
-      (lowTex) => {
-        if (!isDisposed && !isHighResLoaded && lowTex.image) {
-          configureTexture(lowTex.image as HTMLImageElement);
-          onLoaded?.();
-        }
-      },
-      undefined,
-      (err) => {
-        console.warn("Low-res texture load notice:", lowResSrc, err);
+    const lowImg = new Image();
+    lowImg.crossOrigin = "anonymous";
+    lowImg.onload = () => {
+      if (!isDisposed && !isHighResLoaded) {
+        setImg(lowImg);
       }
-    );
+    };
+    lowImg.src = lowResSrc;
   }
 
-  // Load high-res texture in background
-  loader.load(
-    src,
-    (highTex) => {
-      if (!isDisposed && highTex.image) {
-        isHighResLoaded = true;
-        configureTexture(highTex.image as HTMLImageElement);
-        onLoaded?.();
-      }
-    },
-    undefined,
-    (err) => {
-      console.warn("Failed to load fluid image texture:", src, err);
+  // 2. Load the full high-res texture
+  const highImg = new Image();
+  highImg.crossOrigin = "anonymous";
+  highImg.onload = () => {
+    if (!isDisposed) {
+      isHighResLoaded = true;
+      setImg(highImg);
     }
-  );
+  };
+  highImg.onerror = (e) => {
+    console.warn("Failed to load high-res texture:", src, e);
+  };
+  highImg.src = src;
 
   return {
     texture,
