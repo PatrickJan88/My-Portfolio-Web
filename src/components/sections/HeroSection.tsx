@@ -33,7 +33,7 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
   const bg2Opacity = useTransform(smoothProgress, [0.08, 0.26, 0.44, 0.82], [0, 1, 1, 0]);
   const bg2Scale = useTransform(smoothProgress, [0.1, 0.8], [0.985, 1.025]);
 
-  // Stage 3 (hero-bg-ascii-3-1.webp.webp): Very gradual ease-in starting at 44% and smoothly reaching full presence at 82%
+  // Stage 3 (hero-bg-ascii-3-2.webp.webp): Very gradual ease-in starting at 44% and smoothly reaching full presence at 82%
   const bg3Opacity = useTransform(smoothProgress, [0.44, 0.82, 1], [0, 1, 1]);
   const bg3Scale = useTransform(smoothProgress, [0.44, 0.95], [0.985, 1.0]);
 
@@ -93,14 +93,14 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
             />
           </motion.div>
 
-          {/* STAGE 3 REVEAL BACKGROUND (hero-bg-ascii-3.webp) */}
+          {/* STAGE 3 REVEAL BACKGROUND (hero-bg-ascii-3-2.webp.webp) */}
           <motion.div
             style={{ opacity: bg3Opacity, scale: bg3Scale }}
             className="absolute inset-0 flex items-center justify-center pointer-events-auto z-[1]"
           >
             <FluidImage
-              image="/home/hero-bg-ascii-3.webp"
-              lowResImage="/home/hero-bg-ascii-3-low.webp"
+              image="/home/hero-bg-ascii-3-2.webp.webp"
+              lowResImage="/home/hero-bg-ascii-3-2-low.webp"
               className="w-full h-full"
             />
           </motion.div>
