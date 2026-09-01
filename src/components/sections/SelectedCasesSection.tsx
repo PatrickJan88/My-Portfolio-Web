@@ -134,6 +134,7 @@ export function SelectedCasesSection() {
   return (
     <div
       ref={containerRef}
+      id="selected-projects"
       className="relative w-full min-h-[480vh] bg-[#0c0d0e] text-white selection:bg-[#FF7523] selection:text-white"
     >
       {/* 1. STICKY DYNAMIC SHADER BACKGROUND */}

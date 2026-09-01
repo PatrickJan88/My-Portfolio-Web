@@ -202,10 +202,8 @@ const Word: FC<WordProps> = ({
         : customComponent
 
     return (
-      <span className="relative mx-1 lg:mx-2 inline-flex items-center align-middle">
-        <motion.span style={{ opacity }} className="inline-flex items-center">
-          {renderedSlot}
-        </motion.span>
+      <span className="relative inline-flex items-center align-middle">
+        {renderedSlot}
         {trailingPunctuation ? (
           <span className="relative inline-block ml-[1px]">
             {/* Ghost base punctuation */}

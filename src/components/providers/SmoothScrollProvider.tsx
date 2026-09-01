@@ -29,9 +29,12 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     // Scroll to top on route change smoothly without abrupt jump
     lenis.scrollTo(0, { immediate: true });
 
+    (window as any).__lenis = lenis;
+
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      (window as any).__lenis = null;
     };
   }, [location.pathname]);
 

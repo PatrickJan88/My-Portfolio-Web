@@ -10,6 +10,7 @@ import {
 import { OptionWheel } from "../ui/OptionWheel";
 import { PillarVisual, PillarMedia } from "../ui/PillarVisual";
 import { AsciiFlowTrail } from "../ui/AsciiFlowTrail";
+import SplitText from "../ui/SplitText";
 
 export interface PillarItem {
   id: string;
@@ -137,9 +138,17 @@ export function ScrollServicesSection() {
 
         {/* Centered Section Title matching H1 font family and size */}
         <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 text-center mb-4 sm:mb-6 lg:mb-8 relative z-20">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-space-grotesk tracking-normal text-white leading-tight">
-            How I work?
-          </h2>
+          <SplitText
+            text="How I work?"
+            tag="h2"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold font-space-grotesk tracking-normal text-white leading-tight inline-block"
+            delay={50}
+            duration={1}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+          />
         </div>
 
         <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center relative z-20">

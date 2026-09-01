@@ -2,6 +2,7 @@ import { TextReveal } from "../ui/text-reveal";
 import { TextCarousel } from "../ui/text-carousel";
 import { ShinyPill } from "../ui/ShinyPill";
 import { JellyToggle } from "../ui/JellyToggle";
+import { InlineMediaBetween } from "../ui/InlineMediaBetween";
 
 export function TextRevealSection() {
   return (
@@ -64,10 +65,22 @@ export function TextRevealSection() {
               />
             ),
           },
+          {
+            key: "{{MEDIA_BETWEEN}}",
+            component: ({ progress, range }: { progress: any; range: [number, number] }) => (
+              <InlineMediaBetween
+                mediaUrl="/home/biotopia-case-cover-page-1.webp"
+                mediaType="image"
+                progress={progress}
+                range={range}
+              />
+            ),
+          },
         ]}
       >
-        {"Grounded in {{SHINY_HCD}} <br/> I bridge {{CAROUSEL}} to build products where AI accelerates exploration while human judgment shapes meaningful experiences. I explore problems beyond the initial brief, seeking to understand the product, people, context, and what is actually happening. When challenges block progress, I look for alternatives {{JELLY_TOGGLE}}, seek expertise, and keep moving toward a realistic solution. I work across design, research, business, and engineering to bring different perspectives into a shared direction. I also question my design decisions and outcomes, learn from different perspectives, and reflect on what I could do differently next time, using those insights to continuously improve my work."}
+        {"Grounded in {{SHINY_HCD}} <br/> I bridge {{CAROUSEL}} to build products where AI accelerates exploration while human judgment shapes meaningful experiences. I explore problems beyond the initial brief, seeking to understand the product, people, context, and what is actually happening. When challenges block progress, I look for alternatives {{JELLY_TOGGLE}}, seek expertise, and keep moving toward a realistic solution. I work across design, research, business, and engineering to bring different perspectives into a shared direction. I also question my design decisions and outcomes, learn from different perspectives, and reflect on what I could do differently next time, using those insights to continuously improve my {{MEDIA_BETWEEN}} work."}
       </TextReveal>
     </section>
   );
 }
+
