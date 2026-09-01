@@ -30,17 +30,17 @@ This portfolio is crafted as a **Portfolio OS** — an intertwined, kinetic digi
 
 ### Core Aesthetic Pillars
 
-- ** Futuristic Design & Retro-Futurism**: Merging analog precision, tactile cockpit controls, and CRT cybernetic textures with ultra-modern glassmorphic surfaces and high-contrast typography.
-- ** Cosmos Concepts & Spatial Depth**: Deep obsidian voids, orbital geometries, celestial coordinates, and dynamic perspective scales that give the UI an expansive, atmospheric gravity.
-- ** Abstract Design & Computational Graphics**: Procedural mathematical curves, geometric wireframes, and dynamic canvas shaders visualizing the hidden mechanics of AI systems.
-- ** ASCII Art & Monospace Matrices**: Raw terminal typography and glyph grids juxtaposing the tactile origins of computer science with contemporary editorial elegance.
-- ** Glassmorphism & Optical Refraction**: Frosted translucent backdrops, specular light borders, and subtle chromatic dispersion layers providing natural Z-axis hierarchy.
-- ** Oil Painting-Like Future Design**: Luminous painterly pigments, impressionistic color washes, and soft aura gradients that infuse computational coldness with human warmth.
-- ** Glitch Text & Deciphering Interactions**: Kinetic text decryptions, transient cybernetic noise, and reactive hover glyph scrambles mimicking active neural processing.
-- ** Scroll-Driven Storytelling & Immersive Momentum**: Inertial smooth scroll physics powered by **Lenis**, synchronizing paragraph-by-paragraph text reveals, ghost baseline illumination, and seamless stage reveals.
-- ** Aura Gradients with Film Grain Shaders**: Diffused chromatic radiation fields layered with micro-grain textures to eliminate color banding and replicate analog tactile print.
-- ** GPU Shaders & WebGL Integration**: Real-time interactive fluid simulations, raymarched orbs, procedural noise fields, and interactive 3D globes (`Three.js`, `OGL`, `@shadergradient/react`, `Cobe`).
-- ** Intertwined Narrative UI Elements**: Micro-interactions seamlessly woven directly inside editorial text — including inline media rect-mask reveals, jelly toggle switches, dynamic rotating carousels, and luminous shiny pills.
+- **Futuristic Design & Retro-Futurism**: Merging analog precision, tactile cockpit controls, and CRT cybernetic textures with ultra-modern glassmorphic surfaces and high-contrast typography.
+- **Cosmos Concepts & Spatial Depth**: Deep obsidian voids, orbital geometries, celestial coordinates, and dynamic perspective scales that give the UI an expansive, atmospheric gravity.
+- **Abstract Design & Computational Graphics**: Procedural mathematical curves, geometric wireframes, and dynamic canvas shaders visualizing the hidden mechanics of AI systems.
+- **ASCII Art & Monospace Matrices**: Raw terminal typography and glyph grids juxtaposing the tactile origins of computer science with contemporary editorial elegance.
+- **Glassmorphism & Optical Refraction**: Frosted translucent backdrops, specular light borders, and subtle chromatic dispersion layers providing natural Z-axis hierarchy.
+- **Oil Painting-Like Future Design**: Luminous painterly pigments, impressionistic color washes, and soft aura gradients that infuse computational coldness with human warmth.
+- **Glitch Text & Deciphering Interactions**: Kinetic text decryptions, transient cybernetic noise, and reactive hover glyph scrambles mimicking active neural processing.
+- **Scroll-Driven Storytelling & Immersive Momentum**: Inertial smooth scroll physics powered by **Lenis**, synchronizing paragraph-by-paragraph text reveals, ghost baseline illumination, and seamless stage reveals.
+- **Aura Gradients with Film Grain Shaders**: Diffused chromatic radiation fields layered with micro-grain textures to eliminate color banding and replicate analog tactile print.
+- **GPU Shaders & WebGL Integration**: Real-time interactive fluid simulations, raymarched orbs, procedural noise fields, and interactive 3D globes (`Three.js`, `OGL`, `@shadergradient/react`, `Cobe`).
+- **Intertwined Narrative UI Elements**: Micro-interactions seamlessly woven directly inside editorial text — including inline media rect-mask reveals, jelly toggle switches, dynamic rotating carousels, and luminous shiny pills.
 
 ---
 
