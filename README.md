@@ -1,4 +1,4 @@
-# Pofei Ran — Portfolio & Operating System
+# Pofei Portfolio Website
 
 > **A synthesis of Product Thinking, HCI Research, Artificial Intelligence, and Creative Engineering.**  
 > Built as a living design platform combining retro-futurism, cosmos concepts, computational shaders, and scroll-driven narrative storytelling.
