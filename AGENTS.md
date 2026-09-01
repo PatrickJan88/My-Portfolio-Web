@@ -40,7 +40,7 @@ The visual and conceptual identity of this portfolio operates at the intersectio
        │                                                        │
        │   Retro-Futurism  ───┬───  Cosmos Concepts             │
        │                      │                                 │
-       │   ASCII & Cybernetics ──┼───  Shader & WebGL Physics      │
+       │   ASCII & Cybernetics ──┼───  Shader & WebGL Physics   │
        │                      │                                 │
        │   Oil Painting Glow  ───┴───  Intertwined Narrative UI │
        └────────────────────────────────────────────────────────┘
