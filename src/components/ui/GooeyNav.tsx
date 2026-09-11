@@ -33,15 +33,39 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   const location = useLocation();
   const navigate = useNavigate();
   
-  // Find initial index from route
-  const currentIndex = items.findIndex(item => item.href === location.pathname);
-  const [activeIndex, setActiveIndex] = useState<number>(currentIndex >= 0 ? currentIndex : 0);
+  // Helper to determine the corresponding nav item index for a given route path
+  const getNavIndex = (path: string): number => {
+    // 1. Exact match (e.g. "/" matches "/", "/projects" matches "/projects")
+    const exact = items.findIndex((item) => item.href === path);
+    if (exact >= 0) return exact;
 
-  // Sync activeIndex if location changes externally
+    // 2. Prefix match for nested sub-routes (e.g. "/projects/:id" matches "/projects")
+    // Never treat "/" as a prefix match, otherwise all paths match "/"
+    const prefix = items.findIndex(
+      (item) => item.href !== "/" && (path === item.href || path.startsWith(`${item.href}/`))
+    );
+    if (prefix >= 0) return prefix;
+
+    return 0;
+  };
+
+  const [activeIndex, setActiveIndex] = useState<number>(() => getNavIndex(location.pathname));
+
+  // Sync activeIndex if location changes externally (e.g. clicking case cards or logo)
   useEffect(() => {
-    const idx = items.findIndex(item => item.href === location.pathname);
-    if (idx >= 0 && idx !== activeIndex) {
-      setActiveIndex(idx);
+    const targetIdx = getNavIndex(location.pathname);
+    if (targetIdx !== activeIndex) {
+      setActiveIndex(targetIdx);
+      if (filterRef.current) {
+        const particles = filterRef.current.querySelectorAll('.particle');
+        particles.forEach((p) => filterRef.current!.removeChild(p));
+        makeParticles(filterRef.current);
+      }
+      if (textRef.current) {
+        textRef.current.classList.remove('active');
+        void textRef.current.offsetWidth;
+        textRef.current.classList.add('active');
+      }
     }
   }, [location.pathname, items, activeIndex]);
 

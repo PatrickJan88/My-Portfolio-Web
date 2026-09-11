@@ -127,21 +127,28 @@ export default function Navbar() {
                 </button>
               </div>
               <div className="flex flex-col gap-2">
-                {links.map((link) => (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={cn(
-                      "px-6 py-4 rounded-2xl text-lg font-bold transition-colors uppercase tracking-widest text-center",
-                      location.pathname === link.href
-                        ? "bg-mist-gray text-ink-black"
-                        : "text-ink-black hover:bg-fog-white",
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {links.map((link) => {
+                  const isActive =
+                    link.href === "/"
+                      ? location.pathname === "/"
+                      : location.pathname === link.href ||
+                        location.pathname.startsWith(`${link.href}/`);
+                  return (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={cn(
+                        "px-6 py-4 rounded-2xl text-lg font-bold transition-colors uppercase tracking-widest text-center",
+                        isActive
+                          ? "bg-mist-gray text-ink-black"
+                          : "text-ink-black hover:bg-fog-white",
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
               </div>
             </motion.div>
           </>
