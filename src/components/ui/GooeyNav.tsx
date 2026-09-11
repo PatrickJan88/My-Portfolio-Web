@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, startTransition } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 interface GooeyNavItem {
@@ -114,26 +114,31 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number, href: string) => {
     e.preventDefault();
-    navigate(href);
+    if (location.pathname === href) return;
     
     const liEl = e.currentTarget.parentElement;
-    if (!liEl) return;
-    
-    if (activeIndex === index) return;
-    setActiveIndex(index);
-    updateEffectPosition(liEl);
-    if (filterRef.current) {
-      const particles = filterRef.current.querySelectorAll('.particle');
-      particles.forEach(p => filterRef.current!.removeChild(p));
+    if (liEl) {
+      if (activeIndex !== index) {
+        setActiveIndex(index);
+        updateEffectPosition(liEl);
+        if (filterRef.current) {
+          const particles = filterRef.current.querySelectorAll('.particle');
+          particles.forEach(p => filterRef.current!.removeChild(p));
+        }
+        if (textRef.current) {
+          textRef.current.classList.remove('active');
+          void textRef.current.offsetWidth;
+          textRef.current.classList.add('active');
+        }
+        if (filterRef.current) {
+          makeParticles(filterRef.current);
+        }
+      }
     }
-    if (textRef.current) {
-      textRef.current.classList.remove('active');
-      void textRef.current.offsetWidth;
-      textRef.current.classList.add('active');
-    }
-    if (filterRef.current) {
-      makeParticles(filterRef.current);
-    }
+
+    startTransition(() => {
+      navigate(href);
+    });
   };
   
   useEffect(() => {

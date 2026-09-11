@@ -159,9 +159,9 @@ export function SeekrSection() {
     <div className="relative w-full bg-[#0A0D14]">
       {/* 1. Mockup Section - Sticky underneath */}
       <section className="sticky top-0 w-full h-[100svh] flex flex-col justify-center bg-[#0A0D14] p-4 sm:p-6 md:p-8 overflow-hidden z-0">
-        {/* Background Shader Gradient - rendered immediately to prevent scroll pop-in */}
+        {/* Background Shader Gradient - lazy loaded with generous rootMargin to prevent pop-in */}
         <div className="absolute inset-0 z-0 pointer-events-none blur-lg scale-105 opacity-100">
-          <ShaderGradientCanvas style={{ pointerEvents: 'none' }} lazyLoad={false}>
+          <ShaderGradientCanvas style={{ pointerEvents: 'none' }} lazyLoad={true} rootMargin="600px">
             <ShaderGradient
               animate="on"
               axesHelper="off"

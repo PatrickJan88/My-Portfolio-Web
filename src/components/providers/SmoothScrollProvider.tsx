@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import { useLocation } from "react-router-dom";
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   const location = useLocation();
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
     // Exact momentum & damping configuration matching Framer's Palmer template
@@ -17,6 +18,9 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       touchMultiplier: 1.5,
     });
 
+    lenisRef.current = lenis;
+    (window as any).__lenis = lenis;
+
     let rafId: number;
 
     function raf(time: number) {
@@ -26,16 +30,19 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
 
     rafId = requestAnimationFrame(raf);
 
-    // Scroll to top on route change smoothly without abrupt jump
-    lenis.scrollTo(0, { immediate: true });
-
-    (window as any).__lenis = lenis;
-
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      lenisRef.current = null;
       (window as any).__lenis = null;
     };
+  }, []);
+
+  // Scroll to top immediately on route change without tearing down Lenis
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
   }, [location.pathname]);
 
   return <>{children}</>;

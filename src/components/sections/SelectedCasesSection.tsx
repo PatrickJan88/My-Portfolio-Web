@@ -157,6 +157,7 @@ export function SelectedCasesSection() {
             <FluidImage
               image={item.bgImage}
               className="w-full h-full object-cover"
+              enabled={Math.abs(activeIndex - idx) <= 1}
             />
           </motion.div>
         ))}

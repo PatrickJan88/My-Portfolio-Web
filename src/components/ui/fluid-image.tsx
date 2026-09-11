@@ -255,6 +255,7 @@ export interface FluidImageProps {
   className?: string;
   dpr?: number;
   controls?: boolean;
+  enabled?: boolean;
 }
 
 export const FluidImage = ({
@@ -263,11 +264,32 @@ export const FluidImage = ({
   className = "w-full h-full",
   dpr = 2,
   controls = false,
+  enabled = true,
 }: FluidImageProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isTextureReady, setIsTextureReady] = useState(false);
+  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container || !enabled) {
+      setIsInView(false);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: "350px", threshold: 0 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [enabled]);
+
+  useEffect(() => {
+    if (!isInView || !enabled) return;
     const container = containerRef.current;
     if (!container) return;
 
@@ -594,7 +616,6 @@ export const FluidImage = ({
         renderer.domElement.width,
         renderer.domElement.height,
       );
-      renderFrame();
     };
     resize();
 
@@ -666,7 +687,7 @@ export const FluidImage = ({
       renderer.forceContextLoss();
       renderer.dispose();
     };
-  }, [image, lowResImage, dpr, controls]);
+  }, [image, lowResImage, dpr, controls, isInView, enabled]);
 
   return (
     <div

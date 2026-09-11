@@ -411,12 +411,31 @@ const ParticleText = ({
     canvas.addEventListener('pointerleave', handlePointerLeave);
     canvas.addEventListener('click', handleClick);
 
-    const resizeObserver = new ResizeObserver(queueSample);
+    let inView = false;
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        if (inView) {
+          queueSample();
+        } else {
+          if (animationFrame !== null) {
+            window.cancelAnimationFrame(animationFrame);
+            animationFrame = null;
+          }
+        }
+      },
+      { rootMargin: '300px', threshold: 0 }
+    );
+    intersectionObserver.observe(container);
+
+    const resizeObserver = new ResizeObserver(() => {
+      if (inView) queueSample();
+    });
     resizeObserver.observe(container);
-    void sampleText();
 
     return () => {
       buildId += 1;
+      intersectionObserver.disconnect();
       resizeObserver.disconnect();
       reduceMotionQuery?.removeEventListener('change', handleReduceMotionChange);
       canvas.removeEventListener('pointerenter', handlePointerEnter);

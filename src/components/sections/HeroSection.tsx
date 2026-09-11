@@ -63,6 +63,26 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
   const bg3Opacity = useTransform(smoothProgress, [0.44, 0.82, 1], [0, 1, 1]);
   const bg3Scale = useTransform(smoothProgress, [0.44, 0.95], [0.985, 1.0]);
 
+  // Defer initialization of off-screen/invisible WebGL stages 2 and 3 until scroll progress approaches them
+  const [stage2Enabled, setStage2Enabled] = useState(false);
+  const [stage3Enabled, setStage3Enabled] = useState(false);
+
+  useEffect(() => {
+    const unsub = smoothProgress.on("change", (latest) => {
+      if (latest > 0.02) setStage2Enabled(true);
+      if (latest > 0.35) setStage3Enabled(true);
+    });
+
+    const idleTimer = setTimeout(() => {
+      setStage2Enabled(true);
+    }, 2500);
+
+    return () => {
+      unsub();
+      clearTimeout(idleTimer);
+    };
+  }, [smoothProgress]);
+
   // Title & Subtitle dim continuously and slowly across Stage 1 to Stage 3, fading away by the final stage
   // Stage 1 (0 -> ~0.3): Starts bright at 1.0, gently dims to ~0.78
   // Stage 2 (0.3 -> ~0.65): Continues dimming down from ~0.78 to ~0.42
@@ -116,6 +136,7 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
               image="/home/hero-bg-ascii-1.webp"
               lowResImage="/home/hero-bg-ascii-1-low.webp"
               className="w-full h-full"
+              enabled={stage2Enabled}
             />
           </motion.div>
 
@@ -128,6 +149,7 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
               image="/home/hero-bg-ascii-3.webp"
               lowResImage="/home/hero-bg-ascii-3-low.webp"
               className="w-full h-full"
+              enabled={stage3Enabled}
             />
           </motion.div>
 

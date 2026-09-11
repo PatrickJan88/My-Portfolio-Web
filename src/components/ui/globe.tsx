@@ -1,6 +1,6 @@
 "use client";
 import createGlobe, { COBEOptions } from "cobe";
-import { useCallback, useEffect, useRef, useContext } from "react";
+import { useCallback, useEffect, useRef, useContext, useState } from "react";
 import { useSpring } from "@react-spring/web";
 
 import { cn } from "@/lib/utils";
@@ -58,15 +58,32 @@ export function Globe({
   className?: string;
   config?: Omit<COBEOptions, "width" | "height">;
 }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerInteracting = useRef<number | null>(null);
   const pointerInteractionMovement = useRef(0);
   const isHovered = useContext(BentoHoverContext);
   const isHoveredRef = useRef(isHovered);
+  const [isInView, setIsInView] = useState(false);
   
   useEffect(() => {
     isHoveredRef.current = isHovered;
   }, [isHovered]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: "300px", threshold: 0 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   const [{ r }, api] = useSpring(() => ({
     r: 0,
@@ -94,6 +111,8 @@ export function Globe({
   };
 
   useEffect(() => {
+    if (!isInView || !canvasRef.current) return;
+
     let phi = 0;
     let width = 0;
     let animationFrameId: number;
@@ -107,7 +126,7 @@ export function Globe({
     window.addEventListener("resize", onResize);
     onResize();
 
-    const globe = createGlobe(canvasRef.current!, {
+    const globe = createGlobe(canvasRef.current, {
       ...config,
       width: width * 2,
       height: width * 2,
@@ -145,10 +164,11 @@ export function Globe({
       cancelAnimationFrame(animationFrameId);
       globe.destroy();
     };
-  }, [r, config]);
+  }, [r, config, isInView]);
 
   return (
     <div
+      ref={containerRef}
       className={cn(
         "absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]",
         className,
