@@ -181,7 +181,7 @@ export function ScrollServicesSection() {
                 </h3>
 
                 {/* Subtitle / Description Narrative with text-pretty orphan prevention */}
-                <p className="text-base sm:text-lg font-sans text-neutral-300 leading-relaxed max-w-lg mb-6 text-pretty">
+                <p className="text-base sm:text-lg font-sans text-neutral-300 leading-relaxed max-w-lg mb-6 text-pretty text-perfect">
                   {activeItem.description}
                 </p>
 

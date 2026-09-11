@@ -262,7 +262,7 @@ function CaseCard({ item, index }: CaseCardProps) {
             </div>
 
             {/* Project Summary Description */}
-            <p className="text-neutral-600 text-base sm:text-lg leading-relaxed text-pretty font-normal">
+            <p className="text-neutral-600 text-base sm:text-lg leading-relaxed text-pretty text-perfect font-normal">
               {item.description}
             </p>
           </div>

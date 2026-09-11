@@ -7,7 +7,7 @@ export const biotopiaDigitalExperienceCaseStudy: ProjectData = {
   client: "Biotopia",
   image: "/projects/biotopia-digital-experience/bio-cover-page.webp",
   
-  heroHeading: "Unified Museum\nService",
+  heroHeading: "Unified Museum Service",
   overviewHeading: "Unified Museum Service",
   heroImage: "/projects/biotopia-digital-experience/bio-cover-hero-page.webp",
   

@@ -5,6 +5,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, PenTool, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { projectsData } from "../data/projects";
 import AutoCarousel from "../components/AutoCarousel";
+import { ImageComparisonCustomSlider } from "@/components/core/image-comparison";
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -193,7 +194,11 @@ export default function ProjectDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-normal mb-4 md:mb-8 text-fog-white max-w-4xl">
+            <h1 className={`leading-[1.1] tracking-normal mb-4 md:mb-8 text-fog-white ${
+              project.id === 'urgent-booking' || project.id === 'biotopia-digital-experience'
+                ? "text-[clamp(0.95rem,4.2vw,1.875rem)] sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[3.25rem] 2xl:text-6xl max-w-none whitespace-nowrap"
+                : "text-4xl md:text-5xl lg:text-6xl max-w-4xl"
+            }`}>
               {project.title}
             </h1>
           </motion.div>
@@ -293,7 +298,7 @@ export default function ProjectDetail() {
         {/* Overview Section */}
         <article className={`w-full flex flex-col px-2 md:px-8 ${project.id === 'svenska-lek' ? 'mb-12 md:mb-16' : 'mb-16 md:mb-24'}`}>
           <div className="w-full flex flex-col mb-8 md:mb-12">
-            <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
+            <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
               {project.overviewLabel || "Overview"}
             </h3>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-ink-black leading-[1.1] whitespace-pre-line text-pretty">
@@ -302,16 +307,151 @@ export default function ProjectDetail() {
           </div>
 
           <div className="w-full flex flex-col">
-            <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black mb-8 font-light whitespace-pre-line text-pretty">
+            <p className="font-sans text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black mb-8 font-light whitespace-pre-line text-pretty text-perfect">
               {project.overview}
             </p>
             {project.subOverview && (
-              <p className="text-base md:text-lg text-slate-gray leading-relaxed font-light text-pretty">
+              <p className="font-sans text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black mb-8 font-light whitespace-pre-line text-pretty text-perfect">
                 {project.subOverview}
               </p>
             )}
           </div>
         </article>
+
+        {/* Overview Media Section (under Overview and above Client Problem Statement) */}
+        {project.overviewMedia && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="w-full aspect-[4/3] md:aspect-[16/9] bg-[#101014] rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-16 md:mb-24"
+            onClick={() => {
+              if (typeof project.overviewMedia === "string") {
+                handleMediaClick(
+                  project.overviewMedia,
+                  project.overviewMedia.endsWith(".webm") || project.overviewMedia.endsWith(".mp4")
+                );
+              }
+            }}
+          >
+            {typeof project.overviewMedia === "string" ? (
+              project.overviewMedia.endsWith(".webm") || project.overviewMedia.endsWith(".mp4") ? (
+                <>
+                  <video
+                    src={project.overviewMedia}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover relative z-10 pointer-events-none md:pointer-events-auto"
+                  />
+                  <p className="absolute text-white/40 font-mono text-sm z-0">
+                    Media Placeholder ({project.overviewMedia.split("/").pop()})
+                  </p>
+                </>
+              ) : (
+                <img
+                  src={project.overviewMedia}
+                  alt="Overview Media"
+                  className="w-full h-full object-cover pointer-events-none md:pointer-events-auto"
+                />
+              )
+            ) : Array.isArray(project.overviewMedia) ? (
+              <AutoCarousel
+                images={project.overviewMedia}
+                onImageClick={(src) => handleMediaClick(src, false, project.overviewMedia as string[])}
+              />
+            ) : (
+              <p className="absolute text-white/40 font-mono text-sm">
+                Media Placeholder (Upload WebM/Image here)
+              </p>
+            )}
+          </motion.div>
+        )}
+
+        {/* Design Iteration Section (with Image Comparison on the right and text floating on the left) */}
+        {project.id === 'ears' && project.designIteration ? (
+          <article className="w-full clear-both flow-root mb-16 md:mb-24">
+            {project.imageComparison && (
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="w-full lg:w-7/12 mb-8 lg:mb-12 lg:float-right lg:ml-12 lg:mt-2 flex flex-col"
+              >
+                <div className="w-full aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative">
+                  <ImageComparisonCustomSlider
+                    className="w-full h-full aspect-[4/3] rounded-[2rem]"
+                    backSrc={typeof project.imageComparison === 'object' && project.imageComparison?.backSrc ? project.imageComparison.backSrc : undefined}
+                    frontSrc={typeof project.imageComparison === 'object' && project.imageComparison?.frontSrc ? project.imageComparison.frontSrc : undefined}
+                    leftSrc={typeof project.imageComparison === 'object' && project.imageComparison?.leftSrc ? project.imageComparison.leftSrc : undefined}
+                    rightSrc={typeof project.imageComparison === 'object' && project.imageComparison?.rightSrc ? project.imageComparison.rightSrc : undefined}
+                    backAlt={typeof project.imageComparison === 'object' && project.imageComparison?.backAlt ? project.imageComparison.backAlt : undefined}
+                    frontAlt={typeof project.imageComparison === 'object' && project.imageComparison?.frontAlt ? project.imageComparison.frontAlt : undefined}
+                    leftAlt={typeof project.imageComparison === 'object' && project.imageComparison?.leftAlt ? project.imageComparison.leftAlt : undefined}
+                    rightAlt={typeof project.imageComparison === 'object' && project.imageComparison?.rightAlt ? project.imageComparison.rightAlt : undefined}
+                    aspectRatio={typeof project.imageComparison === 'object' && project.imageComparison?.aspectRatio ? project.imageComparison.aspectRatio : "aspect-[4/3]"}
+                  />
+                </div>
+                <div className="w-full flex items-center justify-between px-4 pt-3 text-[14px] text-slate-gray font-medium select-none">
+                  <span>Old Version</span>
+                  <span>New Version</span>
+                </div>
+              </motion.div>
+            )}
+
+            <div className="px-2 md:px-8">
+              <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
+                {project.designIteration.label || "Design Iteration"}
+              </h3>
+              <h2 className={`font-light tracking-normal text-ink-black leading-[1.1] mb-8 ${
+                project.designIteration.heading === "From Solutions to Action"
+                  ? "text-2xl sm:text-3xl md:text-4xl lg:text-[1.85rem] xl:text-[2.25rem] 2xl:text-5xl"
+                  : "text-4xl md:text-5xl lg:text-5xl whitespace-pre-line text-pretty"
+              }`}>
+                {project.designIteration.heading || "From Solutions to Action"}
+              </h2>
+              <p className="font-sans text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black font-light whitespace-pre-line text-pretty text-perfect">
+                {project.designIteration.content}
+              </p>
+              {project.designIteration.subContent && (
+                <p className="font-sans text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black font-light whitespace-pre-line text-pretty text-perfect mt-8">
+                  {project.designIteration.subContent}
+                </p>
+              )}
+            </div>
+          </article>
+        ) : (
+          project.imageComparison && (
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="w-full mb-16 md:mb-24 flex flex-col"
+            >
+              <div className="w-full aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative">
+                <ImageComparisonCustomSlider
+                  backSrc={typeof project.imageComparison === 'object' && project.imageComparison?.backSrc ? project.imageComparison.backSrc : undefined}
+                  frontSrc={typeof project.imageComparison === 'object' && project.imageComparison?.frontSrc ? project.imageComparison.frontSrc : undefined}
+                  leftSrc={typeof project.imageComparison === 'object' && project.imageComparison?.leftSrc ? project.imageComparison.leftSrc : undefined}
+                  rightSrc={typeof project.imageComparison === 'object' && project.imageComparison?.rightSrc ? project.imageComparison.rightSrc : undefined}
+                  backAlt={typeof project.imageComparison === 'object' && project.imageComparison?.backAlt ? project.imageComparison.backAlt : undefined}
+                  frontAlt={typeof project.imageComparison === 'object' && project.imageComparison?.frontAlt ? project.imageComparison.frontAlt : undefined}
+                  leftAlt={typeof project.imageComparison === 'object' && project.imageComparison?.leftAlt ? project.imageComparison.leftAlt : undefined}
+                  rightAlt={typeof project.imageComparison === 'object' && project.imageComparison?.rightAlt ? project.imageComparison.rightAlt : undefined}
+                  aspectRatio={typeof project.imageComparison === 'object' && project.imageComparison?.aspectRatio ? project.imageComparison.aspectRatio : undefined}
+                />
+              </div>
+              <div className="w-full flex items-center justify-between px-4 pt-3 text-[14px] text-slate-gray font-medium select-none">
+                <span>Old Version</span>
+                <span>New Version</span>
+              </div>
+            </motion.div>
+          )
+        )}
 
         {/* Testimonial Section */}
         {project.id !== 'icon-archive' && (
@@ -365,6 +505,61 @@ export default function ProjectDetail() {
           </motion.div>
           )}
 
+          {/* EyeAsk Section (Enterprise Finance Ecosystem specific: media left, text right) */}
+          {project.id === 'ears' && project.eyeAsk && (
+            <article className="w-full clear-both flow-root">
+              {(project.eyeAsk.media || "/projects/ears/eyeask-video-1080p.webm") && (
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8 }}
+                  className="w-full lg:w-7/12 aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-left lg:mr-12 lg:mt-2"
+                  onClick={() => {
+                    const mediaSrc = project.eyeAsk?.media || "/projects/ears/eyeask-video-1080p.webm";
+                    if (mediaSrc) {
+                      handleMediaClick(mediaSrc, mediaSrc.endsWith(".webm") || mediaSrc.endsWith(".mp4"));
+                    }
+                  }}
+                >
+                  {(project.eyeAsk.media || "/projects/ears/eyeask-video-1080p.webm").endsWith(".webm") || (project.eyeAsk.media || "/projects/ears/eyeask-video-1080p.webm").endsWith(".mp4") ? (
+                    <video
+                      src={project.eyeAsk.media || "/projects/ears/eyeask-video-1080p.webm"}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto"
+                    />
+                  ) : (
+                    <img
+                      src={project.eyeAsk.media || "/projects/ears/eyeask-video-1080p.webm"}
+                      alt="EyeAsk Media"
+                      className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto"
+                    />
+                  )}
+                </motion.div>
+              )}
+
+              <div className="px-2 md:px-8">
+                <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
+                  {project.eyeAsk.label || "EyeAsk"}
+                </h3>
+                <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-ink-black leading-[1.1] mb-8 whitespace-pre-line text-pretty">
+                  {project.eyeAsk.heading || "Conversational Intelligence in Context"}
+                </h2>
+                <p className="font-sans text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black font-light whitespace-pre-line text-pretty text-perfect">
+                  {project.eyeAsk.content}
+                </p>
+                {project.eyeAsk.subContent && (
+                  <p className="font-sans text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black font-light whitespace-pre-line text-pretty text-perfect mt-8">
+                    {project.eyeAsk.subContent}
+                  </p>
+                )}
+              </div>
+            </article>
+          )}
+
           {/* Section 2: Text Left, Media Right */}
           {project.id === 'icon-archive' ? (
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -412,7 +607,7 @@ export default function ProjectDetail() {
           ) : (
             <>
               {/* Section 2: Text Wrapping Media Right */}
-              <article className="w-full clear-both">
+              <article className={`w-full clear-both ${project.id === 'ears' ? 'mt-16 lg:mt-24' : ''}`}>
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -435,13 +630,13 @@ export default function ProjectDetail() {
                 </motion.div>
                 
                 <div className="px-2 md:px-8">
-                  <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-ash-gray mb-6">
+                  <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
                     {project.section1?.label || "Approach"}
                   </h3>
                   <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-ink-black leading-[1.1] mb-8 whitespace-pre-line">
                     {project.section1?.heading || "Digital Platform"}
                   </h2>
-                  <p className="text-lg md:text-[22px] text-slate-gray leading-[1.6] font-light whitespace-pre-line">
+                  <p className="font-sans text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black font-light whitespace-pre-line text-pretty text-perfect">
                     {project.section1?.content || "The hackathon platform was designed for seamless registration, team formation, and project submission. We created a digital experience that turned participation into a journey — from sign-up to demo day."}
                   </p>
                 </div>
@@ -471,13 +666,17 @@ export default function ProjectDetail() {
                 </motion.div>
                 
                 <div className="px-2 md:px-8">
-                  <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-ash-gray mb-6">
+                  <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
                     {project.section2?.label || "Design System"}
                   </h3>
-                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-ink-black leading-[1.1] mb-8 whitespace-pre-line">
+                  <h2 className={`font-light tracking-normal text-ink-black leading-[1.1] mb-8 ${
+                    project.section2?.heading === "Built for Daily Operations" || project.section2?.heading === "Market-Specific Execution"
+                      ? "text-xl sm:text-2xl md:text-3xl lg:text-[1.85rem] xl:text-[2.25rem] 2xl:text-5xl whitespace-nowrap"
+                      : "text-4xl md:text-5xl lg:text-5xl whitespace-pre-line"
+                  }`}>
                     {project.section2?.heading || "Visual Identity"}
                   </h2>
-                  <p className="text-lg md:text-[22px] text-slate-gray leading-[1.6] font-light whitespace-pre-line">
+                  <p className="font-sans text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black font-light whitespace-pre-line text-pretty text-perfect">
                     {project.section2?.content || "We established a cohesive visual system built on bold typography and strategic use of color. This system ensures consistency across marketing materials, digital platforms, and physical venue signage."}
                   </p>
                 </div>
@@ -544,7 +743,7 @@ export default function ProjectDetail() {
           {project.id !== 'icon-archive' && (
           <article className={`w-full flex flex-col px-2 md:px-8 ${project.id === 'svenska-lek' ? 'pt-4 md:pt-6' : 'pt-8 md:pt-12'}`}>
             <div className="w-full flex flex-col mb-8 md:mb-12">
-              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
+              <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
                 {project.section3?.label || "Result"}
               </h3>
               <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-ink-black leading-[1.1] whitespace-pre-line text-pretty">
@@ -553,11 +752,11 @@ export default function ProjectDetail() {
             </div>
             
             <div className="w-full flex flex-col">
-              <p className="text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black mb-8 font-light whitespace-pre-line text-pretty">
+              <p className="font-sans text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black mb-8 font-light whitespace-pre-line text-pretty text-perfect">
                 {project.section3?.content || project.overview}
               </p>
               {project.subOverview && !project.section3 && (
-                <p className="text-base md:text-lg text-slate-gray leading-relaxed font-light text-pretty">
+                <p className="font-sans text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black font-light whitespace-pre-line text-pretty text-perfect">
                   {project.subOverview}
                 </p>
               )}
@@ -573,7 +772,7 @@ export default function ProjectDetail() {
             onClick={() => window.scrollTo(0, 0)}
             className="group flex flex-col items-center text-center"
           >
-            <p className="text-sm font-bold tracking-[0.2em] uppercase text-ash-gray mb-6">
+            <p className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6">
               Next Project
             </p>
             <h2 className="text-4xl md:text-6xl font-light tracking-normal text-ink-black mb-6 group-hover:opacity-70 transition-opacity">

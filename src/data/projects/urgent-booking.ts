@@ -7,7 +7,7 @@ export const urgentBookingCaseStudy: ProjectData = {
   client: "Confidential",
   image: "/projects/urgent-booking/ur-cover-page.webp",
   
-  heroHeading: "Urgency-Responsive\nTravel Scaffolding",
+  heroHeading: "Urgency-Responsive Travel Scaffolding",
   heroImage: "/projects/urgent-booking/ur-cover-hero-page.webp",
   
   overviewHeading: "Urgency-Responsive UX & Cognitive Relief",

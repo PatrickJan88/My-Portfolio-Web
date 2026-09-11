@@ -61,6 +61,18 @@ export interface ProjectData {
   overviewHeading?: string;
   overview: string;
   subOverview?: string;
+  overviewMedia?: string | string[];
+  imageComparison?: {
+    leftSrc?: string;
+    rightSrc?: string;
+    leftAlt?: string;
+    rightAlt?: string;
+    frontSrc?: string;
+    backSrc?: string;
+    frontAlt?: string;
+    backAlt?: string;
+    aspectRatio?: string;
+  } | boolean;
   
   testimonial?: {
     quote: string;
@@ -77,6 +89,21 @@ export interface ProjectData {
     label: string;
     heading: string;
     content: string;
+  };
+
+  eyeAsk?: {
+    label?: string;
+    heading?: string;
+    content: string;
+    subContent?: string;
+    media?: string;
+  };
+
+  designIteration?: {
+    label?: string;
+    heading?: string;
+    content: string;
+    subContent?: string;
   };
 
   section3?: {
