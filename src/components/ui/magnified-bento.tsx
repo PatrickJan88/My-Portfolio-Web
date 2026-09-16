@@ -50,7 +50,7 @@ export const TAG_ROWS = [
 ];
 
 const CONFIG = {
-  containerHeight: "h-[200px] sm:h-[240px]",
+  containerHeight: "h-[192px] sm:h-[217px] md:h-[227px]",
 };
 
 export const BentoHoverContext = React.createContext(false);
@@ -121,7 +121,7 @@ const MagnifiedBento = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <BentoHoverContext.Provider value={isHovered}>
-        <div className="group relative h-full flex flex-col w-full overflow-hidden rounded-[2rem] bg-white p-1.5 sm:p-2 transition-all duration-500 hover:-translate-y-1 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] will-change-transform transform-gpu">
+        <div className="group relative h-full flex flex-col w-full overflow-hidden rounded-[2rem] bg-white p-1.5 sm:p-2 transition-all duration-500 hover:-translate-y-1 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.12),0_4px_16px_rgba(0,0,0,0.04)] will-change-transform transform-gpu">
         <div
           className={cn(
             "relative w-full overflow-hidden rounded-[1.5rem] bg-fog-white shrink-0 transform-gpu [transform:translateZ(0)]",
@@ -140,12 +140,12 @@ const MagnifiedBento = ({
             )}
           </div>
         </div>
-        <div className="p-4 sm:p-6 px-4 pb-6 sm:pb-8 flex-grow">
-          <h3 className="text-xl font-medium tracking-tight text-ink-black">
-            {title}
+        <div className="p-4 sm:p-5 px-4 pb-4 sm:pb-5 flex-grow flex flex-col">
+          <h3 className="text-lg sm:text-xl font-medium tracking-tight text-ink-black min-h-[1.5rem] sm:min-h-[1.75rem]">
+            {title || <span className="opacity-0 select-none">&nbsp;</span>}
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-slate-gray">
-            {description}
+          <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-slate-gray min-h-[2.25rem]">
+            {description || <span className="opacity-0 select-none">&nbsp;</span>}
           </p>
         </div>
       </div>
