@@ -122,13 +122,10 @@ export function ScrollServicesSection() {
   const activeItem = pillarsData[activeIndex] || pillarsData[0];
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full h-[360vh] bg-black"
-    >
-      {/* Sticky Fullscreen Section */}
-      <div className="sticky top-0 h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden z-20 transition-colors duration-500 pt-16 md:pt-20">
-        {/* Interactive ASCII Flow Trail Canvas (active only within this section) */}
+    <>
+      {/* ─── MOBILE & TABLET LAYOUT (< lg): Sequential scroll flow without number wheel ─── */}
+      <section className="block lg:hidden relative w-full bg-black py-16 sm:py-24 md:py-28 px-6 sm:px-10 md:px-14 overflow-hidden z-20">
+        {/* Interactive ASCII Flow Trail Canvas */}
         <AsciiFlowTrail
           charSet=" .·:;+*#%@█"
           trailLife={40}
@@ -136,12 +133,12 @@ export function ScrollServicesSection() {
           color="rgba(240, 242, 245, "
         />
 
-        {/* Centered Section Title matching H1 font family and size */}
-        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 text-center mb-4 sm:mb-6 lg:mb-8 relative z-20">
+        {/* Centered Section Title */}
+        <div className="w-full max-w-[720px] mx-auto text-center mb-12 sm:mb-16 md:mb-20 relative z-20">
           <SplitText
             text="How I work?"
             tag="h2"
-            className="text-4xl md:text-5xl lg:text-6xl font-bold font-space-grotesk tracking-normal text-white leading-tight inline-block"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold font-space-grotesk tracking-normal text-white leading-tight inline-block"
             delay={50}
             duration={1}
             ease="power3.out"
@@ -151,69 +148,140 @@ export function ScrollServicesSection() {
           />
         </div>
 
-        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center relative z-20">
-          
-          {/* Left Column: Number Option Wheel along Curved Arc */}
-          <div className="lg:col-span-3 h-[420px] sm:h-[500px] lg:h-[540px] w-full flex items-center justify-center lg:justify-start relative">
-            <OptionWheel
-              items={pillarsData.map((item) => item.number)}
-              selectedIndex={activeIndex}
-              scrollProgress={continuousPos}
-              onSelect={handleSelect}
-              className="h-full w-full"
-            />
-          </div>
-
-          {/* Center Column: Pillar Details & Text */}
-          <div className="lg:col-span-5 flex flex-col justify-center px-2 sm:px-6 lg:px-4">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeItem.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col"
-              >
-                {/* Pillar Subtitle */}
-                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-[#fafafb] leading-[1.08] mb-4 text-balance">
-                  {activeItem.title}
+        {/* 4 Personal Highlights rendered sequentially with animation under text */}
+        <div className="w-full max-w-[680px] mx-auto flex flex-col gap-16 sm:gap-20 md:gap-24 relative z-20">
+          {pillarsData.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col gap-6 md:gap-8"
+            >
+              {/* Highlight Text */}
+              <div className="flex flex-col">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold tracking-tight text-[#fafafb] leading-[1.15] mb-3 md:mb-4 text-balance">
+                  {item.title}
                 </h3>
-
-                {/* Subtitle / Description Narrative with text-pretty orphan prevention */}
-                <p className="text-base sm:text-lg font-sans text-neutral-300 leading-relaxed max-w-lg mb-6 text-pretty text-perfect">
-                  {activeItem.description}
+                <p className="text-sm sm:text-base md:text-lg font-sans text-neutral-300 leading-relaxed mb-4 md:mb-6 text-pretty text-perfect">
+                  {item.description}
                 </p>
-
-                {/* Filter / Capsule Tags */}
-                <div className="flex flex-wrap gap-2.5">
-                  {activeItem.tags.map((tag, idx) => (
+                <div className="flex flex-wrap gap-2 md:gap-2.5">
+                  {item.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="px-4 py-1.5 rounded-full text-xs font-mono font-medium bg-neutral-800/80 text-neutral-200 border border-white/10 hover:border-white/20 transition-colors"
+                      className="px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-mono font-medium bg-neutral-800/80 text-neutral-200 border border-white/10"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              </div>
+
+              {/* Highlight Animation / Media directly under text */}
+              <div className="w-full flex items-center justify-center max-w-[420px] md:max-w-[480px] mx-auto">
+                <PillarVisual index={index} media={item.media} />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ─── DESKTOP LAYOUT (>= lg): Sticky interactive 360vh wheel & scroll experience ─── */}
+      <div
+        ref={containerRef}
+        className="hidden lg:block relative w-full h-[360vh] bg-black"
+      >
+        {/* Sticky Fullscreen Section */}
+        <div className="sticky top-0 h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden z-20 transition-colors duration-500 pt-16 md:pt-20">
+          {/* Interactive ASCII Flow Trail Canvas (active only within this section) */}
+          <AsciiFlowTrail
+            charSet=" .·:;+*#%@█"
+            trailLife={40}
+            fontSize={13}
+            color="rgba(240, 242, 245, "
+          />
+
+          {/* Centered Section Title matching H1 font family and size */}
+          <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 text-center mb-4 sm:mb-6 lg:mb-8 relative z-20">
+            <SplitText
+              text="How I work?"
+              tag="h2"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold font-space-grotesk tracking-normal text-white leading-tight inline-block"
+              delay={50}
+              duration={1}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+            />
           </div>
 
-          {/* Right Column: 1:1 Aspect Ratio Media Container */}
-          <div className="lg:col-span-4 flex items-center justify-center lg:justify-end">
-            <AnimatePresence mode="wait">
-              <PillarVisual
-                key={activeItem.id}
-                index={activeIndex}
-                media={activeItem.media}
+          <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center relative z-20">
+            
+            {/* Left Column: Number Option Wheel along Curved Arc */}
+            <div className="lg:col-span-3 h-[420px] sm:h-[500px] lg:h-[540px] w-full flex items-center justify-center lg:justify-start relative">
+              <OptionWheel
+                items={pillarsData.map((item) => item.number)}
+                selectedIndex={activeIndex}
+                scrollProgress={continuousPos}
+                onSelect={handleSelect}
+                className="h-full w-full"
               />
-            </AnimatePresence>
-          </div>
+            </div>
 
+            {/* Center Column: Pillar Details & Text */}
+            <div className="lg:col-span-5 flex flex-col justify-center px-2 sm:px-6 lg:px-4">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeItem.id}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col"
+                >
+                  {/* Pillar Subtitle */}
+                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-[#fafafb] leading-[1.08] mb-4 text-balance">
+                    {activeItem.title}
+                  </h3>
+
+                  {/* Subtitle / Description Narrative with text-pretty orphan prevention */}
+                  <p className="text-base sm:text-lg font-sans text-neutral-300 leading-relaxed max-w-lg mb-6 text-pretty text-perfect">
+                    {activeItem.description}
+                  </p>
+
+                  {/* Filter / Capsule Tags */}
+                  <div className="flex flex-wrap gap-2.5">
+                    {activeItem.tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="px-4 py-1.5 rounded-full text-xs font-mono font-medium bg-neutral-800/80 text-neutral-200 border border-white/10 hover:border-white/20 transition-colors"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Right Column: 1:1 Aspect Ratio Media Container */}
+            <div className="lg:col-span-4 flex items-center justify-center lg:justify-end">
+              <AnimatePresence mode="wait">
+                <PillarVisual
+                  key={activeItem.id}
+                  index={activeIndex}
+                  media={activeItem.media}
+                />
+              </AnimatePresence>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

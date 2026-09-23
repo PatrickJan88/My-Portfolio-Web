@@ -239,7 +239,7 @@ function TailoredStudioCover() {
       <div className="absolute inset-0 z-10 bg-black/25 pointer-events-none" />
 
       {/* Interactive Folder Effect */}
-      <div className="relative z-20 w-full h-full flex items-center justify-center p-2 pointer-events-auto select-none scale-[0.58] sm:scale-[0.64] origin-center translate-y-2 sm:translate-y-3">
+      <div className="relative z-20 w-full h-full flex items-center justify-center p-2 pointer-events-auto select-none scale-[0.49] sm:scale-[0.64] origin-center translate-y-3 sm:translate-y-3">
         <FolderInteraction isHovered={isHovered} />
       </div>
     </div>
