@@ -170,6 +170,41 @@ npm run preview
 
 ---
 
+## 7. Changelog & Update History
+
+All continuous modifications, design refinements, and feature enhancements are tracked below prior to deployment and GitHub synchronization.
+
+### [2026-10-08] — How I Work Narrative Expansion & AI Pill Border Animation
+
+#### 1. How I Work (`ScrollServicesSection.tsx`)
+- **Pillar 03 Copy Refinement**: Updated description to:  
+  *`"I use AI to rapidly turn ideas into interactive prototypes and test them early."`*
+- **Pillar 04 Copy Refinement**: Updated description to:  
+  *`"I make sure the final experience is practical, coherent, and ready to scale across design and code."`*
+- **Continuous Loop Narrative Reveal ("And then, I loop back.")**:
+  - Added an integrated follow-through stage immediately following Pillar 04 with matching typography hierarchy and layout parity.
+  - Heading: *`"And then, I loop back."`*
+  - Body: *`"I learn from what I build, test what works, and use what I learn to shape the next iteration."`*
+  - Smoothly orchestrates scroll progression forward into the Cinema section.
+- **Pill & Tag Nomenclature Synchronization**:
+  - **Pillar 01**: Updated tag from `Explore` to `AI-assisted Exploration`.
+  - **Pillar 03**: Updated tag from `Prototype` to `AI-assisted prototyping`.
+  - **Pillar 04**: Updated tag from `Systemize` to `AI-assisted coding`.
+  - **Pillar 04**: Updated tag from `Deliver` to `Documentation`.
+- **Animated Rainbow Border Effect for AI Tags**:
+  - Integrated the signature 45° dynamic rotating rainbow gradient border (`#FCAE0B`, `#4DB440`, `#979799`, `#777b86`) identical to the Seekr **"Try now"** button into three specific AI tags:
+    - `AI-assisted Exploration`
+    - `AI-assisted prototyping`
+    - `AI-assisted coding`
+  - Utilized a high-precision `p-[1px]` wrapper containing a matching dark background capsule (`bg-[#1c1d20]`) to ensure pixel-perfect dimension parity, zero layout shift, and identical sizing compared to standard tags across mobile, tablet, and desktop viewports.
+
+#### 2. Seekr Section (`SeekrSection.tsx`)
+- **Mobile 3-Page Cover Layout Optimization**:
+  - Fixed mobile Chrome layout on the final 3-page cover showcase to eliminate horizontal squeezing and image distortion.
+  - Locked tablet and desktop configurations unchanged while providing tailored mobile scaling and aspect ratio integrity.
+
+---
+
 <div align="center">
   <sub>Designed, Researched, and Engineered by <strong>Pofei Ran</strong>. Governed by <strong>Portfolio OS</strong>.</sub>
 </div>
