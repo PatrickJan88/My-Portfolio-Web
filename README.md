@@ -174,6 +174,16 @@ npm run preview
 
 All continuous modifications, design refinements, and feature enhancements are tracked below prior to deployment and GitHub synchronization.
 
+### [2026-10-22] — Ears Case Study Video Asset Replacement
+
+#### 1. Ears Project Case Study (`ears.ts` & `ProjectDetail.tsx`)
+- **EyeAsk Video Asset Upgrade**:
+  - Replaced `/projects/ears/eyeask-video-1080p.webm` with the updated high-definition media asset `/projects/ears/eyeask-video-1080p2.webm`.
+  - Updated the data source in `src/data/projects/ears.ts` (`eyeAsk.media`).
+  - Synchronized the media renderer and lightbox fallback paths in `src/pages/ProjectDetail.tsx`.
+  - Cleanly removed the deprecated legacy asset `public/projects/ears/eyeask-video-1080p.webm`.
+  - Preserved all surrounding typography, layout geometry, autoplay loop attributes, and interaction patterns unchanged.
+
 ### [2026-10-08] — How I Work Narrative Expansion & AI Pill Border Animation
 
 #### 1. How I Work (`ScrollServicesSection.tsx`)

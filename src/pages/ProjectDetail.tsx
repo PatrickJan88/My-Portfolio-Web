@@ -508,7 +508,7 @@ export default function ProjectDetail() {
           {/* EyeAsk Section (Enterprise Finance Ecosystem specific: media left, text right) */}
           {project.id === 'ears' && project.eyeAsk && (
             <article className="w-full clear-both flow-root">
-              {(project.eyeAsk.media || "/projects/ears/eyeask-video-1080p.webm") && (
+              {(project.eyeAsk.media || "/projects/ears/eyeask-video-1080p2.webm") && (
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -516,15 +516,15 @@ export default function ProjectDetail() {
                   transition={{ duration: 0.8 }}
                   className="w-full lg:w-7/12 aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-left lg:mr-12 lg:mt-2"
                   onClick={() => {
-                    const mediaSrc = project.eyeAsk?.media || "/projects/ears/eyeask-video-1080p.webm";
+                    const mediaSrc = project.eyeAsk?.media || "/projects/ears/eyeask-video-1080p2.webm";
                     if (mediaSrc) {
                       handleMediaClick(mediaSrc, mediaSrc.endsWith(".webm") || mediaSrc.endsWith(".mp4"));
                     }
                   }}
                 >
-                  {(project.eyeAsk.media || "/projects/ears/eyeask-video-1080p.webm").endsWith(".webm") || (project.eyeAsk.media || "/projects/ears/eyeask-video-1080p.webm").endsWith(".mp4") ? (
+                  {(project.eyeAsk.media || "/projects/ears/eyeask-video-1080p2.webm").endsWith(".webm") || (project.eyeAsk.media || "/projects/ears/eyeask-video-1080p2.webm").endsWith(".mp4") ? (
                     <video
-                      src={project.eyeAsk.media || "/projects/ears/eyeask-video-1080p.webm"}
+                      src={project.eyeAsk.media || "/projects/ears/eyeask-video-1080p2.webm"}
                       autoPlay
                       loop
                       muted
@@ -533,7 +533,7 @@ export default function ProjectDetail() {
                     />
                   ) : (
                     <img
-                      src={project.eyeAsk.media || "/projects/ears/eyeask-video-1080p.webm"}
+                      src={project.eyeAsk.media || "/projects/ears/eyeask-video-1080p2.webm"}
                       alt="EyeAsk Media"
                       className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto"
                     />
