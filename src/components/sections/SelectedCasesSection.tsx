@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { FluidImage } from "../ui/fluid-image";
-import { InternalDesignHubMedia1 } from "./InternalDesignHubMedia1";
 
 interface CaseItem {
   id: string;
@@ -284,43 +283,37 @@ function CaseCard({ item, index }: CaseCardProps) {
 
         {/* RIGHT COLUMN: Media Preview (16:9 / 4:3 ratio) */}
         <div className="lg:col-span-7">
-          {item.id === "internal-design-manual" ? (
-            <div className="w-full relative rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-md border border-black/5 bg-white">
-              <InternalDesignHubMedia1 />
-            </div>
-          ) : (
-            <Link
-              to={item.link}
-              className="block group relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-neutral-950 shadow-inner"
-            >
-              {item.media.type === "video" ? (
-                <video
-                  src={item.media.src}
-                  poster={item.media.poster}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-              ) : (
-                <img
-                  src={item.media.src}
-                  alt={item.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-              )}
+          <Link
+            to={item.link}
+            className="block group relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-neutral-950 shadow-inner"
+          >
+            {item.media.type === "video" ? (
+              <video
+                src={item.media.src}
+                poster={item.media.poster}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+            ) : (
+              <img
+                src={item.media.src}
+                alt={item.title}
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+            )}
 
-              {/* Subtle interactive hover sheen */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-5 sm:p-6">
-                <span className="text-white text-xs sm:text-sm font-medium tracking-wide flex items-center backdrop-blur-md bg-black/60 border border-white/15 px-4 py-2 rounded-full text-pretty shadow-lg">
-                  {item.title}
-                </span>
-              </div>
-            </Link>
-          )}
+            {/* Subtle interactive hover sheen */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-5 sm:p-6">
+              <span className="text-white text-xs sm:text-sm font-medium tracking-wide flex items-center backdrop-blur-md bg-black/60 border border-white/15 px-4 py-2 rounded-full text-pretty shadow-lg">
+                {item.title}
+              </span>
+            </div>
+          </Link>
         </div>
       </div>
     </motion.div>
