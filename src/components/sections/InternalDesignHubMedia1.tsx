@@ -1,0 +1,567 @@
+import { useState, useRef, useLayoutEffect, useCallback } from "react";
+import { motion } from "motion/react";
+import { Phosphor } from "@lucasmarkes/hairline/react";
+import { ShowcasePointer } from "../ui/showcase-pointer/showcase-pointer";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "../ui/card";
+import {
+  Megaphone,
+  Component,
+  MonitorPlay,
+  Presentation,
+  ExternalLink,
+  Copy,
+  Check,
+  Download,
+  FileText,
+} from "lucide-react";
+
+interface InternalDesignHubMedia1Props {
+  onMediaClick?: (src: string, isVideo: boolean, gallery?: string[]) => void;
+  className?: string;
+}
+
+interface AnimatedConnectionPathProps {
+  d: string;
+  gradientId: string;
+  color: string;
+  reverse?: boolean;
+}
+
+function AnimatedConnectionPath({
+  d,
+  gradientId,
+  color,
+  reverse = false,
+}: AnimatedConnectionPathProps) {
+  return (
+    <>
+      <defs>
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={color} stopOpacity={0.95} />
+          <stop offset="50%" stopColor={color} stopOpacity={0.65} />
+          <stop offset="100%" stopColor={color} stopOpacity={0.15} />
+        </linearGradient>
+      </defs>
+      {/* Base background track */}
+      <path
+        d={d}
+        fill="none"
+        stroke="#ebebeb"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      {/* Animated glowing beam path in cursor matching color */}
+      <motion.path
+        d={d}
+        fill="none"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeDasharray="40 160"
+        initial={{ strokeDashoffset: reverse ? -200 : 200 }}
+        animate={{ strokeDashoffset: reverse ? 200 : -200 }}
+        transition={{
+          duration: 3.5,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+    </>
+  );
+}
+
+export function InternalDesignHubMedia1({
+  onMediaClick: _onMediaClick,
+  className = "",
+}: InternalDesignHubMedia1Props) {
+  // Micro-interaction states
+  const [copiedCode, setCopiedCode] = useState(false);
+  const [downloadedAsset, setDownloadedAsset] = useState(false);
+  const [designerRadio, setDesignerRadio] = useState<"option1" | "option2">("option1");
+  const [clientShowcaseActive, setClientShowcaseActive] = useState(false);
+
+  // Dynamic measuring refs to ensure 100% exact connection between card dots and hub dots
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const devDotRef = useRef<HTMLSpanElement>(null);
+  const mktgDotRef = useRef<HTMLSpanElement>(null);
+  const designDotRef = useRef<HTMLSpanElement>(null);
+  const bizDotRef = useRef<HTMLSpanElement>(null);
+
+  const hubDevDotRef = useRef<HTMLSpanElement>(null);
+  const hubMktgDotRef = useRef<HTMLSpanElement>(null);
+  const hubDesignDotRef = useRef<HTMLSpanElement>(null);
+  const hubBizDotRef = useRef<HTMLSpanElement>(null);
+
+  const [paths, setPaths] = useState<{
+    dev: string;
+    mktg: string;
+    design: string;
+    biz: string;
+  }>({
+    dev: "",
+    mktg: "",
+    design: "",
+    biz: "",
+  });
+
+  const updatePaths = useCallback(() => {
+    if (!containerRef.current) return;
+    const cRect = containerRef.current.getBoundingClientRect();
+    if (cRect.width === 0 || cRect.height === 0) return;
+
+    const getDotCenter = (el: HTMLElement | null) => {
+      if (!el) return null;
+      const r = el.getBoundingClientRect();
+      return {
+        x: r.left + r.width / 2 - cRect.left,
+        y: r.top + r.height / 2 - cRect.top,
+      };
+    };
+
+    const dev = getDotCenter(devDotRef.current);
+    const mktg = getDotCenter(mktgDotRef.current);
+    const design = getDotCenter(designDotRef.current);
+    const biz = getDotCenter(bizDotRef.current);
+
+    const hubDev = getDotCenter(hubDevDotRef.current);
+    const hubMktg = getDotCenter(hubMktgDotRef.current);
+    const hubDesign = getDotCenter(hubDesignDotRef.current);
+    const hubBiz = getDotCenter(hubBizDotRef.current);
+
+    if (!dev || !mktg || !design || !biz || !hubDev || !hubMktg || !hubDesign || !hubBiz) return;
+
+    const createBezier = (start: { x: number; y: number }, end: { x: number; y: number }) => {
+      const deltaX = end.x - start.x;
+      const cp1X = start.x + deltaX * 0.5;
+      const cp1Y = start.y;
+      const cp2X = start.x + deltaX * 0.5;
+      const cp2Y = end.y;
+      return `M ${start.x.toFixed(1)} ${start.y.toFixed(1)} C ${cp1X.toFixed(1)} ${cp1Y.toFixed(1)}, ${cp2X.toFixed(1)} ${cp2Y.toFixed(1)}, ${end.x.toFixed(1)} ${end.y.toFixed(1)}`;
+    };
+
+    setPaths({
+      dev: createBezier(dev, hubDev),
+      mktg: createBezier(mktg, hubMktg),
+      design: createBezier(design, hubDesign),
+      biz: createBezier(biz, hubBiz),
+    });
+  }, []);
+
+  useLayoutEffect(() => {
+    updatePaths();
+
+    const el = containerRef.current;
+    if (!el) return;
+
+    const ro = new ResizeObserver(() => {
+      updatePaths();
+    });
+    ro.observe(el);
+    window.addEventListener("resize", updatePaths);
+
+    const t1 = setTimeout(updatePaths, 60);
+    const t2 = setTimeout(updatePaths, 300);
+
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", updatePaths);
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [updatePaths, copiedCode, downloadedAsset, designerRadio, clientShowcaseActive]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8 }}
+      className={`w-full aspect-[16/9] min-h-[460px] sm:min-h-[500px] md:min-h-[540px] relative rounded-[2rem] overflow-hidden border border-black/8 bg-white shadow-sm p-3.5 sm:p-5 md:p-6 select-none font-sans flex flex-col justify-between ${className}`}
+    >
+      {/* Scoped CSS to enforce true circular geometry for dot matrix elements */}
+      <style>{`
+        .phosphor-circles ellipse {
+          transform-box: fill-box;
+          transform-origin: center;
+          transform: scaleY(1.9);
+        }
+      `}</style>
+
+
+
+      {/* Interactive Showcase Pointer Canvas */}
+      <ShowcasePointer
+        className="w-full flex-1 relative min-h-0"
+        onCursorPress={({ target }) => {
+          if (target.closest("#devs-copy-btn")) setCopiedCode(true);
+          if (target.closest("#marketing-download-btn")) setDownloadedAsset(true);
+          if (target.closest("#designers-toggle-opt2")) setDesignerRadio("option2");
+          if (target.closest("#designers-toggle-opt1")) setDesignerRadio("option1");
+          if (target.closest("#business-showcase-btn")) setClientShowcaseActive((prev) => !prev);
+        }}
+        onCycle={() => {
+          setCopiedCode(false);
+          setDownloadedAsset(false);
+          setDesignerRadio("option1");
+          setClientShowcaseActive(false);
+        }}
+        cursors={[
+          {
+            id: "developers",
+            name: "Developers",
+            color: "#10b981",
+            script: [
+              { action: "hover", target: "#devs-copy-btn" },
+              { action: "click", target: "#devs-copy-btn" },
+              { action: "wait", duration: 2200 },
+            ],
+          },
+          {
+            id: "marketing",
+            name: "Marketing Team",
+            color: "#f24e9c",
+            script: [
+              { action: "hover", target: "#marketing-download-btn" },
+              { action: "click", target: "#marketing-download-btn" },
+              { action: "wait", duration: 2200 },
+            ],
+          },
+          {
+            id: "designers",
+            name: "Designers",
+            color: "#0d99ff",
+            script: [
+              { action: "hover", target: "#designers-toggle-opt2" },
+              { action: "click", target: "#designers-toggle-opt2" },
+              { action: "wait", duration: 2200 },
+            ],
+          },
+          {
+            id: "business",
+            name: "Business Support Team",
+            color: "#f59e0b",
+            textColor: "#ffffff",
+            script: [
+              { action: "hover", target: "#business-showcase-btn" },
+              { action: "click", target: "#business-showcase-btn" },
+              { action: "wait", duration: 2200 },
+            ],
+          },
+        ]}
+      >
+        <div ref={containerRef} className="w-full h-full relative min-h-0 flex flex-col justify-between">
+          {/* Animated Connecting Lines that dynamically link the card dots and hub dots */}
+          <svg
+            className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible"
+            aria-hidden="true"
+          >
+            {paths.dev && (
+              <AnimatedConnectionPath
+                d={paths.dev}
+                gradientId="beam-devs-hub"
+                color="#10b981"
+              />
+            )}
+            {paths.mktg && (
+              <AnimatedConnectionPath
+                d={paths.mktg}
+                gradientId="beam-marketing-hub"
+                color="#f24e9c"
+              />
+            )}
+            {paths.design && (
+              <AnimatedConnectionPath
+                d={paths.design}
+                gradientId="beam-designers-hub"
+                color="#0d99ff"
+              />
+            )}
+            {paths.biz && (
+              <AnimatedConnectionPath
+                d={paths.biz}
+                gradientId="beam-business-hub"
+                color="#f59e0b"
+              />
+            )}
+          </svg>
+
+          {/* Center Hub in the Middle (Internal Design Hub with no green dot) */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center pointer-events-auto">
+            <div className="relative flex flex-col items-center p-3 sm:p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-neutral-200/90 shadow-[0_4px_24px_-2px_rgba(0,0,0,0.08)] transition-all hover:border-neutral-300">
+              {/* Hub connection anchor dots measured by refs */}
+              <span
+                ref={hubDevDotRef}
+                className="absolute -left-1.5 top-[26%] -translate-y-1/2 w-3 h-3 rounded-full bg-[#10b981] border-2 border-white shadow-xs z-10 pointer-events-none"
+              />
+              <span
+                ref={hubMktgDotRef}
+                className="absolute -right-1.5 top-[26%] -translate-y-1/2 w-3 h-3 rounded-full bg-[#f24e9c] border-2 border-white shadow-xs z-10 pointer-events-none"
+              />
+              <span
+                ref={hubDesignDotRef}
+                className="absolute -left-1.5 top-[74%] -translate-y-1/2 w-3 h-3 rounded-full bg-[#0d99ff] border-2 border-white shadow-xs z-10 pointer-events-none"
+              />
+              <span
+                ref={hubBizDotRef}
+                className="absolute -right-1.5 top-[74%] -translate-y-1/2 w-3 h-3 rounded-full bg-[#f59e0b] border-2 border-white shadow-xs z-10 pointer-events-none"
+              />
+
+              {/* Hub title pill badge: "Internal Design Hub" */}
+              <div className="flex items-center justify-center mb-2 px-3 py-0.5 rounded-full bg-neutral-100 text-[10px] sm:text-[11px] font-mono font-medium text-neutral-600 border border-neutral-200/60">
+                <span>Internal Design Hub</span>
+              </div>
+
+              {/* Phosphor figure with uncompressed true circular dot styling */}
+              <div className="phosphor-circles flex items-center justify-center">
+                <Phosphor
+                  play
+                  intensity={0.8}
+                  theme="light"
+                  className="w-[130px] sm:w-[165px] md:w-[190px]"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* 4 Cards Moved Outward Halfway Towards the Outer Borders */}
+          <div className="relative z-10 w-full h-full max-w-[880px] md:max-w-[920px] lg:max-w-[960px] mx-auto grid grid-cols-2 grid-rows-2 gap-x-10 sm:gap-x-16 md:gap-x-24 gap-y-6 sm:gap-y-8 md:gap-y-10 p-2 sm:p-3 pointer-events-none items-center">
+            {/* Corner 1: Top-Left - Developers Card */}
+            <div className="flex justify-start items-start pointer-events-auto">
+              <Card className="relative w-full max-w-[230px] sm:max-w-[250px] md:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-3 sm:p-3.5 rounded-2xl gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
+                {/* Measured card terminal dot */}
+                <span
+                  ref={devDotRef}
+                  className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#10b981] border-2 border-white shadow-xs z-10 pointer-events-none"
+                />
+
+                <CardHeader className="p-0 flex items-center justify-start gap-[8px]">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
+                    <span className="font-mono text-xs sm:text-sm font-bold text-neutral-800 tracking-tight">&lt;/&gt;</span>
+                  </div>
+                  <div className="min-w-0 flex flex-col items-start text-left">
+                    <CardTitle className="text-[12px] sm:text-[13px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start">
+                      Developers
+                    </CardTitle>
+                    <CardDescription className="text-[10px] sm:text-[11px] md:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
+                      React · CSS · UI Specs
+                    </CardDescription>
+                  </div>
+                </CardHeader>
+
+                <CardContent className="p-0 my-0">
+                  <button
+                    id="devs-copy-btn"
+                    type="button"
+                    onClick={() => setCopiedCode(true)}
+                    className="w-full bg-black hover:bg-neutral-800 text-white rounded-[999px] py-1.5 sm:py-2 px-3 flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95 group/copy text-[11px] sm:text-[12px] md:text-[13px] font-medium"
+                    aria-label="Copy code specifications"
+                  >
+                    {copiedCode ? (
+                      <span className="text-white font-medium">Copied</span>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5 text-white" />
+                        <span>Copy Code</span>
+                      </>
+                    )}
+                  </button>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Corner 2: Top-Right - Marketing Team Card */}
+            <div className="flex justify-end items-start pointer-events-auto">
+              <Card className="relative w-full max-w-[230px] sm:max-w-[250px] md:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-3 sm:p-3.5 rounded-2xl gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
+                {/* Measured card terminal dot */}
+                <span
+                  ref={mktgDotRef}
+                  className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#f24e9c] border-2 border-white shadow-xs z-10 pointer-events-none"
+                />
+
+                <CardHeader className="p-0 flex items-center justify-start gap-[8px]">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
+                    <Megaphone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-800" strokeWidth={1.75} />
+                  </div>
+                  <div className="min-w-0 flex flex-col items-start text-left">
+                    <CardTitle className="text-[12px] sm:text-[13px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start">
+                      Marketing Team
+                    </CardTitle>
+                    <CardDescription className="text-[10px] sm:text-[11px] md:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
+                      Brochures & Brand Assets
+                    </CardDescription>
+                  </div>
+                </CardHeader>
+
+                <CardContent className="p-0 my-0">
+                  <div
+                    id="marketing-download-btn"
+                    onClick={() => setDownloadedAsset(true)}
+                    className="flex items-center justify-between px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-[999px] bg-neutral-100/90 hover:bg-neutral-100 transition-colors cursor-pointer border border-neutral-200/50 group/asset"
+                  >
+                    <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                      <FileText className="w-3.5 h-3.5 text-neutral-700 shrink-0" strokeWidth={1.75} />
+                      <span className="text-[10px] sm:text-[11px] md:text-[12px] text-neutral-800 font-medium truncate">
+                        Company Logo Guidelines
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      className="text-neutral-500 group-hover/asset:text-neutral-800 transition-colors ml-1.5 shrink-0 cursor-pointer"
+                      aria-label="Download brand assets"
+                    >
+                      {downloadedAsset ? (
+                        <Check className="w-3.5 h-3.5 text-emerald-600" />
+                      ) : (
+                        <Download className="w-3.5 h-3.5" strokeWidth={1.75} />
+                      )}
+                    </button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Corner 3: Bottom-Left - Designers Card */}
+            <div className="flex justify-start items-end pointer-events-auto">
+              <Card className="relative w-full max-w-[230px] sm:max-w-[250px] md:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-3 sm:p-3.5 rounded-2xl gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
+                {/* Measured card terminal dot */}
+                <span
+                  ref={designDotRef}
+                  className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#0d99ff] border-2 border-white shadow-xs z-10 pointer-events-none"
+                />
+
+                <CardHeader className="p-0 flex items-center justify-start gap-[8px]">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
+                    <Component className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-800" strokeWidth={1.75} />
+                  </div>
+                  <div className="min-w-0 flex flex-col items-start text-left">
+                    <CardTitle className="text-[12px] sm:text-[13px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start">
+                      Designers
+                    </CardTitle>
+                    <CardDescription className="text-[10px] sm:text-[11px] md:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
+                      UI Component
+                    </CardDescription>
+                  </div>
+                </CardHeader>
+
+                <CardContent className="p-0 my-0">
+                  <div className="flex items-center gap-4 sm:gap-5 pt-0.5 select-none">
+                    {/* Option 1 */}
+                    <div
+                      id="designers-toggle-opt1"
+                      onClick={() => setDesignerRadio("option1")}
+                      className="flex items-center gap-1.5 sm:gap-2 cursor-pointer group/opt1"
+                    >
+                      <span
+                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center shrink-0 transition-all ${
+                          designerRadio === "option1"
+                            ? "bg-black border border-black active:scale-90"
+                            : "border border-neutral-300 bg-white group-hover/opt1:border-neutral-400"
+                        }`}
+                      >
+                        {designerRadio === "option1" && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                        )}
+                      </span>
+                      <span
+                        className={`text-[11px] sm:text-[12px] md:text-[13px] font-medium transition-colors ${
+                          designerRadio === "option1"
+                            ? "text-neutral-900"
+                            : "text-neutral-600 group-hover/opt1:text-neutral-900"
+                        }`}
+                      >
+                        Option 1
+                      </span>
+                    </div>
+
+                    {/* Option 2 */}
+                    <div
+                      id="designers-toggle-opt2"
+                      onClick={() => setDesignerRadio("option2")}
+                      className="flex items-center gap-1.5 sm:gap-2 cursor-pointer group/opt2"
+                    >
+                      <span
+                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center shrink-0 transition-all ${
+                          designerRadio === "option2"
+                            ? "bg-black border border-black active:scale-90"
+                            : "border border-neutral-300 bg-white group-hover/opt2:border-neutral-400"
+                        }`}
+                      >
+                        {designerRadio === "option2" && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                        )}
+                      </span>
+                      <span
+                        className={`text-[11px] sm:text-[12px] md:text-[13px] font-medium transition-colors ${
+                          designerRadio === "option2"
+                            ? "text-neutral-900"
+                            : "text-neutral-600 group-hover/opt2:text-neutral-900"
+                        }`}
+                      >
+                        Option 2
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Corner 4: Bottom-Right - Business Support Team Card */}
+            <div className="flex justify-end items-end pointer-events-auto">
+              <Card className="relative w-full max-w-[230px] sm:max-w-[250px] md:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-3 sm:p-3.5 rounded-2xl gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
+                {/* Measured card terminal dot */}
+                <span
+                  ref={bizDotRef}
+                  className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#f59e0b] border-2 border-white shadow-xs z-10 pointer-events-none"
+                />
+
+                <CardHeader className="p-0 flex items-center justify-start gap-[8px]">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
+                    <MonitorPlay className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-800" strokeWidth={1.75} />
+                  </div>
+                  <div className="min-w-0 flex flex-col items-start text-left">
+                    <CardTitle className="text-[12px] sm:text-[13px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start">
+                      Business Support Team
+                    </CardTitle>
+                    <CardDescription className="text-[10px] sm:text-[11px] md:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
+                      Client Solutions Prototypes
+                    </CardDescription>
+                  </div>
+                </CardHeader>
+
+                <CardContent className="p-0 my-0">
+                  <div
+                    id="business-showcase-btn"
+                    onClick={() => setClientShowcaseActive((prev) => !prev)}
+                    className="flex items-center justify-between pt-0.5 cursor-pointer group/showcase"
+                  >
+                    <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                      <Presentation className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-800 shrink-0 group-hover/showcase:text-black transition-colors" strokeWidth={1.75} />
+                      <span className="text-[11px] sm:text-[12px] md:text-[13px] text-neutral-900 font-medium truncate group-hover/showcase:text-black">
+                        Client Showcase
+                      </span>
+                    </div>
+                    <ExternalLink
+                      className={`w-3.5 h-3.5 transition-colors shrink-0 ${
+                        clientShowcaseActive ? "text-amber-600" : "text-neutral-700 group-hover/showcase:text-neutral-950"
+                      }`}
+                      strokeWidth={1.75}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </ShowcasePointer>
+    </motion.div>
+  );
+}
+
+export default InternalDesignHubMedia1;

@@ -1,11 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useInView } from "motion/react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, PenTool, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { projectsData } from "../data/projects";
+import { projectsData, allProjectsData } from "../data/projects";
 import AutoCarousel from "../components/AutoCarousel";
 import { ImageComparisonCustomSlider } from "@/components/core/image-comparison";
+import { CountingNumber } from "../components/ui/counting-number";
+import { InternalDesignHubMedia3 } from "../components/sections/InternalDesignHubMedia3";
+import { InternalDesignHubMedia1 } from "../components/sections/InternalDesignHubMedia1";
+
+/**
+ * Prevents typographic orphans by binding the last word with a non-breaking space
+ */
+function preventOrphans(text: string): string {
+  if (!text) return "";
+  return text.trim().replace(/\s+([^\s]+)$/, "\u00A0$1");
+}
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -13,9 +24,12 @@ export default function ProjectDetail() {
   const [isMediaVideo, setIsMediaVideo] = useState<boolean>(false);
   const [selectedGallery, setSelectedGallery] = useState<string[] | null>(null);
 
-  const currentIndex = projectsData.findIndex((p) => p.id === id);
+  const metricsRef = useRef<HTMLDivElement>(null);
+  const isMetricsInView = useInView(metricsRef, { once: true, margin: "-100px" });
+
   const project =
-    currentIndex !== -1 ? projectsData[currentIndex] : projectsData[0];
+    allProjectsData.find((p) => p.id === id) || projectsData[0];
+  const currentIndex = projectsData.findIndex((p) => p.id === project.id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -26,7 +40,7 @@ export default function ProjectDetail() {
   }
 
   const nextProjectIndex =
-    (currentIndex !== -1 ? currentIndex + 1 : 1) % projectsData.length;
+    (currentIndex !== -1 ? currentIndex + 1 : 0) % projectsData.length;
   const nextProject = projectsData[nextProjectIndex];
 
   const handleMediaClick = (mediaSrc: string, isVideo: boolean, gallery?: string[]) => {
@@ -294,7 +308,33 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      <main className="w-full max-w-[1600px] mx-auto px-6 md:px-12 pb-24 pt-16 md:pt-24">
+      <main className={`w-full max-w-[1600px] mx-auto px-6 md:px-12 pb-24 ${project.metrics && project.metrics.length > 0 ? 'pt-8 md:pt-12' : 'pt-16 md:pt-24'}`}>
+        {/* Animated Metrics Section (below the title banner) */}
+        {project.metrics && project.metrics.length > 0 && (
+          <section ref={metricsRef} className="w-full mb-8 md:mb-12 px-2 md:px-8">
+            <div className="w-full border-b border-black/10 pb-8 md:pb-12">
+              <div className="w-full flex flex-col sm:flex-row justify-between items-center sm:items-start gap-8 lg:gap-12">
+                {project.metrics.map((stat, idx) => (
+                  <div key={idx} className="flex flex-col items-center text-center">
+                    <div className="text-4xl sm:text-5xl md:text-6xl font-mono font-medium tracking-tight text-ink-black mb-2 md:mb-2.5 flex items-baseline">
+                      {stat.prefix && <span>{stat.prefix}</span>}
+                      <CountingNumber
+                        target={stat.target}
+                        autoStart={isMetricsInView}
+                        transition={{ duration: 1, ease: "easeOut", type: "tween" }}
+                      />
+                      {stat.suffix && <span>{stat.suffix}</span>}
+                    </div>
+                    <p className="text-xs sm:text-sm lg:text-base text-slate-gray font-medium tracking-wide whitespace-nowrap text-center">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Overview Section */}
         <article className={`w-full flex flex-col px-2 md:px-8 ${project.id === 'svenska-lek' ? 'mb-12 md:mb-16' : 'mb-16 md:mb-24'}`}>
           <div className="w-full flex flex-col mb-8 md:mb-12">
@@ -457,8 +497,8 @@ export default function ProjectDetail() {
         {project.id !== 'icon-archive' && (
         <section className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-ink-black py-16 md:py-24 mb-16 md:mb-24 flex flex-col items-center justify-center px-6">
           <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-            <h3 className="text-2xl md:text-4xl lg:text-[40px] text-white font-serif italic font-light leading-[1.4] tracking-wide mb-12">
-              "{project.testimonial?.quote || "Most platforms optimize for the platform. We designed one that communicates speed and approachability—the product's promise in visual form."}"
+            <h3 className="text-2xl md:text-4xl lg:text-[40px] text-white font-serif italic font-light leading-[1.4] tracking-wide mb-12 text-perfect text-pretty">
+              "{preventOrphans(project.testimonial?.quote || "Most platforms optimize for the platform. We designed one that communicates speed and approachability—the product's promise in visual form.")}"
             </h3>
             <p className="text-white/50 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-4">
               <span className="w-6 h-[1px] bg-white/50"></span>
@@ -471,7 +511,9 @@ export default function ProjectDetail() {
         {/* Media Grids Section For the User to Populate Later */}
         <section className={`w-full flex flex-col ${project.id === 'svenska-lek' ? 'gap-6 md:gap-8' : project.id === 'icon-archive' ? 'gap-4 md:gap-6' : 'gap-8 md:gap-12'}`}>
           {/* Section 1: Full width media */}
-          {(!project.media1 && project.id === 'svenska-lek') ? null : (
+          {project.id === 'internal-design-manual' ? (
+            <InternalDesignHubMedia1 />
+          ) : (!project.media1 && project.id === 'svenska-lek') ? null : (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -608,26 +650,30 @@ export default function ProjectDetail() {
             <>
               {/* Section 2: Text Wrapping Media Right */}
               <article className={`w-full clear-both ${project.id === 'ears' ? 'mt-16 lg:mt-24' : ''}`}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8 }}
-                  className="w-full lg:w-7/12 aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-right lg:ml-12 lg:mt-2"
-                  onClick={() => project.media2 && handleMediaClick(project.media2, project.media2.endsWith(".webm") || project.media2.endsWith(".mp4"))}
-                >
-                  {project.media2 ? (
-                    project.media2.endsWith(".webm") || project.media2.endsWith(".mp4") ? (
-                      <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
+                {project.id === "internal-design-manual" ? (
+                  <InternalDesignHubMedia3 onMediaClick={handleMediaClick} align="right" />
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8 }}
+                    className="w-full lg:w-7/12 aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-right lg:ml-12 lg:mt-2"
+                    onClick={() => project.media2 && handleMediaClick(project.media2, project.media2.endsWith(".webm") || project.media2.endsWith(".mp4"))}
+                  >
+                    {project.media2 ? (
+                      project.media2.endsWith(".webm") || project.media2.endsWith(".mp4") ? (
+                        <video src={project.media2} autoPlay loop muted playsInline className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
+                      ) : (
+                        <img src={project.media2} alt="Media 2" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
+                      )
                     ) : (
-                      <img src={project.media2} alt="Media 2" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
-                    )
-                  ) : (
-                    <p className="absolute text-smoke-gray font-mono text-sm px-6 text-center">
-                      Media Placeholder 2
-                    </p>
-                  )}
-                </motion.div>
+                      <p className="absolute text-smoke-gray font-mono text-sm px-6 text-center">
+                        Media Placeholder 2
+                      </p>
+                    )}
+                  </motion.div>
+                )}
                 
                 <div className="px-2 md:px-8">
                   <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
@@ -666,16 +712,28 @@ export default function ProjectDetail() {
                 </motion.div>
                 
                 <div className="px-2 md:px-8">
-                  <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
-                    {project.section2?.label || "Design System"}
-                  </h3>
-                  <h2 className={`font-light tracking-normal text-ink-black leading-[1.1] mb-8 ${
-                    project.section2?.heading === "Built for Daily Operations" || project.section2?.heading === "Market-Specific Execution"
-                      ? "text-xl sm:text-2xl md:text-3xl lg:text-[1.85rem] xl:text-[2.25rem] 2xl:text-5xl whitespace-nowrap"
-                      : "text-4xl md:text-5xl lg:text-5xl whitespace-pre-line"
-                  }`}>
-                    {project.section2?.heading || "Visual Identity"}
-                  </h2>
+                  {project.section2?.label ? (
+                    <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
+                      {project.section2.label}
+                    </h3>
+                  ) : project.id !== 'internal-design-manual' ? (
+                    <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
+                      Design System
+                    </h3>
+                  ) : null}
+                  {project.section2?.heading ? (
+                    <h2 className={`font-light tracking-normal text-ink-black leading-[1.1] mb-8 ${
+                      project.section2?.heading === "Built for Daily Operations" || project.section2?.heading === "Market-Specific Execution"
+                        ? "text-xl sm:text-2xl md:text-3xl lg:text-[1.85rem] xl:text-[2.25rem] 2xl:text-5xl whitespace-nowrap"
+                        : "text-4xl md:text-5xl lg:text-5xl whitespace-pre-line"
+                    }`}>
+                      {project.section2.heading}
+                    </h2>
+                  ) : project.id !== 'internal-design-manual' ? (
+                    <h2 className="text-4xl md:text-5xl lg:text-5xl whitespace-pre-line font-light tracking-normal text-ink-black leading-[1.1] mb-8">
+                      Visual Identity
+                    </h2>
+                  ) : null}
                   <p className="font-sans text-xl md:text-2xl lg:text-[28px] leading-[1.5] text-ink-black font-light whitespace-pre-line text-pretty text-perfect">
                     {project.section2?.content || "We established a cohesive visual system built on bold typography and strategic use of color. This system ensures consistency across marketing materials, digital platforms, and physical venue signage."}
                   </p>
@@ -685,7 +743,7 @@ export default function ProjectDetail() {
           )}
 
           {/* Section 3: Full width media */}
-          {(!project.media4 && project.id === 'svenska-lek') ? null : (
+          {!project.media4 ? null : (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -746,7 +804,11 @@ export default function ProjectDetail() {
               <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
                 {project.section3?.label || "Result"}
               </h3>
-              <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-ink-black leading-[1.1] whitespace-pre-line text-pretty">
+              <h2 className={`font-light tracking-normal text-ink-black leading-[1.1] ${
+                project.section3?.heading === "Impact on Workflow Efficiency and Cross-Functional Collaboration."
+                  ? "text-[clamp(0.85rem,2.7vw,2.75rem)] whitespace-nowrap"
+                  : "text-4xl md:text-5xl lg:text-5xl whitespace-pre-line text-pretty"
+              }`}>
                 {project.section3?.heading || project.heroHeading}
               </h2>
             </div>

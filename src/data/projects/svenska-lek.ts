@@ -6,6 +6,7 @@ export const svenskaLekCaseStudy: ProjectData = {
   category: "Product Design",
   client: "Svenska Lek",
   image: "/projects/svenska-lek/sl-cover-page.webp",
+  hidden: true,
   
   heroHeading: "An AI-Native Product Experiment",
   heroImage: "/projects/svenska-lek/sl-cover-hero-page.webp",

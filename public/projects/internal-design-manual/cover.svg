@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0c10" />
+      <stop offset="50%" stop-color="#12151c" />
+      <stop offset="100%" stop-color="#08090c" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF7523" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <radialGradient id="aura" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#0b0c10" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="900" fill="url(#bg)" />
+  <rect width="1200" height="900" fill="url(#aura)" />
+  <rect width="1200" height="900" fill="url(#grid)" />
+
+  <!-- Technical Framing -->
+  <rect x="60" y="60" width="1080" height="780" rx="24" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+  
+  <!-- Corner Crosshairs -->
+  <path d="M 50 60 L 70 60 M 60 50 L 60 70" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" />
+  <path d="M 1130 60 L 1150 60 M 1140 50 L 1140 70" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" />
+  <path d="M 50 840 L 70 840 M 60 830 L 60 850" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" />
+  <path d="M 1130 840 L 1150 840 M 1140 830 L 1140 850" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" />
+
+  <!-- Badge / Tag -->
+  <g transform="translate(100, 110)">
+    <rect width="210" height="34" rx="17" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+    <circle cx="18" cy="17" r="4" fill="#38bdf8" />
+    <text x="32" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="11" font-weight="600" letter-spacing="2" fill="#e2e8f0">SYSTEM MANUAL</text>
+  </g>
+
+  <!-- Title & Description -->
+  <text x="100" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Space Grotesk', sans-serif" font-size="52" font-weight="700" fill="#ffffff" letter-spacing="-1">Internal Design Manual</text>
+  <text x="100" y="405" font-family="-apple-system, BlinkMacSystemFont, 'Space Grotesk', sans-serif" font-size="52" font-weight="700" fill="url(#accent)" letter-spacing="-1">&amp; Product Resource Web</text>
+  
+  <text x="100" y="470" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="20" font-weight="400" fill="#94a3b8" letter-spacing="0">Centralized Living Guidelines • Component Library • Engineering Bridge</text>
+
+  <!-- Interactive Mock Frame Graphic -->
+  <g transform="translate(100, 530)">
+    <rect width="1000" height="240" rx="16" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+    <line x1="0" y1="44" x2="1000" y2="44" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+    
+    <circle cx="28" cy="22" r="5" fill="rgba(255,255,255,0.2)" />
+    <circle cx="48" cy="22" r="5" fill="rgba(255,255,255,0.2)" />
+    <circle cx="68" cy="22" r="5" fill="rgba(255,255,255,0.2)" />
+
+    <rect x="96" y="14" width="280" height="16" rx="8" fill="rgba(255,255,255,0.05)" />
+
+    <!-- Simulated Content Columns -->
+    <rect x="30" y="70" width="160" height="140" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" />
+    <rect x="50" y="90" width="100" height="12" rx="4" fill="rgba(56,189,248,0.4)" />
+    <rect x="50" y="114" width="120" height="8" rx="4" fill="rgba(255,255,255,0.15)" />
+    <rect x="50" y="132" width="90" height="8" rx="4" fill="rgba(255,255,255,0.1)" />
+
+    <rect x="210" y="70" width="360" height="140" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" />
+    <rect x="230" y="90" width="180" height="12" rx="4" fill="rgba(168,85,247,0.4)" />
+    <rect x="230" y="114" width="310" height="8" rx="4" fill="rgba(255,255,255,0.15)" />
+    <rect x="230" y="132" width="270" height="8" rx="4" fill="rgba(255,255,255,0.1)" />
+    <rect x="230" y="150" width="220" height="8" rx="4" fill="rgba(255,255,255,0.1)" />
+
+    <rect x="590" y="70" width="380" height="140" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" />
+    <rect x="610" y="90" width="140" height="12" rx="4" fill="rgba(255,117,35,0.4)" />
+    <rect x="610" y="114" width="330" height="8" rx="4" fill="rgba(255,255,255,0.15)" />
+    <rect x="610" y="132" width="290" height="8" rx="4" fill="rgba(255,255,255,0.1)" />
+  </g>
+
+  <!-- Technical Telemetry Footer -->
+  <text x="100" y="810" font-family="monospace" font-size="12" fill="rgba(255,255,255,0.3)" letter-spacing="1">PROJECT COVER • 4:3 RATIO • PLACEHOLDER MEDIA</text>
+  <text x="1090" y="810" text-anchor="end" font-family="monospace" font-size="12" fill="rgba(255,255,255,0.3)" letter-spacing="1">SYS://RES_HUB_2025</text>
+</svg>

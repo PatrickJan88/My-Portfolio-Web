@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090a0d" />
+      <stop offset="60%" stop-color="#11141b" />
+      <stop offset="100%" stop-color="#08090b" />
+    </linearGradient>
+    <radialGradient id="aura" cx="70%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#FF7523" stop-opacity="0.18" />
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#090a0d" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <rect width="1600" height="900" fill="url(#aura)" />
+  <rect width="1600" height="900" fill="url(#grid)" />
+
+  <!-- Frame Outline -->
+  <rect x="80" y="80" width="1440" height="740" rx="32" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.5" />
+
+  <!-- HUD Coordinates -->
+  <text x="120" y="130" font-family="monospace" font-size="12" fill="rgba(255,255,255,0.4)" letter-spacing="2">HERO BANNER • SPEC 16:9 • PRODUCT RESOURCE WEB</text>
+  <text x="1480" y="130" text-anchor="end" font-family="monospace" font-size="12" fill="#38bdf8" letter-spacing="2">REV_01 // READY FOR ASSET DROP</text>
+
+  <!-- Big Hero Visual Representation -->
+  <g transform="translate(120, 200)">
+    <text font-family="-apple-system, BlinkMacSystemFont, 'Space Grotesk', sans-serif" font-size="64" font-weight="700" fill="#ffffff" letter-spacing="-1">Design Systems &amp; Resource Platform</text>
+    <text y="50" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="22" font-weight="300" fill="#94a3b8">Interactive Documentation, Token Management, and Cross-Platform Handoff</text>
+  </g>
+
+  <!-- UI Window Mockup -->
+  <g transform="translate(120, 310)">
+    <rect width="1360" height="460" rx="20" fill="rgba(20,24,33,0.7)" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" />
+    <!-- Sidebar -->
+    <rect x="0" y="0" width="280" height="460" rx="20" fill="rgba(255,255,255,0.02)" />
+    <line x1="280" y1="0" x2="280" y2="460" stroke="rgba(255,255,255,0.07)" stroke-width="1" />
+    <text x="32" y="50" font-family="monospace" font-size="11" font-weight="600" fill="#64748b" letter-spacing="2">FOUNDATIONS</text>
+    <text x="32" y="85" font-family="sans-serif" font-size="14" fill="#38bdf8">01. Color &amp; Dynamic Theming</text>
+    <text x="32" y="120" font-family="sans-serif" font-size="14" fill="#cbd5e1">02. Spatial Typography</text>
+    <text x="32" y="155" font-family="sans-serif" font-size="14" fill="#cbd5e1">03. Nested Corner Tokens</text>
+    <text x="32" y="190" font-family="sans-serif" font-size="14" fill="#cbd5e1">04. Micro-Interactions</text>
+
+    <text x="32" y="245" font-family="monospace" font-size="11" font-weight="600" fill="#64748b" letter-spacing="2">COMPONENTS</text>
+    <text x="32" y="280" font-family="sans-serif" font-size="14" fill="#cbd5e1">Buttons, Pills &amp; Badges</text>
+    <text x="32" y="315" font-family="sans-serif" font-size="14" fill="#cbd5e1">Data Display &amp; Tables</text>
+    <text x="32" y="350" font-family="sans-serif" font-size="14" fill="#cbd5e1">Navigation Overlays</text>
+    <text x="32" y="385" font-family="sans-serif" font-size="14" fill="#cbd5e1">Media Lightbox &amp; Video</text>
+
+    <!-- Main Canvas Area -->
+    <rect x="320" y="40" width="990" height="380" rx="14" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" />
+    <text x="360" y="90" font-family="sans-serif" font-size="24" font-weight="600" fill="#ffffff">Living Design Tokens &amp; Component Playground</text>
+    <text x="360" y="125" font-family="sans-serif" font-size="15" fill="#94a3b8">Interactive real-time documentation preview with responsive code generation and accessibility verification.</text>
+
+    <!-- Visual Chips -->
+    <rect x="360" y="160" width="180" height="90" rx="12" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.3)" />
+    <text x="380" y="195" font-family="monospace" font-size="12" fill="#38bdf8">Primary Token</text>
+    <text x="380" y="225" font-family="sans-serif" font-size="15" font-weight="600" fill="#ffffff">#38bdf8 Aura Cyan</text>
+
+    <rect x="560" y="160" width="180" height="90" rx="12" fill="rgba(255,117,35,0.12)" stroke="rgba(255,117,35,0.3)" />
+    <text x="580" y="195" font-family="monospace" font-size="12" fill="#FF7523">Accent Token</text>
+    <text x="580" y="225" font-family="sans-serif" font-size="15" font-weight="600" fill="#ffffff">#FF7523 Solar Amber</text>
+
+    <rect x="760" y="160" width="180" height="90" rx="12" fill="rgba(168,85,247,0.12)" stroke="rgba(168,85,247,0.3)" />
+    <text x="780" y="195" font-family="monospace" font-size="12" fill="#a855f7">Cosmic Token</text>
+    <text x="780" y="225" font-family="sans-serif" font-size="15" font-weight="600" fill="#ffffff">#a855f7 Space Violet</text>
+
+    <rect x="960" y="160" width="310" height="220" rx="12" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.08)" />
+    <text x="980" y="195" font-family="monospace" font-size="12" fill="#64748b">// Code Export Snippet</text>
+    <text x="980" y="225" font-family="monospace" font-size="13" fill="#a855f7">import { Button } from '@ds/ui';</text>
+    <text x="980" y="255" font-family="monospace" font-size="13" fill="#38bdf8">&lt;Button variant="glow"&gt;</text>
+    <text x="1000" y="280" font-family="monospace" font-size="13" fill="#ffffff">Explore Manual</text>
+    <text x="980" y="305" font-family="monospace" font-size="13" fill="#38bdf8">&lt;/Button&gt;</text>
+  </g>
+</svg>

@@ -174,6 +174,125 @@ npm run preview
 
 All continuous modifications, design refinements, and feature enhancements are tracked below prior to deployment and GitHub synchronization.
 
+### [2026-11-06] — Internal Design Hub: Media 3 Custom Tabbed Component Integration
+
+#### 1. Custom Media 3 Segmented Control & Multi-Asset Showcase (`InternalDesignHubMedia3.tsx` & `ProjectDetail.tsx`)
+- **Internal Bottom Tab Placement**:
+  - Embedded the physics-based `SegmentedControl` tab switcher directly on the bottom side *inside* the media area (`absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 z-30`), floating over the visual canvas with glassmorphic elevation.
+  - Eliminated external placement below the card, ensuring a unified self-contained interactive media unit that floats and wraps cleanly within Section 3.
+- **Four Integrated Tabs with Real Code & IDE Simulation**:
+  - **`Toggle 01`**: High-resolution `Toggle 1.webp` showcase (Radio, Switch Button, and Text Toggles) with lightbox expansion.
+  - **`Toggle 02`**: High-resolution `Toggle 2.webp` showcase (Button Toggle, Sliding Underline, and Left Tab with Icon) with lightbox expansion.
+  - **`React`**: Displays `ToggleComponents.jsx` inside a dark IDE editor with VS Code Dark+ syntax highlighting (keywords, hooks, JSX tags, attributes, strings, comments) and one-click copy.
+  - **`CSS`**: Displays `ToggleComponents.css` design system tokens and BEM styles inside the IDE code editor with syntax colors and one-click copy.
+- **Code Gutter & Scroll Comfort**:
+  - Gutter with line numbers (`1, 2, 3...`) and padded scroll container (`pb-24`) to ensure code can be read and scrolled smoothly without being obscured by the bottom floating tab.
+
+### [2026-11-05] — Internal Design Hub: Title Simplification & Metrics Refinement
+
+#### 1. Title & Category Simplification (`internal-design-manual.ts` & `corporate-website-redesign.ts`)
+- **Name & Taxonomy Streamlined**:
+  - Simplified case study title and hero heading from `"Internal Design Manual & Product Resource Web"` to `"Internal Design Hub"`.
+  - Updated category taxonomy from `"Design System & Web Platform"` to `"Design System"`.
+  - Synchronized navigation reference in `corporate-website-redesign.ts` (`nextProject.title`).
+
+#### 2. Result Section Narrative Integration (`internal-design-manual.ts` & `ProjectDetail.tsx`)
+- **Section Heading Update & Single-Line Layout**:
+  - Changed heading from `"Measurable Velocity, Adoption, and Cross-Platform Consistency"` to `"Impact on Workflow Efficiency and Cross-Functional Collaboration."`.
+  - Configured `whitespace-nowrap` with fluid `clamp` sizing (`text-[clamp(0.85rem,2.7vw,2.75rem)]`) to ensure the entire headline remains on a single, continuous line without line wrapping.
+- **Outcome Bullet Points**:
+  - Replaced placeholder result metrics with authentic five-pillar outcome narrative:
+    - *The platform established a shared internal reference that helped teams:*
+    - `•` Access design specifications, code examples, prototypes, and brand assets in one place.
+    - `•` Reduce dependence on individual team members for routine design questions.
+    - `•` Translate design decisions into implementation with greater clarity.
+    - `•` Reuse approved components and visual resources across teams.
+    - `•` Strengthen collaboration between design, development, marketing, business analysis, and client support.
+
+#### 3. Animated Metrics Counter Integration (`internal-design-manual.ts` & `ProjectDetail.tsx`)
+- **Component Porting from Homepage**:
+  - Ported the animated metrics number pattern (`CountingNumber` + `useInView` scroll detection) into `ProjectDetail.tsx`.
+  - Positioned directly below the case study hero title banner at the top of the content area.
+- **Data Configuration & Copy Refinement**:
+  - `-30%` Reduction in resource-search time
+  - `-50%` Reduction in recurring design questions
+  - `5+` Cross-functional teams supported
+- **Single-Row Formatting, Axis Alignment & Expanded Margins**:
+  - Enforced `whitespace-nowrap` on metric labels to keep all text strictly on a single horizontal row, eliminating line breaking and orphan words.
+  - Aligned the 3 metrics across the full width of the underlying grey divider using `justify-between`, ensuring generous margin spacing between columns.
+  - Formatted each column with `items-center text-center` so that each number is centered relative to its text label below.
+  - Maintained compact vertical padding and margins (`pt-8 md:pt-12`, `mb-8 md:mb-12`, `pb-8 md:pb-12`).
+- **Schema & System Isolation (`src/types/project.ts`)**:
+  - Added optional `metrics?: ProjectMetric[]` to `ProjectData` schema.
+  - Rendered conditionally so that only projects explicitly declaring `metrics` display the section, preserving 100% isolation for all other case studies.
+
+#### 4. Cover & Hero Background Asset Update (`internal-design-manual.ts`)
+- **WebP Hero & Projects Cover Asset Application**:
+  - Applied `public/projects/internal-design-manual/cover-page.webp` to `image` (the project card cover displayed in the Projects grid showcase) in `src/data/projects/internal-design-manual.ts`.
+  - Applied `public/projects/internal-design-manual/cover-hero-page.webp` to `heroImage` (the full-bleed case study hero page background).
+  - Seamlessly replaces placeholder SVG graphics while preserving image overlay contrast, responsive dimensions, and zero layout shift.
+
+### [2026-11-04] — Internal Design Manual: Approach & Challenge Narrative Updates
+
+#### 1. Problem Statement / The Challenge Refinement (`internal-design-manual.ts`)
+- **Label Update**: Changed section label from `"Problem Statement"` to `"The Challenge"`.
+- **Narrative Copy Update**:
+  - Replaced placeholder quote with authentic challenge context:
+    *`"Design documentation, implementation references, prototypes, and marketing materials were distributed across different resources. Teams often relied on colleagues or disconnected platforms to find assets, clarify specifications, and access approved product references, creating friction in cross-functional collaboration and slowing down daily workflows."`*
+
+#### 2. Approach & Media Layout Restructuring (`internal-design-manual.ts` & `ProjectDetail.tsx`)
+- **Placeholder Text Removal**:
+  - Removed placeholder section `"Design Strategy"` and heading `"Transforming Static Guidelines into an Interactive, Living Resource Web"` along with its boilerplate body.
+- **Narrative & Media Pairing**:
+  - **Section 1 (Flanked by Media 2 on Right)**:
+    - Heading: *"A shared reference for cross-functional teams."*
+    - Intro text and items **1 (Centralized documentation)** and **2 (Design-to-code references)**.
+  - **Section 2 (Floated Media 3 on Left, Text on Right)**:
+    - 4:3 placeholder media placed on the left.
+    - Items **3 (Prototype showcase)** and **4 (Shared asset library)** aligned on its right side.
+- **System Isolation & Media 4 Removal (`src/types/project.ts` & `ProjectDetail.tsx`)**:
+  - Removed `media4` from `internal-design-manual.ts`.
+  - Updated `ProjectDetail.tsx` so `media4` is only rendered when explicitly defined, cleanly eliminating the placeholder slot for `internal-design-manual` without affecting other case studies.
+  - Made `label` and `heading` optional on `section2` in `ProjectData`.
+  - Guarded section 2 in `ProjectDetail.tsx` so that `internal-design-manual` does not render default fallback headings when omitted, while preserving existing behavior for all other case studies.
+
+### [2026-11-03] — Resume & Document Asset Replacement
+
+#### 1. CV Asset Replacement (`public/docs/Pofei_Ran_CV.pdf`)
+- **Seamless Document Replacement**:
+  - Successfully received and verified the newly uploaded CV document at `public/docs/Pofei_Ran_CV.pdf` (PDF v1.3, 2 pages, 74 KB).
+  - Preserved all existing entry points, navigation bars, interactive PDF preview modal (`PdfViewerModal`), and download workflows completely intact with zero code alterations required.
+
+### [2026-11-03] — Case Study Architecture: Internal Design Manual & Svenska Lek Archival
+
+#### 1. Internal Design Manual & Product Resource Web (`internal-design-manual.ts`)
+- **New Case Study Created**:
+  - Structured after `Corporate Website Redesign` (`corporate-website-redesign.ts`) with identical narrative sections:
+    - Overview (Context & Objective)
+    - Problem Statement (Callout Quote)
+    - Section 1: Approach (Foundations & Information Architecture)
+    - Section 2: Design Strategy (Living Component Library & Guidelines)
+    - Section 3: Result & Impact (Metrics, Adoption & Velocity)
+    - Metadata (DURATION: "2 months", YEAR: "2023 - 2024", ROLE: "UI/UX Designer", PLATFORM: "Internal Source Web and Design System Documentation")
+    - Media slots (`media1`, `media2`, `media3`, `media4`)
+    - Next Project link leading directly into `ev-charging-platform`.
+- **Dedicated Media Directory (`public/projects/internal-design-manual/`)**:
+  - Created directory with documentation `README.md` explaining exact asset requirements and aspect ratios.
+  - Provided responsive placeholder SVGs (`cover.svg`, `hero.svg`, `media-1.svg`, `media-2.svg`, `media-3.svg`, `media-4.svg`) with cosmic obsidian styling, technical grid frames, and token typography to guarantee zero layout shift or broken imagery.
+- **Project Navigation Sequence**:
+  - Connected `corporate-website-redesign.ts` `nextProject` to `internal-design-manual`.
+  - Registered `internalDesignManualCaseStudy` in `src/data/projects.ts` within the active project rotation.
+- **Overview Narrative Integration**:
+  - Replaced overview placeholder copy with authentic two-paragraph narrative detailing the centralized design manual and company resource website bridging product design specifications, reusable UI components, code references, prototypes, motion guidelines, brand assets, and marketing brochures for cross-departmental collaboration.
+
+#### 2. Svenska Lek Archival (`svenska-lek.ts` & `project.ts`)
+- **Preserved & Hidden Without Deletion**:
+  - Added optional `hidden?: boolean` property to `ProjectData` schema in `src/types/project.ts`.
+  - Marked `svenskaLekCaseStudy` with `hidden: true` in `src/data/projects/svenska-lek.ts`.
+  - Filtered active project listings (`projectsData`) to exclude hidden case studies while retaining full data preservation in `allProjectsData`.
+  - Preserved all files and media assets under `public/projects/svenska-lek/` intact for future unhiding/restoration.
+  - Enabled direct URL access resolution via `allProjectsData.find` in `src/pages/ProjectDetail.tsx`.
+
 ### [2026-10-22] — Ears Case Study Video Asset Replacement
 
 #### 1. Ears Project Case Study (`ears.ts` & `ProjectDetail.tsx`)
@@ -213,7 +332,68 @@ All continuous modifications, design refinements, and feature enhancements are t
   - Fixed mobile Chrome layout on the final 3-page cover showcase to eliminate horizontal squeezing and image distortion.
   - Locked tablet and desktop configurations unchanged while providing tailored mobile scaling and aspect ratio integrity.
 
+### [2026-11-06] — Internal Design Hub Media Layout & Radius 999 Tabs Modernization
+
+#### Internal Design Hub Media 2 & 3 Reorganization (`ProjectDetail.tsx`, `InternalDesignHubMedia3.tsx`)
+- **Media 2 Tabs Relocation**:
+  - Moved the interactive 4-tab component (`Toggle 01`, `Toggle 02`, `React`, `CSS`) to **Media 2** in Section 2, right-aligned alongside the "Approach" and "Design-to-code references" narrative.
+  - Added dynamic `align="right"` floating layout support.
+- **Media 3 Video Integration**:
+  - Assigned `/projects/internal-design-manual/internal web 2.webm` to **Media 3** in Section 3, rendering seamlessly with autoplay, loop, muted, playsInline, and full lightbox modal support.
+  - Updated `src/data/projects/internal-design-manual.ts` data sources for `media2` and `media3`.
+- **SegmentedControl Pill Radius (999px)**:
+  - Updated all tabs container, active sliding motion thumb indicator, and radio button hitboxes to `rounded-[999px]` in `src/components/ui/segmented-control.tsx` to match the portfolio's signature pill design tokens.
+- **Simulator Code Alignment**:
+  - Synchronized `ToggleComponents.jsx` and `ToggleComponents.css` simulator code to the updated section order: `01 - Radio Toggle`, `02 - Switch Button Toggle`, `03 - Text Toggle`, `04 - Button Toggle`, `05 - Sliding Underline`, and `06 - Left Tab Toggle with Icon`.
+- **Floating Shadow & Tab Height Refinement**:
+  - Increased tab height by 10px (`py-[12px]`) for a more substantial tactile hit area.
+  - Applied a delicate 5% #000 (`rgba(0,0,0,0.05)`) multi-layered diffused ambient shadow (`0_16px_36px`, `0_6px_16px`, `0_2px_6px`) so the tab component distinctly floats above both bright media and dark IDE simulator canvas.
+- **Header Simplification**:
+  - Removed the copy button from the top-right corner of the code simulator header across both React and CSS views for an uncluttered editor look.
+- **Top Navigation Scroll & 3-Second Inactivity Auto-Hide Logic (`Navbar.tsx`)**:
+  - Preserved original scroll-down disappearance and top-of-page persistence.
+  - When the user scrolls up, the floating navigation pill appears immediately; if the user remains inactive without scrolling for 3 seconds, the navigation smoothly fades out and slides up until the user scrolls again.
+  - Added hover pause guardrails so the navigation stays visible if the user hovers over the navbar.
+- **Problem Statement / Quote Section Typographic Orphan Prevention (`ProjectDetail.tsx`)**:
+  - Applied `text-perfect` and `text-pretty` to the central quote heading across every case study to balance line wrapping.
+  - Added a `preventOrphans` helper that binds the final word with a non-breaking space (`\u00A0`), strictly preventing single trailing words on a solitary line.
+- **Metric Target Alignment**:
+  - Updated the "Cross-functional teams supported" metric from `5+` to `4+` in `src/data/projects/internal-design-manual.ts`.
+- **Internal Design Hub Media 1 Customization (`InternalDesignHubMedia1.tsx`, `card.tsx`, `button.tsx`)**:
+  - Implemented Shadcn `Card` composition (`CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`) on a pure white canvas with `ShowcasePointer` multi-cursor orchestration.
+  - Faithfully matched the exact content & card structure for 4 roles:
+    1. **Developers**: `TimeSlider Component` · `<TimeSlider />` code snippet · `Copy Code` action → `Copied ✓`
+    2. **Marketing**: `Product Showcase` · `EARS Product Demo` thumbnail · `Approved logo assets` download → `Asset Downloaded ✓`
+    3. **Designers**: `Radio Toggle` · `Reusable component documented` toggle → `State Updated ✓`
+    4. **Business & Support**: `Product Reference` · Expandable `TimeSlider Interaction` spec card → `Spec Expanded ✓`
+  - Added canvas top-right `Replay` reset button and `Fullscreen` view control.
+
+### [2026-11-07] — Internal Design Hub Media 1 16:9 Ratio & Compact Developers Card
+
+#### Media 1 Canvas & Card Sizing Refinement (`InternalDesignHubMedia1.tsx`)
+- **16:9 Aspect Ratio Restored**:
+  - Restored the Media 1 container to `aspect-[4/3] md:aspect-[16/9]` to match portfolio media standards, replacing previous unrestricted vertical height with clean desktop 16:9 proportions.
+- **Card Miniaturization Across All Roles**:
+  - Scaled down card footprints to compact, light-themed cards (`max-w-[280px] sm:max-w-[300px]`, `rounded-2xl`, `p-3.5 sm:p-4`) so all 4 cards sit symmetrically in a 2x2 grid with ample roaming room for the showcase pointer cursors.
+- **Developers Card Refinement**:
+  - Subtitle updated to `"React · CSS · UI Specs"`.
+  - Added new black radius 999 pill button (`rounded-[999px]`) with white copy icon on the left of `"Copy Code"`.
+  - Removed checkmark icons from the copied state, displaying clean white text `"Copied"` without color shifting.
+- **Designers Card Exact Reference Replication & Toggle Fix**:
+  - **Header**: Light-gray rounded square badge with `Component` icon, paired with `"Designers"` title and updated subtitle `"UI Component"`.
+  - **Toggle Bug Fixed**: When selecting Option 2, Option 1 smoothly reverts to the default unselected border ring (`border border-neutral-300 bg-white`).
+- **Business Support Team Card & Cursor Text Styling**:
+  - **Header**: Light-gray rounded square badge with `MonitorPlay` icon, paired with `"Business Support Team"` title and updated subtitle `"Client Solutions Prototypes"`.
+  - **Cursor Tag**: Explicitly set cursor label text color to white (`textColor: "#ffffff"`), matching the other 3 cursor badges.
+  - **Component**: Presentation easel icon (`Presentation`) with `"Client Showcase"` on the left and `ExternalLink` icon on the right.
+- **Marketing Team Card Text Swapping**:
+  - Subtitle updated to `"Brochures & Brand Assets"`.
+  - Bottom pill box text updated to `"Company Logo Guidelines"`.
+- **Card Dimension & Grid Alignment**:
+  - Harmonized all 4 cards with identical padding (`p-3.5 sm:p-4`), uniform minimum heights, and 8px icon-to-title margins for a balanced 2x2 grid layout.
+
 ---
+
 
 <div align="center">
   <sub>Designed, Researched, and Engineered by <strong>Pofei Ran</strong>. Governed by <strong>Portfolio OS</strong>.</sub>

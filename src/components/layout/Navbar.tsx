@@ -13,6 +13,8 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
+  const autoHideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isHoveredRef = useRef(false);
 
   const links = [
     { href: "/", label: "Home" },
@@ -20,30 +22,61 @@ export default function Navbar() {
     { href: "/contact", label: "Contact" },
   ];
 
+  const clearAutoHideTimer = () => {
+    if (autoHideTimerRef.current) {
+      clearTimeout(autoHideTimerRef.current);
+      autoHideTimerRef.current = null;
+    }
+  };
+
+  const startAutoHideTimer = () => {
+    clearAutoHideTimer();
+    autoHideTimerRef.current = setTimeout(() => {
+      if (window.scrollY > 20 && !mobileMenuOpen && !isHoveredRef.current) {
+        setIsVisible(false);
+      }
+    }, 3000);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 20);
 
       if (mobileMenuOpen) {
+        clearAutoHideTimer();
         setIsVisible(true);
         return;
       }
 
       if (currentScrollY <= 20) {
+        clearAutoHideTimer();
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY.current && currentScrollY - lastScrollY.current > 5) {
+        // Scrolling DOWN: hide immediately and clear timer
+        clearAutoHideTimer();
         setIsVisible(false);
       } else if (currentScrollY < lastScrollY.current && lastScrollY.current - currentScrollY > 5) {
+        // Scrolling UP: appear immediately and auto-hide after 3s of inactivity
         setIsVisible(true);
+        startAutoHideTimer();
       }
 
       lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearAutoHideTimer();
+    };
   }, [mobileMenuOpen]);
+
+  // Reset visibility on route transition
+  useEffect(() => {
+    clearAutoHideTimer();
+    setIsVisible(true);
+  }, [location.pathname]);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-6 pointer-events-none flex justify-center mt-2">
@@ -55,6 +88,16 @@ export default function Navbar() {
           pointerEvents: isVisible ? "auto" : "none",
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
+        onMouseEnter={() => {
+          isHoveredRef.current = true;
+          clearAutoHideTimer();
+        }}
+        onMouseLeave={() => {
+          isHoveredRef.current = false;
+          if (window.scrollY > 20 && !mobileMenuOpen) {
+            startAutoHideTimer();
+          }
+        }}
         className={cn(
           "flex items-center gap-4 md:gap-8 px-4 md:px-6 rounded-full transition-colors duration-300 backdrop-blur-xl",
           isScrolled

@@ -10,6 +10,13 @@ export interface ProjectMetadata {
   links?: { label: string; url: string; }[];
 }
 
+export interface ProjectMetric {
+  prefix?: string;
+  target: number;
+  suffix?: string;
+  label: string;
+}
+
 export interface ProjectSectionText {
   type: "text";
   title: string;
@@ -50,6 +57,8 @@ export interface ProjectData {
   category: string;
   client: string;
   image: string;
+  hidden?: boolean;
+  metrics?: ProjectMetric[];
   
   // Hero section
   heroHeading: string;
@@ -86,8 +95,8 @@ export interface ProjectData {
   };
 
   section2?: {
-    label: string;
-    heading: string;
+    label?: string;
+    heading?: string;
     content: string;
   };
 

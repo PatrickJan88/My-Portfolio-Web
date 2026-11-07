@@ -476,7 +476,7 @@ const waitForFont = async (fontFamily: any) => {
 };
 
 export function DustTextReveal({
-  text = "PRODUCT DESIGNER & AI BUILDER",
+  text = "PRODUCT DESIGNER • AI BUILDER",
   color: colorProp = "rgba(220, 226, 240, 0.95)",
   font = {
     fontFamily: "'Space Grotesk', 'Inter', sans-serif",

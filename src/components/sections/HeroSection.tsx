@@ -226,7 +226,7 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
             >
               <TextGlitch
                 as="p"
-                text="PRODUCT DESIGNER & AI BUILDER"
+                text="PRODUCT DESIGNER • AI BUILDER"
                 fontFamily="'TraditionalAmpersand', 'Inter', 'Space Grotesk', system-ui, -apple-system, sans-serif"
                 fontSize="clamp(1rem, 2.3vw, 1.4rem)"
                 fontWeight={700}

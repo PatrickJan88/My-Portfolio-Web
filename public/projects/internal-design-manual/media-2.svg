@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0d10" />
+      <stop offset="50%" stop-color="#141720" />
+      <stop offset="100%" stop-color="#08090c" />
+    </linearGradient>
+    <radialGradient id="aura" cx="40%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#0b0d10" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)" />
+  <rect width="1200" height="900" fill="url(#aura)" />
+  <rect x="50" y="50" width="1100" height="800" rx="24" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+
+  <text x="90" y="110" font-family="monospace" font-size="12" fill="#38bdf8" letter-spacing="2">MEDIA SLOT 02 • SECTION 1 (APPROACH)</text>
+  <text x="1110" y="110" text-anchor="end" font-family="monospace" font-size="12" fill="rgba(255,255,255,0.3)" letter-spacing="2">ASPECT 4:3</text>
+
+  <g transform="translate(90, 200)">
+    <text font-family="-apple-system, BlinkMacSystemFont, 'Space Grotesk', sans-serif" font-size="38" font-weight="700" fill="#ffffff">Foundations &amp; Information Architecture</text>
+    <text y="36" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="16" font-weight="400" fill="#94a3b8">Typography hierarchies, color tokens, and navigation categorization</text>
+  </g>
+
+  <!-- Visual Card Graphic -->
+  <g transform="translate(90, 310)">
+    <rect width="1020" height="480" rx="16" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+    
+    <g transform="translate(50, 50)">
+      <rect width="420" height="170" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" />
+      <text x="30" y="45" font-family="sans-serif" font-size="18" font-weight="600" fill="#ffffff">Token Hierarchy</text>
+      <text x="30" y="75" font-family="monospace" font-size="12" fill="#38bdf8">--color-cosmic-depth: #0c0d0e</text>
+      <text x="30" y="100" font-family="monospace" font-size="12" fill="#FF7523">--color-accent-amber: #FF7523</text>
+      <text x="30" y="125" font-family="monospace" font-size="12" fill="#a855f7">--color-violet-core: #a855f7</text>
+    </g>
+
+    <g transform="translate(510, 50)">
+      <rect width="460" height="170" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" />
+      <text x="30" y="45" font-family="sans-serif" font-size="18" font-weight="600" fill="#ffffff">Spacing Scale (4px Base)</text>
+      <text x="30" y="75" font-family="monospace" font-size="12" fill="#94a3b8">space-1: 4px | space-2: 8px | space-3: 12px</text>
+      <text x="30" y="100" font-family="monospace" font-size="12" fill="#94a3b8">space-4: 16px | space-6: 24px | space-8: 32px</text>
+      <text x="30" y="125" font-family="monospace" font-size="12" fill="#94a3b8">space-12: 48px | space-16: 64px | space-24: 96px</text>
+    </g>
+
+    <g transform="translate(50, 250)">
+      <rect width="920" height="180" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" />
+      <text x="30" y="45" font-family="sans-serif" font-size="18" font-weight="600" fill="#ffffff">Design Manual Navigation Tree</text>
+      <text x="30" y="80" font-family="monospace" font-size="13" fill="#38bdf8">Overview ──&gt; Foundations ──&gt; Components ──&gt; Patterns ──&gt; Handoff Guides</text>
+      <text x="30" y="115" font-family="sans-serif" font-size="13" fill="#64748b">Upload your custom screenshot or diagram here to highlight research &amp; information architecture.</text>
+    </g>
+  </g>
+</svg>
