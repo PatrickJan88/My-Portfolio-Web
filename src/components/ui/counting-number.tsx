@@ -37,7 +37,7 @@ export const CountingNumber = forwardRef<
     {
       from = 0,
       target = 100,
-      transition = { duration: 3, ease: "easeInOut", type: "tween" },
+      transition = { duration: 1.2, ease: "easeOut", type: "tween" },
       className,
       onStart,
       onComplete,
@@ -51,11 +51,13 @@ export const CountingNumber = forwardRef<
       Math.round(latest).toLocaleString(),
     );
     const controlsRef = useRef<AnimationPlaybackControls | null>(null);
+    const animatedRef = useRef(false);
 
     const startAnimation = useCallback(() => {
       controlsRef.current?.stop();
       onStart?.();
       count.set(from);
+      animatedRef.current = true;
       controlsRef.current = animate(count, target, {
         ...transition,
         onComplete: () => onComplete?.(),
@@ -65,9 +67,18 @@ export const CountingNumber = forwardRef<
     useImperativeHandle(ref, () => ({ startAnimation }));
 
     useEffect(() => {
-      if (autoStart) startAnimation();
-      return () => controlsRef.current?.stop();
+      if (autoStart && !animatedRef.current) {
+        startAnimation();
+      }
     }, [autoStart, startAnimation]);
+
+    // When target or from changes, reset and re-animate if autoStart is active
+    useEffect(() => {
+      animatedRef.current = false;
+      if (autoStart) {
+        startAnimation();
+      }
+    }, [target, from]);
 
     return (
       <motion.span className={cn("tabular-nums", className)} {...props}>

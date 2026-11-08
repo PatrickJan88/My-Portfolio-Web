@@ -1224,13 +1224,13 @@ export function InternalDesignHubMedia3({
       </div>
 
       {/* Floating Segmented Control Tab ON THE BOTTOM SIDE INSIDE THE AREA OF THE MEDIA */}
-      <div className="absolute bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
+      <div className="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 pointer-events-auto w-[calc(100%-1.5rem)] sm:w-auto max-w-[360px] sm:max-w-none flex justify-center">
         <SegmentedControl
           options={TAB_OPTIONS}
           label="Toggle Component Specifications"
           value={activeTab}
           onValueChange={setActiveTab}
-          className="shadow-[0_16px_36px_rgba(0,0,0,0.05),0_6px_16px_rgba(0,0,0,0.05),0_2px_6px_rgba(0,0,0,0.05)] backdrop-blur-md bg-white/95 border border-black/[0.06] dark:bg-[#1D1D1A]/95 dark:border-white/20"
+          className="w-full sm:w-auto shadow-[0_16px_36px_rgba(0,0,0,0.05),0_6px_16px_rgba(0,0,0,0.05),0_2px_6px_rgba(0,0,0,0.05)] backdrop-blur-md bg-white/95 border border-black/[0.06] dark:bg-[#1D1D1A]/95 dark:border-white/20"
         />
       </div>
     </motion.div>

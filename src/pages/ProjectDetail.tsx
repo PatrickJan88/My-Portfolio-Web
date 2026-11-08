@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useInView } from "motion/react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, PenTool, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { projectsData, allProjectsData } from "../data/projects";
+import { ProjectData } from "../types/project";
 import AutoCarousel from "../components/AutoCarousel";
 import { ImageComparisonCustomSlider } from "@/components/core/image-comparison";
 import { CountingNumber } from "../components/ui/counting-number";
@@ -18,14 +19,79 @@ function preventOrphans(text: string): string {
   return text.trim().replace(/\s+([^\s]+)$/, "\u00A0$1");
 }
 
+interface ProjectMetricsSectionProps {
+  projectId: string;
+  metrics: NonNullable<ProjectData["metrics"]>;
+}
+
+function ProjectMetricsSection({ projectId, metrics }: ProjectMetricsSectionProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    setShouldAnimate(false);
+    const el = containerRef.current;
+    if (!el) return;
+
+    // Use IntersectionObserver on the mounted DOM element with fallback
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setShouldAnimate(true);
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.05, rootMargin: "100px 0px 50px 0px" }
+    );
+
+    observer.observe(el);
+
+    // Guaranteed fallback: If observer does not fire within 500ms, start counting
+    const timer = setTimeout(() => {
+      setShouldAnimate(true);
+    }, 500);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
+  }, [projectId]);
+
+  return (
+    <section ref={containerRef} className="w-full mb-8 md:mb-12 px-2 md:px-8">
+      <div className="w-full border-b border-black/10 pb-8 md:pb-12">
+        <div className="w-full flex flex-col sm:flex-row justify-between items-center sm:items-start gap-8 lg:gap-12">
+          {metrics.map((stat, idx) => (
+            <div key={`${projectId}-${idx}`} className="flex flex-col items-center text-center">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-mono font-medium tracking-tight text-ink-black mb-2 md:mb-2.5 flex items-baseline">
+                {stat.prefix && <span>{stat.prefix}</span>}
+                <CountingNumber
+                  key={`${projectId}-${idx}-${stat.target}`}
+                  target={stat.target}
+                  autoStart={shouldAnimate}
+                  transition={{ duration: 1.2, ease: "easeOut", type: "tween" }}
+                />
+                {stat.suffix && <span>{stat.suffix}</span>}
+              </div>
+              <p className="text-xs sm:text-sm lg:text-base text-slate-gray font-medium tracking-wide whitespace-nowrap text-center">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function ProjectDetail() {
   const { id } = useParams();
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
   const [isMediaVideo, setIsMediaVideo] = useState<boolean>(false);
   const [selectedGallery, setSelectedGallery] = useState<string[] | null>(null);
-
-  const metricsRef = useRef<HTMLDivElement>(null);
-  const isMetricsInView = useInView(metricsRef, { once: true, margin: "-100px" });
 
   const project =
     allProjectsData.find((p) => p.id === id) || projectsData[0];
@@ -76,7 +142,7 @@ export default function ProjectDetail() {
   };
 
   return (
-    <div className="w-full bg-fog-white min-h-screen text-ink-black font-sans selection:bg-[#FF7523] selection:text-white">
+    <div key={project.id} className="w-full bg-fog-white min-h-screen text-ink-black font-sans selection:bg-[#FF7523] selection:text-white">
       {/* Mobile Media Modal */}
       {createPortal(
         <AnimatePresence>
@@ -311,28 +377,7 @@ export default function ProjectDetail() {
       <main className={`w-full max-w-[1600px] mx-auto px-6 md:px-12 pb-24 ${project.metrics && project.metrics.length > 0 ? 'pt-8 md:pt-12' : 'pt-16 md:pt-24'}`}>
         {/* Animated Metrics Section (below the title banner) */}
         {project.metrics && project.metrics.length > 0 && (
-          <section ref={metricsRef} className="w-full mb-8 md:mb-12 px-2 md:px-8">
-            <div className="w-full border-b border-black/10 pb-8 md:pb-12">
-              <div className="w-full flex flex-col sm:flex-row justify-between items-center sm:items-start gap-8 lg:gap-12">
-                {project.metrics.map((stat, idx) => (
-                  <div key={idx} className="flex flex-col items-center text-center">
-                    <div className="text-4xl sm:text-5xl md:text-6xl font-mono font-medium tracking-tight text-ink-black mb-2 md:mb-2.5 flex items-baseline">
-                      {stat.prefix && <span>{stat.prefix}</span>}
-                      <CountingNumber
-                        target={stat.target}
-                        autoStart={isMetricsInView}
-                        transition={{ duration: 1, ease: "easeOut", type: "tween" }}
-                      />
-                      {stat.suffix && <span>{stat.suffix}</span>}
-                    </div>
-                    <p className="text-xs sm:text-sm lg:text-base text-slate-gray font-medium tracking-wide whitespace-nowrap text-center">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+          <ProjectMetricsSection projectId={project.id} metrics={project.metrics} />
         )}
 
         {/* Overview Section */}
@@ -804,11 +849,7 @@ export default function ProjectDetail() {
               <h3 className="text-base font-bold tracking-[0.2em] uppercase text-ash-gray mb-6 md:mb-8 text-pretty">
                 {project.section3?.label || "Result"}
               </h3>
-              <h2 className={`font-light tracking-normal text-ink-black leading-[1.1] ${
-                project.section3?.heading === "Impact on Workflow Efficiency and Cross-Functional Collaboration."
-                  ? "text-[clamp(0.85rem,2.7vw,2.75rem)] whitespace-nowrap"
-                  : "text-4xl md:text-5xl lg:text-5xl whitespace-pre-line text-pretty"
-              }`}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-light tracking-normal text-ink-black leading-[1.1] whitespace-pre-line text-pretty">
                 {project.section3?.heading || project.heroHeading}
               </h2>
             </div>
