@@ -9,10 +9,8 @@ import {
   CardDescription,
   CardContent,
 } from "../ui/card";
+import { FluidOrb } from "../ui/fluid-orb";
 import {
-  Megaphone,
-  Component,
-  MonitorPlay,
   Presentation,
   ExternalLink,
   Copy,
@@ -35,19 +33,10 @@ interface AnimatedConnectionPathProps {
 
 function AnimatedConnectionPath({
   d,
-  gradientId,
   color,
-  reverse = false,
 }: AnimatedConnectionPathProps) {
   return (
     <>
-      <defs>
-        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={color} stopOpacity={0.95} />
-          <stop offset="50%" stopColor={color} stopOpacity={0.65} />
-          <stop offset="100%" stopColor={color} stopOpacity={0.15} />
-        </linearGradient>
-      </defs>
       {/* Base background track */}
       <path
         d={d}
@@ -56,18 +45,18 @@ function AnimatedConnectionPath({
         strokeWidth="1.5"
         strokeLinecap="round"
       />
-      {/* Animated glowing beam path in cursor matching color */}
+      {/* Animated glowing beam path flowing outward from center hub to cards */}
       <motion.path
         d={d}
         fill="none"
-        stroke={`url(#${gradientId})`}
+        stroke={color}
         strokeWidth="2.5"
         strokeLinecap="round"
-        strokeDasharray="40 160"
-        initial={{ strokeDashoffset: reverse ? -200 : 200 }}
-        animate={{ strokeDashoffset: reverse ? 200 : -200 }}
+        strokeDasharray="45 155"
+        initial={{ strokeDashoffset: 200 }}
+        animate={{ strokeDashoffset: -200 }}
         transition={{
-          duration: 3.5,
+          duration: 3.2,
           repeat: Infinity,
           ease: "linear",
         }}
@@ -147,10 +136,10 @@ export function InternalDesignHubMedia1({
     };
 
     setPaths({
-      dev: createBezier(dev, hubDev),
-      mktg: createBezier(mktg, hubMktg),
-      design: createBezier(design, hubDesign),
-      biz: createBezier(biz, hubBiz),
+      dev: createBezier(hubDev, dev),
+      mktg: createBezier(hubMktg, mktg),
+      design: createBezier(hubDesign, design),
+      biz: createBezier(hubBiz, biz),
     });
   }, []);
 
@@ -236,7 +225,7 @@ export function InternalDesignHubMedia1({
           {
             id: "marketing",
             name: "Marketing Team",
-            color: "#f24e9c",
+            color: "#ef4444",
             script: [
               { action: "hover", target: "#marketing-download-btn" },
               { action: "click", target: "#marketing-download-btn" },
@@ -246,7 +235,7 @@ export function InternalDesignHubMedia1({
           {
             id: "designers",
             name: "Designers",
-            color: "#0d99ff",
+            color: "#1A73F2",
             script: [
               { action: "hover", target: "#designers-toggle-opt2" },
               { action: "click", target: "#designers-toggle-opt2" },
@@ -256,7 +245,7 @@ export function InternalDesignHubMedia1({
           {
             id: "business",
             name: "Business Support Team",
-            color: "#f59e0b",
+            color: "#ff7523",
             textColor: "#ffffff",
             script: [
               { action: "hover", target: "#business-showcase-btn" },
@@ -283,21 +272,21 @@ export function InternalDesignHubMedia1({
               <AnimatedConnectionPath
                 d={paths.mktg}
                 gradientId="beam-marketing-hub"
-                color="#f24e9c"
+                color="#ef4444"
               />
             )}
             {paths.design && (
               <AnimatedConnectionPath
                 d={paths.design}
                 gradientId="beam-designers-hub"
-                color="#0d99ff"
+                color="#1A73F2"
               />
             )}
             {paths.biz && (
               <AnimatedConnectionPath
                 d={paths.biz}
                 gradientId="beam-business-hub"
-                color="#f59e0b"
+                color="#ff7523"
               />
             )}
           </svg>
@@ -305,22 +294,22 @@ export function InternalDesignHubMedia1({
           {/* Center Hub in the Middle (responsive scaling for mobile and desktop) */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center pointer-events-auto">
             <div className="relative flex flex-col items-center p-1.5 sm:p-2.5 md:p-4 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-md border border-neutral-200/90 shadow-[0_4px_24px_-2px_rgba(0,0,0,0.08)] transition-all hover:border-neutral-300">
-              {/* Hub connection anchor dots: visible on desktop, hidden on mobile only */}
+              {/* Hub connection anchor dots: seated directly on the card border and linked seamlessly to lines */}
               <span
                 ref={hubDevDotRef}
-                className="absolute left-1 sm:left-1.5 top-[28%] -translate-y-1/2 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full bg-[#10b981] border-1.5 sm:border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
+                className="absolute left-0 -translate-x-1/2 top-[28%] -translate-y-1/2 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#10b981] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
               />
               <span
                 ref={hubMktgDotRef}
-                className="absolute right-1 sm:right-1.5 top-[28%] -translate-y-1/2 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full bg-[#f24e9c] border-1.5 sm:border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
+                className="absolute right-0 translate-x-1/2 top-[28%] -translate-y-1/2 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#ef4444] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
               />
               <span
                 ref={hubDesignDotRef}
-                className="absolute left-1 sm:left-1.5 top-[72%] -translate-y-1/2 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full bg-[#0d99ff] border-1.5 sm:border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
+                className="absolute left-0 -translate-x-1/2 top-[72%] -translate-y-1/2 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#1A73F2] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
               />
               <span
                 ref={hubBizDotRef}
-                className="absolute right-1 sm:right-1.5 top-[72%] -translate-y-1/2 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full bg-[#f59e0b] border-1.5 sm:border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
+                className="absolute right-0 translate-x-1/2 top-[72%] -translate-y-1/2 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#ff7523] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
               />
 
               {/* Hub title pill badge: "Internal Design Hub" */}
@@ -352,9 +341,7 @@ export function InternalDesignHubMedia1({
                 />
 
                 <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-[8px]">
-                  <div className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 rounded-md sm:rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
-                    <span className="font-mono text-[8.5px] sm:text-xs md:text-sm font-bold text-neutral-800 tracking-tight">&lt;/&gt;</span>
-                  </div>
+                  <FluidOrb color="#10b981" className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 border border-neutral-200" />
                   <div className="min-w-0 flex flex-col items-start text-left">
                     <CardTitle className="text-[9.5px] sm:text-[11px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
                       Developers
@@ -399,9 +386,7 @@ export function InternalDesignHubMedia1({
                 />
 
                 <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-[8px]">
-                  <div className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 rounded-md sm:rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
-                    <Megaphone className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-neutral-800" strokeWidth={1.75} />
-                  </div>
+                  <FluidOrb color="#ef4444" className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 border border-neutral-200" />
                   <div className="min-w-0 flex flex-col items-start text-left">
                     <CardTitle className="text-[9.5px] sm:text-[11px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
                       Marketing Team
@@ -422,7 +407,7 @@ export function InternalDesignHubMedia1({
                     className="flex items-center justify-between px-1.5 sm:px-2 md:px-3.5 py-1 sm:py-1.5 md:py-2 rounded-[999px] bg-neutral-100/90 hover:bg-neutral-100 transition-colors cursor-pointer border border-neutral-200/50 group/asset"
                   >
                     <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
-                      <FileText className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-neutral-700 shrink-0" strokeWidth={1.75} />
+                      <FileText className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-neutral-700 shrink-0" strokeWidth={2} />
                       <span className="text-[7.5px] sm:text-[9.5px] md:text-[12px] text-neutral-800 font-medium truncate">
                         Logo Guidelines
                       </span>
@@ -453,9 +438,7 @@ export function InternalDesignHubMedia1({
                 />
 
                 <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-[8px]">
-                  <div className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 rounded-md sm:rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
-                    <Component className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-neutral-800" strokeWidth={1.75} />
-                  </div>
+                  <FluidOrb color="#1A73F2" className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 border border-neutral-200" />
                   <div className="min-w-0 flex flex-col items-start text-left">
                     <CardTitle className="text-[9.5px] sm:text-[11px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
                       Designers
@@ -544,9 +527,7 @@ export function InternalDesignHubMedia1({
                 />
 
                 <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-[8px]">
-                  <div className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 rounded-md sm:rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
-                    <MonitorPlay className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-neutral-800" strokeWidth={1.75} />
-                  </div>
+                  <FluidOrb color="#ff7523" className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 border border-neutral-200" />
                   <div className="min-w-0 flex flex-col items-start text-left">
                     <CardTitle className="text-[9.5px] sm:text-[11px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
                       Business Support
@@ -567,7 +548,7 @@ export function InternalDesignHubMedia1({
                     className="flex items-center justify-between pt-0.5 cursor-pointer group/showcase"
                   >
                     <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
-                      <Presentation className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-neutral-800 shrink-0 group-hover/showcase:text-black transition-colors" strokeWidth={1.75} />
+                      <Presentation className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-neutral-800 shrink-0 group-hover/showcase:text-black transition-colors" strokeWidth={2} />
                       <span className="text-[7.5px] sm:text-[10px] md:text-[13px] text-neutral-900 font-medium truncate group-hover/showcase:text-black">
                         Showcase
                       </span>

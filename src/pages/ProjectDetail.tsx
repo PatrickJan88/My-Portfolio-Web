@@ -10,6 +10,9 @@ import { ImageComparisonCustomSlider } from "@/components/core/image-comparison"
 import { CountingNumber } from "../components/ui/counting-number";
 import { InternalDesignHubMedia3 } from "../components/sections/InternalDesignHubMedia3";
 import { InternalDesignHubMedia1 } from "../components/sections/InternalDesignHubMedia1";
+import { EvChargingMedia1 } from "../components/sections/EvChargingMedia1";
+import { EvChargingMedia3 } from "../components/sections/EvChargingMedia3";
+import { EvChargingMedia4 } from "../components/sections/EvChargingMedia4";
 
 /**
  * Prevents typographic orphans by binding the last word with a non-breaking space
@@ -558,6 +561,8 @@ export default function ProjectDetail() {
           {/* Section 1: Full width media */}
           {project.id === 'internal-design-manual' ? (
             <InternalDesignHubMedia1 />
+          ) : project.id === 'ev-charging-platform' ? (
+            <EvChargingMedia1 onMediaClick={handleMediaClick} />
           ) : (!project.media1 && project.id === 'svenska-lek') ? null : (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -735,26 +740,30 @@ export default function ProjectDetail() {
 
               {/* Section 3: Text Wrapping Media Left */}
               <article className="w-full clear-both mt-16 lg:mt-24">
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="w-full lg:w-7/12 aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-left lg:mr-12 lg:mt-2"
-                  onClick={() => project.media3 && handleMediaClick(project.media3, project.media3.endsWith(".webm") || project.media3.endsWith(".mp4"))}
-                >
-                  {project.media3 ? (
-                    project.media3.endsWith(".webm") || project.media3.endsWith(".mp4") ? (
-                      <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
+                {project.id === "ev-charging-platform" ? (
+                  <EvChargingMedia3 onMediaClick={handleMediaClick} />
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="w-full lg:w-7/12 aspect-[4/3] bg-mist-gray rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-8 lg:mb-12 lg:float-left lg:mr-12 lg:mt-2"
+                    onClick={() => project.media3 && handleMediaClick(project.media3, project.media3.endsWith(".webm") || project.media3.endsWith(".mp4"))}
+                  >
+                    {project.media3 ? (
+                      project.media3.endsWith(".webm") || project.media3.endsWith(".mp4") ? (
+                        <video src={project.media3} autoPlay loop muted playsInline className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
+                      ) : (
+                        <img src={project.media3} alt="Media 3" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
+                      )
                     ) : (
-                      <img src={project.media3} alt="Media 3" className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
-                    )
-                  ) : (
-                    <p className="absolute text-smoke-gray font-mono text-sm px-6 text-center">
-                      Media Placeholder 3
-                    </p>
-                  )}
-                </motion.div>
+                      <p className="absolute text-smoke-gray font-mono text-sm px-6 text-center">
+                        Media Placeholder 3
+                      </p>
+                    )}
+                  </motion.div>
+                )}
                 
                 <div className="px-2 md:px-8">
                   {project.section2?.label ? (
@@ -788,7 +797,9 @@ export default function ProjectDetail() {
           )}
 
           {/* Section 3: Full width media */}
-          {!project.media4 ? null : (
+          {project.id === 'ev-charging-platform' ? (
+            <EvChargingMedia4 onMediaClick={handleMediaClick} />
+          ) : !project.media4 ? null : (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
