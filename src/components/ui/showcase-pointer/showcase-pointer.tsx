@@ -1139,6 +1139,7 @@ export const ShowcasePointer = forwardRef<ShowcasePointerHandle, ShowcasePointer
                   runtime(config.id).element = element;
                 }}
                 className="showcase-pointer-cursor"
+                data-cursor-id={config.id}
                 data-visible={shown > 0 || undefined}
                 style={
                   {

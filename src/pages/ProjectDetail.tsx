@@ -66,10 +66,10 @@ function ProjectMetricsSection({ projectId, metrics }: ProjectMetricsSectionProp
   return (
     <section ref={containerRef} className="w-full mb-8 md:mb-12 px-2 md:px-8">
       <div className="w-full border-b border-black/10 pb-8 md:pb-12">
-        <div className="w-full flex flex-col sm:flex-row justify-between items-center sm:items-start gap-8 lg:gap-12">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 md:gap-6 lg:gap-12 items-start">
           {metrics.map((stat, idx) => (
-            <div key={`${projectId}-${idx}`} className="flex flex-col items-center text-center">
-              <div className="text-4xl sm:text-5xl md:text-6xl font-mono font-medium tracking-tight text-ink-black mb-2 md:mb-2.5 flex items-baseline">
+            <div key={`${projectId}-${idx}`} className="flex flex-col items-center text-center min-w-0 px-1">
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-mono font-medium tracking-tight text-ink-black mb-2 md:mb-2.5 flex items-baseline justify-center">
                 {stat.prefix && <span>{stat.prefix}</span>}
                 <CountingNumber
                   key={`${projectId}-${idx}-${stat.target}`}
@@ -79,7 +79,7 @@ function ProjectMetricsSection({ projectId, metrics }: ProjectMetricsSectionProp
                 />
                 {stat.suffix && <span>{stat.suffix}</span>}
               </div>
-              <p className="text-xs sm:text-sm lg:text-base text-slate-gray font-medium tracking-wide whitespace-nowrap text-center">
+              <p className="text-xs sm:text-xs md:text-sm lg:text-base text-slate-gray font-medium tracking-wide text-pretty text-center max-w-[240px] sm:max-w-none">
                 {stat.label}
               </p>
             </div>

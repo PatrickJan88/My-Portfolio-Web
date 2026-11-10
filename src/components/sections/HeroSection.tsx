@@ -224,6 +224,52 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="w-full cursor-pointer"
             >
+            {/* Mobile Version (< sm): 2 lines without the dot, moving AI to the second line */}
+            <div className="sm:hidden flex flex-col items-center justify-center gap-1">
+              <TextGlitch
+                as="p"
+                text="PRODUCT DESIGNER"
+                fontFamily="'TraditionalAmpersand', 'Inter', 'Space Grotesk', system-ui, -apple-system, sans-serif"
+                fontSize="clamp(0.95rem, 4.2vw, 1.15rem)"
+                fontWeight={700}
+                letterSpacing="0.22em"
+                lineHeight={1.3}
+                textColor="#e4e6ea"
+                glitchColor1="#ffffff"
+                glitchColor2="#ffffff"
+                glitchIntensity={0.25}
+                glitchSpeed={0.45}
+                smoothness={0.4}
+                enableTurbulence={false}
+                animationMode="hover"
+                activeGlitch={isInitialGlitching}
+                glitchStyle="classic"
+                className="drop-shadow-[0_2px_16px_rgba(0,0,0,0.9)]"
+              />
+              <TextGlitch
+                as="p"
+                text="AI BUILDER"
+                fontFamily="'TraditionalAmpersand', 'Inter', 'Space Grotesk', system-ui, -apple-system, sans-serif"
+                fontSize="clamp(0.95rem, 4.2vw, 1.15rem)"
+                fontWeight={700}
+                letterSpacing="0.22em"
+                lineHeight={1.3}
+                textColor="#e4e6ea"
+                glitchColor1="#ffffff"
+                glitchColor2="#ffffff"
+                glitchIntensity={0.25}
+                glitchSpeed={0.45}
+                smoothness={0.4}
+                enableTurbulence={false}
+                animationMode="hover"
+                activeGlitch={isInitialGlitching}
+                glitchStyle="classic"
+                className="drop-shadow-[0_2px_16px_rgba(0,0,0,0.9)]"
+              />
+            </div>
+
+            {/* Desktop & Tablet Version (sm+): Completely unchanged */}
+            <div className="hidden sm:block">
               <TextGlitch
                 as="p"
                 text="PRODUCT DESIGNER • AI BUILDER"
@@ -244,6 +290,7 @@ export function HeroSection({ onIntroComplete }: HeroSectionProps) {
                 glitchStyle="classic"
                 className="drop-shadow-[0_2px_16px_rgba(0,0,0,0.9)]"
               />
+            </div>
             </motion.div>
           </div>
         </motion.div>

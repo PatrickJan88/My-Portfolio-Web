@@ -172,9 +172,9 @@ export function InternalDesignHubMedia1({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8 }}
-      className={`w-full aspect-[16/9] min-h-[360px] sm:min-h-[480px] md:min-h-[540px] relative rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-black/8 bg-white shadow-sm p-2.5 sm:p-5 md:p-6 select-none font-sans flex flex-col justify-between ${className}`}
+      className={`w-full aspect-[16/9] min-h-[360px] sm:min-h-[460px] md:min-h-[500px] lg:min-h-[540px] relative rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-black/8 bg-white shadow-sm p-2.5 sm:p-4 md:p-5 lg:p-6 select-none font-sans flex flex-col justify-between ${className}`}
     >
-      {/* Scoped CSS: Enforce true circular geometry for dot matrix elements, and hide pointer cursors on mobile */}
+      {/* Scoped CSS: Enforce true circular geometry for dot matrix elements, and anchor right-side cursors inward */}
       <style>{`
         .phosphor-circles ellipse {
           transform-box: fill-box;
@@ -185,6 +185,17 @@ export function InternalDesignHubMedia1({
           .showcase-pointer-cursor {
             display: none !important;
           }
+        }
+        /* Anchor right-side cursor labels inward so they stay neatly inside the card container */
+        .showcase-pointer-cursor[data-cursor-id="marketing"] .showcase-pointer-cursor-label-anchor,
+        .showcase-pointer-cursor[data-cursor-id="business"] .showcase-pointer-cursor-label-anchor {
+          left: auto !important;
+          right: 2px !important;
+          top: 24px !important;
+        }
+        .showcase-pointer-cursor[data-cursor-id="marketing"] .showcase-pointer-cursor-label,
+        .showcase-pointer-cursor[data-cursor-id="business"] .showcase-pointer-cursor-label {
+          transform-origin: 100% 0 !important;
         }
       `}</style>
 
@@ -198,6 +209,7 @@ export function InternalDesignHubMedia1({
       {/* Interactive Showcase Pointer Canvas */}
       <ShowcasePointer
         className="w-full flex-1 relative min-h-0"
+        cursorSize={0.75}
         onCursorPress={({ target }) => {
           if (target.closest("#devs-copy-btn")) setCopiedCode(true);
           if (target.closest("#marketing-download-btn")) setDownloadedAsset(true);
@@ -244,7 +256,7 @@ export function InternalDesignHubMedia1({
           },
           {
             id: "business",
-            name: "Business Support Team",
+            name: "Business Support",
             color: "#ff7523",
             textColor: "#ffffff",
             script: [
@@ -293,27 +305,27 @@ export function InternalDesignHubMedia1({
 
           {/* Center Hub in the Middle (responsive scaling for mobile and desktop) */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center pointer-events-auto">
-            <div className="relative flex flex-col items-center p-1.5 sm:p-2.5 md:p-4 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-md border border-neutral-200/90 shadow-[0_4px_24px_-2px_rgba(0,0,0,0.08)] transition-all hover:border-neutral-300">
+            <div className="relative flex flex-col items-center p-1.5 sm:p-2 md:p-2.5 lg:p-4 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-md border border-neutral-200/90 shadow-[0_4px_24px_-2px_rgba(0,0,0,0.08)] transition-all hover:border-neutral-300">
               {/* Hub connection anchor dots: seated directly on the card border and linked seamlessly to lines */}
               <span
                 ref={hubDevDotRef}
-                className="absolute left-0 -translate-x-1/2 top-[28%] -translate-y-1/2 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#10b981] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
+                className="absolute left-0 -translate-x-1/2 top-[28%] -translate-y-1/2 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#10b981] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
               />
               <span
                 ref={hubMktgDotRef}
-                className="absolute right-0 translate-x-1/2 top-[28%] -translate-y-1/2 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#ef4444] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
+                className="absolute right-0 translate-x-1/2 top-[28%] -translate-y-1/2 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#ef4444] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
               />
               <span
                 ref={hubDesignDotRef}
-                className="absolute left-0 -translate-x-1/2 top-[72%] -translate-y-1/2 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#1A73F2] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
+                className="absolute left-0 -translate-x-1/2 top-[72%] -translate-y-1/2 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#1A73F2] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
               />
               <span
                 ref={hubBizDotRef}
-                className="absolute right-0 translate-x-1/2 top-[72%] -translate-y-1/2 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#ff7523] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
+                className="absolute right-0 translate-x-1/2 top-[72%] -translate-y-1/2 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 rounded-full bg-[#ff7523] border-2 border-white shadow-xs z-30 pointer-events-none opacity-0 md:opacity-100"
               />
 
               {/* Hub title pill badge: "Internal Design Hub" */}
-              <div className="flex items-center justify-center mb-1 sm:mb-2 px-1.5 sm:px-2.5 md:px-3 py-0.5 rounded-full bg-neutral-100 text-[8px] sm:text-[9.5px] md:text-[11px] font-mono font-medium text-neutral-600 border border-neutral-200/60 whitespace-nowrap">
+              <div className="flex items-center justify-center mb-1 sm:mb-1.5 md:mb-1.5 lg:mb-2 px-1.5 sm:px-2 md:px-2.5 lg:px-3 py-0.5 rounded-full bg-neutral-100 text-[8px] sm:text-[9px] md:text-[9.5px] lg:text-[11px] font-mono font-medium text-neutral-600 border border-neutral-200/60 whitespace-nowrap">
                 <span>Internal Design Hub</span>
               </div>
 
@@ -323,30 +335,30 @@ export function InternalDesignHubMedia1({
                   play
                   intensity={0.8}
                   theme="light"
-                  className="w-[65px] sm:w-[100px] md:w-[165px] lg:w-[190px]"
+                  className="w-[65px] sm:w-[90px] md:w-[115px] lg:w-[190px]"
                 />
               </div>
             </div>
           </div>
 
-          {/* 4 Cards: Scaled proportionally on mobile so they fit in frame without overlapping */}
-          <div className="relative z-10 w-full h-full max-w-[880px] md:max-w-[920px] lg:max-w-[960px] mx-auto grid grid-cols-2 grid-rows-2 gap-x-2 sm:gap-x-12 md:gap-x-24 gap-y-3 sm:gap-y-6 md:gap-y-10 p-1 sm:p-2 md:p-3 pointer-events-none items-center">
+          {/* 4 Cards: Scaled proportionally on tablet and mobile so they fit in frame without overlapping */}
+          <div className="relative z-10 w-full h-full max-w-[880px] md:max-w-[900px] lg:max-w-[960px] mx-auto grid grid-cols-2 grid-rows-2 gap-x-2 sm:gap-x-6 md:gap-x-10 lg:gap-x-24 gap-y-3 sm:gap-y-4 md:gap-y-6 lg:gap-y-10 p-1 sm:p-2.5 md:p-3.5 lg:p-4 pointer-events-none items-center">
             {/* Corner 1: Top-Left - Developers Card */}
             <div className="flex justify-start items-start pointer-events-auto">
-              <Card className="relative w-full max-w-[122px] sm:max-w-[180px] md:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-1.5 sm:p-2.5 md:p-3.5 rounded-xl sm:rounded-2xl gap-1 sm:gap-1.5 md:gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
+              <Card className="relative w-full max-w-[122px] sm:max-w-[160px] md:max-w-[195px] lg:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-1.5 sm:p-2 md:p-2.5 lg:p-3.5 rounded-xl sm:rounded-2xl gap-1 sm:gap-1.5 lg:gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
                 {/* Invisible terminal connection anchor at card edge (no visible half-dot) */}
                 <span
                   ref={devDotRef}
                   className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 pointer-events-none opacity-0"
                 />
 
-                <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-[8px]">
-                  <FluidOrb color="#10b981" className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 border border-neutral-200" />
+                <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-1.5 lg:gap-[8px]">
+                  <FluidOrb color="#10b981" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-9 lg:h-9 border border-neutral-200" />
                   <div className="min-w-0 flex flex-col items-start text-left">
-                    <CardTitle className="text-[9.5px] sm:text-[11px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
+                    <CardTitle className="text-[9.5px] sm:text-[10.5px] md:text-[12px] lg:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
                       Developers
                     </CardTitle>
-                    <CardDescription className="text-[7.5px] sm:text-[9px] md:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
+                    <CardDescription className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] lg:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
                       React · CSS · Specs
                     </CardDescription>
                   </div>
@@ -360,14 +372,14 @@ export function InternalDesignHubMedia1({
                       e.stopPropagation();
                       setCopiedCode(true);
                     }}
-                    className="w-full bg-black hover:bg-neutral-800 text-white rounded-[999px] py-1 sm:py-1.5 md:py-2 px-1.5 sm:px-2 md:px-3 flex items-center justify-center gap-1 sm:gap-2 transition-all cursor-pointer shadow-xs active:scale-95 group/copy text-[8px] sm:text-[10px] md:text-[13px] font-medium"
+                    className="w-full bg-black hover:bg-neutral-800 text-white rounded-[999px] py-1 sm:py-1.5 md:py-1.5 lg:py-2 px-1.5 sm:px-2 md:px-2.5 lg:px-3 flex items-center justify-center gap-1 sm:gap-1.5 lg:gap-2 transition-all cursor-pointer shadow-xs active:scale-95 group/copy text-[8px] sm:text-[9px] md:text-[10px] lg:text-[13px] font-medium"
                     aria-label="Copy code specifications"
                   >
                     {copiedCode ? (
                       <span className="text-white font-medium">Copied</span>
                     ) : (
                       <>
-                        <Copy className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-white shrink-0" />
+                        <Copy className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 text-white shrink-0" />
                         <span className="truncate">Copy Code</span>
                       </>
                     )}
@@ -378,20 +390,20 @@ export function InternalDesignHubMedia1({
 
             {/* Corner 2: Top-Right - Marketing Team Card */}
             <div className="flex justify-end items-start pointer-events-auto">
-              <Card className="relative w-full max-w-[122px] sm:max-w-[180px] md:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-1.5 sm:p-2.5 md:p-3.5 rounded-xl sm:rounded-2xl gap-1 sm:gap-1.5 md:gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
+              <Card className="relative w-full max-w-[122px] sm:max-w-[160px] md:max-w-[195px] lg:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-1.5 sm:p-2 md:p-2.5 lg:p-3.5 rounded-xl sm:rounded-2xl gap-1 sm:gap-1.5 lg:gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
                 {/* Invisible terminal connection anchor at card edge (no visible half-dot) */}
                 <span
                   ref={mktgDotRef}
                   className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0 pointer-events-none opacity-0"
                 />
 
-                <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-[8px]">
-                  <FluidOrb color="#ef4444" className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 border border-neutral-200" />
+                <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-1.5 lg:gap-[8px]">
+                  <FluidOrb color="#ef4444" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-9 lg:h-9 border border-neutral-200" />
                   <div className="min-w-0 flex flex-col items-start text-left">
-                    <CardTitle className="text-[9.5px] sm:text-[11px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
+                    <CardTitle className="text-[9.5px] sm:text-[10.5px] md:text-[12px] lg:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
                       Marketing Team
                     </CardTitle>
-                    <CardDescription className="text-[7.5px] sm:text-[9px] md:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
+                    <CardDescription className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] lg:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
                       Brand Assets
                     </CardDescription>
                   </div>
@@ -404,11 +416,11 @@ export function InternalDesignHubMedia1({
                       e.stopPropagation();
                       setDownloadedAsset(true);
                     }}
-                    className="flex items-center justify-between px-1.5 sm:px-2 md:px-3.5 py-1 sm:py-1.5 md:py-2 rounded-[999px] bg-neutral-100/90 hover:bg-neutral-100 transition-colors cursor-pointer border border-neutral-200/50 group/asset"
+                    className="flex items-center justify-between px-1.5 sm:px-2 md:px-2.5 lg:px-3.5 py-1 sm:py-1.5 md:py-1.5 lg:py-2 rounded-[999px] bg-neutral-100/90 hover:bg-neutral-100 transition-colors cursor-pointer border border-neutral-200/50 group/asset"
                   >
                     <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
-                      <FileText className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-neutral-700 shrink-0" strokeWidth={2} />
-                      <span className="text-[7.5px] sm:text-[9.5px] md:text-[12px] text-neutral-800 font-medium truncate">
+                      <FileText className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 text-neutral-700 shrink-0" strokeWidth={2} />
+                      <span className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] lg:text-[12px] text-neutral-800 font-medium truncate">
                         Logo Guidelines
                       </span>
                     </div>
@@ -418,9 +430,9 @@ export function InternalDesignHubMedia1({
                       aria-label="Download brand assets"
                     >
                       {downloadedAsset ? (
-                        <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-emerald-600" />
+                        <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 text-emerald-600" />
                       ) : (
-                        <Download className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" strokeWidth={1.75} />
+                        <Download className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5" strokeWidth={1.75} />
                       )}
                     </button>
                   </div>
@@ -430,27 +442,27 @@ export function InternalDesignHubMedia1({
 
             {/* Corner 3: Bottom-Left - Designers Card */}
             <div className="flex justify-start items-end pointer-events-auto">
-              <Card className="relative w-full max-w-[122px] sm:max-w-[180px] md:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-1.5 sm:p-2.5 md:p-3.5 rounded-xl sm:rounded-2xl gap-1 sm:gap-1.5 md:gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
+              <Card className="relative w-full max-w-[122px] sm:max-w-[160px] md:max-w-[195px] lg:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-1.5 sm:p-2 md:p-2.5 lg:p-3.5 rounded-xl sm:rounded-2xl gap-1 sm:gap-1.5 lg:gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
                 {/* Invisible terminal connection anchor at card edge (no visible half-dot) */}
                 <span
                   ref={designDotRef}
                   className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 pointer-events-none opacity-0"
                 />
 
-                <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-[8px]">
-                  <FluidOrb color="#1A73F2" className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 border border-neutral-200" />
+                <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-1.5 lg:gap-[8px]">
+                  <FluidOrb color="#1A73F2" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-9 lg:h-9 border border-neutral-200" />
                   <div className="min-w-0 flex flex-col items-start text-left">
-                    <CardTitle className="text-[9.5px] sm:text-[11px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
+                    <CardTitle className="text-[9.5px] sm:text-[10.5px] md:text-[12px] lg:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
                       Designers
                     </CardTitle>
-                    <CardDescription className="text-[7.5px] sm:text-[9px] md:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
+                    <CardDescription className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] lg:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
                       UI Component
                     </CardDescription>
                   </div>
                 </CardHeader>
 
                 <CardContent className="p-0 my-0">
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-5 pt-0.5 select-none">
+                  <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-5 pt-0.5 select-none">
                     {/* Option 1 */}
                     <div
                       id="designers-toggle-opt1"
@@ -461,7 +473,7 @@ export function InternalDesignHubMedia1({
                       className="flex items-center gap-1 sm:gap-1.5 cursor-pointer group/opt1"
                     >
                       <span
-                        className={`w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 rounded-full flex items-center justify-center shrink-0 transition-all ${
+                        className={`w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 rounded-full flex items-center justify-center shrink-0 transition-all ${
                           designerRadio === "option1"
                             ? "bg-black border border-black active:scale-90"
                             : "border border-neutral-300 bg-white group-hover/opt1:border-neutral-400"
@@ -472,7 +484,7 @@ export function InternalDesignHubMedia1({
                         )}
                       </span>
                       <span
-                        className={`text-[8px] sm:text-[10px] md:text-[13px] font-medium transition-colors ${
+                        className={`text-[8px] sm:text-[9px] md:text-[10px] lg:text-[13px] font-medium transition-colors ${
                           designerRadio === "option1"
                             ? "text-neutral-900"
                             : "text-neutral-600 group-hover/opt1:text-neutral-900"
@@ -492,7 +504,7 @@ export function InternalDesignHubMedia1({
                       className="flex items-center gap-1 sm:gap-1.5 cursor-pointer group/opt2"
                     >
                       <span
-                        className={`w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 rounded-full flex items-center justify-center shrink-0 transition-all ${
+                        className={`w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 rounded-full flex items-center justify-center shrink-0 transition-all ${
                           designerRadio === "option2"
                             ? "bg-black border border-black active:scale-90"
                             : "border border-neutral-300 bg-white group-hover/opt2:border-neutral-400"
@@ -503,7 +515,7 @@ export function InternalDesignHubMedia1({
                         )}
                       </span>
                       <span
-                        className={`text-[8px] sm:text-[10px] md:text-[13px] font-medium transition-colors ${
+                        className={`text-[8px] sm:text-[9px] md:text-[10px] lg:text-[13px] font-medium transition-colors ${
                           designerRadio === "option2"
                             ? "text-neutral-900"
                             : "text-neutral-600 group-hover/opt2:text-neutral-900"
@@ -519,20 +531,20 @@ export function InternalDesignHubMedia1({
 
             {/* Corner 4: Bottom-Right - Business Support Team Card */}
             <div className="flex justify-end items-end pointer-events-auto">
-              <Card className="relative w-full max-w-[122px] sm:max-w-[180px] md:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-1.5 sm:p-2.5 md:p-3.5 rounded-xl sm:rounded-2xl gap-1 sm:gap-1.5 md:gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
+              <Card className="relative w-full max-w-[122px] sm:max-w-[160px] md:max-w-[195px] lg:max-w-[270px] bg-white border-neutral-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-1.5 sm:p-2 md:p-2.5 lg:p-3.5 rounded-xl sm:rounded-2xl gap-1 sm:gap-1.5 lg:gap-2 text-neutral-900 transition-shadow hover:shadow-[0_6px_24px_-4px_rgba(0,0,0,0.08)] flex flex-col justify-between">
                 {/* Invisible terminal connection anchor at card edge (no visible half-dot) */}
                 <span
                   ref={bizDotRef}
                   className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0 pointer-events-none opacity-0"
                 />
 
-                <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-[8px]">
-                  <FluidOrb color="#ff7523" className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 border border-neutral-200" />
+                <CardHeader className="p-0 flex items-center justify-start gap-1 sm:gap-1.5 md:gap-1.5 lg:gap-[8px]">
+                  <FluidOrb color="#ff7523" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-9 lg:h-9 border border-neutral-200" />
                   <div className="min-w-0 flex flex-col items-start text-left">
-                    <CardTitle className="text-[9.5px] sm:text-[11px] md:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
+                    <CardTitle className="text-[9.5px] sm:text-[10.5px] md:text-[12px] lg:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
                       Business Support
                     </CardTitle>
-                    <CardDescription className="text-[7.5px] sm:text-[9px] md:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
+                    <CardDescription className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] lg:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
                       Client Prototypes
                     </CardDescription>
                   </div>
@@ -548,13 +560,13 @@ export function InternalDesignHubMedia1({
                     className="flex items-center justify-between pt-0.5 cursor-pointer group/showcase"
                   >
                     <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
-                      <Presentation className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-neutral-800 shrink-0 group-hover/showcase:text-black transition-colors" strokeWidth={2} />
-                      <span className="text-[7.5px] sm:text-[10px] md:text-[13px] text-neutral-900 font-medium truncate group-hover/showcase:text-black">
+                      <Presentation className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 text-neutral-800 shrink-0 group-hover/showcase:text-black transition-colors" strokeWidth={2} />
+                      <span className="text-[7.5px] sm:text-[9px] md:text-[10px] lg:text-[13px] text-neutral-900 font-medium truncate group-hover/showcase:text-black">
                         Showcase
                       </span>
                     </div>
                     <ExternalLink
-                      className={`w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 transition-colors shrink-0 ${
+                      className={`w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 transition-colors shrink-0 ${
                         clientShowcaseActive ? "text-amber-600" : "text-neutral-700 group-hover/showcase:text-neutral-950"
                       }`}
                       strokeWidth={1.75}
