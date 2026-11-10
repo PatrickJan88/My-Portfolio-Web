@@ -340,6 +340,19 @@ function EmptyCardCover() {
 
 export function SeekrSection() {
   const [iframeKey, setIframeKey] = useState(() => Date.now());
+  const [isDemoLoaded, setIsDemoLoaded] = useState(false);
+  const [hasIntroPlayed, setHasIntroPlayed] = useState(false);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  // Intro media only displays while waking up the server if the demo has not rendered yet
+  const showIntro = !isDemoLoaded && !hasIntroPlayed;
+
+  useEffect(() => {
+    if (showIntro && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [showIntro]);
+
   const bentoSectionRef = React.useRef<HTMLDivElement>(null);
   const cardsTrackRef = React.useRef<HTMLDivElement>(null);
   const [maxScroll, setMaxScroll] = useState(0);
@@ -602,9 +615,9 @@ export function SeekrSection() {
 
         <div className="max-w-[1440px] mx-auto w-full h-full relative z-10 flex flex-col items-center">
           {/* 1440px Browser Frame Container with Interactive Iframe */}
-          <div className="w-full h-full max-w-[1440px] rounded-[2rem] bg-black/40 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col">
+          <div className="w-full h-full max-w-[1440px] rounded-[2rem] bg-black/40 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col relative">
             {/* Browser Header Bar */}
-            <div className="w-full bg-[#0D1117]/80 px-4 py-3 flex items-center justify-between gap-4">
+            <div className="w-full bg-[#0D1117]/80 px-4 py-3 flex items-center justify-between gap-4 border-b border-white/5">
               {/* Window Dots */}
               <div className="flex items-center gap-2 shrink-0">
                 <span className="w-3 h-3 rounded-full bg-[#FF5F56] inline-block" />
@@ -613,7 +626,7 @@ export function SeekrSection() {
               </div>
 
               {/* Address Bar */}
-              <div className="flex-1 max-w-md mx-auto bg-black/40 rounded-lg px-3 py-1.5 flex items-center justify-between text-xs text-neutral-400 gap-2">
+              <div className="flex-1 max-w-md mx-auto bg-black/40 rounded-lg px-3 py-1.5 flex items-center justify-between text-xs text-neutral-400 gap-2 border border-white/5">
                 <div className="flex items-center gap-2 overflow-hidden truncate">
                   <Lock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span className="truncate font-mono text-[11px] text-neutral-300">
@@ -628,19 +641,47 @@ export function SeekrSection() {
                   <RotateCw className="w-3.5 h-3.5" />
                 </button>
               </div>
+
+              {/* Right spacer to keep address bar centered */}
+              <div className="w-[52px] shrink-0" />
             </div>
 
             {/* Embedded Interactive Application Frame */}
             <div className="w-full flex-grow relative bg-[#0A0D14] overflow-hidden">
+              {/* Background Interactive Iframe - Wakes up server and renders demo */}
               <iframe
                 key={iframeKey}
                 src={`https://seekr-v5am.onrender.com/?demo=true&v=${iframeKey}`}
                 title="Seekr Interactive Demo"
                 className="w-full h-full border-0 rounded-b-[2rem]"
-                loading="lazy"
                 allow="clipboard-write"
                 scrolling="no"
+                onLoad={() => {
+                  setIsDemoLoaded(true);
+                }}
               />
+            </div>
+
+            {/* 16:9 Intro Media: Only displayed while waking up server if demo is not yet rendered */}
+            <div
+              className={`absolute inset-0 z-20 flex items-center justify-center bg-[#0A0D14] transition-opacity duration-1000 ease-out ${
+                showIntro ? "opacity-100 pointer-events-auto cursor-pointer" : "opacity-0 pointer-events-none"
+              }`}
+              onClick={() => setHasIntroPlayed(true)}
+              title="Click to skip intro"
+            >
+              {!hasIntroPlayed && (
+                <video
+                  ref={videoRef}
+                  src="/home/seekr-six-feature-stack.webm"
+                  autoPlay
+                  muted
+                  playsInline
+                  preload="auto"
+                  onEnded={() => setHasIntroPlayed(true)}
+                  className="w-full h-full object-cover bg-[#0A0D14]"
+                />
+              )}
             </div>
           </div>
         </div>
