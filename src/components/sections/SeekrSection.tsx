@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Lock, RotateCw } from 'lucide-react';
+import { Lock, RotateCw, SkipForward } from 'lucide-react';
 import { GithubIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 import SplitText from '../ui/SplitText';
 import BorderGradientButton from '../ui/BorderGradientButton';
 import { ShaderGradientCanvas, ShaderGradient as ShaderGradientOriginal } from '@shadergradient/react';
@@ -340,20 +340,25 @@ function EmptyCardCover() {
 
 export function SeekrSection() {
   const [iframeKey, setIframeKey] = useState(() => Date.now());
-  const [isDemoLoaded, setIsDemoLoaded] = useState(false);
-  const [hasIntroPlayed, setHasIntroPlayed] = useState(false);
+  const [hasIntroStarted, setHasIntroStarted] = useState(false);
+  const [hasIntroEnded, setHasIntroEnded] = useState(false);
+  const hasIntroStartedRef = React.useRef(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  const bentoSectionRef = React.useRef<HTMLDivElement>(null);
 
-  // Intro media only displays while waking up the server if the demo has not rendered yet
-  const showIntro = !isDemoLoaded && !hasIntroPlayed;
-
-  useEffect(() => {
-    if (showIntro && videoRef.current) {
+  const startIntroPlay = React.useCallback(() => {
+    if (hasIntroStartedRef.current) return;
+    hasIntroStartedRef.current = true;
+    setHasIntroStarted(true);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
       videoRef.current.play().catch(() => {});
     }
-  }, [showIntro]);
+  }, []);
 
-  const bentoSectionRef = React.useRef<HTMLDivElement>(null);
+  const endIntroPlay = React.useCallback(() => {
+    setHasIntroEnded(true);
+  }, []);
   const cardsTrackRef = React.useRef<HTMLDivElement>(null);
   const [maxScroll, setMaxScroll] = useState(0);
   const maxScrollRef = React.useRef(0);
@@ -418,6 +423,38 @@ export function SeekrSection() {
     const factor = (progress - 0.02) / (0.78 - 0.02);
     return -factor * currentMax;
   });
+
+  // Trigger intro video autoplay when user scrolls to reveal the demo section
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest >= 0.76 && !hasIntroStartedRef.current) {
+      startIntroPlay();
+    }
+  });
+
+  useEffect(() => {
+    const checkScrollPosition = () => {
+      if (hasIntroStartedRef.current) return;
+      if (scrollYProgress.get() >= 0.76) {
+        startIntroPlay();
+        return;
+      }
+      if (bentoSectionRef.current) {
+        const rect = bentoSectionRef.current.getBoundingClientRect();
+        const totalRunway = bentoSectionRef.current.offsetHeight - window.innerHeight;
+        if (totalRunway > 0) {
+          const currentScroll = -rect.top;
+          const progress = currentScroll / totalRunway;
+          if (progress >= 0.76) {
+            startIntroPlay();
+          }
+        }
+      }
+    };
+
+    checkScrollPosition();
+    window.addEventListener("scroll", checkScrollPosition, { passive: true });
+    return () => window.removeEventListener("scroll", checkScrollPosition);
+  }, [scrollYProgress, startIntroPlay]);
 
   // Manual Hold-and-Drag interaction to switch cards left and right
   const isDraggingRef = React.useRef(false);
@@ -648,7 +685,7 @@ export function SeekrSection() {
 
             {/* Embedded Interactive Application Frame */}
             <div className="w-full flex-grow relative bg-[#0A0D14] overflow-hidden">
-              {/* Background Interactive Iframe - Wakes up server and renders demo */}
+              {/* Background Interactive Iframe - Continues waking up server behind the video */}
               <iframe
                 key={iframeKey}
                 src={`https://seekr-v5am.onrender.com/?demo=true&v=${iframeKey}`}
@@ -656,32 +693,38 @@ export function SeekrSection() {
                 className="w-full h-full border-0 rounded-b-[2rem]"
                 allow="clipboard-write"
                 scrolling="no"
-                onLoad={() => {
-                  setIsDemoLoaded(true);
-                }}
               />
             </div>
 
-            {/* 16:9 Intro Media: Only displayed while waking up server if demo is not yet rendered */}
+            {/* 16:9 Intro Media: Auto-plays once when user scrolls into demo section while server wakes up */}
             <div
               className={`absolute inset-0 z-20 flex items-center justify-center bg-[#0A0D14] transition-opacity duration-1000 ease-out ${
-                showIntro ? "opacity-100 pointer-events-auto cursor-pointer" : "opacity-0 pointer-events-none"
+                hasIntroEnded ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"
               }`}
-              onClick={() => setHasIntroPlayed(true)}
-              title="Click to skip intro"
             >
-              {!hasIntroPlayed && (
-                <video
-                  ref={videoRef}
-                  src="/home/seekr-six-feature-stack.webm"
-                  autoPlay
-                  muted
-                  playsInline
-                  preload="auto"
-                  onEnded={() => setHasIntroPlayed(true)}
-                  className="w-full h-full object-cover bg-[#0A0D14]"
-                />
-              )}
+              <video
+                ref={videoRef}
+                src="/home/seekr-six-feature-stack.webm"
+                muted
+                playsInline
+                preload="auto"
+                onEnded={endIntroPlay}
+                className="w-full h-full object-cover bg-[#0A0D14]"
+              />
+
+              {/* Visible Skip Intro Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  endIntroPlay();
+                }}
+                className="absolute top-5 right-6 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/65 hover:bg-black/85 backdrop-blur-md border border-white/15 hover:border-white/30 text-white/90 hover:text-white text-xs font-mono tracking-wider transition-all duration-200 cursor-pointer shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+                aria-label="Skip Intro Video"
+              >
+                <span>Skip Intro</span>
+                <SkipForward className="w-3.5 h-3.5 text-white/80" />
+              </button>
             </div>
           </div>
         </div>
