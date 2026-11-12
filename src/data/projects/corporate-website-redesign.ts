@@ -46,7 +46,6 @@ export const corporateWebsiteRedesignCaseStudy: ProjectData = {
 
   media1: "/projects/corporate-website-redesign/web-mp-1.1.webm",
   media2: "/projects/corporate-website-redesign/web-mp-2.webp",
-  media3: "/projects/corporate-website-redesign/web-mp-3.webp",
   media4: "/projects/corporate-website-redesign/web-mp-4.2.webp",
   
   nextProject: {

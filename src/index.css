@@ -317,3 +317,79 @@ html.lenis, html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+/* Tablet Landscape View (iPad in landscape mode only)
+   Prevents cards from bottom-cropping in 100svh sticky section while filling vertical space breathably */
+@media (min-width: 768px) and (max-width: 1200px) and (orientation: landscape) and (max-height: 860px) {
+  .tablet-landscape-seekr-section {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    min-height: 100svh !important;
+    height: 100svh !important;
+  }
+  .tablet-landscape-seekr-header {
+    margin-bottom: 1.25rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  .tablet-landscape-seekr-logo {
+    height: 38px !important;
+    margin-bottom: 0.625rem !important;
+  }
+  .tablet-landscape-seekr-text {
+    font-size: 0.9375rem !important;
+    line-height: 1.4rem !important;
+    max-width: 75ch !important;
+  }
+  .tablet-landscape-seekr-buttons {
+    margin-top: 0.875rem !important;
+    gap: 0.75rem !important;
+  }
+  .tablet-landscape-seekr-btn {
+    height: 42px !important;
+    font-size: 0.875rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  .tablet-landscape-seekr-track-container {
+    padding-top: 0.5rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+  .tablet-landscape-bento-card {
+    width: 350px !important;
+  }
+  .tablet-landscape-bento-card-inner {
+    border-radius: 1.5rem !important;
+    padding: 0.5rem !important;
+  }
+  .tablet-landscape-bento-media {
+    height: 175px !important;
+    border-radius: 1.25rem !important;
+  }
+  .tablet-landscape-bento-body {
+    padding: 0.875rem 1rem 0.875rem 1rem !important;
+  }
+  .tablet-landscape-bento-title {
+    font-size: 1rem !important;
+    line-height: 1.35rem !important;
+    min-height: 1.35rem !important;
+  }
+  .tablet-landscape-bento-desc {
+    font-size: 0.8125rem !important;
+    line-height: 1.25rem !important;
+    min-height: 2.5rem !important;
+    margin-top: 0.375rem !important;
+  }
+  .tablet-landscape-chart-scale {
+    transform: scale(0.92) !important;
+    transform-origin: center center !important;
+  }
+  .tablet-landscape-accordion-scale {
+    transform: scale(0.92) !important;
+    transform-origin: center center !important;
+  }
+  .tablet-landscape-folder-scale {
+    transform: scale(0.58) translateY(4px) !important;
+    transform-origin: center center !important;
+  }
+}

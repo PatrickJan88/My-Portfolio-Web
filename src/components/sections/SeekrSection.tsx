@@ -14,7 +14,7 @@ import { Globe } from '../ui/globe';
 import { Confetti, type ConfettiRef } from '../ui/confetti';
 import { Safari } from '../ui/safari';
 import { FluidGlass } from '../ui/FluidGlass';
-import { FolderInteraction } from '../ui/folder-interaction';
+import { Folder } from '../ui/folder';
 import { Accordion } from '../ui/accordion-transition';
 import { CompanyHeadcountChart } from '../ui/company-headcount-chart';
 
@@ -215,7 +215,6 @@ function Company360Cover() {
 
 function TailoredStudioCover() {
   const videoRef = React.useRef<HTMLVideoElement>(null);
-  const isHovered = useContext(BentoHoverContext);
 
   useEffect(() => {
     if (!videoRef.current) return;
@@ -239,8 +238,8 @@ function TailoredStudioCover() {
       <div className="absolute inset-0 z-10 bg-black/25 pointer-events-none" />
 
       {/* Interactive Folder Effect */}
-      <div className="relative z-20 w-full h-full flex items-center justify-center p-2 pointer-events-auto select-none scale-[0.49] sm:scale-[0.64] origin-center translate-y-3 sm:translate-y-3">
-        <FolderInteraction isHovered={isHovered} />
+      <div className="relative z-20 w-full h-full flex items-center justify-center p-2 pointer-events-auto select-none">
+        <Folder color="grey" size="lg" />
       </div>
     </div>
   );

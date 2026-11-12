@@ -20,6 +20,7 @@ export interface HighlightRule {
 export interface CustomSlotRule {
   key: string
   component: ReactNode | ((props: { progress: MotionValue<number>; range: [number, number] }) => ReactNode)
+  inlineWord?: boolean
 }
 
 export interface TextRevealProps extends ComponentPropsWithoutRef<"div"> {
@@ -82,6 +83,7 @@ export const TextReveal: FC<TextRevealProps> = ({
     gradientColors?: string[]
     animationSpeed?: number
     customComponent?: ReactNode | ((props: { progress: MotionValue<number>; range: [number, number] }) => ReactNode)
+    inlineWord?: boolean
     trailingPunctuation?: string
     isBreak?: boolean
   }
@@ -126,6 +128,7 @@ export const TextReveal: FC<TextRevealProps> = ({
       gradientColors: matchingSpan?.gradientColors,
       animationSpeed: matchingSpan?.animationSpeed,
       customComponent,
+      inlineWord: slot?.inlineWord,
       trailingPunctuation,
     })
   }
@@ -158,6 +161,7 @@ export const TextReveal: FC<TextRevealProps> = ({
                 gradientColors={token.gradientColors}
                 animationSpeed={token.animationSpeed}
                 customComponent={token.customComponent}
+                inlineWord={token.inlineWord}
                 trailingPunctuation={token.trailingPunctuation}
               >
                 {token.text}
@@ -179,6 +183,7 @@ interface WordProps {
   gradientColors?: string[]
   animationSpeed?: number
   customComponent?: ReactNode | ((props: { progress: MotionValue<number>; range: [number, number] }) => ReactNode)
+  inlineWord?: boolean
   trailingPunctuation?: string
 }
 
@@ -191,6 +196,7 @@ const Word: FC<WordProps> = ({
   gradientColors = ["#2F5BF9", "#FF7523"],
   animationSpeed = 8,
   customComponent,
+  inlineWord = false,
   trailingPunctuation,
 }) => {
   const opacity = useTransform(progress, range, [0, 1])
@@ -202,7 +208,13 @@ const Word: FC<WordProps> = ({
         : customComponent
 
     return (
-      <span className="relative inline-flex items-center align-middle">
+      <span
+        className={
+          inlineWord
+            ? "relative mx-1 lg:mx-1.5 inline-block"
+            : "relative inline-flex items-center align-middle"
+        }
+      >
         {renderedSlot}
         {trailingPunctuation ? (
           <span className="relative inline-block ml-[1px]">
@@ -213,7 +225,11 @@ const Word: FC<WordProps> = ({
             {/* Revealed dark/white font color punctuation */}
             <motion.span
               style={{ opacity }}
-              className="text-ink-black dark:text-white font-inherit font-bold"
+              className={
+                inlineWord
+                  ? "text-ink-black dark:text-white font-inherit"
+                  : "text-ink-black dark:text-white font-inherit font-bold"
+              }
             >
               {trailingPunctuation}
             </motion.span>

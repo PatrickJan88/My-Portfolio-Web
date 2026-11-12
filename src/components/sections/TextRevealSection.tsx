@@ -1,8 +1,60 @@
+import { useEffect, useState } from "react";
+import { motion, useTransform, type MotionValue } from "motion/react";
 import { TextReveal } from "../ui/text-reveal";
 import { TextCarousel } from "../ui/text-carousel";
 import { ShinyPill } from "../ui/ShinyPill";
 import { JellyToggle } from "../ui/JellyToggle";
 import { InlineMediaBetween } from "../ui/InlineMediaBetween";
+import { AnnotatedText, type AnnotationVariant } from "../ui/annotated-text";
+
+interface ScrollAnnotatedWordProps {
+  word: string;
+  variant: AnnotationVariant;
+  delay?: number;
+  progress: MotionValue<number>;
+  range: [number, number];
+}
+
+function ScrollAnnotatedWord({
+  word,
+  variant,
+  delay = 0,
+  progress,
+  range,
+}: ScrollAnnotatedWordProps) {
+  const opacity = useTransform(progress, range, [0, 1]);
+  const triggerAt = Math.max(0, range[0] - 0.03);
+  const [triggered, setTriggered] = useState(() => progress.get() >= triggerAt);
+
+  useEffect(() => {
+    const sync = (latest: number) => {
+      if (latest >= triggerAt) {
+        setTriggered(true);
+      } else if (latest < Math.max(0, triggerAt - 0.1)) {
+        setTriggered(false);
+      }
+    };
+    sync(progress.get());
+    const unsubscribe = progress.on("change", sync);
+    return () => unsubscribe();
+  }, [progress, triggerAt]);
+
+  return (
+    <AnnotatedText variant={variant} delay={delay} triggered={triggered}>
+      <span className="relative inline-block">
+        <span className="absolute inset-0 opacity-30 select-none pointer-events-none text-ink-black/20 dark:text-white/20 flex items-center justify-center">
+          {word}
+        </span>
+        <motion.span
+          style={{ opacity }}
+          className="relative inline-block text-ink-black dark:text-white"
+        >
+          {word}
+        </motion.span>
+      </span>
+    </AnnotatedText>
+  );
+}
 
 export function TextRevealSection() {
   return (
@@ -52,7 +104,7 @@ export function TextRevealSection() {
           },
           {
             key: "{{JELLY_TOGGLE}}",
-            component: ({ progress, range }: { progress: any; range: [number, number] }) => (
+            component: ({ progress, range }: { progress: MotionValue<number>; range: [number, number] }) => (
               <JellyToggle
                 defaultChecked={false}
                 offKnobColor="#FF7523"
@@ -66,8 +118,60 @@ export function TextRevealSection() {
             ),
           },
           {
+            key: "{{DESIGN}}",
+            inlineWord: true,
+            component: ({ progress, range }: { progress: MotionValue<number>; range: [number, number] }) => (
+              <ScrollAnnotatedWord
+                word="design"
+                variant="doubleUnderline"
+                delay={0.05}
+                progress={progress}
+                range={range}
+              />
+            ),
+          },
+          {
+            key: "{{DEVELOPMENT}}",
+            inlineWord: true,
+            component: ({ progress, range }: { progress: MotionValue<number>; range: [number, number] }) => (
+              <ScrollAnnotatedWord
+                word="development"
+                variant="bracket"
+                delay={0.12}
+                progress={progress}
+                range={range}
+              />
+            ),
+          },
+          {
+            key: "{{BUSINESS}}",
+            inlineWord: true,
+            component: ({ progress, range }: { progress: MotionValue<number>; range: [number, number] }) => (
+              <ScrollAnnotatedWord
+                word="business"
+                variant="highlight"
+                delay={0.18}
+                progress={progress}
+                range={range}
+              />
+            ),
+          },
+          {
+            key: "{{MARKETING}}",
+            inlineWord: true,
+            component: ({ progress, range }: { progress: MotionValue<number>; range: [number, number] }) => (
+              <ScrollAnnotatedWord
+                word="marketing"
+                variant="arrow"
+                delay={0.24}
+                progress={progress}
+                range={range}
+              />
+            ),
+          },
+          {
             key: "{{MEDIA_BETWEEN}}",
-            component: ({ progress, range }: { progress: any; range: [number, number] }) => (
+            component: ({ progress, range }: { progress: MotionValue<number>; range: [number, number] }) => (
               <InlineMediaBetween
                 mediaUrl="/home/biotopia-case-cover-page-1.webp"
                 mediaType="image"
@@ -78,9 +182,8 @@ export function TextRevealSection() {
           },
         ]}
       >
-        {"Grounded in {{SHINY_HCD}} <br/> I bridge {{CAROUSEL}} to build products where AI accelerates exploration while human judgment shapes meaningful experiences. I explore problems beyond the initial brief, seeking to understand the product, people, context, and what is actually happening. When challenges block progress, I look for alternatives {{JELLY_TOGGLE}}, seek expertise, and keep moving toward a realistic solution. I work across design, research, business, and engineering to bring different perspectives into a shared direction. I also question my design decisions and outcomes, learn from different perspectives, and reflect on what I could do differently next time, using those insights to continuously improve my {{MEDIA_BETWEEN}} work."}
+        {"Grounded in {{SHINY_HCD}} <br/> I bridge {{CAROUSEL}} to build products where AI accelerates exploration while human judgment shapes meaningful experiences. I explore problems beyond the initial brief, seeking to understand the product, people, context, and what is actually happening. When challenges block progress, I look for alternatives {{JELLY_TOGGLE}}, seek expertise, and keep moving toward a realistic solution. I work across {{DESIGN}}, {{DEVELOPMENT}}, {{BUSINESS}}, and {{MARKETING}} to bring different perspectives into a shared direction. I also question my design decisions and outcomes, learn from different perspectives, and reflect on what I could do differently next time, using those insights to continuously improve my {{MEDIA_BETWEEN}} work."}
       </TextReveal>
     </section>
   );
 }
-

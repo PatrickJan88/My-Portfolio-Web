@@ -13,6 +13,7 @@ import { InternalDesignHubMedia1 } from "../components/sections/InternalDesignHu
 import { EvChargingMedia1 } from "../components/sections/EvChargingMedia1";
 import { EvChargingMedia3 } from "../components/sections/EvChargingMedia3";
 import { EvChargingMedia4 } from "../components/sections/EvChargingMedia4";
+import PresenceCards from "../components/library/PresenceCards";
 
 /**
  * Prevents typographic orphans by binding the last word with a non-breaking space
@@ -742,6 +743,16 @@ export default function ProjectDetail() {
               <article className="w-full clear-both mt-16 lg:mt-24">
                 {project.id === "ev-charging-platform" ? (
                   <EvChargingMedia3 onMediaClick={handleMediaClick} />
+                ) : project.id === "corporate-website-redesign" ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="w-full lg:w-7/12 aspect-[4/3] bg-[#041C2C] rounded-[2rem] overflow-hidden flex items-center justify-center relative mb-8 lg:mb-12 lg:float-left lg:mr-12 lg:mt-2"
+                  >
+                    <PresenceCards theme="light" fill />
+                  </motion.div>
                 ) : (
                   <motion.div
                     initial={{ opacity: 0, y: 40 }}
