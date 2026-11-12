@@ -21,6 +21,9 @@ interface CaseItem {
   accentColor?: string;
 }
 
+const rainbowBorderGradient =
+  "linear-gradient(45deg, #2F5BF9, #FE5B25, #979799, #777b86, #2F5BF9)";
+
 const CASES: CaseItem[] = [
   {
     id: "biotopia-digital-experience",
@@ -206,9 +209,14 @@ export function SelectedCasesSection() {
             >
               <Link
                 to="/projects"
-                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-gradient-to-r from-[#FE5B25] to-[#FF7523] text-white font-medium text-base hover:opacity-95 hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl shadow-[#FE5B25]/25"
+                className="relative inline-flex items-center justify-center rounded-full p-[1.5px] animate-rainbow bg-[length:200%] hover:opacity-95 hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl shadow-black/25"
+                style={{
+                  backgroundImage: rainbowBorderGradient,
+                }}
               >
-                <span>See All Projects</span>
+                <span className="inline-flex items-center justify-center px-[30.5px] py-[12.5px] rounded-full bg-[#1a1b1e] text-white font-medium text-base">
+                  <span>See All Projects</span>
+                </span>
               </Link>
             </motion.div>
           </div>
@@ -274,9 +282,14 @@ function CaseCard({ item, index }: CaseCardProps) {
           <div className="pt-2 sm:pt-4">
             <Link
               to={item.link}
-              className="inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-gradient-to-r from-[#FE5B25] to-[#FF7523] text-white font-medium text-sm sm:text-base hover:opacity-95 hover:scale-105 active:scale-95 transition-all duration-200 shadow-md shadow-[#FE5B25]/20 text-pretty"
+              className="relative inline-flex items-center justify-center rounded-full p-[1.5px] animate-rainbow bg-[length:200%] hover:scale-105 active:scale-95 transition-all duration-200 shadow-md shadow-black/15"
+              style={{
+                backgroundImage: rainbowBorderGradient,
+              }}
             >
-              <span>View Project</span>
+              <span className="inline-flex items-center justify-center px-[22.5px] py-[12.5px] rounded-full bg-[#1a1b1e] text-white font-medium text-sm sm:text-base text-pretty">
+                <span>View Project</span>
+              </span>
             </Link>
           </div>
         </div>
