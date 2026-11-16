@@ -15,6 +15,7 @@ export const earsCaseStudy: ProjectData = {
     "Modern enterprises generate vast amounts of operational, financial, and governance data, yet executives often struggle to convert fragmented reports into timely action. Critical decisions were slowed by disconnected systems, manual reporting processes, and an over-reliance on data interpretation meetings.\n\nAs part of the product design team, I helped design an AI-powered enterprise ecosystem that transforms complex analytics into actionable insights for executives and operational leaders. The platform connects executive mobile experiences with management control centers, enabling organizations to move from reactive reporting to proactive decision-making.",
   subOverview: "",
   overviewMedia: "/projects/ears/ears-reel-720p2.webm",
+  overviewMediaLabel: "Concept Explorations",
   imageComparison: {
     backSrc: "/projects/ears/Comparing Image Landing Page New.webp",
     frontSrc: "/projects/ears/Comparing Image Landing Page.webp",

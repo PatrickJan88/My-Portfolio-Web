@@ -414,47 +414,56 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-[4/3] md:aspect-[16/9] bg-[#101014] rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto mb-16 md:mb-24"
-            onClick={() => {
-              if (typeof project.overviewMedia === "string") {
-                handleMediaClick(
-                  project.overviewMedia,
-                  project.overviewMedia.endsWith(".webm") || project.overviewMedia.endsWith(".mp4")
-                );
-              }
-            }}
+            className="w-full mb-16 md:mb-24 flex flex-col"
           >
-            {typeof project.overviewMedia === "string" ? (
-              project.overviewMedia.endsWith(".webm") || project.overviewMedia.endsWith(".mp4") ? (
-                <>
-                  <video
+            <div
+              className="w-full aspect-[4/3] md:aspect-[16/9] bg-[#101014] rounded-[2rem] overflow-hidden flex items-center justify-center relative cursor-pointer md:cursor-auto"
+              onClick={() => {
+                if (typeof project.overviewMedia === "string") {
+                  handleMediaClick(
+                    project.overviewMedia,
+                    project.overviewMedia.endsWith(".webm") || project.overviewMedia.endsWith(".mp4")
+                  );
+                }
+              }}
+            >
+              {typeof project.overviewMedia === "string" ? (
+                project.overviewMedia.endsWith(".webm") || project.overviewMedia.endsWith(".mp4") ? (
+                  <>
+                    <video
+                      src={project.overviewMedia}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover relative z-10 pointer-events-none md:pointer-events-auto"
+                    />
+                    <p className="absolute text-white/40 font-mono text-sm z-0">
+                      Media Placeholder ({project.overviewMedia.split("/").pop()})
+                    </p>
+                  </>
+                ) : (
+                  <img
                     src={project.overviewMedia}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover relative z-10 pointer-events-none md:pointer-events-auto"
+                    alt="Overview Media"
+                    className="w-full h-full object-cover pointer-events-none md:pointer-events-auto"
                   />
-                  <p className="absolute text-white/40 font-mono text-sm z-0">
-                    Media Placeholder ({project.overviewMedia.split("/").pop()})
-                  </p>
-                </>
-              ) : (
-                <img
-                  src={project.overviewMedia}
-                  alt="Overview Media"
-                  className="w-full h-full object-cover pointer-events-none md:pointer-events-auto"
+                )
+              ) : Array.isArray(project.overviewMedia) ? (
+                <AutoCarousel
+                  images={project.overviewMedia}
+                  onImageClick={(src) => handleMediaClick(src, false, project.overviewMedia as string[])}
                 />
-              )
-            ) : Array.isArray(project.overviewMedia) ? (
-              <AutoCarousel
-                images={project.overviewMedia}
-                onImageClick={(src) => handleMediaClick(src, false, project.overviewMedia as string[])}
-              />
-            ) : (
-              <p className="absolute text-white/40 font-mono text-sm">
-                Media Placeholder (Upload WebM/Image here)
-              </p>
+              ) : (
+                <p className="absolute text-white/40 font-mono text-sm">
+                  Media Placeholder (Upload WebM/Image here)
+                </p>
+              )}
+            </div>
+            {project.overviewMediaLabel && (
+              <div className="w-full flex items-center justify-start px-4 pt-3 text-[14px] text-slate-gray font-medium select-none">
+                <span>{project.overviewMediaLabel}</span>
+              </div>
             )}
           </motion.div>
         )}

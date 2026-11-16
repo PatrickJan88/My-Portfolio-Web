@@ -71,6 +71,7 @@ export interface ProjectData {
   overview: string;
   subOverview?: string;
   overviewMedia?: string | string[];
+  overviewMediaLabel?: string;
   imageComparison?: {
     leftSrc?: string;
     rightSrc?: string;
