@@ -79,12 +79,12 @@ export default function Navbar() {
   }, [location.pathname]);
 
   return (
-    <header className="fixed bottom-0 left-0 w-full z-50 px-4 md:px-8 py-6 pointer-events-none flex justify-center mb-2">
+    <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-6 pointer-events-none flex justify-center mt-2">
       <motion.nav
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: -20 }}
         animate={{
           opacity: isVisible ? 1 : 0,
-          y: isVisible ? 0 : 16,
+          y: isVisible ? 0 : -16,
           pointerEvents: isVisible ? "auto" : "none",
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
