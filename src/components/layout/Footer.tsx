@@ -5,6 +5,31 @@ import MorphButton from "../ui/morph-button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Linkedin02Icon, GithubIcon, Mail01Icon, File01Icon } from "@hugeicons/core-free-icons";
 
+function FooterTooltip({ label }: { label: string }) {
+  return (
+    <span
+      role="tooltip"
+      className={cn(
+        "pointer-events-none select-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 z-50",
+        "px-2.5 py-1 rounded-lg whitespace-nowrap",
+        "bg-[#1f2126] text-fog-white border border-white/15",
+        "text-[11px] font-sans font-medium tracking-wide leading-snug",
+        "shadow-[0_8px_24px_-4px_rgba(0,0,0,0.65)]",
+        "opacity-0 translate-y-1 scale-95",
+        "group-hover/tooltip:opacity-100 group-hover/tooltip:translate-y-0 group-hover/tooltip:scale-100",
+        "group-focus-visible/tooltip:opacity-100 group-focus-visible/tooltip:translate-y-0 group-focus-visible/tooltip:scale-100",
+        "transition-all duration-200 ease-out"
+      )}
+    >
+      {label}
+      <span
+        aria-hidden="true"
+        className="absolute -bottom-[5px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-[#1f2126] border-r border-b border-white/15"
+      />
+    </span>
+  );
+}
+
 export default function Footer() {
   return (
     <footer 
@@ -27,31 +52,51 @@ export default function Footer() {
           </div>
           
           <div className="flex items-center gap-3">
-            <a href="https://www.linkedin.com/in/pofei-r-79586395/" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.linkedin.com/in/pofei-r-79586395/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="group/tooltip relative inline-flex items-center justify-center"
+            >
               <MorphButton>
                 <HugeiconsIcon icon={Linkedin02Icon} size={18} />
               </MorphButton>
+              <FooterTooltip label="LinkedIn" />
             </a>
-            <a href="https://github.com/PatrickJan88/My-Portfolio-Web" target="_blank" rel="noreferrer">
+            <a
+              href="https://github.com/PatrickJan88/My-Portfolio-Web"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="group/tooltip relative inline-flex items-center justify-center"
+            >
               <MorphButton>
                 <HugeiconsIcon icon={GithubIcon} size={18} />
               </MorphButton>
+              <FooterTooltip label="GitHub" />
             </a>
-            <Link to="/contact" aria-label="Contact">
+            <Link
+              to="/contact"
+              aria-label="Contact Me"
+              className="group/tooltip relative inline-flex items-center justify-center"
+            >
               <MorphButton>
                 <HugeiconsIcon icon={Mail01Icon} size={18} />
               </MorphButton>
+              <FooterTooltip label="Contact Me" />
             </Link>
-            <a 
-              href="/docs/Pofei_Ran_CV.pdf" 
-              target="_blank" 
-              rel="noreferrer" 
-              aria-label="Download Resume"
-              title="Download Resume"
+            <a
+              href="/docs/Pofei_Ran_CV.pdf"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Resume"
+              className="group/tooltip relative inline-flex items-center justify-center"
             >
               <MorphButton>
                 <HugeiconsIcon icon={File01Icon} size={18} />
               </MorphButton>
+              <FooterTooltip label="Resume" />
             </a>
           </div>
         </div>

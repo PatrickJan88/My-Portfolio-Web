@@ -79,12 +79,12 @@ export default function Navbar() {
   }, [location.pathname]);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-6 pointer-events-none flex justify-center mt-2">
+    <header className="fixed bottom-0 left-0 w-full z-50 px-4 md:px-8 py-6 pointer-events-none flex justify-center mb-2">
       <motion.nav
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{
           opacity: isVisible ? 1 : 0,
-          y: isVisible ? 0 : -16,
+          y: isVisible ? 0 : 16,
           pointerEvents: isVisible ? "auto" : "none",
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -99,10 +99,10 @@ export default function Navbar() {
           }
         }}
         className={cn(
-          "flex items-center gap-4 md:gap-8 px-4 md:px-6 rounded-full transition-colors duration-300 backdrop-blur-xl",
+          "flex items-center gap-4 md:gap-8 px-4 md:px-6 rounded-full transition-all duration-300 backdrop-blur-xl backdrop-saturate-150 bg-white/50 border border-white/50",
           isScrolled
-            ? "shadow-[0_4px_24px_-8px_rgba(0,0,0,0.1)] py-2.5 bg-white/95 border border-black/5"
-            : "bg-white/70 py-3 border border-black/5"
+            ? "py-2.5 shadow-[0_8px_32px_-4px_rgba(0,0,0,0.12)]"
+            : "py-3 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)]"
         )}
       >
         <Link to="/" className="flex items-center justify-center min-w-[40px]">

@@ -40,9 +40,6 @@ export default function Layout({ children }: LayoutProps) {
         <div className="absolute left-0 top-0 w-px h-full bg-black/[0.03] pointer-events-none z-0"></div>
         <div className="absolute right-0 top-0 w-px h-full bg-black/[0.03] pointer-events-none z-0"></div>
 
-        {/* Floating Navbar (z-50) */}
-        <Navbar />
-
         <main
           className={cn(
             "grow flex flex-col relative w-full z-10 pb-0",
@@ -68,6 +65,9 @@ export default function Layout({ children }: LayoutProps) {
         meltDelay={300}
         footerThreshold={220}
       />
+
+      {/* Floating Navbar (z-50) above ProgressiveBlur (z-30) */}
+      <Navbar />
     </div>
   );
 }
