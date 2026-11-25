@@ -14,7 +14,7 @@ export interface InlineMediaBetweenProps {
 }
 
 export function InlineMediaBetween({
-  mediaUrl = "/home/biotopia-case-cover-page-1.webp",
+  mediaUrl = "/home/ears-case-cover-page.webp",
   mediaType = "image",
   progress,
   range = [0.85, 0.95],

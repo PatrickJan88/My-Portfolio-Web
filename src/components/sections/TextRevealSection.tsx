@@ -173,7 +173,7 @@ export function TextRevealSection() {
             key: "{{MEDIA_BETWEEN}}",
             component: ({ progress, range }: { progress: MotionValue<number>; range: [number, number] }) => (
               <InlineMediaBetween
-                mediaUrl="/home/biotopia-case-cover-page-1.webp"
+                mediaUrl="/home/ears-case-cover-page.webp"
                 mediaType="image"
                 progress={progress}
                 range={range}

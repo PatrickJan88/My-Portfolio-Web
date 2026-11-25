@@ -26,22 +26,6 @@ const rainbowBorderGradient =
 
 const CASES: CaseItem[] = [
   {
-    id: "biotopia-digital-experience",
-    title: "Biotopia: Unified Museum Service",
-    category: "Service Design & Research",
-    client: "Uppsala Biotopia Museum",
-    description:
-      "A comprehensive service ecosystem combining gamified digital experiences, outdoor exploration routes, and internal staff workflows into a continuous Online-to-Offline (O2O) visitor journey.",
-    link: "/projects/biotopia-digital-experience",
-    bgImage: "/home/biotopia-case-cover-page-1.webp",
-    media: {
-      type: "video",
-      src: "/projects/biotopia-digital-experience/bio-mp-1.webm",
-      aspectRatio: "16/9",
-    },
-    accentColor: "#FF7523",
-  },
-  {
     id: "ears",
     title: "Enterprise Finance Ecosystem",
     category: "Executive AI & Fintech",
@@ -71,6 +55,22 @@ const CASES: CaseItem[] = [
       src: "/projects/internal-design-manual/internal%20web%202.webm",
       aspectRatio: "16/9",
       poster: "/projects/internal-design-manual/cover-page.webp",
+    },
+    accentColor: "#FF7523",
+  },
+  {
+    id: "biotopia-digital-experience",
+    title: "Biotopia: Unified Museum Service",
+    category: "Service Design & Research",
+    client: "Uppsala Biotopia Museum",
+    description:
+      "A comprehensive service ecosystem combining gamified digital experiences, outdoor exploration routes, and internal staff workflows into a continuous Online-to-Offline (O2O) visitor journey.",
+    link: "/projects/biotopia-digital-experience",
+    bgImage: "/home/biotopia-case-cover-page-1.webp",
+    media: {
+      type: "video",
+      src: "/projects/biotopia-digital-experience/bio-mp-1.webm",
+      aspectRatio: "16/9",
     },
     accentColor: "#FF7523",
   },
