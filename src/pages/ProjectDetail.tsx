@@ -104,7 +104,7 @@ function ProjectMetricsSection({
             placement === "afterResult" ? "px-2 md:px-8 " : ""
           }${
             isTwoRowsOfThree
-              ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-[auto_1fr_auto] gap-y-10 md:gap-y-14 gap-x-6 md:gap-x-6 lg:gap-x-10"
+              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-[auto_1fr_auto] gap-y-10 lg:gap-y-14 gap-x-6 lg:gap-x-6 xl:gap-x-10"
               : isFourCols
               ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 lg:gap-6"
               : "grid-cols-1 sm:grid-cols-[auto_1fr_auto] gap-6 sm:gap-4 md:gap-6 lg:gap-12"
@@ -116,13 +116,7 @@ function ProjectMetricsSection({
               className="flex flex-col items-center text-center min-w-0"
             >
               <div
-                className={`font-mono font-medium tracking-tight text-ink-black mb-2 md:mb-2.5 flex items-baseline justify-center whitespace-nowrap ${
-                  isTwoRowsOfThree || placement === "afterResult"
-                    ? "text-3xl sm:text-4xl md:text-[2.25rem] lg:text-[2.75rem] xl:text-5xl"
-                    : isFourCols
-                    ? "text-3xl sm:text-4xl lg:text-[2.15rem] xl:text-[2.65rem] 2xl:text-5xl"
-                    : "text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
-                }`}
+                className="font-mono font-medium tracking-tight text-ink-black mb-2 md:mb-2.5 flex items-baseline justify-center whitespace-nowrap text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
               >
                 {stat.prefix && <span>{stat.prefix}</span>}
                 <CountingNumber
