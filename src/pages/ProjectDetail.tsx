@@ -130,7 +130,7 @@ function ProjectMetricsSection({
               </div>
               <p
                 className={`text-xs sm:text-sm lg:text-base font-medium tracking-wide text-pretty text-center max-w-[260px] sm:max-w-none ${
-                  placement === "afterResult" ? "text-ink-black" : "text-slate-gray"
+                  stat.subLabel || placement === "afterResult" ? "text-ink-black" : "text-slate-gray"
                 }`}
               >
                 {stat.label}

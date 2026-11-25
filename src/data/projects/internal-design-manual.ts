@@ -10,42 +10,59 @@ export const internalDesignManualCaseStudy: ProjectData = {
   heroHeading: "Internal Design Hub",
   heroImage: "/projects/internal-design-manual/cover-hero-page.webp",
   
-  overviewHeading: "Centralizing Design Standards and Product Resources for Cross-Functional Scale",
+  overviewHeading: "Centralizing Design Standards and Product Resources for Organizational Efficiency",
   overview: "In my previous role, I designed and built an internal Design Manual and company resource website that became the centralized source of truth for the company's digital assets. It brought together product design specifications, reusable UI components, code references, prototypes, motion guidelines, brand assets, and marketing brochures in one place.\n\nThe platform gave designers, developers, marketing teams, business analysts, and consultants easy access to shared resources, breaking down information silos and enabling faster, more consistent collaboration across departments.",
   
   testimonial: {
-    quote: "Design documentation, implementation references, prototypes, and marketing materials were distributed across different resources. Teams often relied on colleagues or disconnected platforms to find assets, clarify specifications, and access approved product references, creating friction in cross-functional collaboration and slowing down daily workflows.",
+    quote: "Design documentation, implementation references, prototypes, and marketing materials were scattered across different platforms. Teams frequently relied on colleagues to locate resources, clarify specifications, and access approved materials, creating unnecessary dependencies and slowing down daily workflows.",
     label: "The Challenge"
   },
   
   section1: {
     label: "Approach",
-    heading: "A shared reference for cross-functional teams.",
+    heading: "A Shared Foundation for Cross-Functional Delivery",
     content: "I brought design documentation, implementation references, prototypes, and brand resources together in a web-based platform.\n\n1. Centralized documentation: Organized design principles, typography, colors, reusable UI components, and motion guidelines to support consistent product experiences.\n\n2. Design-to-code references: Connected UI specifications with implementation examples in HTML, CSS, React, and iOS Swift, supporting both web and iPad-based product development."
   },
   
   section2: {
-    content: "3. Prototype showcase: Documented approved design prototype links, organized around client requirements, so teams could quickly access and present relevant product experiences during client showcases.\n\n4. Shared asset library: Centralized approved company logos, icons, and marketing resources for easy access and consistent reuse."
+    content: "3. Prototype showcase: Organized approved product prototypes around client requirements, allowing business support teams and consultants to independently access and present relevant product experiences during client demonstrations.\n\n4. Shared asset library: Centralized approved company logos, icons, and marketing resources for easy access and consistent reuse."
   },
   
   section3: {
     label: "Result",
-    heading: "Impact on Workflow Efficiency and Cross-Functional Collaboration.",
-    content: "The platform established a shared internal reference that helped teams:\n\n• Access design specifications, code examples, prototypes, and brand assets in one place.\n\n• Reduce dependence on individual team members for routine design questions.\n\n• Translate design decisions into implementation with greater clarity.\n\n• Reuse approved components and visual resources across teams.\n\n• Strengthen collaboration between design, development, marketing, business analysis, and client support."
+    heading: "Improving Organizational Efficiency and Team Autonomy",
+    content: "The Internal Design Hub established a shared foundation for knowledge management, resource accessibility, and consistent product delivery across departments.\n\nBy reducing dependence on individual team members for routine information requests, the platform enabled teams to work more independently. Designers and developers gained clearer implementation references, while marketing and business support teams could directly access approved resources and client-ready prototypes.\n\nThe project helped reduce operational friction, standardize workflows, and strengthen collaboration across departments, creating a more scalable foundation for enterprise product development and business support."
   },
   
   tags: [],
   metadata: [
-    { label: "DURATION", value: "2 months" },
+    { label: "DURATION", value: "3 months" },
     { label: "YEAR", value: "2023 - 2024" },
     { label: "ROLE", value: "UI Designer II" },
-    { label: "PLATFORM", value: "Internal Source Web and Design System Documentation" },
+    { label: "PLATFORM", value: "Internal Knowledge & Resource Hub" },
   ],
 
   metrics: [
-    { prefix: "-", target: 30, suffix: "%", label: "Reduction in resource-search time" },
-    { prefix: "-", target: 50, suffix: "%", label: "Reduction in recurring design questions" },
-    { target: 4, suffix: "+", label: "Cross-functional teams supported" },
+    {
+      prefix: "−",
+      target: 30,
+      suffix: "%",
+      label: "Resource Search Time",
+      subLabel: "Operational efficiency",
+    },
+    {
+      prefix: "−",
+      target: 50,
+      suffix: "%",
+      label: "Recurring Design Questions",
+      subLabel: "Team autonomy",
+    },
+    {
+      target: 4,
+      suffix: "+",
+      label: "Teams Supported",
+      subLabel: "Cross-functional reach",
+    },
   ],
 
   media1: "/projects/internal-design-manual/media-1.svg",

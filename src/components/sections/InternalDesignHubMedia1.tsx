@@ -359,7 +359,7 @@ export function InternalDesignHubMedia1({
                       Developers
                     </CardTitle>
                     <CardDescription className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] lg:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
-                      React · CSS · Specs
+                      Implementation References
                     </CardDescription>
                   </div>
                 </CardHeader>
@@ -404,7 +404,7 @@ export function InternalDesignHubMedia1({
                       Marketing Team
                     </CardTitle>
                     <CardDescription className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] lg:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
-                      Brand Assets
+                      Brand & Marketing Resources
                     </CardDescription>
                   </div>
                 </CardHeader>
@@ -421,7 +421,7 @@ export function InternalDesignHubMedia1({
                     <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
                       <FileText className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3 md:h-3 lg:w-3.5 lg:h-3.5 text-neutral-700 shrink-0" strokeWidth={2} />
                       <span className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] lg:text-[12px] text-neutral-800 font-medium truncate">
-                        Logo Guidelines
+                        Brand Guidelines
                       </span>
                     </div>
                     <button
@@ -456,7 +456,7 @@ export function InternalDesignHubMedia1({
                       Designers
                     </CardTitle>
                     <CardDescription className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] lg:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
-                      UI Component
+                      Design Standards & Components
                     </CardDescription>
                   </div>
                 </CardHeader>
@@ -542,10 +542,10 @@ export function InternalDesignHubMedia1({
                   <FluidOrb color="#ff7523" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-9 lg:h-9 border border-neutral-200" />
                   <div className="min-w-0 flex flex-col items-start text-left">
                     <CardTitle className="text-[9.5px] sm:text-[10.5px] md:text-[12px] lg:text-[14px] font-semibold text-neutral-900 leading-tight text-left justify-start truncate">
-                      Business Support
+                      Business Support Team
                     </CardTitle>
                     <CardDescription className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] lg:text-[12px] text-neutral-500 font-normal leading-tight mt-0.5 truncate text-left">
-                      Client Prototypes
+                      Client-ready Prototypes
                     </CardDescription>
                   </div>
                 </CardHeader>
@@ -562,7 +562,7 @@ export function InternalDesignHubMedia1({
                     <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
                       <Presentation className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 text-neutral-800 shrink-0 group-hover/showcase:text-black transition-colors" strokeWidth={2} />
                       <span className="text-[7.5px] sm:text-[9px] md:text-[10px] lg:text-[13px] text-neutral-900 font-medium truncate group-hover/showcase:text-black">
-                        Showcase
+                        Product Showcase
                       </span>
                     </div>
                     <ExternalLink
