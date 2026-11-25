@@ -12,9 +12,11 @@ export interface ProjectMetadata {
 
 export interface ProjectMetric {
   prefix?: string;
+  from?: number;
   target: number;
   suffix?: string;
   label: string;
+  subLabel?: string;
 }
 
 export interface ProjectSectionText {
@@ -59,6 +61,8 @@ export interface ProjectData {
   image: string;
   hidden?: boolean;
   metrics?: ProjectMetric[];
+  resultMetricsTitle?: string;
+  resultMetrics?: ProjectMetric[];
   
   // Hero section
   heroHeading: string;

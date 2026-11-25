@@ -38,7 +38,7 @@ export const internalDesignManualCaseStudy: ProjectData = {
   metadata: [
     { label: "DURATION", value: "2 months" },
     { label: "YEAR", value: "2023 - 2024" },
-    { label: "ROLE", value: "UI/UX Designer" },
+    { label: "ROLE", value: "UI Designer II" },
     { label: "PLATFORM", value: "Internal Source Web and Design System Documentation" },
   ],
 

@@ -26,9 +26,16 @@ function preventOrphans(text: string): string {
 interface ProjectMetricsSectionProps {
   projectId: string;
   metrics: NonNullable<ProjectData["metrics"]>;
+  title?: string;
+  placement?: "top" | "afterResult";
 }
 
-function ProjectMetricsSection({ projectId, metrics }: ProjectMetricsSectionProps) {
+function ProjectMetricsSection({
+  projectId,
+  metrics,
+  title,
+  placement = "top",
+}: ProjectMetricsSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
@@ -37,7 +44,6 @@ function ProjectMetricsSection({ projectId, metrics }: ProjectMetricsSectionProp
     const el = containerRef.current;
     if (!el) return;
 
-    // Use IntersectionObserver on the mounted DOM element with fallback
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -48,41 +54,98 @@ function ProjectMetricsSection({ projectId, metrics }: ProjectMetricsSectionProp
           }
         }
       },
-      { threshold: 0.05, rootMargin: "100px 0px 50px 0px" }
+      placement === "afterResult"
+        ? { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+        : { threshold: 0.05, rootMargin: "100px 0px 50px 0px" }
     );
 
     observer.observe(el);
 
-    // Guaranteed fallback: If observer does not fire within 500ms, start counting
-    const timer = setTimeout(() => {
-      setShouldAnimate(true);
-    }, 500);
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    if (placement === "top") {
+      // Guaranteed fallback for above-the-fold metrics if observer does not fire within 500ms
+      timer = setTimeout(() => {
+        setShouldAnimate(true);
+      }, 500);
+    }
 
     return () => {
       observer.disconnect();
-      clearTimeout(timer);
+      if (timer) clearTimeout(timer);
     };
-  }, [projectId]);
+  }, [projectId, placement]);
+
+  const isFourCols = metrics.length === 4;
+  const isTwoRowsOfThree = metrics.length === 6;
 
   return (
-    <section ref={containerRef} className="w-full mb-8 md:mb-12 px-2 md:px-8">
-      <div className="w-full border-b border-black/10 pb-8 md:pb-12">
-        <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 md:gap-6 lg:gap-12 items-start">
+    <section
+      ref={containerRef}
+      className={
+        placement === "afterResult"
+          ? "w-full mt-8 md:mt-12"
+          : "w-full mb-8 md:mb-12 px-2 md:px-8"
+      }
+    >
+      {title && (
+        <h3 className="text-sm md:text-base font-semibold tracking-[0.04em] text-ash-gray text-left mb-3 md:mb-4 px-2 md:px-8 text-pretty">
+          {title}
+        </h3>
+      )}
+      <div
+        className={
+          placement === "afterResult"
+            ? "w-full border-t border-black/10 pt-10 md:pt-14"
+            : "w-full border-b border-black/10 pb-8 md:pb-12"
+        }
+      >
+        <div
+          className={`w-full grid items-start ${
+            placement === "afterResult" ? "px-2 md:px-8 " : ""
+          }${
+            isTwoRowsOfThree
+              ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-[auto_1fr_auto] gap-y-10 md:gap-y-14 gap-x-6 md:gap-x-6 lg:gap-x-10"
+              : isFourCols
+              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 lg:gap-6"
+              : "grid-cols-1 sm:grid-cols-[auto_1fr_auto] gap-6 sm:gap-4 md:gap-6 lg:gap-12"
+          }`}
+        >
           {metrics.map((stat, idx) => (
-            <div key={`${projectId}-${idx}`} className="flex flex-col items-center text-center min-w-0 px-1">
-              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-mono font-medium tracking-tight text-ink-black mb-2 md:mb-2.5 flex items-baseline justify-center">
+            <div
+              key={`${projectId}-${placement}-${idx}`}
+              className="flex flex-col items-center text-center min-w-0"
+            >
+              <div
+                className={`font-mono font-medium tracking-tight text-ink-black mb-2 md:mb-2.5 flex items-baseline justify-center whitespace-nowrap ${
+                  isTwoRowsOfThree || placement === "afterResult"
+                    ? "text-3xl sm:text-4xl md:text-[2.25rem] lg:text-[2.75rem] xl:text-5xl"
+                    : isFourCols
+                    ? "text-3xl sm:text-4xl lg:text-[2.15rem] xl:text-[2.65rem] 2xl:text-5xl"
+                    : "text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+                }`}
+              >
                 {stat.prefix && <span>{stat.prefix}</span>}
                 <CountingNumber
-                  key={`${projectId}-${idx}-${stat.target}`}
+                  key={`${projectId}-${placement}-${idx}-${stat.target}`}
+                  from={stat.from ?? 0}
                   target={stat.target}
                   autoStart={shouldAnimate}
                   transition={{ duration: 1.2, ease: "easeOut", type: "tween" }}
                 />
                 {stat.suffix && <span>{stat.suffix}</span>}
               </div>
-              <p className="text-xs sm:text-xs md:text-sm lg:text-base text-slate-gray font-medium tracking-wide text-pretty text-center max-w-[240px] sm:max-w-none">
+              <p
+                className={`text-xs sm:text-sm lg:text-base font-medium tracking-wide text-pretty text-center max-w-[260px] sm:max-w-none ${
+                  placement === "afterResult" ? "text-ink-black" : "text-slate-gray"
+                }`}
+              >
                 {stat.label}
               </p>
+              {stat.subLabel && (
+                <p className="text-xs md:text-sm text-slate-gray font-normal tracking-wide text-pretty text-center mt-1 max-w-[260px] sm:max-w-none">
+                  {stat.subLabel}
+                </p>
+              )}
             </div>
           ))}
         </div>
@@ -271,7 +334,8 @@ export default function ProjectDetail() {
         </div>
 
         {/* Text Content layer */}
-        <div className="container mx-auto px-[4vw] relative z-10 pt-[164px] md:pt-[132px] pb-[64px] md:pb-[96px]">
+        <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 relative z-10 pt-[164px] md:pt-[132px] pb-[64px] md:pb-[96px]">
+          <div className="w-full px-2 md:px-8">
           {/* Title Area */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -375,6 +439,7 @@ export default function ProjectDetail() {
               </div>
             ))}
           </motion.div>
+          </div>
         </div>
       </section>
 
@@ -896,6 +961,16 @@ export default function ProjectDetail() {
               )}
             </div>
           </article>
+          )}
+
+          {/* Result Metrics Section (after Result narrative) */}
+          {project.resultMetrics && project.resultMetrics.length > 0 && (
+            <ProjectMetricsSection
+              projectId={project.id}
+              metrics={project.resultMetrics}
+              title={project.resultMetricsTitle}
+              placement="afterResult"
+            />
           )}
         </section>
 

@@ -10,18 +10,18 @@ export const corporateWebsiteRedesignCaseStudy: ProjectData = {
   heroHeading: "Web\nRedesign",
   heroImage: "/projects/corporate-website-redesign/web-cover-hero-page.webp",
   
-  overviewHeading: "Repositioning a Legacy Brand for an AI Era",
-  overview: "During my time at a previous company, I led the redesign of a corporate website supporting an AI-powered financial intelligence ecosystem. While the platform had evolved significantly, the digital presence no longer reflected the sophistication of its products, services, or strategic direction.\n\nThe existing website contained fragmented navigation, dense information architecture, and unclear pathways for prospective clients, partners, and job candidates. This project focused on transforming the website into a strategic communication platform that clearly articulated business value, strengthened brand perception, and improved conversion opportunities across multiple audiences.",
+  overviewHeading: "Aligning Brand Presence with Business Evolution",
+  overview: "During my time at a financial consulting and technology company, I led the corporate website redesign as the business expanded its AI capabilities within financial intelligence and enterprise solutions. While its products and services had evolved significantly, the existing website no longer reflected the company's capabilities or strategic direction.\n\nFragmented navigation, dense content, and unclear user journeys made it difficult for prospective clients, partners, and job candidates to understand the company's offerings.\n\nThe project focused on transforming the website into a strategic communication platform that clearly presented business value, strengthened brand perception, and supported business development and talent acquisition.",
   
   testimonial: {
-    quote: "Our technology evolved faster than our digital presence. We needed a website that clearly communicated who we are, what we solve, and why it matters.",
+    quote: "Our technology evolved faster than our digital presence. We needed a website that clearly communicated who we are, what business problems we solve, and the value our solutions deliver.",
     label: "Problem Statement"
   },
   
   section1: {
     label: "Approach",
     heading: "Aligning Brand, Business, and User Needs",
-    content: "The redesign began with a comprehensive review of the existing website, identifying friction points across navigation, content hierarchy, and user comprehension. Through stakeholder discussions and competitive analysis, I mapped the primary audiences, including prospective clients, partners, and job candidates, to understand their goals and information needs.\n\nTo support these business objectives, I restructured the information architecture around clarity and discoverability. Wireframes, content prioritization exercises, and mood board exploration established a modern visual direction that aligned with the company’s AI-driven positioning while remaining consistent with existing brand guidelines.\n\nWorking within a fixed delivery timeline, I facilitated continuous stakeholder reviews to balance business priorities, technical constraints, and user experience improvements throughout the project lifecycle."
+    content: "I began by reviewing the existing website to identify friction points in navigation, content hierarchy, and information comprehension. Through stakeholder discussions and competitive analysis, I identified the needs of three primary audiences: prospective clients, business partners, and job candidates.\n\nBased on these findings, I restructured the information architecture around clarity, discoverability, and business relevance. Wireframing, content prioritization, and mood board exploration helped establish a modern visual direction that reflected the company's evolving technology capabilities while maintaining its brand identity.\n\nWorking within a fixed delivery timeline, I collaborated with stakeholders and the design team through regular reviews to align business objectives, user needs, and technical constraints throughout the project."
   },
   
   section2: {
@@ -32,15 +32,40 @@ export const corporateWebsiteRedesignCaseStudy: ProjectData = {
   
   section3: {
     label: "Result",
-    heading: "Strengthening Visibility, Engagement, and Conversion",
-    content: "The redesign successfully aligned the company’s digital presence with its AI-driven business strategy and modernized how products, services, and expertise were communicated online.\n\nBy simplifying navigation, restructuring content, and creating clearer conversion pathways, the new experience improved both usability and business performance:\n• 30% increase in active user engagement\n• 60% improvement in visitor retention\n• 45% increase in product demo exposure\n\nBeyond visual modernization, the redesign established a scalable digital foundation that improved product storytelling, strengthened employer branding, and supported business development efforts through stronger lead generation and customer engagement."
+    heading: "Strengthening Visibility and Digital Engagement",
+    content: "The redesign aligned the company's digital presence with its evolving AI capabilities and business strategy, improving how its products, services, and expertise were communicated to external audiences.\n\nBy simplifying navigation, restructuring content, and introducing clearer pathways to product information and demonstrations, the redesigned website reported measurable improvements in visitor engagement, retention, and product visibility.\n\nBeyond visual modernization, the project established a scalable digital foundation for product communication, employer branding, and future business development."
   },
+
+  resultMetricsTitle: "Website impact",
+  resultMetrics: [
+    {
+      prefix: "+",
+      target: 30,
+      suffix: "%",
+      label: "User Engagement",
+      subLabel: "Digital interaction",
+    },
+    {
+      prefix: "+",
+      target: 60,
+      suffix: "%",
+      label: "Visitor Retention",
+      subLabel: "Audience engagement",
+    },
+    {
+      prefix: "+",
+      target: 45,
+      suffix: "%",
+      label: "Product Demo Exposure",
+      subLabel: "Product visibility",
+    },
+  ],
   
   tags: [],
   metadata: [
     { label: "DURATION", value: "3 months" },
     { label: "YEAR", value: "2025" },
-    { label: "ROLE", value: "UX/UI Designer II" },
+    { label: "ROLE", value: "UI Designer II" },
     { label: "INDUSTRY", value: "B2B Fintech" },
   ],
 

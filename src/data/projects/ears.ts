@@ -12,7 +12,7 @@ export const earsCaseStudy: ProjectData = {
   heroVideo: "/projects/ears/EARS_video.webm",
   
   overview:
-    "Modern enterprises generate vast amounts of operational, financial, and governance data, yet executives often struggle to convert fragmented reports into timely action. Critical decisions were slowed by disconnected systems, manual reporting processes, and an over-reliance on data interpretation meetings.\n\nAs part of the product design team, I helped design an AI-powered enterprise ecosystem that transforms complex analytics into actionable insights for executives and operational leaders. The platform connects executive mobile experiences with management control centers, enabling organizations to move from reactive reporting to proactive decision-making.",
+    "Modern enterprises generate vast amounts of operational, financial, and governance data, yet converting fragmented information into timely business action remains a challenge. Disconnected systems, manual reporting, and reliance on analyst-led interpretation can slow decision-making and operational responses.\n\nAt Essex Lake Group, a financial consulting and technology company, I contributed to an AI-powered enterprise ecosystem that combined domain expertise, advanced analytics, and digital solutions to address complex business challenges.\n\nWorking alongside consultants, data analysts, product stakeholders, and software engineers, I helped translate client-specific business requirements into actionable digital experiences for executives and operational teams. The ecosystem connects executive decision-making with daily operational management, supporting a shift from reactive reporting to proactive business action.",
   subOverview: "",
   overviewMedia: "/projects/ears/ears-reel-720p2.webm",
   overviewMediaLabel: "Concept Explorations",
@@ -38,7 +38,7 @@ export const earsCaseStudy: ProjectData = {
     heading: "Conversational Intelligence in Context",
     media: "/projects/ears/eyeask-video-1080p2.webm",
     content:
-      "EyeAsk is the conversational AI capability I primarily contributed to within the platform, embedded directly into the dashboard to give executives a more natural way to interact with enterprise data. Powered by private, domain-trained Large Language Models (LLMs) for financial and insurance contexts, EyeAsk uses Retrieval-Augmented Generation (RAG) to ground responses in client-specific knowledge. Each client’s manually curated documents and enterprise knowledge were maintained within their own secure data environment, keeping sensitive financial information isolated between clients.\n\nEyeAsk understands natural-language questions and maintains context across conversation turns, allowing users to ask follow-up questions without repeatedly explaining the context. Responses can be returned as structured narratives, visualizations, or both, following the organization’s preferred reporting format. The conversational interface was connected to a built-in execution environment, allowing users to move from asking questions to interpreting and working with enterprise data within the same experience.\n\nEyeAsk achieved 78.6% accuracy on long-format data and 81.8% on wide-format data during testing.",
+      "EyeAsk is an embedded conversational AI capability designed to help executives interact with complex enterprise data through natural-language questions.\n\nMy primary contribution focused on the conversational experience, response structure, and presentation of analytical insights, helping users move from asking business questions to interpreting and acting on the results.\n\nThe system uses domain-specific Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG) to ground responses in client-specific enterprise knowledge, supporting more relevant financial and operational data interpretation.\n\nEyeAsk maintains conversational context across follow-up questions and presents responses through structured narratives, data visualizations, or both. Its integration within the enterprise platform connects conversational analytics with existing business workflows.\n\nDuring testing, EyeAsk achieved 78.6% accuracy on long-format data and 81.8% on wide-format data.",
   },
 
   section1: {
@@ -50,23 +50,72 @@ export const earsCaseStudy: ProjectData = {
 
   section2: {
     label: "EyeVia",
-    heading: "Built for Daily Operations",
+    heading: "Enabling Data-Driven Operations",
     content:
-      "EyeVia is the web-based experience designed for middle-level managers and operational teams. It provides deeper access to the domain-specific solutions that clients licensed and customized around their business models and operational contexts. We made these solutions more visible and easier to switch between, helping managers move faster through their daily analysis and management workflows. Underneath the experience, shared AI engines power capabilities such as anomaly detection, forecasting, and intelligent analysis across solutions.\n\nThis created a connected product ecosystem with different levels of interaction: executives get fast, actionable awareness; managers get deeper domain-specific tools for daily operations.",
+      "EyeVia is the web-based enterprise platform designed for middle-level managers and operational teams. It provides deeper access to domain-specific financial solutions licensed by clients and customized around their business models, operational requirements, and analytical needs.\n\nOur design focused on making these solutions more accessible and easier to navigate, supporting daily analysis, performance monitoring, and operational management. Shared analytical capabilities, including anomaly detection, forecasting, and intelligent insights, support decision-making across different business functions.\n\nTogether, EARS and EyeVia create a connected enterprise ecosystem: executives gain actionable business awareness, while managers access specialized tools for analysis and operational execution.",
   },
 
   designIteration: {
     label: "Design Iteration",
     heading: "From Solutions to Action",
     content:
-      "When I joined the project, the dashboard was primarily solution-centered. Financial solutions occupied the main experience, while alerts, anomaly analysis, forecasting, and action-ticket tracking were secondary. As we gained more user interviews, usage data, and remote and on-site contextual observations, the design direction began to change. Our design team also interviewed leaders within our own company, including the CEO, to compare what executives said they needed with how they actually worked. One key insight was that executives were constantly on the go. They did not need every data point or detailed drill-down. They needed a quick overview, domain-expert interpretation, and a clear understanding of what happened, why it mattered, and what to do next.\n\nBased on these insights, we redesigned the dashboard around anomalies, alerts, forecasting, actionable insights, and ticket tracking, supported by an AI-powered real-time personal analyst. Detailed financial solutions moved to the sidebar, keeping them accessible without competing with the executive workflow.\n\nThe design shifted from solution-centered to action-centered, combining AI analysis with human domain expertise so executives could quickly understand key KPIs, assign tasks, and stay connected while on the go.",
+      "When I joined the project, the dashboard was primarily centered on financial solutions, while alerts, anomaly analysis, forecasting, and action ticket tracking remained secondary.\n\nThrough user interviews, usage data, contextual observations, and feedback from consulting teams, I collaborated with the design team to identify a gap between the existing product structure and executives' actual decision needs. I also participated in interviews with internal business leaders, including the CEO, to better understand executive workflows and priorities.\n\nOne key insight was that executives often needed to make decisions on the go, whether waiting for a flight, traveling between locations, attending meetings, or moving around the workplace. Rather than navigating detailed reports, they needed to quickly understand what was happening, why it mattered, what action was needed, and who was responsible.\n\nBased on these findings, I worked closely with the design team to redesign the dashboard around anomalies, alerts, forecasting, actionable insights, and ticket tracking, combining AI analytics with human domain expertise. Detailed financial solutions remained accessible through the sidebar without competing with the primary executive workflow.\n\nThis shift from presenting financial solutions to prioritizing business action aligned the product more closely with business priorities and executives' everyday needs.",
   },
 
   section3: {
     label: "Result",
     heading: "From Data Discovery to Business Action",
-    content: 'The platform enabled executives and operational teams to significantly reduce time spent gathering and interpreting information, shifting focus toward decision-making and execution. By connecting AI-powered insights with operational workflows, organizations gained greater visibility, accountability, and responsiveness across key business functions.\n\nOne notable implementation was a workforce planning solution developed for a Top-3 U.S. bank. Collaborating closely with analysts and software engineers, I helped design a workforce optimization experience that introduced a Teller Stress Index to identify staffing bottlenecks and operational risks. The solution reduced task completion time by 40%, increased banker sales-call activity by 40%, improved service levels by 500 basis points, and reduced the percentage of customers waiting longer than five minutes to approximately 33%.\n\nThis project demonstrated how thoughtful UX design can bridge enterprise AI, operational analytics, and executive decision-making to deliver measurable business outcomes at scale.',
+    content:
+      "The enterprise ecosystem connected complex financial analytics with practical business workflows, helping executives and operational teams move from information discovery to decision-making and execution.\n\nOne notable example was the Retail Branch solution for a North American banking client. Collaborating with data analysts, consultants, and software engineers, I helped translate complex operational requirements into analytical interfaces supporting workforce planning, employee effectiveness, and customer experience. My design contributions included visualizing staffing bottlenecks, employee productivity, service levels, and operational risks to support management decisions.\n\nThe Retail Branch solution reported measurable business outcomes, including 12–15% OpEx Savings, an increase in daily banker sales calls from 12 to 18, a 500 basis point improvement in service levels, and a reduction in customers waiting longer than five minutes from 39% to 33%.\n\nThis project demonstrated how financial consulting expertise, advanced analytics, and human-centred design could work together to improve operational efficiency, customer experience, and business performance.",
   },
+
+  resultMetricsTitle: "Retail branch · reported solution impact",
+  resultMetrics: [
+    {
+      prefix: "+",
+      target: 10,
+      suffix: "%",
+      label: "Revenue / Balance Growth",
+      subLabel: "Business growth",
+    },
+    {
+      prefix: "12–",
+      from: 12,
+      target: 15,
+      suffix: "%",
+      label: "OpEx Savings",
+      subLabel: "Operating expense efficiency",
+    },
+    {
+      prefix: "+",
+      target: 50,
+      suffix: "%",
+      label: "Daily Sales Calls per Banker",
+      subLabel: "Employee effectiveness",
+    },
+    {
+      prefix: "−",
+      target: 400,
+      suffix: "\u00A0bps",
+      label: "Volume Forecast Error",
+      subLabel: "Operations planning",
+    },
+    {
+      prefix: "+",
+      target: 500,
+      suffix: "\u00A0bps",
+      label: "Service Level Improvement",
+      subLabel: "Service performance",
+    },
+    {
+      prefix: "39% → ",
+      from: 39,
+      target: 33,
+      suffix: "%",
+      label: "Customers Waiting Over 5 Minutes",
+      subLabel: "In-branch customer experience",
+    },
+  ],
 
   media1: "/projects/ears/ears-mp-1.webm",
   media2: "/projects/ears/ears-mp-2.webp",
@@ -77,8 +126,8 @@ export const earsCaseStudy: ProjectData = {
   metadata: [
     { label: "DURATION", value: "3 years" },
     { label: "YEAR", value: "2022 - 2025" },
-    { label: "ROLE", value: "UX/UI Designer II" },
-    { label: "INDUSTRY", value: "B2B Fintech" },
+    { label: "ROLE", value: "UI Designer II" },
+    { label: "INDUSTRY", value: "Financial Technology & Consulting" },
   ],
 
   content: [
