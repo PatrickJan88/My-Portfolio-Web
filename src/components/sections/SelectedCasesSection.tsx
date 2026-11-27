@@ -28,7 +28,7 @@ const CASES: CaseItem[] = [
   {
     id: "ears",
     title: "Enterprise Finance Ecosystem",
-    category: "Executive AI & Fintech",
+    category: "B2B Fintech & Enterprise AI",
     client: "Essex Lake Group",
     description:
       "An AI-powered decision support platform transforming complex enterprise analytics into executive mobile actions, management dashboards, and operational ticketing workflows.",
@@ -44,7 +44,7 @@ const CASES: CaseItem[] = [
   {
     id: "internal-design-manual",
     title: "Internal Design Hub",
-    category: "Design System",
+    category: "Design Ops & Internal Platform",
     client: "Enterprise Platform",
     description:
       "A centralized design system and digital resource hub connecting design specifications, reusable UI components, code references, and interactive prototypes across cross-functional teams.",
@@ -61,7 +61,7 @@ const CASES: CaseItem[] = [
   {
     id: "biotopia-digital-experience",
     title: "Biotopia: Unified Museum Service",
-    category: "Service Design & Research",
+    category: "HCI Research & Service Design",
     client: "Uppsala Biotopia Museum",
     description:
       "A comprehensive service ecosystem combining gamified digital experiences, outdoor exploration routes, and internal staff workflows into a continuous Online-to-Offline (O2O) visitor journey.",
@@ -77,7 +77,7 @@ const CASES: CaseItem[] = [
   {
     id: "health-app-design",
     title: "Digital Health App",
-    category: "Product Design & Telehealth",
+    category: "Product Design & Digital Health",
     client: "Legent Health",
     description:
       "A seamless digital health experience natively integrated into the WeChat ecosystem, connecting patients with remote doctor consultations, localized education, and O2O pharmacy.",
@@ -257,9 +257,9 @@ function CaseCard({ item, index }: CaseCardProps) {
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 lg:items-center">
         {/* LEFT COLUMN: Metadata, Title, Description, CTA */}
-        <div className="lg:col-span-5 flex flex-col items-start space-y-6 sm:space-y-8">
+        <div className="contents lg:col-span-5 lg:flex lg:flex-col lg:items-start lg:space-y-8">
           {/* Text block aligned with the right cover top-to-bottom bounds */}
-          <div className="flex flex-col justify-between items-start space-y-5 sm:space-y-6 w-full">
+          <div className="order-1 lg:order-none flex flex-col justify-between items-start space-y-5 sm:space-y-6 w-full">
             {/* Category Pill Tag */}
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-neutral-100 text-neutral-700 text-xs font-medium tracking-wide text-pretty">
               <span>{item.category}</span>
@@ -278,16 +278,16 @@ function CaseCard({ item, index }: CaseCardProps) {
             </p>
           </div>
 
-          {/* CTA View Project Button - sits below the aligned text block */}
-          <div className="pt-2 sm:pt-4">
+          {/* CTA View Project Button - sits at the bottom below cover on mobile, and below text on desktop */}
+          <div className="order-3 lg:order-none pt-0 lg:pt-4 w-full lg:w-auto">
             <Link
               to={item.link}
-              className="relative inline-flex items-center justify-center rounded-full p-[1.5px] animate-rainbow bg-[length:200%] hover:scale-105 active:scale-95 transition-all duration-200 shadow-md shadow-black/15"
+              className="relative flex lg:inline-flex w-full lg:w-auto items-center justify-center rounded-full p-[1.5px] animate-rainbow bg-[length:200%] hover:scale-105 active:scale-95 transition-all duration-200 shadow-md shadow-black/15"
               style={{
                 backgroundImage: rainbowBorderGradient,
               }}
             >
-              <span className="inline-flex items-center justify-center px-[22.5px] py-[12.5px] rounded-full bg-[#1a1b1e] text-white font-medium text-sm sm:text-base text-pretty">
+              <span className="w-full lg:w-auto inline-flex items-center justify-center px-[22.5px] py-[12.5px] rounded-full bg-[#1a1b1e] text-white font-medium text-sm sm:text-base text-pretty">
                 <span>View Project</span>
               </span>
             </Link>
@@ -295,7 +295,7 @@ function CaseCard({ item, index }: CaseCardProps) {
         </div>
 
         {/* RIGHT COLUMN: Media Preview (16:9 / 4:3 ratio) */}
-        <div className="lg:col-span-7">
+        <div className="order-2 lg:order-none lg:col-span-7">
           <Link
             to={item.link}
             className="block group relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-neutral-950 shadow-inner"

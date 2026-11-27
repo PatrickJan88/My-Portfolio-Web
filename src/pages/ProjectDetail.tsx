@@ -889,7 +889,12 @@ export default function ProjectDetail() {
           >
             {project.media4 ? (
               Array.isArray(project.media4) ? (
-                <AutoCarousel images={project.media4} onImageClick={(src) => handleMediaClick(src, false, project.media4 as string[])} />
+                <AutoCarousel
+                  images={project.media4}
+                  interval={project.id === "ears" ? 3000 : undefined}
+                  largeControls={project.id === "ears"}
+                  onImageClick={(src) => handleMediaClick(src, false, project.media4 as string[])}
+                />
               ) : project.media4.endsWith(".webm") || project.media4.endsWith(".mp4") ? (
                 <video src={project.media4} autoPlay loop muted playsInline className="w-full h-full object-cover md:object-contain pointer-events-none md:pointer-events-auto" />
               ) : (
